@@ -1,2 +1,3 @@
 # UAS_iOS
-Editado por italo
+Aplicación móvil
+
