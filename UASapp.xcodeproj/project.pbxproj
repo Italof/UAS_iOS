@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		124DD59C1DBBCB0B004D95FA /* InvGrDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124DD59B1DBBCB0B004D95FA /* InvGrDetailViewController.swift */; };
+		124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124DD59D1DBBCC6F004D95FA /* InvNavViewController.swift */; };
 		12ADDE991DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE981DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift */; };
 		12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		124DD59B1DBBCB0B004D95FA /* InvGrDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGrDetailViewController.swift; sourceTree = "<group>"; };
+		124DD59D1DBBCC6F004D95FA /* InvNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvNavViewController.swift; sourceTree = "<group>"; };
 		12ADDE981DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationGroupTableViewController.swift; sourceTree = "<group>"; };
 		12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvestigationGroup.swift; path = ../InvestigationGroup.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +73,8 @@
 				46292B0D1DB9DF7500EC8575 /* Info.plist */,
 				467430061DB9F6160094AE29 /* ModuleViewController.swift */,
 				12ADDE981DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift */,
+				124DD59B1DBBCB0B004D95FA /* InvGrDetailViewController.swift */,
+				124DD59D1DBBCC6F004D95FA /* InvNavViewController.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -99,6 +105,9 @@
 		46292AF61DB9DF7500EC8575 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					title,
+				);
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = sumajg;
@@ -147,9 +156,11 @@
 			files = (
 				12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */,
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
+				124DD59C1DBBCB0B004D95FA /* InvGrDetailViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
 				12ADDE991DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift in Sources */,
 				467430071DB9F6160094AE29 /* ModuleViewController.swift in Sources */,
+				124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

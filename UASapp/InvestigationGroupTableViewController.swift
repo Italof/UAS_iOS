@@ -10,6 +10,7 @@ import UIKit
 
 class InvestigationGroupTableViewController: UITableViewController {
     var invGrData: [InvestigationGroup] = [ InvestigationGroup(id:1, name:"GRPPI", speciality:"asd", description:"asdas"),InvestigationGroup(id:2,name:"GRPPA", speciality:"asdf", description:"asdas")]
+    var elegido : Int = 9
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -49,8 +50,20 @@ class InvestigationGroupTableViewController: UITableViewController {
         print(invGr.name)
         cell.textLabel?.text = invGr.name
         cell.detailTextLabel?.text = invGr.speciality
+        
         return cell
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        let invGr = invGrData[indexPath.row] as InvestigationGroup
+        elegido = indexPath.row
+        ((parent as! InvNavViewController).elegido) = indexPath.row
+        ((parent as! InvNavViewController).invGr) = invGr
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //var svc = segue!.
+    }
+    
  /*
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath){
         
