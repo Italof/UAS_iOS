@@ -1,5 +1,5 @@
 //
-//  InvNavViewController.swift
+//  InvPrDetailViewController.swift
 //  UASapp
 //
 //  Created by inf227al on 22/10/16.
@@ -8,24 +8,33 @@
 
 import UIKit
 
-class InvNavViewController: UINavigationController {
-    //Controlador de navegación de investigación
+class InvPrDetailViewController: UIViewController {
+    var invPr : InvestigationProject?
     
-    //variables que se usan en las pantallas que usan este navegador
-    //prueba
-    var elegido: Int = 0
-    //Grupo de investigacion elegido
-    var invGr: InvestigationGroup?
-    var invPr: InvestigationProject?
+    
+    @IBOutlet weak var nameInvProject: UILabel!
+    @IBOutlet weak var startDateInvProject: UILabel!
+    @IBOutlet weak var endDateInvProject: UILabel!
+    @IBOutlet weak var numberDerivablesInvProject: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        invPr = (parent as! InvNavViewController).invPr
+        nameInvProject.text = invPr?.name?.uppercased()
+        startDateInvProject.text = invPr?.startDate
+        endDateInvProject.text = invPr?.endDate
+        
+        //parse to String from optional Int
+        let parser = invPr?.numberDerivables
+        numberDerivablesInvProject.text = String(parser.unsafelyUnwrapped)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
     
 

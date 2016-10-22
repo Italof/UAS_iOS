@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1214CEC81DBC05A90042A3F2 /* InvGrEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CEC71DBC05A90042A3F2 /* InvGrEditViewController.swift */; };
+		1214CECA1DBC0C600042A3F2 /* InvestigationProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CEC91DBC0C600042A3F2 /* InvestigationProject.swift */; };
+		1214CECC1DBC0DE80042A3F2 /* InvProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CECB1DBC0DE80042A3F2 /* InvProjectTableViewController.swift */; };
+		1214CECE1DBC125E0042A3F2 /* InvPrDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CECD1DBC125E0042A3F2 /* InvPrDetailViewController.swift */; };
+		1214CED01DBC12A50042A3F2 /* InvPrEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CECF1DBC12A50042A3F2 /* InvPrEditViewController.swift */; };
 		124DD59C1DBBCB0B004D95FA /* InvGrDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124DD59B1DBBCB0B004D95FA /* InvGrDetailViewController.swift */; };
 		124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124DD59D1DBBCC6F004D95FA /* InvNavViewController.swift */; };
-		12ADDE991DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE981DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift */; };
+		12ADDE991DBACC8300A2B7CA /* InvGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */; };
 		12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
 		46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B031DB9DF7500EC8575 /* ViewController.swift */; };
@@ -20,9 +25,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1214CEC71DBC05A90042A3F2 /* InvGrEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGrEditViewController.swift; sourceTree = "<group>"; };
+		1214CEC91DBC0C600042A3F2 /* InvestigationProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationProject.swift; sourceTree = "<group>"; };
+		1214CECB1DBC0DE80042A3F2 /* InvProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvProjectTableViewController.swift; sourceTree = "<group>"; };
+		1214CECD1DBC125E0042A3F2 /* InvPrDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvPrDetailViewController.swift; sourceTree = "<group>"; };
+		1214CECF1DBC12A50042A3F2 /* InvPrEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvPrEditViewController.swift; sourceTree = "<group>"; };
 		124DD59B1DBBCB0B004D95FA /* InvGrDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGrDetailViewController.swift; sourceTree = "<group>"; };
 		124DD59D1DBBCC6F004D95FA /* InvNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvNavViewController.swift; sourceTree = "<group>"; };
-		12ADDE981DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationGroupTableViewController.swift; sourceTree = "<group>"; };
+		12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGroupTableViewController.swift; sourceTree = "<group>"; };
 		12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvestigationGroup.swift; path = ../InvestigationGroup.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46292B011DB9DF7500EC8575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,9 +82,14 @@
 				46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */,
 				46292B0D1DB9DF7500EC8575 /* Info.plist */,
 				467430061DB9F6160094AE29 /* ModuleViewController.swift */,
-				12ADDE981DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift */,
+				12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */,
 				124DD59B1DBBCB0B004D95FA /* InvGrDetailViewController.swift */,
 				124DD59D1DBBCC6F004D95FA /* InvNavViewController.swift */,
+				1214CEC71DBC05A90042A3F2 /* InvGrEditViewController.swift */,
+				1214CEC91DBC0C600042A3F2 /* InvestigationProject.swift */,
+				1214CECB1DBC0DE80042A3F2 /* InvProjectTableViewController.swift */,
+				1214CECD1DBC125E0042A3F2 /* InvPrDetailViewController.swift */,
+				1214CECF1DBC12A50042A3F2 /* InvPrEditViewController.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -154,13 +169,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1214CECE1DBC125E0042A3F2 /* InvPrDetailViewController.swift in Sources */,
 				12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */,
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
 				124DD59C1DBBCB0B004D95FA /* InvGrDetailViewController.swift in Sources */,
+				1214CED01DBC12A50042A3F2 /* InvPrEditViewController.swift in Sources */,
+				1214CECC1DBC0DE80042A3F2 /* InvProjectTableViewController.swift in Sources */,
+				1214CEC81DBC05A90042A3F2 /* InvGrEditViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
-				12ADDE991DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift in Sources */,
+				12ADDE991DBACC8300A2B7CA /* InvGroupTableViewController.swift in Sources */,
 				467430071DB9F6160094AE29 /* ModuleViewController.swift in Sources */,
 				124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */,
+				1214CECA1DBC0C600042A3F2 /* InvestigationProject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

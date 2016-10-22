@@ -9,15 +9,23 @@
 
 
 struct InvestigationGroup {
+    //EStructura de grupo de investigaciòn
+    //modelo
+    var id: Int
     var name: String?
     var speciality: String?
     var description: String?
-    var id: Int
-    
-    init(id:Int, name:String?, speciality:String?, description:String?){
+    var imageInvGr: String?
+    var createdInvGr: String?
+    var leaderName: String?
+    //funcion inicializadora
+    init(id:Int, name:String?, speciality:String?, description:String?, imageInvGr: String?, createdInvGr: String?, leaderName:String?){
         self.description=description
         self.name=name
         self.speciality=speciality
         self.id = id
+        self.createdInvGr = createdInvGr
+        self.imageInvGr = imageInvGr
     }
+    
 }

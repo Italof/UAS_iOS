@@ -1,5 +1,5 @@
 //
-//  InvGrDetailViewController.swift
+//  InvGrEditViewController.swift
 //  UASapp
 //
 //  Created by inf227al on 22/10/16.
@@ -8,37 +8,20 @@
 
 import UIKit
 
-class InvGrDetailViewController: UIViewController {
-    //Controlador de la pantalla de vista de detalle de Grupo de investigacion
-    
-    //variable de GRupo de investigacion
+class InvGrEditViewController: UIViewController {
     var invGr : InvestigationGroup?
-    //labels donde se mostraràn la informacion del grupo
-    
-    @IBOutlet weak var nameInvGroup: UILabel!
+    @IBOutlet weak var nameInvGroup: UITextField!
     @IBOutlet weak var descriptionInvGroup: UITextView!
-    @IBOutlet weak var specialityInvGroup: UILabel!
-    @IBOutlet weak var leaderInvGroup: UILabel!
-    @IBOutlet weak var imageInvGroup: UIImageView!
-    //Boton de editar grupo, desactivar si no es lider de especialidad
-    @IBOutlet weak var editInvGroup: UIBarButtonItem!
-    
-    
+    @IBOutlet weak var saveInvGroup: UIBarButtonItem!
+    @IBAction func pressedSaveInvGroup(_ sender: UIBarButtonItem) {
+        print("hola")
+    }
+    @IBOutlet weak var specialityInvGroup: UIPickerView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print((parent as! InvNavViewController).elegido)
         invGr = (parent as! InvNavViewController).invGr
-        
-        //se manejan los campos importantes
         nameInvGroup.text = invGr?.name?.uppercased()
         descriptionInvGroup.text = invGr?.description
-        specialityInvGroup.text = invGr?.speciality
-        leaderInvGroup.text = invGr?.leaderName
-        //se maneja la imagen del grupo
-        
-        
-        
-        print (invGr)
         // Do any additional setup after loading the view.
     }
 

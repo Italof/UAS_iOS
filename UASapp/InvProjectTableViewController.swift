@@ -1,18 +1,16 @@
 //
-//  InvestigationGroupTableViewController.swift
+//  InvProjectTableViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 21/10/16.
+//  Created by inf227al on 22/10/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class InvestigationGroupTableViewController: UITableViewController {
-    var invGrData: [InvestigationGroup] = [ InvestigationGroup(id:1, name:"GRPPI", speciality:"asd", description:"asdas"),InvestigationGroup(id:2,name:"GRPPA", speciality:"asdf", description:"asdas")]
-    var elegido : Int = 9
+class InvProjectTableViewController: UITableViewController {
+    var invPrData : [InvestigationProject] = [InvestigationProject.init(id: 1, name: "LPD", numberDerivables: 12, startDate: "12/15/2064", endDate: "15/12/2068", invGroupName: "GRPPIA", leaderName: "No idea")]
     override func viewDidLoad() {
-        
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
@@ -36,39 +34,38 @@ class InvestigationGroupTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print(1)
-        return invGrData.count
+        return invPrData.count
     }
-    
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print(indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "InvestigationCell", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath)
+        print(indexPath)
         // Configure the cell...
-        let invGr = invGrData[indexPath.row] as InvestigationGroup
-        print(invGr.name)
-        cell.textLabel?.text = invGr.name
-        cell.detailTextLabel?.text = invGr.speciality
+        let invPr = invPrData[indexPath.row] as InvestigationProject
+        print(invPr.name)
+        cell.textLabel?.text = invPr.name
+        cell.detailTextLabel?.text = invPr.invGroupName
         
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        let invGr = invGrData[indexPath.row] as InvestigationGroup
-        elegido = indexPath.row
-        ((parent as! InvNavViewController).elegido) = indexPath.row
-        ((parent as! InvNavViewController).invGr) = invGr
+        let invPr = invPrData[indexPath.row] as InvestigationProject
+        //elegido = indexPath.row
+        //((parent as! InvNavViewController).elegido) = indexPath.row
+        ((parent as! InvNavViewController).invPr) = invPr
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //var svc = segue!.
+    /*
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
+        return cell
     }
-    
- /*
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath){
-        
-    }
-    
+    */
+
+    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.

@@ -1,5 +1,5 @@
 //
-//  InvNavViewController.swift
+//  InvPrEditViewController.swift
 //  UASapp
 //
 //  Created by inf227al on 22/10/16.
@@ -8,21 +8,18 @@
 
 import UIKit
 
-class InvNavViewController: UINavigationController {
-    //Controlador de navegación de investigación
-    
-    //variables que se usan en las pantallas que usan este navegador
-    //prueba
-    var elegido: Int = 0
-    //Grupo de investigacion elegido
-    var invGr: InvestigationGroup?
-    var invPr: InvestigationProject?
+class InvPrEditViewController: UIViewController {
+
+    @IBOutlet weak var nameInvProject: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    @IBOutlet weak var startDateInvProject: UIDatePicker!
 
+    @IBOutlet weak var numberDerivablesInvProject: UIPickerView!
+    @IBOutlet weak var endDateInvProject: UIDatePicker!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
