@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12ADDE991DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE981DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift */; };
+		12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
 		46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B031DB9DF7500EC8575 /* ViewController.swift */; };
 		46292B071DB9DF7500EC8575 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46292B051DB9DF7500EC8575 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12ADDE981DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationGroupTableViewController.swift; sourceTree = "<group>"; };
+		12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvestigationGroup.swift; path = ../InvestigationGroup.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46292B011DB9DF7500EC8575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46292B031DB9DF7500EC8575 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +60,7 @@
 		46292B001DB9DF7500EC8575 /* UASapp */ = {
 			isa = PBXGroup;
 			children = (
+				12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */,
 				46292B011DB9DF7500EC8575 /* AppDelegate.swift */,
 				46292B031DB9DF7500EC8575 /* ViewController.swift */,
 				46292B051DB9DF7500EC8575 /* Main.storyboard */,
@@ -63,6 +68,7 @@
 				46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */,
 				46292B0D1DB9DF7500EC8575 /* Info.plist */,
 				467430061DB9F6160094AE29 /* ModuleViewController.swift */,
+				12ADDE981DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -139,8 +145,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */,
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
+				12ADDE991DBACC8300A2B7CA /* InvestigationGroupTableViewController.swift in Sources */,
 				467430071DB9F6160094AE29 /* ModuleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
