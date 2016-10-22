@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12EE10E41DBAD70B005D3C2A /* ViewControllerCreateDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE10E31DBAD70B005D3C2A /* ViewControllerCreateDate.swift */; };
+		12EE10E61DBAECCB005D3C2A /* ViewControllerThemesDateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE10E51DBAECCB005D3C2A /* ViewControllerThemesDateList.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
 		46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B031DB9DF7500EC8575 /* ViewController.swift */; };
 		46292B071DB9DF7500EC8575 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46292B051DB9DF7500EC8575 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12EE10E31DBAD70B005D3C2A /* ViewControllerCreateDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCreateDate.swift; sourceTree = "<group>"; };
+		12EE10E51DBAECCB005D3C2A /* ViewControllerThemesDateList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerThemesDateList.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46292B011DB9DF7500EC8575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46292B031DB9DF7500EC8575 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 				46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */,
 				46292B0D1DB9DF7500EC8575 /* Info.plist */,
 				467430061DB9F6160094AE29 /* ModuleViewController.swift */,
+				12EE10E31DBAD70B005D3C2A /* ViewControllerCreateDate.swift */,
+				12EE10E51DBAECCB005D3C2A /* ViewControllerThemesDateList.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -141,6 +147,8 @@
 			files = (
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
+				12EE10E41DBAD70B005D3C2A /* ViewControllerCreateDate.swift in Sources */,
+				12EE10E61DBAECCB005D3C2A /* ViewControllerThemesDateList.swift in Sources */,
 				467430071DB9F6160094AE29 /* ModuleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
