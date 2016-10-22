@@ -13,6 +13,7 @@
 		1231D7891DBAE681004E35FD /* PeriodMeasDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7881DBAE681004E35FD /* PeriodMeasDetailViewController.swift */; };
 		1231D78B1DBAE869004E35FD /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D78A1DBAE869004E35FD /* ScheduleViewController.swift */; };
 		1231D78D1DBAE87D004E35FD /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D78C1DBAE87D004E35FD /* StudentViewController.swift */; };
+		12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
 		46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B031DB9DF7500EC8575 /* ViewController.swift */; };
 		46292B071DB9DF7500EC8575 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46292B051DB9DF7500EC8575 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		1231D7881DBAE681004E35FD /* PeriodMeasDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodMeasDetailViewController.swift; sourceTree = "<group>"; };
 		1231D78A1DBAE869004E35FD /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		1231D78C1DBAE87D004E35FD /* StudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentViewController.swift; sourceTree = "<group>"; };
+		12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPeriodCell.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46292B011DB9DF7500EC8575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46292B031DB9DF7500EC8575 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				1231D7881DBAE681004E35FD /* PeriodMeasDetailViewController.swift */,
 				1231D78A1DBAE869004E35FD /* ScheduleViewController.swift */,
 				1231D78C1DBAE87D004E35FD /* StudentViewController.swift */,
+				12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				1231D7891DBAE681004E35FD /* PeriodMeasDetailViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
 				1231D78D1DBAE87D004E35FD /* StudentViewController.swift in Sources */,
+				12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */,
 				1231D7851DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift in Sources */,
 				467430071DB9F6160094AE29 /* ModuleViewController.swift in Sources */,
 			);

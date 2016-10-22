@@ -14,6 +14,11 @@ class CoursesBySpecialtyViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
+        for index in 1...5{
+            courseName.text = "Curso "+String(index)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,4 +37,8 @@ class CoursesBySpecialtyViewController: UIViewController {
     }
     */
 
+    @IBOutlet weak var level: UILabel!
+    @IBOutlet weak var courseName: UILabel!
+    
+    var index=1
 }
