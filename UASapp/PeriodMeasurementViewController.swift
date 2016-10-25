@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PeriodMeasurementViewController: UIViewController/*, UITableViewDataSource, UITableViewDelegate*/ {
+class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
     @IBOutlet var tableView: UITableView!
@@ -25,7 +25,7 @@ class PeriodMeasurementViewController: UIViewController/*, UITableViewDataSource
         // Dispose of any resources that can be recreated.
     }
     
-    /*func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cycles.count
     }
     
@@ -34,7 +34,7 @@ class PeriodMeasurementViewController: UIViewController/*, UITableViewDataSource
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomPeriodCell
         cell.lblPeriod.text=cycles[indexPath.row]
         return cell
-    }*/
+    }
 
     /*
     // MARK: - Navigation
