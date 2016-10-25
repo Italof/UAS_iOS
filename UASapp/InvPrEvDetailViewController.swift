@@ -1,32 +1,38 @@
 //
-//  InvPrEditViewController.swift
+//  InvPrEvDetailViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 22/10/16.
+//  Created by inf227al on 25/10/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class InvPrEditViewController: UIViewController {
-    var invPr : InvestigationProject?
-    @IBOutlet weak var nameInvProject: UITextField!
-    @IBOutlet weak var startDateInvProject: UIDatePicker!
+class InvPrEvDetailViewController: UIViewController {
+
+    var invPrEv : InvestigationProjectEvent?
+    
+    @IBOutlet weak var nameInvProEvent: UILabel!
     
     
-    @IBOutlet weak var numberDerivablesInvPr: UITextField!
-    @IBOutlet weak var endDateInvProject: UIDatePicker!
+    
+    @IBOutlet weak var dateInvProEvent: UILabel!
+    
+    @IBOutlet weak var timeInvProEvent: UILabel!
+    
+    @IBOutlet weak var placeInvProEvent: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        invPr = (parent as! InvNavViewController).invPr
-        nameInvProject.text = invPr?.name
-        let parser = invPr?.numberDerivables
-        numberDerivablesInvPr.text = String(parser.unsafelyUnwrapped)
-               
+        invPrEv = (parent as! InvNavViewController).invPrEv
+        nameInvProEvent.text = invPrEv?.name?.uppercased()
+        dateInvProEvent.text = invPrEv?.date
+        timeInvProEvent.text = invPrEv?.time
+        placeInvProEvent.text = invPrEv?.place
+        
         // Do any additional setup after loading the view.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
