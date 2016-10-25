@@ -59,12 +59,12 @@ class InvestigationGroupTableViewController: UITableViewController {
         print(indexPath.row)
         let invGr = invGrData[indexPath.row] as InvestigationGroup
         elegido = indexPath.row
-        ((parent as! InvNavViewController).elegido) = indexPath.row
+        //prueba
+        //((parent as! InvNavViewController).elegido) = indexPath.row
+        //asigna el Grupo de investigacion elegido a variable en controlador de navegaciòn
         ((parent as! InvNavViewController).invGr) = invGr
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //var svc = segue!.
-    }
+    
     
  /*
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath){

@@ -10,7 +10,7 @@ import UIKit
 
 class InvPrEvEditViewController: UIViewController {
     var invPrEv : InvestigationProjectEvent?
-
+    //variables de campos
     @IBOutlet weak var nameInvPrEvent: UITextField!
     @IBOutlet weak var dateInvPrEvent: UIDatePicker!
     @IBOutlet weak var timeInvPrEvent: UIDatePicker!
@@ -18,10 +18,12 @@ class InvPrEvEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //inicializa campos a editar
         invPrEv = (parent as! InvNavViewController).invPrEv
         nameInvPrEvent.text = invPrEv?.name?.uppercased()
         
-        
+        //ver si esta online o offline
+
         
         placeInvPrEvent.text = invPrEv?.place
         // Do any additional setup after loading the view.
@@ -34,6 +36,11 @@ class InvPrEvEditViewController: UIViewController {
     
     @IBAction func pressedSaveInvPrEvent(_ sender: AnyObject) {
         print("hola")
+        //verificar que los campos son correctos
+        
+        //enviar a api web
+        
+        //alerta de guardado
         let alert : UIAlertController = UIAlertController.init(title: "Guardado", message: "Los cambios han sido guardados", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)

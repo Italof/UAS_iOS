@@ -11,24 +11,23 @@ import UIKit
 class InvPrEvDetailViewController: UIViewController {
 
     var invPrEv : InvestigationProjectEvent?
-    
+    //variables de labels
     @IBOutlet weak var nameInvProEvent: UILabel!
-    
-    
-    
     @IBOutlet weak var dateInvProEvent: UILabel!
-    
     @IBOutlet weak var timeInvProEvent: UILabel!
-    
     @IBOutlet weak var placeInvProEvent: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //toma Evento desde controlador de navegador
         invPrEv = (parent as! InvNavViewController).invPrEv
+        //inicializa campos
         nameInvProEvent.text = invPrEv?.name?.uppercased()
         dateInvProEvent.text = invPrEv?.date
         timeInvProEvent.text = invPrEv?.time
         placeInvProEvent.text = invPrEv?.place
+        //inicializa botones -- PERMISOS    
+        
         
         // Do any additional setup after loading the view.
     }

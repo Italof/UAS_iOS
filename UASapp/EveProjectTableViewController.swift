@@ -9,6 +9,7 @@
 import UIKit
 
 class EveProjectTableViewController: UITableViewController {
+    //Arreglo de eventos de un proyecto -- Se llena con el api
     var invPrEvData : [InvestigationProjectEvent] = [InvestigationProjectEvent.init(id: 1, name: "Evento de iniciación", date: "12/05/2016", time: "12:12 p.m.", place: "No-where")]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,7 @@ class EveProjectTableViewController: UITableViewController {
         let invPrEv = invPrEvData[indexPath.row] as InvestigationProjectEvent
         //elegido = indexPath.row
         //((parent as! InvNavViewController).elegido) = indexPath.row
+        //asigna el Evento elegido a variable en controlador de navegaciòn
         ((parent as! InvNavViewController).invPrEv) = invPrEv
     }
     /*

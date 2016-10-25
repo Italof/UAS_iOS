@@ -10,20 +10,23 @@ import UIKit
 
 class InvPrEditViewController: UIViewController {
     var invPr : InvestigationProject?
+     //variables de campos
     @IBOutlet weak var nameInvProject: UITextField!
     @IBOutlet weak var startDateInvProject: UIDatePicker!
-    
-    
     @IBOutlet weak var numberDerivablesInvPr: UITextField!
     @IBOutlet weak var endDateInvProject: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //inicializa campos a editar
         invPr = (parent as! InvNavViewController).invPr
         nameInvProject.text = invPr?.name
         let parser = invPr?.numberDerivables
         numberDerivablesInvPr.text = String(parser.unsafelyUnwrapped)
-               
+        
+        //ver si esta online o offline
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -34,8 +37,11 @@ class InvPrEditViewController: UIViewController {
     }
     
     @IBAction func pressedSaveInvProject(_ sender: AnyObject) {
+        //verificar que los campos son correctos
         
+        //enviar a api web
         
+        //alerta de guardado
         print("hola")
         let alert : UIAlertController = UIAlertController.init(title: "Guardado", message: "Los cambios han sido guardados", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)

@@ -16,8 +16,11 @@ class InvNavViewController: UINavigationController {
     var elegido: Int = 0
     //Grupo de investigacion elegido
     var invGr: InvestigationGroup?
+    //Proyecto de investigacion elegido
     var invPr: InvestigationProject?
+    //Evento de Proyecto de investigacion elegido
     var invPrEv: InvestigationProjectEvent?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

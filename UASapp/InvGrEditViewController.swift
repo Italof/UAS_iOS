@@ -10,22 +10,55 @@ import UIKit
 
 class InvGrEditViewController: UIViewController {
     var invGr : InvestigationGroup?
+    //variables de campos
     @IBOutlet weak var nameInvGroup: UITextField!
     @IBOutlet weak var descriptionInvGroup: UITextView!
     @IBOutlet weak var saveInvGroup: UIBarButtonItem!
+    @IBOutlet weak var specialityInvGroup: UIPickerView!
+    
+    //varialbles de alert de sistema
+    let successTitle :  String = "Guardado"
+    let successMessage: String = "Los cambios han sido guardados"
+    let errorTitle: String = "Error"
+    let errorMessage: String = "No se han guardado los cambios"
+    //Presiona boton guardar
     @IBAction func pressedSaveInvGroup(_ sender: UIBarButtonItem) {
         print("hola")
-        let alert : UIAlertController = UIAlertController.init(title: "Guardado", message: "Los cambios han sido guardados", preferredStyle: .alert)
+        //alerta de guardado
+        let alert : UIAlertController = UIAlertController.init(title: successTitle, message: successMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
-        present(alert,animated: true, completion:nil)
+        //error variable
+        var errorMessageCustom : String = ""
+        //verificar que los campos son correctos
+        print ((nameInvGroup!.text?.characters.count)!)
+        if ((nameInvGroup!.text?.characters.count)! > 6){
+            errorMessageCustom = "Nombre muy largo"
+            alert.message = errorMessageCustom
+            alert.title = errorTitle
+            //mostrar alerta
+            present(alert,animated: true, completion:nil)
+            return
+        }
+        
+        //enviar a api web
+        
+        
+        
+        
     }
-    @IBOutlet weak var specialityInvGroup: UIPickerView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //inicializa campos a editar
         invGr = (parent as! InvNavViewController).invGr
         nameInvGroup.text = invGr?.name?.uppercased()
         descriptionInvGroup.text = invGr?.description
+        
+        //ver si esta online o offline
+        
+        
         // Do any additional setup after loading the view.
     }
 

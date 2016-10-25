@@ -11,7 +11,7 @@ import UIKit
 class InvPrDetailViewController: UIViewController {
     var invPr : InvestigationProject?
     
-    
+    //variables de labels
     @IBOutlet weak var nameInvProject: UILabel!
     @IBOutlet weak var startDateInvProject: UILabel!
     @IBOutlet weak var endDateInvProject: UILabel!
@@ -20,14 +20,19 @@ class InvPrDetailViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        //toma Proyecto desde controlador de navegador
         invPr = (parent as! InvNavViewController).invPr
         nameInvProject.text = invPr?.name?.uppercased()
         startDateInvProject.text = invPr?.startDate
         endDateInvProject.text = invPr?.endDate
-        
         //parse to String from optional Int
         let parser = invPr?.numberDerivables
         numberDerivablesInvProject.text = String(parser.unsafelyUnwrapped)
+        // inicializa botones -- PERMISOS
+        
+        
+        
+        
         
     }
 

@@ -53,6 +53,7 @@ class InvProjectTableViewController: UITableViewController {
         let invPr = invPrData[indexPath.row] as InvestigationProject
         //elegido = indexPath.row
         //((parent as! InvNavViewController).elegido) = indexPath.row
+        //asigna el Proyecto elegido a variable en controlador de navegaciòn
         ((parent as! InvNavViewController).invPr) = invPr
     }
     /*

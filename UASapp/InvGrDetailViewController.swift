@@ -13,7 +13,7 @@ class InvGrDetailViewController: UIViewController {
     
     //variable de GRupo de investigacion
     var invGr : InvestigationGroup?
-    //labels donde se mostraràn la informacion del grupo
+    //VARIABLE DE labels
     
     @IBOutlet weak var nameInvGroup: UILabel!
     @IBOutlet weak var descriptionInvGroup: UITextView!
@@ -27,9 +27,10 @@ class InvGrDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //print((parent as! InvNavViewController).elegido)
+        //Toma grupo de controlado de navegacion
         invGr = (parent as! InvNavViewController).invGr
         
-        //se manejan los campos importantes
+        //se inicializan los campos importantes
         nameInvGroup.text = invGr?.name?.uppercased()
         descriptionInvGroup.text = invGr?.description
         specialityInvGroup.text = invGr?.speciality
@@ -37,7 +38,7 @@ class InvGrDetailViewController: UIViewController {
         //se maneja la imagen del grupo
         
         
-        
+        // inicializa botones  -- PERMISOS
         print (invGr)
         // Do any additional setup after loading the view.
     }
