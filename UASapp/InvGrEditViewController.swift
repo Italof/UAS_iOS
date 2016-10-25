@@ -15,6 +15,10 @@ class InvGrEditViewController: UIViewController {
     @IBOutlet weak var saveInvGroup: UIBarButtonItem!
     @IBAction func pressedSaveInvGroup(_ sender: UIBarButtonItem) {
         print("hola")
+        let alert : UIAlertController = UIAlertController.init(title: "Guardado", message: "Los cambios han sido guardados", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert,animated: true, completion:nil)
     }
     @IBOutlet weak var specialityInvGroup: UIPickerView!
     override func viewDidLoad() {

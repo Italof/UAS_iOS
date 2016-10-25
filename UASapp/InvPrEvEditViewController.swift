@@ -1,46 +1,44 @@
 //
-//  InvPrEditViewController.swift
+//  InvPrEvEditViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 22/10/16.
+//  Created by inf227al on 25/10/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class InvPrEditViewController: UIViewController {
-    var invPr : InvestigationProject?
-    @IBOutlet weak var nameInvProject: UITextField!
-    @IBOutlet weak var startDateInvProject: UIDatePicker!
-    
-    
-    @IBOutlet weak var numberDerivablesInvPr: UITextField!
-    @IBOutlet weak var endDateInvProject: UIDatePicker!
+class InvPrEvEditViewController: UIViewController {
+    var invPrEv : InvestigationProjectEvent?
+
+    @IBOutlet weak var nameInvPrEvent: UITextField!
+    @IBOutlet weak var dateInvPrEvent: UIDatePicker!
+    @IBOutlet weak var timeInvPrEvent: UIDatePicker!
+    @IBOutlet weak var placeInvPrEvent: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        invPr = (parent as! InvNavViewController).invPr
-        nameInvProject.text = invPr?.name
-        let parser = invPr?.numberDerivables
-        numberDerivablesInvPr.text = String(parser.unsafelyUnwrapped)
-               
+        invPrEv = (parent as! InvNavViewController).invPrEv
+        nameInvPrEvent.text = invPrEv?.name?.uppercased()
+        
+        
+        
+        placeInvPrEvent.text = invPrEv?.place
         // Do any additional setup after loading the view.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        
     }
     
-    @IBAction func pressedSaveInvProject(_ sender: AnyObject) {
-        
-        
+    @IBAction func pressedSaveInvPrEvent(_ sender: AnyObject) {
         print("hola")
         let alert : UIAlertController = UIAlertController.init(title: "Guardado", message: "Los cambios han sido guardados", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         present(alert,animated: true, completion:nil)
+        
     }
 
     /*
