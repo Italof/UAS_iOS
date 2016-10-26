@@ -1,30 +1,24 @@
 //
-//  ViewControllerCreateDate.swift
+//  ViewControllerStudentFilter.swift
 //  UASapp
 //
-//  Created by inf227al on 21/10/16.
+//  Created by inf227al on 26/10/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewControllerStudentFilter: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     
-    @IBOutlet var DateThemesList: UIPickerView!
-    
-    
-    //Este array será alimentado por el contenido de la tabla de temas de reunion
-    
-    var Array = ["Rendimiento académico","económico","familiar","otros"]
-    /*
-    var PlacementAnswer =0
-    */
+    var statusS = ["Activo", "Inactivo"]
+
+    @IBOutlet var status: UIPickerView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DateThemesList.delegate=self
-        DateThemesList.dataSource=self
+        status.delegate=self
+        status.dataSource=self
 
         // Do any additional setup after loading the view.
     }
@@ -35,29 +29,15 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return Array[row]
+        return statusS[row]
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Array.count
+        return statusS.count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
-    /*
-     
-    Ejemplo de utilizar la opcion escogida del pickerview
-    @IBAction func Submit(sender: AnyObject){
-        if (PlacementAnswer == 0){
-            Label.text = "Prueba"
-        }
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        PlacementAnswer = row
-    }
-    
-    */
     
 
     /*

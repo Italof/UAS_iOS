@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1223216F1DC14AD800B439AB /* ViewControllerStudents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1223216E1DC14AD800B439AB /* ViewControllerStudents.swift */; };
 		122321711DC14F9600B439AB /* TableViewCellStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122321701DC14F9600B439AB /* TableViewCellStudent.swift */; };
+		122321731DC16C5100B439AB /* ViewControllerStudentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122321721DC16C5100B439AB /* ViewControllerStudentFilter.swift */; };
 		12B759011DBC213300F48B73 /* ViewControllerTutorVisualize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B759001DBC213300F48B73 /* ViewControllerTutorVisualize.swift */; };
 		12DD417E1DBEE465003A1A4A /* ViewControllerDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD417D1DBEE465003A1A4A /* ViewControllerDates.swift */; };
 		12DD41801DBEE8CB003A1A4A /* TableViewCellDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD417F1DBEE8CB003A1A4A /* TableViewCellDate.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		1223216E1DC14AD800B439AB /* ViewControllerStudents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerStudents.swift; sourceTree = "<group>"; };
 		122321701DC14F9600B439AB /* TableViewCellStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellStudent.swift; sourceTree = "<group>"; };
+		122321721DC16C5100B439AB /* ViewControllerStudentFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerStudentFilter.swift; sourceTree = "<group>"; };
 		12B759001DBC213300F48B73 /* ViewControllerTutorVisualize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTutorVisualize.swift; sourceTree = "<group>"; };
 		12DD417D1DBEE465003A1A4A /* ViewControllerDates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDates.swift; sourceTree = "<group>"; };
 		12DD417F1DBEE8CB003A1A4A /* TableViewCellDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellDate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				12DD417F1DBEE8CB003A1A4A /* TableViewCellDate.swift */,
 				1223216E1DC14AD800B439AB /* ViewControllerStudents.swift */,
 				122321701DC14F9600B439AB /* TableViewCellStudent.swift */,
+				122321721DC16C5100B439AB /* ViewControllerStudentFilter.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
 				12DD41801DBEE8CB003A1A4A /* TableViewCellDate.swift in Sources */,
+				122321731DC16C5100B439AB /* ViewControllerStudentFilter.swift in Sources */,
 				12DD417E1DBEE465003A1A4A /* ViewControllerDates.swift in Sources */,
 				12B759011DBC213300F48B73 /* ViewControllerTutorVisualize.swift in Sources */,
 				12EE10E41DBAD70B005D3C2A /* ViewControllerCreateDate.swift in Sources */,
