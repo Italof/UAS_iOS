@@ -8,8 +8,14 @@
 
 import UIKit
 
-class StudentViewController: UIViewController {
+class StudentViewController: UIViewController/*, UIPickerViewDataSource, UIPickerViewDelegate*/  {
 
+    @IBOutlet var StudentResultPicker: UIPickerView!
+    @IBOutlet var AspectPicker: UIPickerView!
+    
+    /*var results = ["resultado1","resultado2"]
+    var aspects = ["aspecto1","aspecto2"]*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
