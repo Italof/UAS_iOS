@@ -15,6 +15,12 @@ class InvPrEditViewController: UIViewController {
     @IBOutlet weak var startDateInvProject: UIDatePicker!
     @IBOutlet weak var numberDerivablesInvPr: UITextField!
     @IBOutlet weak var endDateInvProject: UIDatePicker!
+    //varialbles de alert de sistema
+    let successTitle :  String = "Guardado"
+    let successMessage: String = "Los cambios han sido guardados"
+    let errorTitle: String = "Error"
+    let errorMessage: String = "No se han guardado los cambios"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,16 +43,35 @@ class InvPrEditViewController: UIViewController {
     }
     
     @IBAction func pressedSaveInvProject(_ sender: AnyObject) {
+        let alert : UIAlertController = UIAlertController.init(title: successTitle, message: successMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        //error variable
+        var errorMessageCustom : String = ""
+        var error = 0
         //verificar que los campos son correctos
-        
+        if((nameInvProject!.text?.characters.count)! > 254){
+            errorMessageCustom = "Nombre muy largo"
+            error = 1
+        }
+        if((numberDerivablesInvPr!.text?.characters.count)! > 3){
+            errorMessageCustom = "Nùmero de entregables muy grande"
+            error = 1
+        }
+        if (error == 1){
+            alert.message = errorMessageCustom
+            present(alert,animated: true, completion:nil)
+        }
+        else{
+            //Gruadar en servidor
+            
+            
+        }
+        present(alert,animated: true, completion:nil)
         //enviar a api web
         
         //alerta de guardado
-        print("hola")
-        let alert : UIAlertController = UIAlertController.init(title: "Guardado", message: "Los cambios han sido guardados", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert,animated: true, completion:nil)
+        
     }
 
     /*

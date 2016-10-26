@@ -15,7 +15,11 @@ class InvPrEvEditViewController: UIViewController {
     @IBOutlet weak var dateInvPrEvent: UIDatePicker!
     @IBOutlet weak var timeInvPrEvent: UIDatePicker!
     @IBOutlet weak var placeInvPrEvent: UITextField!
-    
+    //varialbles de alert de sistema
+    let successTitle :  String = "Guardado"
+    let successMessage: String = "Los cambios han sido guardados"
+    let errorTitle: String = "Error"
+    let errorMessage: String = "No se han guardado los cambios"
     override func viewDidLoad() {
         super.viewDidLoad()
         //inicializa campos a editar
@@ -35,15 +39,30 @@ class InvPrEvEditViewController: UIViewController {
     }
     
     @IBAction func pressedSaveInvPrEvent(_ sender: AnyObject) {
-        print("hola")
-        //verificar que los campos son correctos
-        
-        //enviar a api web
-        
-        //alerta de guardado
-        let alert : UIAlertController = UIAlertController.init(title: "Guardado", message: "Los cambios han sido guardados", preferredStyle: .alert)
+        let alert : UIAlertController = UIAlertController.init(title: successTitle, message: successMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
+        //error variable
+        var errorMessageCustom : String = ""
+        var error = 0
+        //verificar que los campos son correctos
+        if((nameInvPrEvent!.text?.characters.count)! > 254){
+            errorMessageCustom = "Nombre muy largo"
+            error = 1
+        }
+        if((placeInvPrEvent!.text?.characters.count)! > 254){
+            errorMessageCustom = "Nombre de lugar muy grande"
+            error = 1
+        }
+        if (error == 1){
+            alert.message = errorMessageCustom
+            present(alert,animated: true, completion:nil)
+        }
+        else{
+            //Gruadar en servidor
+            
+            
+        }
         present(alert,animated: true, completion:nil)
         
     }
