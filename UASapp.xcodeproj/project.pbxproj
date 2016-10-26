@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616D9E01DC07E12008174B7 /* HTTPHelper.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
 		46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B031DB9DF7500EC8575 /* ViewController.swift */; };
 		46292B071DB9DF7500EC8575 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46292B051DB9DF7500EC8575 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4616D9E01DC07E12008174B7 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46292B011DB9DF7500EC8575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46292B031DB9DF7500EC8575 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		46292B001DB9DF7500EC8575 /* UASapp */ = {
 			isa = PBXGroup;
 			children = (
+				468028601DC07B2900421DFF /* Utility */,
 				46292B011DB9DF7500EC8575 /* AppDelegate.swift */,
 				46292B031DB9DF7500EC8575 /* ViewController.swift */,
 				46292B051DB9DF7500EC8575 /* Main.storyboard */,
@@ -65,6 +68,14 @@
 				467430061DB9F6160094AE29 /* ModuleViewController.swift */,
 			);
 			path = UASapp;
+			sourceTree = "<group>";
+		};
+		468028601DC07B2900421DFF /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4616D9E01DC07E12008174B7 /* HTTPHelper.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +153,7 @@
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
 				467430071DB9F6160094AE29 /* ModuleViewController.swift in Sources */,
+				4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
