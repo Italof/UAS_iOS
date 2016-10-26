@@ -12,13 +12,19 @@ class ViewControllerStudentFilter: UIViewController, UIPickerViewDelegate, UIPic
     
     
     var statusS = ["Activo", "Inactivo"]
+    var tutors = ["Miguel Guano","Aguilera"]
 
+    @IBOutlet var tutorP: UIPickerView!
     @IBOutlet var status: UIPickerView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         status.delegate=self
         status.dataSource=self
+        tutorP.delegate=self
+        tutorP.dataSource=self
 
         // Do any additional setup after loading the view.
     }
@@ -29,10 +35,22 @@ class ViewControllerStudentFilter: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        if (pickerView == status){
         return statusS[row]
+        }
+        else {
+            return tutors[row]
+        }
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return statusS.count
+        if (pickerView == status){
+            return statusS.count
+        }
+        else {
+            return tutors.count
+        }
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
