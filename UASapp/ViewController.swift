@@ -49,7 +49,8 @@ class ViewController: UIViewController {
                 if error != nil {
                     print(error)
                 } else {
-                    print(data)
+                    let question = data!["question"] as? String
+                    print("Question: \(question)")
                 }
             })
         }

@@ -13,6 +13,7 @@ class HTTPHelper {
   
   class func request (route: String, method: String, body: [String:AnyObject]?, authenticated: Bool, completion: ((_ error: NSError?, _ data: [String:AnyObject]?) -> ())?) {
     let urlRequest = NSMutableURLRequest(url: URL(string: "\(baseUrl)\(route)")!)
+    print("REQUESTED URL: \(urlRequest)")
     urlRequest.httpMethod = method
     urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -39,16 +40,24 @@ class HTTPHelper {
         let httpResponse = response as! HTTPURLResponse
         if httpResponse.statusCode == 200 {
           do {
-            if let jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: .mutableContainers) as? NSDictionary {
-              data = (jsonResponse as! [String:AnyObject])
+            print("RESPONSE DATA: \(responseData)")
+            let jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: [])
+            print(jsonResponse)
+            if let dictionary = jsonResponse as? [String:Any] {
+                data = dictionary as [String:AnyObject]
+            } else {
+                let array = jsonResponse as? [Any]
+                data = array?.first as? [String:AnyObject]
             }
+            print(data)
+            
           } catch let err as NSError {
             print(err)
           }
         }
         else {
           let strData = NSString(data: responseData!, encoding: String.Encoding.utf8.rawValue)! as String
-          error = NSError(domain: "HTTP", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey : "HTTP \(httpResponse.statusCode): \(strData)"])
+          error = NSError(domain: "HTTPS", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey : "HTTPS \(httpResponse.statusCode): \(strData)"])
         }
       }
       if let completion = completion {
