@@ -16,7 +16,25 @@ class InvestigationGroupTableViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        let postData = ""
+        print(postData)
+        if AskConectivity.isInternetAvailable(){
+            print("conectado")
+        }
+        else{
+            print("error de conexion")
+        }
+        HTTPHelper.get(route: "/getAllInvGroups", authenticated: true, completion: {(error,data) in
+            if(error != nil){
+                //Mostrar error y regresar al menù principal
+            }
+            else {
+                //obtener data
+                
+                
+            }
+            
+        })
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

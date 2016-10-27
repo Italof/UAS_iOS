@@ -21,6 +21,12 @@ class ViewController: UIViewController {
         if (isLoggedIn == 1) {
           self.performSegue(withIdentifier: "moduleSegue", sender: self)
         }
+        if AskConectivity.isInternetAvailable(){
+            print("conectado")
+        }
+        else{
+            print("error de conexion")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +37,12 @@ class ViewController: UIViewController {
     @IBAction func login() {
         let username = txtUser.text! as NSString
         let password = txtPass.text! as NSString
-
+        if AskConectivity.isInternetAvailable(){
+            print("conectado")
+        }
+        else{
+            print("error de conexion")
+        }
         if ( username.isEqual(to: "") || password.isEqual(to: "")) {
             let alert = UIAlertController(title: "Error al Iniciar Sesión!",
                                     message: "Por favor ingrese su nombre de usuario y contraseña",

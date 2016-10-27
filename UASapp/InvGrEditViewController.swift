@@ -48,7 +48,20 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         else{
             //Gruadar en servidor
             
+            let postData = ""
+            print(postData)
             
+            HTTPHelper.post(route: "", authenticated: true, body : [:], completion: {(error,data) in
+                if(error != nil){
+                    //Mostrar error y regresar al menù principal
+                }
+                else {
+                    //obtener data
+                    
+                    
+                }
+                
+            })
         }
         
         

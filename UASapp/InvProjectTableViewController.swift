@@ -12,7 +12,20 @@ class InvProjectTableViewController: UITableViewController {
     var invPrData : [InvestigationProject] = [InvestigationProject.init(id: 1, name: "LPD", numberDerivables: 12, startDate: "12/15/2064", endDate: "15/12/2068", invGroupName: "GRPPIA", leaderName: "No idea")]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let postData = ""
+        print(postData)
+        
+        HTTPHelper.get(route: "/getAllProjects", authenticated: true, completion: {(error,data) in
+            if(error != nil){
+                //Mostrar error y regresar al menù principal
+            }
+            else {
+                //obtener data
+                
+                
+            }
+            
+        })
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
