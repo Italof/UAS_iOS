@@ -8,7 +8,7 @@
 
 import Foundation
 
-let baseUrl = "https://private-b851e-uasiosapi.apiary-mock.com"
+let baseUrl = "http://35.161.73.236/api/"
 class HTTPHelper {
   
   class func request (route: String, method: String, body: [String:AnyObject]?, authenticated: Bool, completion: ((_ error: NSError?, _ data: [String:AnyObject]?) -> ())?) {
@@ -57,7 +57,7 @@ class HTTPHelper {
         }
         else {
           let strData = NSString(data: responseData!, encoding: String.Encoding.utf8.rawValue)! as String
-          error = NSError(domain: "HTTPS", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey : "HTTPS \(httpResponse.statusCode): \(strData)"])
+          error = NSError(domain: "HTTP", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey : strData])
         }
       }
       if let completion = completion {
