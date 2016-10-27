@@ -34,6 +34,8 @@ class ViewControllerStudentFilter: UIViewController, UIPickerViewDelegate, UIPic
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if (pickerView == status){
@@ -56,6 +58,12 @@ class ViewControllerStudentFilter: UIViewController, UIPickerViewDelegate, UIPic
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    /*
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 10.0
+    }
+    */
+    
     
 
     /*
