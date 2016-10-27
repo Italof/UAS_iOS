@@ -41,6 +41,7 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
             error = 1
         }
         if (error == 1){
+            alert.title = errorTitle
             alert.message = errorMessageCustom
             present(alert,animated: true, completion:nil)
         }
@@ -49,7 +50,7 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
             
             
         }
-        present(alert,animated: true, completion:nil)
+        
         
         
     }

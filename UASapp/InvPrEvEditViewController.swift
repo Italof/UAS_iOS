@@ -22,10 +22,12 @@ class InvPrEvEditViewController: UIViewController {
     let errorMessage: String = "No se han guardado los cambios"
     override func viewDidLoad() {
         super.viewDidLoad()
+        let today : Date = Date.init()
         //inicializa campos a editar
         invPrEv = (parent as! InvNavViewController).invPrEv
         nameInvPrEvent.text = invPrEv?.name?.uppercased()
-        
+        dateInvPrEvent.minimumDate = today
+        timeInvPrEvent.minimumDate = today
         //ver si esta online o offline
 
         
@@ -45,6 +47,7 @@ class InvPrEvEditViewController: UIViewController {
         //error variable
         var errorMessageCustom : String = ""
         var error = 0
+       
         //verificar que los campos son correctos
         if((nameInvPrEvent!.text?.characters.count)! > 254){
             errorMessageCustom = "Nombre muy largo"
@@ -54,7 +57,9 @@ class InvPrEvEditViewController: UIViewController {
             errorMessageCustom = "Nombre de lugar muy grande"
             error = 1
         }
+        
         if (error == 1){
+            alert.title = errorTitle
             alert.message = errorMessageCustom
             present(alert,animated: true, completion:nil)
         }
@@ -63,8 +68,7 @@ class InvPrEvEditViewController: UIViewController {
             
             
         }
-        present(alert,animated: true, completion:nil)
-        
+                
     }
 
     /*

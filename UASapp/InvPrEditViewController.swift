@@ -29,7 +29,6 @@ class InvPrEditViewController: UIViewController {
         nameInvProject.text = invPr?.name
         let parser = invPr?.numberDerivables
         numberDerivablesInvPr.text = String(parser.unsafelyUnwrapped)
-        
         //ver si esta online o offline
         
         
@@ -58,7 +57,12 @@ class InvPrEditViewController: UIViewController {
             errorMessageCustom = "Nùmero de entregables muy grande"
             error = 1
         }
+        if(startDateInvProject.date < endDateInvProject.date){
+            errorMessageCustom = "Fecha de inicio anterior a fecha de fin"
+            error = 1
+        }
         if (error == 1){
+            alert.title = errorTitle
             alert.message = errorMessageCustom
             present(alert,animated: true, completion:nil)
         }
@@ -67,7 +71,7 @@ class InvPrEditViewController: UIViewController {
             
             
         }
-        present(alert,animated: true, completion:nil)
+        
         //enviar a api web
         
         //alerta de guardado
