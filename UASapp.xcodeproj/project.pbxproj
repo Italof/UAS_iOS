@@ -14,15 +14,27 @@
 		12DD417E1DBEE465003A1A4A /* ViewControllerDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD417D1DBEE465003A1A4A /* ViewControllerDates.swift */; };
 		12DD41801DBEE8CB003A1A4A /* TableViewCellDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD417F1DBEE8CB003A1A4A /* TableViewCellDate.swift */; };
 		12EE10E41DBAD70B005D3C2A /* ViewControllerCreateDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE10E31DBAD70B005D3C2A /* ViewControllerCreateDate.swift */; };
+		1231D7831DBACE03004E35FD /* SpecialtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7821DBACE03004E35FD /* SpecialtyViewController.swift */; };
+		1231D7851DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7841DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift */; };
+		1231D7871DBAE5D6004E35FD /* PeriodMeasurementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7861DBAE5D6004E35FD /* PeriodMeasurementViewController.swift */; };
+		1231D7891DBAE681004E35FD /* PeriodMeasDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7881DBAE681004E35FD /* PeriodMeasDetailViewController.swift */; };
+		1231D78B1DBAE869004E35FD /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D78A1DBAE869004E35FD /* ScheduleViewController.swift */; };
+		1231D78D1DBAE87D004E35FD /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D78C1DBAE87D004E35FD /* StudentViewController.swift */; };
+		12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */; };
+		12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */; };
+		4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616D9E01DC07E12008174B7 /* HTTPHelper.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
 		46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B031DB9DF7500EC8575 /* ViewController.swift */; };
 		46292B071DB9DF7500EC8575 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46292B051DB9DF7500EC8575 /* Main.storyboard */; };
 		46292B091DB9DF7500EC8575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46292B081DB9DF7500EC8575 /* Assets.xcassets */; };
 		46292B0C1DB9DF7500EC8575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */; };
 		467430071DB9F6160094AE29 /* ModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467430061DB9F6160094AE29 /* ModuleViewController.swift */; };
+		965F44B91DC270C300D7139A /* CustomGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F44B81DC270C300D7139A /* CustomGoalCell.swift */; };
+		96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
 		1223216E1DC14AD800B439AB /* ViewControllerStudents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerStudents.swift; sourceTree = "<group>"; };
 		122321701DC14F9600B439AB /* TableViewCellStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellStudent.swift; sourceTree = "<group>"; };
 		122321721DC16C5100B439AB /* ViewControllerStudentFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerStudentFilter.swift; sourceTree = "<group>"; };
@@ -30,6 +42,15 @@
 		12DD417D1DBEE465003A1A4A /* ViewControllerDates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDates.swift; sourceTree = "<group>"; };
 		12DD417F1DBEE8CB003A1A4A /* TableViewCellDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellDate.swift; sourceTree = "<group>"; };
 		12EE10E31DBAD70B005D3C2A /* ViewControllerCreateDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCreateDate.swift; sourceTree = "<group>"; };
+		1231D7821DBACE03004E35FD /* SpecialtyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialtyViewController.swift; sourceTree = "<group>"; };
+		1231D7841DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesBySpecialtyViewController.swift; sourceTree = "<group>"; };
+		1231D7861DBAE5D6004E35FD /* PeriodMeasurementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodMeasurementViewController.swift; sourceTree = "<group>"; };
+		1231D7881DBAE681004E35FD /* PeriodMeasDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodMeasDetailViewController.swift; sourceTree = "<group>"; };
+		1231D78A1DBAE869004E35FD /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		1231D78C1DBAE87D004E35FD /* StudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentViewController.swift; sourceTree = "<group>"; };
+		12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPeriodCell.swift; sourceTree = "<group>"; };
+		12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSpecialtyCell.swift; sourceTree = "<group>"; };
+		4616D9E01DC07E12008174B7 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46292B011DB9DF7500EC8575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46292B031DB9DF7500EC8575 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +59,8 @@
 		46292B0B1DB9DF7500EC8575 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46292B0D1DB9DF7500EC8575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		467430061DB9F6160094AE29 /* ModuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewController.swift; sourceTree = "<group>"; };
+		965F44B81DC270C300D7139A /* CustomGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGoalCell.swift; sourceTree = "<group>"; };
+		96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationalGoalsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +93,7 @@
 		46292B001DB9DF7500EC8575 /* UASapp */ = {
 			isa = PBXGroup;
 			children = (
+				468028601DC07B2900421DFF /* Utility */,
 				46292B011DB9DF7500EC8575 /* AppDelegate.swift */,
 				46292B031DB9DF7500EC8575 /* ViewController.swift */,
 				46292B051DB9DF7500EC8575 /* Main.storyboard */,
@@ -84,8 +108,26 @@
 				1223216E1DC14AD800B439AB /* ViewControllerStudents.swift */,
 				122321701DC14F9600B439AB /* TableViewCellStudent.swift */,
 				122321721DC16C5100B439AB /* ViewControllerStudentFilter.swift */,
+				1231D7821DBACE03004E35FD /* SpecialtyViewController.swift */,
+				1231D7841DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift */,
+				1231D7861DBAE5D6004E35FD /* PeriodMeasurementViewController.swift */,
+				1231D7881DBAE681004E35FD /* PeriodMeasDetailViewController.swift */,
+				1231D78A1DBAE869004E35FD /* ScheduleViewController.swift */,
+				1231D78C1DBAE87D004E35FD /* StudentViewController.swift */,
+				12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */,
+				12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */,
+				96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */,
+				965F44B81DC270C300D7139A /* CustomGoalCell.swift */,
 			);
 			path = UASapp;
+			sourceTree = "<group>";
+		};
+		468028601DC07B2900421DFF /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4616D9E01DC07E12008174B7 /* HTTPHelper.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +204,12 @@
 			files = (
 				1223216F1DC14AD800B439AB /* ViewControllerStudents.swift in Sources */,
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
+				1231D7831DBACE03004E35FD /* SpecialtyViewController.swift in Sources */,
+				1231D7871DBAE5D6004E35FD /* PeriodMeasurementViewController.swift in Sources */,
+				965F44B91DC270C300D7139A /* CustomGoalCell.swift in Sources */,
+				96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */,
+				1231D78B1DBAE869004E35FD /* ScheduleViewController.swift in Sources */,
+				1231D7891DBAE681004E35FD /* PeriodMeasDetailViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
 				12DD41801DBEE8CB003A1A4A /* TableViewCellDate.swift in Sources */,
 				122321731DC16C5100B439AB /* ViewControllerStudentFilter.swift in Sources */,
@@ -169,7 +217,12 @@
 				12B759011DBC213300F48B73 /* ViewControllerTutorVisualize.swift in Sources */,
 				12EE10E41DBAD70B005D3C2A /* ViewControllerCreateDate.swift in Sources */,
 				122321711DC14F9600B439AB /* TableViewCellStudent.swift in Sources */,
+				12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */,
+				1231D78D1DBAE87D004E35FD /* StudentViewController.swift in Sources */,
+				12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */,
+				1231D7851DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift in Sources */,
 				467430071DB9F6160094AE29 /* ModuleViewController.swift in Sources */,
+				4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
