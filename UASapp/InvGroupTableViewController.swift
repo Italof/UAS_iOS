@@ -9,37 +9,39 @@
 import UIKit
 
 class InvestigationGroupTableViewController: UITableViewController {
-    var invGrData: [InvestigationGroup] = [ InvestigationGroup.init(id: 1, name: "Grupo nuevo 1", speciality: "Ingenierìa informatica", description: "GRupo de 1 perosona", imageInvGr: " dd", createdInvGr: "12/12/2012", leaderName: "nombre lider"),
-                                            InvestigationGroup.init(id: 1, name: "Grupo nuevo 2", speciality: "Ingenierìa electronica", description: "GRupo de 10 perosona GRupo de 10 perosona GRupo de 10 perosona GRupo de 10 perosona GRupo de 10 perosona GRupo de 10 perosona GRupo de 10 perosona GRupo de 10 perosona GRupo de 10 perosona GRupo de 10 perosona GRupo de 10 perosona GRupo de 10 perosona ", imageInvGr: " dd", createdInvGr: "12/12/2012", leaderName: "nombre lider")]
+    var invGrData: [InvestigationGroup] = []
     var elegido : Int = 9
     
-    override func viewDidLoad() {
-        
+    override func viewDidLoad() {        
         super.viewDidLoad()
-        let postData = ""
-        print(postData)
         if AskConectivity.isInternetAvailable(){
             print("conectado")
         }
         else{
             print("error de conexion")
         }
-        HTTPHelper.get(route: "/getAllInvGroups", authenticated: true, completion: {(error,data) in
-            if(error != nil){
-                //Mostrar error y regresar al menù principal
+        HTTPHelper.get(route: "getAllGroups?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cLzM1LjE2MS43My4yMzZcL2FwaVwvYXV0aGVudGljYXRlIiwiaWF0IjoxNDc3NjE0Mjg0LCJleHAiOjE0Nzg5NzAyODQsIm5iZiI6MTQ3NzYxNDI4NCwianRpIjoiNjYzYWZkNTE1NGM4MDUzOTk0ZmE0ZTVhMzQyZDA3YzIifQ.c96PXegKxbDTw0FPmEp4q05X1rzlN44aUSLKtSytWzs", authenticated: true, completion: {(error,data) in
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let arrayProjects = dataUnwrapped as? [Any]
+                self.invGrData = []
+                for project in arrayProjects!{
+                    let pr = project as! [String:AnyObject]
+                    
+                    //let group : InvestigationGroup =
+                    self.invGrData.append( InvestigationGroup ( json: pr ) )
+                    print(self.invGrData)
+                    print(pr["id"].unsafelyUnwrapped)
+                    self.do_table_refresh()
+                }
             }
             else {
-                //obtener data
-                
+                //Mostrar error y regresar al menù principal
                 
             }
-            
         })
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,7 +84,10 @@ class InvestigationGroupTableViewController: UITableViewController {
         //asigna el Grupo de investigacion elegido a variable en controlador de navegaciòn
         ((parent as! InvNavViewController).invGr) = invGr
     }
-    
+    func do_table_refresh()
+    {
+        self.tableView.reloadData()
+    }
     
  /*
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath){

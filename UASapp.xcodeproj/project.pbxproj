@@ -247,7 +247,6 @@
 				96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */,
 				1231D78B1DBAE869004E35FD /* ScheduleViewController.swift in Sources */,
 				1231D7891DBAE681004E35FD /* PeriodMeasDetailViewController.swift in Sources */,
-				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
 				12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */,
 				1231D78D1DBAE87D004E35FD /* StudentViewController.swift in Sources */,
 				12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */,

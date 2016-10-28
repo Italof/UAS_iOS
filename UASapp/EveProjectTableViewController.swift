@@ -13,11 +13,8 @@ class EveProjectTableViewController: UITableViewController {
     var invPrEvData : [InvestigationProjectEvent] = [InvestigationProjectEvent.init(id: 1, name: "Evento de iniciación", date: "12/05/2016", time: "12:12 p.m.", place: "No-where")]
     override func viewDidLoad() {
         super.viewDidLoad()
-        let postData = ""
-        print(postData)
-        
         HTTPHelper.get(route: "/getAllEvents", authenticated: true, completion: {(error,data) in
-            if(error != nil){
+            if(error == nil){
                 //Mostrar error y regresar al menù principal
             }
             else {

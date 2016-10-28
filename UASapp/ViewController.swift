@@ -21,12 +21,7 @@ class ViewController: UIViewController {
         if (isLoggedIn == 1) {
           self.performSegue(withIdentifier: "moduleSegue", sender: self)
         }
-        if AskConectivity.isInternetAvailable(){
-            print("conectado")
-        }
-        else{
-            print("error de conexion")
-        }
+        
     }
 
     override func didReceiveMemoryWarning() {

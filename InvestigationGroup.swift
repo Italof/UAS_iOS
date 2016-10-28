@@ -27,5 +27,47 @@ struct InvestigationGroup {
         self.createdInvGr = createdInvGr
         self.imageInvGr = imageInvGr
     }
+    init(json : [String:Any]){
+        let id = json["id"]
+        let name = json["nombre"]
+        let description = json["descripcion"]
+        let image = json["imagen"]
+        //let createdInvGr = json["created_at"]
+        let faculty = json["faculty"] as! [String:Any]
+        let speciality = faculty["Nombre"]
+        let leader = json["leader"] as! [String:Any]
+        let leaderName = (leader["Nombre"] as! String) + " " + (leader["ApellidoPaterno"] as! String) + " " + (leader["ApellidoMaterno"] as! String)
+        
+        self.description = description as? String
+        self.name = name as? String
+        self.speciality = speciality as? String
+        self.id = id as! Int
+        self.createdInvGr = ""//createdInvGr as! String
+        self.imageInvGr = image as? String
+        self.leaderName = leaderName as String
+        /*
+        if (id != nil){
+            self.id = (id as! Int?)!
+        }
+        if (name != nil){
+            self.name = (name as! String?)!
+        }
+        if (description != nil){
+            self.description = (description as! String?)!
+        }
+        if (image != nil){
+            self.imageInvGr = (image as! String?)!
+        }
+        if (createdInvGr != nil){
+            self.createdInvGr = (createdInvGr as! String?)!
+        }
+        if (speciality != nil){
+            self.speciality = (speciality as! String?)!
+        }
+        if (leaderName != nil){
+            self.leaderName = (leaderName as String?)!
+        }
+         */
+    }
     
 }
