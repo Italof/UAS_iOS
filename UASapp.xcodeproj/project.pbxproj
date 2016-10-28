@@ -22,6 +22,11 @@
 		46292B091DB9DF7500EC8575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46292B081DB9DF7500EC8575 /* Assets.xcassets */; };
 		46292B0C1DB9DF7500EC8575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */; };
 		467430071DB9F6160094AE29 /* ModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467430061DB9F6160094AE29 /* ModuleViewController.swift */; };
+		9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */; };
+		9623F25B1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */; };
+		9623F25D1DC3A2E900EA7B6D /* CustomOutcomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25C1DC3A2E900EA7B6D /* CustomOutcomeCell.swift */; };
+		9623F25F1DC3A58400EA7B6D /* OutcomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25E1DC3A58400EA7B6D /* OutcomeDetailViewController.swift */; };
+		9623F2611DC3AB0300EA7B6D /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F2601DC3AB0300EA7B6D /* CourseViewController.swift */; };
 		965F44B91DC270C300D7139A /* CustomGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F44B81DC270C300D7139A /* CustomGoalCell.swift */; };
 		96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +49,11 @@
 		46292B0B1DB9DF7500EC8575 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46292B0D1DB9DF7500EC8575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		467430061DB9F6160094AE29 /* ModuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewController.swift; sourceTree = "<group>"; };
+		9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalDetailViewController.swift; sourceTree = "<group>"; };
+		9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentOutcomesViewController.swift; sourceTree = "<group>"; };
+		9623F25C1DC3A2E900EA7B6D /* CustomOutcomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomOutcomeCell.swift; sourceTree = "<group>"; };
+		9623F25E1DC3A58400EA7B6D /* OutcomeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutcomeDetailViewController.swift; sourceTree = "<group>"; };
+		9623F2601DC3AB0300EA7B6D /* CourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		965F44B81DC270C300D7139A /* CustomGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGoalCell.swift; sourceTree = "<group>"; };
 		96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationalGoalsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +106,11 @@
 				12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */,
 				96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */,
 				965F44B81DC270C300D7139A /* CustomGoalCell.swift */,
+				9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */,
+				9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */,
+				9623F25C1DC3A2E900EA7B6D /* CustomOutcomeCell.swift */,
+				9623F25E1DC3A58400EA7B6D /* OutcomeDetailViewController.swift */,
+				9623F2601DC3AB0300EA7B6D /* CourseViewController.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -191,8 +206,13 @@
 				12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */,
 				1231D78D1DBAE87D004E35FD /* StudentViewController.swift in Sources */,
 				12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */,
+				9623F25B1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift in Sources */,
+				9623F2611DC3AB0300EA7B6D /* CourseViewController.swift in Sources */,
 				1231D7851DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift in Sources */,
 				467430071DB9F6160094AE29 /* ModuleViewController.swift in Sources */,
+				9623F25F1DC3A58400EA7B6D /* OutcomeDetailViewController.swift in Sources */,
+				9623F25D1DC3A2E900EA7B6D /* CustomOutcomeCell.swift in Sources */,
+				9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */,
 				4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

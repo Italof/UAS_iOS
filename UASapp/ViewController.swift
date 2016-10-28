@@ -12,14 +12,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var txtUser: UITextField!
     @IBOutlet weak var txtPass: UITextField!
   
-
+    var isLoggedIn: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         let userDefaults = UserDefaults.standard
-        let isLoggedIn = userDefaults.integer(forKey: "ISLOGGEDIN")
+        isLoggedIn = userDefaults.integer(forKey: "ISLOGGEDIN")
+        print(isLoggedIn)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
         if (isLoggedIn == 1) {
-          self.performSegue(withIdentifier: "moduleSegue", sender: self)
+            self.performSegue(withIdentifier: "moduleSegue", sender: self)
         }
     }
 
@@ -80,8 +88,11 @@ class ViewController: UIViewController {
                         
                     } else {
                         print("REQUESTED RESPONSE: \(responseData)")
-                        self.performSegue(withIdentifier: "moduleSegue", sender: self)
                         
+                        let userDefaults = UserDefaults.standard
+                        userDefaults.set(1, forKey: "ISLOGGEDIN")
+                        userDefaults.set(username, forKey: "USER")
+                        self.performSegue(withIdentifier: "moduleSegue", sender: self)
                     }
                     
                 })
