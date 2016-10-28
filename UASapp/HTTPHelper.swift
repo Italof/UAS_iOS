@@ -43,6 +43,7 @@ class HTTPHelper {
             print("RESPONSE DATA: \(responseData)")
             let jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: [])
             print(jsonResponse)
+            
             if let dictionary = jsonResponse as? [String:Any] {
                 data = dictionary as [String:AnyObject]
             } else {
