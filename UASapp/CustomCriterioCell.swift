@@ -1,5 +1,5 @@
 //
-//  CustomStudentCell.swift
+//  CustomCriterioCell.swift
 //  UASapp
 //
 //  Created by inf227al on 27/10/16.
@@ -8,13 +8,17 @@
 
 import UIKit
 
-class CustomStudentCell: UITableViewCell {
+class CustomCriterioCell: UITableViewCell {
 
-    @IBOutlet var lblCode: UILabel!
-    @IBOutlet var lblStudentName: UILabel!
+    @IBOutlet var lblCriterio: UILabel!
+    @IBOutlet var lblGrade: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        //lblCriterio.adjustsFontSizeToFitWidth=true
+        //lblCriterio.sizeToFit()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

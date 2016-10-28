@@ -8,14 +8,18 @@
 
 import UIKit
 
-class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var StudentResultPicker: UIPickerView!
     @IBOutlet var AspectPicker: UIPickerView!
     @IBOutlet var progressiveBar: UIProgressView!
+    @IBOutlet var tableView: UITableView!
     
     var results = ["resultado1","resultado2"]
     var aspects = ["aspecto1","aspecto2"]
+    
+    var codes = ["20102513","20106666","20119824"]
+    var students = ["Jorge Signol Pinto", "Jhordy Cornelio Bobadilla", "Jose Luis Sanchez"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +52,19 @@ class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return codes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomStudentCell
+        cell.lblCode.text=codes[indexPath.row]
+        cell.lblStudentName.text=students[indexPath.row]
+        return cell
+    }
+    
 
 
     /*

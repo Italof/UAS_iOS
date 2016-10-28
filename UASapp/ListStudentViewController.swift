@@ -10,33 +10,35 @@ import UIKit
 
 class ListStudentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    
     @IBOutlet var tableView: UITableView!
-    var codes = ["20102513","20106666","20119824"]
-    var students = ["Jorge Signol Pinto", "Jhordy Cornelio Bobadilla", "Jose Luis Sanchez"]
+    var criterios = ["Comprende el impacto de la tecnología en la solución de problemas","Comprende el impacto de la tecnología en la solución de problemas","Comprende el impacto de la tecnología en la solución de problemas"]
+    var grades = ["15","20","12"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return codes.count
+        return criterios.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomStudentCell
-        cell.lblCode.text=codes[indexPath.row]
-        cell.lblStudent.text=students[indexPath.row]
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCriterioCell
+        cell.lblCriterio.text=criterios[indexPath.row]
+        cell.lblGrade.text=grades[indexPath.row]
         return cell
     }
-
-
+    
     /*
     // MARK: - Navigation
 
