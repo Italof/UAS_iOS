@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         if (isLoggedIn == 1) {
             self.performSegue(withIdentifier: "moduleSegue", sender: self)
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +40,7 @@ class ViewController: UIViewController {
     @IBAction func login() {
         let username = txtUser.text! as NSString
         let password = txtPass.text! as NSString
+
         
         let errorAlert = UIAlertController(title: "Error al Iniciar Sesión!",
                                       message: nil,
@@ -47,7 +49,7 @@ class ViewController: UIViewController {
                                    style: .default,
                                    handler: nil)
         errorAlert.addAction(action)
-        
+
         if ( username.isEqual(to: "") || password.isEqual(to: "")) {
             errorAlert.message = "Por favor ingrese su nombre de usuario y contraseña"
             present(errorAlert, animated: true, completion: nil)
