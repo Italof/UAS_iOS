@@ -1,23 +1,22 @@
 //
-//  PeriodMeasurementViewController.swift
+//  ListStudentViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 21/10/16.
+//  Created by inf227al on 27/10/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+class ListStudentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView: UITableView!
-    var cycles = ["2015-1 al 2015-2", "2016-1 al 2016-2"]
+    var codes = ["20102513","20106666","20119824"]
+    var students = ["Jorge Signol Pinto", "Jhordy Cornelio Bobadilla", "Jose Luis Sanchez"]
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,19 +25,17 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cycles.count
+        return codes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomPeriodCell
-        cell.lblPeriod.text=cycles[indexPath.row]
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomStudentCell
+        cell.lblCode.text=codes[indexPath.row]
+        cell.lblStudent.text=students[indexPath.row]
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
+
 
     /*
     // MARK: - Navigation
@@ -50,5 +47,4 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
     }
     */
 
-    
 }
