@@ -90,10 +90,13 @@ class ViewController: UIViewController {
                         
                     } else {
                         print("REQUESTED RESPONSE: \(responseData)")
+                        let data = responseData as! [String:AnyObject]
                         
                         let userDefaults = UserDefaults.standard
                         userDefaults.set(1, forKey: "ISLOGGEDIN")
                         userDefaults.set(username, forKey: "USER")
+                        userDefaults.set(data["token"], forKey: "TOKEN")
+                        print(userDefaults.string(forKey: "TOKEN"))
                         self.performSegue(withIdentifier: "moduleSegue", sender: self)
                     }
                     
