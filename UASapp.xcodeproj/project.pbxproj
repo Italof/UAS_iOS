@@ -10,6 +10,8 @@
 		1223216F1DC14AD800B439AB /* ViewControllerStudents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1223216E1DC14AD800B439AB /* ViewControllerStudents.swift */; };
 		122321711DC14F9600B439AB /* TableViewCellStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122321701DC14F9600B439AB /* TableViewCellStudent.swift */; };
 		122321731DC16C5100B439AB /* ViewControllerStudentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122321721DC16C5100B439AB /* ViewControllerStudentFilter.swift */; };
+		122779751DC3E29600BB8163 /* ViewControllerDatesFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122779741DC3E29600BB8163 /* ViewControllerDatesFilter.swift */; };
+		122779771DC4018B00BB8163 /* tutorClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122779761DC4018B00BB8163 /* tutorClass.swift */; };
 		122CF6CA1DC2DEC40026EEAF /* ViewControllerTutoriaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122CF6C91DC2DEC40026EEAF /* ViewControllerTutoriaMenu.swift */; };
 		1231D7831DBACE03004E35FD /* SpecialtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7821DBACE03004E35FD /* SpecialtyViewController.swift */; };
 		1231D7851DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7841DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift */; };
@@ -23,6 +25,7 @@
 		12DD417E1DBEE465003A1A4A /* ViewControllerDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD417D1DBEE465003A1A4A /* ViewControllerDates.swift */; };
 		12DD41801DBEE8CB003A1A4A /* TableViewCellDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD417F1DBEE8CB003A1A4A /* TableViewCellDate.swift */; };
 		12EE10E41DBAD70B005D3C2A /* ViewControllerCreateDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE10E31DBAD70B005D3C2A /* ViewControllerCreateDate.swift */; };
+		12FCDB4E1DC41811004A1B21 /* NavigationControllerC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FCDB4D1DC41811004A1B21 /* NavigationControllerC.swift */; };
 		4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616D9E01DC07E12008174B7 /* HTTPHelper.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
 		46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B031DB9DF7500EC8575 /* ViewController.swift */; };
@@ -38,6 +41,8 @@
 		1223216E1DC14AD800B439AB /* ViewControllerStudents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerStudents.swift; sourceTree = "<group>"; };
 		122321701DC14F9600B439AB /* TableViewCellStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellStudent.swift; sourceTree = "<group>"; };
 		122321721DC16C5100B439AB /* ViewControllerStudentFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerStudentFilter.swift; sourceTree = "<group>"; };
+		122779741DC3E29600BB8163 /* ViewControllerDatesFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDatesFilter.swift; sourceTree = "<group>"; };
+		122779761DC4018B00BB8163 /* tutorClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tutorClass.swift; sourceTree = "<group>"; };
 		122CF6C91DC2DEC40026EEAF /* ViewControllerTutoriaMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTutoriaMenu.swift; sourceTree = "<group>"; };
 		1231D7821DBACE03004E35FD /* SpecialtyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialtyViewController.swift; sourceTree = "<group>"; };
 		1231D7841DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesBySpecialtyViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +56,7 @@
 		12DD417D1DBEE465003A1A4A /* ViewControllerDates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDates.swift; sourceTree = "<group>"; };
 		12DD417F1DBEE8CB003A1A4A /* TableViewCellDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellDate.swift; sourceTree = "<group>"; };
 		12EE10E31DBAD70B005D3C2A /* ViewControllerCreateDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCreateDate.swift; sourceTree = "<group>"; };
+		12FCDB4D1DC41811004A1B21 /* NavigationControllerC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerC.swift; sourceTree = "<group>"; };
 		4616D9E01DC07E12008174B7 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46292B011DB9DF7500EC8575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +126,9 @@
 				96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */,
 				965F44B81DC270C300D7139A /* CustomGoalCell.swift */,
 				122CF6C91DC2DEC40026EEAF /* ViewControllerTutoriaMenu.swift */,
+				122779741DC3E29600BB8163 /* ViewControllerDatesFilter.swift */,
+				122779761DC4018B00BB8163 /* tutorClass.swift */,
+				12FCDB4D1DC41811004A1B21 /* NavigationControllerC.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -208,13 +217,16 @@
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
 				1231D7831DBACE03004E35FD /* SpecialtyViewController.swift in Sources */,
 				1231D7871DBAE5D6004E35FD /* PeriodMeasurementViewController.swift in Sources */,
+				12FCDB4E1DC41811004A1B21 /* NavigationControllerC.swift in Sources */,
 				965F44B91DC270C300D7139A /* CustomGoalCell.swift in Sources */,
 				96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */,
 				1231D78B1DBAE869004E35FD /* ScheduleViewController.swift in Sources */,
+				122779771DC4018B00BB8163 /* tutorClass.swift in Sources */,
 				1231D7891DBAE681004E35FD /* PeriodMeasDetailViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
 				12DD41801DBEE8CB003A1A4A /* TableViewCellDate.swift in Sources */,
 				122321731DC16C5100B439AB /* ViewControllerStudentFilter.swift in Sources */,
+				122779751DC3E29600BB8163 /* ViewControllerDatesFilter.swift in Sources */,
 				12DD417E1DBEE465003A1A4A /* ViewControllerDates.swift in Sources */,
 				122CF6CA1DC2DEC40026EEAF /* ViewControllerTutoriaMenu.swift in Sources */,
 				12B759011DBC213300F48B73 /* ViewControllerTutorVisualize.swift in Sources */,

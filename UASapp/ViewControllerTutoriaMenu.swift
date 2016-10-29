@@ -21,6 +21,41 @@ class ViewControllerTutoriaMenu: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    @IBAction func viewMyTutor(_ sender: AnyObject) {
+        /*
+        ruta: "getTutorInfo/Fuente.idUsuario?token=Fuente.token"
+        */
+        HTTPHelper.get(route: "", authenticated: true, completion:{ (error,data) in
+       
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let tj = dataUnwrapped as! [String:AnyObject]
+                let idDocente = tj["idDocente"] as! String?
+                let idEspecialidad = tj["idEspecialidad"] as! String?
+                let codigo = tj["codigo"] as! String?
+                let nombre = tj["nombre"] as! String?
+                let apellidoPaterno = tj["apellidoPaterno"] as! String?
+                let apellidoMaterno = tj["apellidoMaterno"] as! String?
+                let correo = tj["correo"] as! String?
+                let oficina = tj["oficina"] as! String?
+                let telefono = tj["telefono"] as! String?
+                let anexo = tj["anexo"] as! String?
+                let tutorO : tutor = tutor(idDocente: idDocente, idEspecialidad: idEspecialidad, codigo: codigo, nombre: nombre, apellidoPaterno: apellidoPaterno, apellidoMaterno: apellidoMaterno, correo: correo, oficina: oficina, telefono: telefono, anexo: anexo)
+                ((self.parent as! NavigationControllerC).tutorOb) = tutorO
+                
+                print(tutorO)
+            }
+            else {
+                //Mostrar error y regresar al menù principal
+                
+                
+            }
+    })
+    
+    }
     /*
     
     @IBAction func myTutor(_ sender: AnyObject) {
@@ -105,7 +140,7 @@ class ViewControllerTutoriaMenu: UIViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -113,6 +148,6 @@ class ViewControllerTutoriaMenu: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

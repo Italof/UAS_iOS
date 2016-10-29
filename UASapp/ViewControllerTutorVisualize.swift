@@ -23,7 +23,7 @@ class ViewControllerTutorVisualize: UIViewController {
     
     @IBOutlet var tutorAnexo: UILabel!
     
-    
+    var tutorC: tutor?
     
     
     override func viewDidLoad() {
@@ -32,13 +32,15 @@ class ViewControllerTutorVisualize: UIViewController {
         // Do any additional setup after loading the view.
         
         //Estos labels serán alimentados por la info del tutor del alumno
+       
+        tutorC = ((self.parent as! NavigationControllerC).tutorOb)
         
-        tutorCode.text="234"
-        tutorName.text="Juan Perez"
-        tutorEmail.text="juan.perez@pucp.pe"
-        tutorPhoneNumber.text="123456789"
-        tutorOffice.text="Oficina V201"
-        tutorAnexo.text="56"
+        tutorCode.text=tutorC?.codigo
+        tutorName.text=tutorC?.nombre
+        tutorEmail.text=tutorC?.correo
+        tutorPhoneNumber.text=tutorC?.telefono
+        tutorOffice.text=tutorC?.oficina
+        tutorAnexo.text=tutorC?.anexo
     }
 
     override func didReceiveMemoryWarning() {
