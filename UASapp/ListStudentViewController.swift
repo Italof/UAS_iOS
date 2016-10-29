@@ -1,18 +1,20 @@
 //
-//  PeriodMeasurementViewController.swift
+//  ListStudentViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 21/10/16.
+//  Created by inf227al on 27/10/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+class ListStudentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     
     @IBOutlet var tableView: UITableView!
-    var cycles = ["2015-1 al 2015-2", "2016-1 al 2016-2"]
+    var criterios = ["Comprende el impacto de la tecnología en la solución de problemas","Comprende el impacto de la tecnología en la solución de problemas","Comprende el impacto de la tecnología en la solución de problemas"]
+    var grades = ["15","20","12"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,22 +26,19 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cycles.count
+        return criterios.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomPeriodCell
-        cell.lblPeriod.text=cycles[indexPath.row]
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCriterioCell
+        cell.lblCriterio.text=criterios[indexPath.row]
+        cell.lblGrade.text=grades[indexPath.row]
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-
     /*
     // MARK: - Navigation
 
@@ -50,5 +49,4 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
     }
     */
 
-    
 }
