@@ -14,27 +14,30 @@ class InvestigationGroupTableViewController: UITableViewController {
     
     override func viewDidLoad() {        
         super.viewDidLoad()
+        let token = (parent as! InvNavViewController).token.unsafelyUnwrapped
+        let get = (parent as! InvNavViewController).getGroups
         if AskConectivity.isInternetAvailable(){
             print("conectado")
         }
         else{
             print("error de conexion")
         }
-        HTTPHelper.get(route: "getAllGroups?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cLzM1LjE2MS43My4yMzZcL2FwaVwvYXV0aGVudGljYXRlIiwiaWF0IjoxNDc3NjE0Mjg0LCJleHAiOjE0Nzg5NzAyODQsIm5iZiI6MTQ3NzYxNDI4NCwianRpIjoiNjYzYWZkNTE1NGM4MDUzOTk0ZmE0ZTVhMzQyZDA3YzIifQ.c96PXegKxbDTw0FPmEp4q05X1rzlN44aUSLKtSytWzs", authenticated: true, completion: {(error,data) in
+        let routeApi = get + "?token=" + token
+        HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
-                let arrayProjects = dataUnwrapped as? [Any]
+                let arrayGroup = dataUnwrapped as? [Any]
                 self.invGrData = []
-                for project in arrayProjects!{
-                    let pr = project as! [String:AnyObject]
+                for group in arrayGroup!{
+                    let gr = group as! [String:AnyObject]
                     
                     //let group : InvestigationGroup =
-                    self.invGrData.append( InvestigationGroup ( json: pr ) )
-                    print(self.invGrData)
-                    print(pr["id"].unsafelyUnwrapped)
-                    self.do_table_refresh()
+                    self.invGrData.append( InvestigationGroup ( json: gr ) )
+                    //print(self.invGrData)
+                    //print(pr["id"].unsafelyUnwrapped)                    
                 }
+                self.do_table_refresh()
             }
             else {
                 //Mostrar error y regresar al menù principal

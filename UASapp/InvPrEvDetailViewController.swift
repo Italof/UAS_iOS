@@ -27,8 +27,17 @@ class InvPrEvDetailViewController: UIViewController {
         timeInvProEvent.text = invPrEv?.time
         placeInvProEvent.text = invPrEv?.place
         //inicializa botones -- PERMISOS    
+         //profile user
+        let profile = (parent as! InvNavViewController).profile
+        //profiles permitidos a editar
+        let profilePermited = (parent as! InvNavViewController).profilePermited
         
-        
+        if( profilePermited.index( of: profile) == nil || isConnected == false){
+            //si no se encuentra el perfil permitido
+            //ocultar boton de editar
+            //editInvGroup.hidden = true
+        }
+
         // Do any additional setup after loading the view.
     }
 

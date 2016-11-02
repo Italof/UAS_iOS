@@ -26,19 +26,28 @@ class InvGrDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print((parent as! InvNavViewController).elegido)
         //Toma grupo de controlado de navegacion
         invGr = (parent as! InvNavViewController).invGr
-        
+
+        //profile user
+        let profile = (parent as! InvNavViewController).profile
+        //profiles permitidos a editar
+        let profilePermited = (parent as! InvNavViewController).profilePermited
+
         //se inicializan los campos importantes
         nameInvGroup.text = invGr?.name?.uppercased()
         descriptionInvGroup.text = invGr?.description
         specialityInvGroup.text = invGr?.speciality
         leaderInvGroup.text = invGr?.leaderName
+        
         //se maneja la imagen del grupo
         
         
         // inicializa botones  -- PERMISOS
+        if(profilePermited.index( of: profile) == nil || isConnected == false){
+            //si no se encuentra el perfil permitido
+            editInvGroup.hidden = true
+        }
         print (invGr)
         // Do any additional setup after loading the view.
     }

@@ -67,8 +67,10 @@ class InvPrEvEditViewController: UIViewController {
             //Gruadar en servidor
             let postData = ""
             print(postData)
-            
-            HTTPHelper.post(route: "", authenticated: true, body : [:], completion: {(error,data) in
+            let token = (parent as! InvNavViewController).token.unsafelyUnwrapped
+            let get = (parent as! InvNavViewController).editEvent
+            let routeApi = get + "?token=" + token
+            HTTPHelper.post(route: routeApi, authenticated: true, body : [:], completion: {(error,data) in
                 if(error != nil){
                     //Mostrar error y regresar al menù principal
                 }

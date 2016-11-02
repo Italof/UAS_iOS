@@ -16,6 +16,8 @@ class InvPrDetailViewController: UIViewController {
     @IBOutlet weak var startDateInvProject: UILabel!
     @IBOutlet weak var endDateInvProject: UILabel!
     @IBOutlet weak var numberDerivablesInvProject: UILabel!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,9 +31,16 @@ class InvPrDetailViewController: UIViewController {
         let parser = invPr?.numberDerivables
         numberDerivablesInvProject.text = String(parser.unsafelyUnwrapped)
         // inicializa botones -- PERMISOS
-        
-        
-        
+        //profile user
+        let profile = (parent as! InvNavViewController).profile
+        //profiles permitidos a editar
+        let profilePermited = (parent as! InvNavViewController).profilePermited
+        let isConnected = AskConectivity.isInternetAvailable()
+        if( profilePermited.index( of: profile) == nil || isConnected == false ){
+            //si no se encuentra el perfil permitido
+            //ocultar boton de editar
+            //editInvGroup.hidden = true
+        }
         
         
     }

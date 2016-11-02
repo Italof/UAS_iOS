@@ -24,4 +24,18 @@ struct InvestigationProjectEvent{
         self.place = place
     }
     
+    init(json : [String:Any]){
+                
+        let id = pr["id"] as! Int
+        let name = pr["nombre"] as! String
+        let place = pr["lugar"] as! String
+        let date = pr["fecha"] as! String
+        let time = pr["hora"] as! String
+
+        self.date=date
+        self.place=place
+        self.time=time
+        self.name = name
+        self.id = id
+    }
 }

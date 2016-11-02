@@ -13,12 +13,27 @@ class EveProjectTableViewController: UITableViewController {
     var invPrEvData : [InvestigationProjectEvent] = [InvestigationProjectEvent.init(id: 1, name: "Evento de iniciación", date: "12/05/2016", time: "12:12 p.m.", place: "No-where")]
     override func viewDidLoad() {
         super.viewDidLoad()
-        HTTPHelper.get(route: "/getAllEvents", authenticated: true, completion: {(error,data) in
+        let token = (parent as! InvNavViewController).token.unsafelyUnwrapped
+        let get = (parent as! InvNavViewController).getEvents
+        let routeApi = get + "?token=" + token
+        HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if(error == nil){
-                //Mostrar error y regresar al menù principal
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let arrayEvents = dataUnwrapped as? [Any]
+                self.invPrData = []
+                for event in arrayEvents!{
+                    let ev = event as! [String:AnyObject]
+                    let newEvent : InvestigationProjectEvent = InvestigationProjectEvent.init(json : event)
+                    self.invPrData.append(newEvent)
+                    //print(self.invPrData)
+                    //print(pr["id"].unsafelyUnwrapped)                    
+                }
+                self.do_table_refresh()
+
             }
             else {
-                //obtener data
+                //Mostrar error y regresar al menù principal
                 
                 
             }
@@ -72,6 +87,11 @@ class EveProjectTableViewController: UITableViewController {
         //((parent as! InvNavViewController).elegido) = indexPath.row
         //asigna el Evento elegido a variable en controlador de navegaciòn
         ((parent as! InvNavViewController).invPrEv) = invPrEv
+    }
+    func do_table_refresh()
+    {
+        self.tableView.reloadData()
+        
     }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
