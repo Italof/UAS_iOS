@@ -71,7 +71,7 @@ class ViewController: UIViewController {
                         print("REQUESTED ERROR: \(error)")
                         let responseError = error?.userInfo[NSLocalizedDescriptionKey] as! NSString
                         let response = responseError.data(using: String.Encoding.utf8.rawValue)
-                        print(response)
+                        print(response!)
                         do {
                             let jsonError = try JSONSerialization.jsonObject(with: response!, options: []) as! [String:NSString]
                             let msgError = jsonError["error"]! as NSString
@@ -86,17 +86,22 @@ class ViewController: UIViewController {
             
                         } catch {
                             print("NOT VALID JSON")
+                            errorAlert.message = "Error en el servidor, intente más tarde"
+                            self.present(errorAlert, animated: true, completion: nil)
                         }
                         
                     } else {
                         print("REQUESTED RESPONSE: \(responseData)")
                         let data = responseData as! [String:AnyObject]
+                        let user = data["user"] as! [String:AnyObject]
                         
                         let userDefaults = UserDefaults.standard
                         userDefaults.set(1, forKey: "ISLOGGEDIN")
-                        userDefaults.set(username, forKey: "USER")
+                        userDefaults.set(user["Usuario"], forKey: "USER")
                         userDefaults.set(data["token"], forKey: "TOKEN")
-                        print(userDefaults.string(forKey: "TOKEN"))
+                        userDefaults.set(user["IdUsuario"], forKey: "USER_ID")
+                        userDefaults.set(user["IdPerfil"], forKey: "ROLE")
+                        
                         self.performSegue(withIdentifier: "moduleSegue", sender: self)
                     }
                     

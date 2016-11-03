@@ -23,7 +23,7 @@ class InvProjectTableViewController: UITableViewController {
                     let id = pr["id"] as! Int
                     let name = pr["nombre"] as! String
                     let numberDerivables: Int? = Int( pr["num_entregables"] as! String)
-                    print(numberDerivables)
+                    print(numberDerivables!)
                     let startDate = pr["fecha_ini"] as! String
                     let endDate = pr["fecha_fin"] as! String
                     let group = pr["group"] as! [String:Any]
@@ -72,7 +72,7 @@ class InvProjectTableViewController: UITableViewController {
         print(indexPath)
         // Configure the cell...
         let invPr = invPrData[indexPath.row] as InvestigationProject
-        print(invPr.name)
+        print(invPr.name!)
         cell.textLabel?.text = invPr.name
         cell.detailTextLabel?.text = invPr.invGroupName
         

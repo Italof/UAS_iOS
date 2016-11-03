@@ -60,7 +60,7 @@ class EveProjectTableViewController: UITableViewController {
         print(indexPath)
         // Configure the cell...
         let invPrEv = invPrEvData[indexPath.row] as InvestigationProjectEvent
-        print(invPrEv.name)
+        print(invPrEv.name!)
         cell.textLabel?.text = invPrEv.name
         cell.detailTextLabel?.text = invPrEv.date
         return cell

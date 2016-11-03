@@ -11,7 +11,7 @@ import UIKit
 class CustomGoalCell: UITableViewCell {
 
     @IBOutlet weak var lblGoal: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

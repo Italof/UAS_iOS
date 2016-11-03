@@ -39,7 +39,7 @@ class InvGrDetailViewController: UIViewController {
         
         
         // inicializa botones  -- PERMISOS
-        print (invGr)
+        print (invGr!)
         // Do any additional setup after loading the view.
     }
 

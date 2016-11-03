@@ -69,7 +69,7 @@ class InvestigationGroupTableViewController: UITableViewController {
 
         // Configure the cell...
         let invGr = invGrData[indexPath.row] as InvestigationGroup
-        print(invGr.name)
+        print(invGr.name!)
         cell.textLabel?.text = invGr.name
         cell.detailTextLabel?.text = invGr.speciality
         
