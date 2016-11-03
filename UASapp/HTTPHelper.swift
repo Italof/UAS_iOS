@@ -44,15 +44,19 @@ class HTTPHelper {
             print("RESPONSE DATA: \(responseData)")
             let jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: [])
             print(jsonResponse)
-            
+
             /*
             if let dictionary = jsonResponse as? [String:Any] {
                 data = dictionary as [String:AnyObject]
+                print("single")
             } else {
+                print("array")
                 let array = jsonResponse as? [Any]
                 data = array?.first as? [String:AnyObject]
             }
- */
+
+            */
+
             data = jsonResponse
             print(data)
  
@@ -77,15 +81,17 @@ class HTTPHelper {
     dataTask.resume()
   }
   
-  class func get(route:String, authenticated:Bool, completion:((_ error:NSError?, _ data: Any?) -> ())?) {
+
+  class func get(route:String, authenticated:Bool, completion:((_ error:NSError?, _ data:Any?) -> ())?) {
     self.request(route: route, method: "GET", body: nil, authenticated:authenticated, completion: completion)
   }
   
-  class func post(route:String, authenticated:Bool, body:[String:AnyObject]?, completion:((_ error:NSError?, _ data: Any?) -> ())?) {
+  class func post(route:String, authenticated:Bool, body:[String:AnyObject]?, completion:((_ error:NSError?, _ data:Any?) -> ())?) {
     self.request(route: route, method: "POST", body: body, authenticated:authenticated, completion: completion)
   }
   
-  class func put(route:String, authenticated:Bool, body:[String:AnyObject]?, completion:((_ error:NSError?, _ data: Any?) -> ())?) {
+  class func put(route:String, authenticated:Bool, body:[String:AnyObject]?, completion:((_ error:NSError?, _ data:Any?) -> ())?) {
+
     self.request(route: route, method: "PUT", body: body, authenticated:authenticated, completion: completion)
   }
 }

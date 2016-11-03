@@ -12,15 +12,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var txtUser: UITextField!
     @IBOutlet weak var txtPass: UITextField!
   
-
+    var isLoggedIn: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         let userDefaults = UserDefaults.standard
-        let isLoggedIn = userDefaults.integer(forKey: "ISLOGGEDIN")
+        isLoggedIn = userDefaults.integer(forKey: "ISLOGGEDIN")
+        print(isLoggedIn)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
         if (isLoggedIn == 1) {
-          self.performSegue(withIdentifier: "moduleSegue", sender: self)
+            self.performSegue(withIdentifier: "moduleSegue", sender: self)
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,6 +40,7 @@ class ViewController: UIViewController {
     @IBAction func login() {
         let username = txtUser.text! as NSString
         let password = txtPass.text! as NSString
+
         
         let errorAlert = UIAlertController(title: "Error al Iniciar Sesión!",
                                       message: nil,
@@ -39,7 +49,7 @@ class ViewController: UIViewController {
                                    style: .default,
                                    handler: nil)
         errorAlert.addAction(action)
-        
+
         if ( username.isEqual(to: "") || password.isEqual(to: "")) {
             errorAlert.message = "Por favor ingrese su nombre de usuario y contraseña"
             present(errorAlert, animated: true, completion: nil)
@@ -80,8 +90,24 @@ class ViewController: UIViewController {
                         
                     } else {
                         print("REQUESTED RESPONSE: \(responseData)")
-                        self.performSegue(withIdentifier: "moduleSegue", sender: self)
+                        let data = responseData as! [String:AnyObject]
                         
+                        let userDefaults = UserDefaults.standard
+                        userDefaults.set(1, forKey: "ISLOGGEDIN")
+                        userDefaults.set(username, forKey: "USER")
+                        userDefaults.set(data["token"], forKey: "TOKEN")
+                        
+                        let user = data["user"] as! [String:Any]
+                        
+                        
+                        userDefaults.set(user["IdUsuario"], forKey: "IDUSER")
+                        userDefaults.set(user["IdEspecialidad"], forKey: "IDESPECIALIDAD")
+                        userDefaults.set(user["rolTutoria"], forKey: "ROLTUTORIA")
+                        userDefaults.set(user["rolEvaluaciones"], forKey: "ROLEVALUACIONES")
+                        
+                        
+                        print(userDefaults.string(forKey: "TOKEN"))
+                        self.performSegue(withIdentifier: "moduleSegue", sender: self)
                     }
                     
                 })

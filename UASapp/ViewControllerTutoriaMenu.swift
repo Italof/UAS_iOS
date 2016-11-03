@@ -27,30 +27,176 @@ class ViewControllerTutoriaMenu: UIViewController {
         /*
         ruta: "getTutorInfo/Fuente.idUsuario?token=Fuente.token"
         */
-        HTTPHelper.get(route: "", authenticated: true, completion:{ (error,data) in
+        
+        let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
+        let idUser = String.init(parser)
+        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        
+        HTTPHelper.get(route: "getTutorInfo/" + idUser + "?token=" + token, authenticated: true, completion:{ (error,data) in
        
+            
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
-                let tj = dataUnwrapped as! [String:AnyObject]
-                let idDocente = tj["idDocente"] as! String?
-                let idEspecialidad = tj["idEspecialidad"] as! String?
-                let codigo = tj["codigo"] as! String?
-                let nombre = tj["nombre"] as! String?
-                let apellidoPaterno = tj["apellidoPaterno"] as! String?
-                let apellidoMaterno = tj["apellidoMaterno"] as! String?
-                let correo = tj["correo"] as! String?
-                let oficina = tj["oficina"] as! String?
-                let telefono = tj["telefono"] as! String?
-                let anexo = tj["anexo"] as! String?
-                let tutorO : tutor = tutor(idDocente: idDocente, idEspecialidad: idEspecialidad, codigo: codigo, nombre: nombre, apellidoPaterno: apellidoPaterno, apellidoMaterno: apellidoMaterno, correo: correo, oficina: oficina, telefono: telefono, anexo: anexo)
+                let tjd = dataUnwrapped as! [AnyObject]
+                let tj = tjd[0] as! [String:AnyObject]
+                print(tj)
+                
+                let idDocente: String?
+                let idEspecialidad: String?
+                let codigo: String?
+                let nombre: String?
+                let apellidoPaterno: String?
+                let apellidoMaterno: String?
+                let correo: String?
+                let oficina: String?
+                let telefono: String?
+                let anexo: String?
+                let horario: [Any]
+                
+                if ((tj["idDocente"]) != nil){
+                    idDocente = tj["idDocente"] as! String?
+                } else {
+                    idDocente = "-"
+                }
+                
+                if ((tj["idEspecialidad"]) != nil){
+                    idEspecialidad = tj["idEspecialidad"] as! String?
+                } else {
+                    idEspecialidad = "-"
+                }
+                
+                if ((tj["codigo"]) != nil){
+                    codigo = tj["codigo"] as! String?
+                } else {
+                    codigo = "-"
+                }
+                
+                if ((tj["nombre"]) != nil){
+                    nombre = tj["nombre"] as! String?
+                } else {
+                    nombre = "-"
+                }
+                
+                if ((tj["apellidoPaterno"]) != nil){
+                    apellidoPaterno = tj["apellidoPaterno"] as! String?
+                } else {
+                    apellidoPaterno = "-"
+                }
+                
+                if ((tj["apellidoMaterno"]) != nil){
+                    apellidoMaterno = tj["apellidoMaterno"] as! String?
+                } else {
+                    apellidoMaterno = "-"
+                }
+                
+                if ((tj["correo"]) != nil){
+                    correo = tj["correo"] as! String?
+                } else {
+                    correo = "-"
+                }
+                
+                if ((tj["oficina"]) != nil){
+                    oficina = tj["oficina"] as! String?
+                } else {
+                    oficina = "-"
+                }
+                
+                if ((tj["telefono"]) != nil){
+                    telefono = tj["telefono"] as! String?
+                } else {
+                    telefono = "-"
+                }
+                
+                if ((tj["anexo"]) != nil){
+                    anexo = tj["anexo"] as! String?
+                } else {
+                    anexo = "-"
+                }
+                
+                var horarioL: String! = "Lunes: "
+                var horarioMa: String! = "Martes: "
+                var horarioMi: String! = "Miercoles: "
+                var horarioJ: String! = "Jueves: "
+                var horarioV: String! = "Viernes: "
+                
+                if ((tj["scheduleInfo"]) != nil){
+                    horario = tj["scheduleInfo"] as! [Any]
+                    
+                    
+                    for diaH in horario {
+                        
+                        let dateFormater = DateFormatter()
+                        dateFormater.dateFormat = "HH:mm:ss"
+                        let diaHo = diaH as! [String:AnyObject]
+                        
+                        let  hI = dateFormater.date(from: (diaHo["hora_inicio"] as! String))
+                        let  hF = dateFormater.date(from: (diaHo["hora_fin"] as! String))
+                        
+                        dateFormater.dateFormat = "HH:mm"
+                        
+                        if ( (diaHo["dia"] as! String) == "1") {
+                            
+                            horarioL = horarioL + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            
+                        }
+                        
+                        if ( (diaHo["dia"] as! String) == "2") {
+                            
+                            horarioMa = horarioMa + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            
+                        }
+                        
+                        if ( (diaHo["dia"] as! String) == "3") {
+                            
+                            horarioMi = horarioMi + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            
+                        }
+                        
+                        if ( (diaHo["dia"] as! String) == "4") {
+                            
+                            horarioJ = horarioJ + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            
+                        }
+                        
+                        if ( (diaHo["dia"] as! String) == "5") {
+                            
+                            horarioV = horarioV + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            
+                        }
+                    }
+                }
+                else {
+                    horarioL = horarioL + "-"
+                    horarioMa = horarioMa + "-"
+                    horarioMi = horarioMi + "-"
+                    horarioJ = horarioJ + "-"
+                    horarioV = horarioV + "-"
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    
+                }
+                
+                
+                let tutorO : tutor = tutor.init(idDocente: idDocente, idEspecialidad: idEspecialidad, codigo: codigo, nombre: nombre, apellidoPaterno: apellidoPaterno, apellidoMaterno: apellidoMaterno, correo: correo, oficina: oficina, telefono: telefono, anexo: anexo, horarioL: horarioL, horarioMa: horarioMa, horarioMi: horarioMi, horarioJ: horarioJ, horarioV: horarioV )
                 ((self.parent as! NavigationControllerC).tutorOb) = tutorO
                 
                 print(tutorO)
             }
             else {
                 //Mostrar error y regresar al menù principal
-                
+                let alert : UIAlertController = UIAlertController.init(title: "Sin tutor asignado", message: "Usted no cuenta con un tutor asignado", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert,animated: true, completion:nil)
                 
             }
     })

@@ -23,6 +23,12 @@ class ViewControllerTutorVisualize: UIViewController {
     
     @IBOutlet var tutorAnexo: UILabel!
     
+    @IBOutlet weak var horaL: UILabel!
+    @IBOutlet weak var horaMa: UILabel!
+    @IBOutlet weak var horaMi: UILabel!
+    @IBOutlet weak var horaJ: UILabel!
+    @IBOutlet weak var horaV: UILabel!
+    
     var tutorC: tutor?
     
     
@@ -41,6 +47,12 @@ class ViewControllerTutorVisualize: UIViewController {
         tutorPhoneNumber.text=tutorC?.telefono
         tutorOffice.text=tutorC?.oficina
         tutorAnexo.text=tutorC?.anexo
+        
+        horaL.text=tutorC?.horarioL
+        horaMa.text=tutorC?.horarioMa
+        horaMi.text=tutorC?.horarioMi
+        horaJ.text=tutorC?.horarioJ
+        horaV.text=tutorC?.horarioV
     }
 
     override func didReceiveMemoryWarning() {

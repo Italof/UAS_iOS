@@ -10,8 +10,8 @@ import UIKit
 
 class EducationalGoalsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
-    var goals = ["Conducir el análisis de procesos de negocio y necesidades de información de la organización",
+    @IBOutlet weak var goalTblView: UITableView!
+    let goals = ["Conducir el análisis de procesos de negocio y necesidades de información de la organización",
                  "Dirigir las actividades del ciclo de vida del proyectos informáticos, utilizando tecnología, estadares y herramientas adecuadas"]
     
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class EducationalGoalsViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "goalCell", for: indexPath) as! CustomGoalCell
+        let cell = self.goalTblView.dequeueReusableCell(withIdentifier: "goalCell", for: indexPath) as! CustomGoalCell
         
         cell.lblGoal.text = goals[indexPath.row]
         return cell

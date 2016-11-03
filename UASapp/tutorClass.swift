@@ -22,9 +22,17 @@ class tutor{
     var oficina: String?
     var telefono: String?
     var anexo: String?
-    var schedules: [schedule]
+    var horarioL:String?
+    var horarioMa:String?
+    var horarioMi:String?
+    var horarioJ:String?
+    var horarioV:String?
     
-    init(idDocente: String?,idEspecialidad: String?, codigo: String?, nombre: String?, apellidoPaterno: String?,apellidoMaterno: String?, correo: String?, oficina: String?, telefono: String?, anexo: String?){
+    //var schedules: [schedule]
+    
+    
+    
+    init(idDocente: String?,idEspecialidad: String?, codigo: String?, nombre: String?, apellidoPaterno: String?,apellidoMaterno: String?, correo: String?, oficina: String?, telefono: String?, anexo: String?, horarioL: String?, horarioMa: String?, horarioMi: String?, horarioJ: String?, horarioV: String?){
         self.idDocente = idDocente
         self.idEspecialidad=idEspecialidad
         self.codigo=codigo
@@ -35,11 +43,15 @@ class tutor{
         self.oficina=oficina
         self.telefono=telefono
         self.anexo=anexo
-        self.schedules = []
+        self.horarioL=horarioL
+        self.horarioMa=horarioMa
+        self.horarioMi=horarioMi
+        self.horarioJ=horarioJ
+        self.horarioV=horarioV
     }
     
 }
-
+/*
 class schedule{
     var dia: Int
     var horaInicio: String?
@@ -50,5 +62,7 @@ class schedule{
         self.horaInicio=hora_inicio
         self.horaFin=hora_fin
     }
+ 
     
 }
+ */
