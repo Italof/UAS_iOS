@@ -1,14 +1,14 @@
 //
-//  DerProjectTableViewController.swift
+//  InvestigatorsTableViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 25/10/16.
+//  Created by inf227al on 2/11/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class DerProjectTableViewController: UITableViewController {
+class InvestigatorsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

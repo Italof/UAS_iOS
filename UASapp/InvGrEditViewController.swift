@@ -15,7 +15,7 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
     @IBOutlet weak var nameInvGroup: UITextField!
     @IBOutlet weak var descriptionInvGroup: UITextView!
     @IBOutlet weak var saveInvGroup: UIBarButtonItem!
-    @IBOutlet weak var specialityInvGroup: UIPickerView!
+    @IBOutlet weak var specialityInvGroup: UITextField!
     
     //varialbles de alert de sistema
     let successTitle :  String = "Guardado"
@@ -40,6 +40,10 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
             errorMessageCustom = "Descripción muy larga"
             error = 1
         }
+        if (nameInvGroup.text == invGr?.name && descriptionInvGroup.text == invGr?.description){
+            errorMessageCustom = "No hay cambios"
+            error = 1
+        }
         if (error == 1){
             alert.title = errorTitle
             alert.message = errorMessageCustom
@@ -47,23 +51,46 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         }
         else{
             //Gruadar en servidor
-            
-            let postData = ""
-            print(postData)
-            let token = (parent as! InvNavViewController).token.unsafelyUnwrapped
-            let get = (parent as! InvNavViewController).editGroup
-            let routeApi = get + "?token=" + token
-            HTTPHelper.post(route: routeApi, authenticated: true, body : [:], completion: {(error,data) in
+            let json = NSMutableDictionary()
+            json.setValue(invGr?.id, forKey: "id")
+            json.setValue(nameInvGroup.text, forKey: "nombre")
+            json.setValue(descriptionInvGroup.text , forKey: "descripcion")
+            do{
+              let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+              print(jsonData)
+              let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+              print(decoded)
+              let postData = decoded as! [String:AnyObject]
+              print(postData)
+              let token = (parent as! InvNavViewController).token
+              let get = (parent as! InvNavViewController).editGroups
+              let parser = invGr?.id
+              let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
+              print(routeApi)
+              HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                 if(error != nil){
-                    //Mostrar error y regresar al menù principal
+                  //Mostrar error y regresar al menù principal
+                  print(error)
+                  alert.title = self.errorTitle
+                  alert.message = self.errorMessage
+                  self.present(alert,animated: true, completion:nil)
                 }
                 else {
-                    //obtener data
-                    
-                    
+                  //obtener data
+                  alert.title = self.successTitle
+                  alert.message = self.successMessage
+                  self.present(alert,animated: true, completion:nil)
+                  self.invGr?.name = self.nameInvGroup.text
+                  self.invGr?.description = self.descriptionInvGroup.text
+                  ((self.parent as! InvNavViewController).invGr) = self.invGr
                 }
                 
-            })
+              })
+            }
+            catch let err as NSError{
+                print("JSON OBJECT ERROR: \(err)")
+            }
+          
         }
         
         
@@ -88,8 +115,7 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         invGr = (parent as! InvNavViewController).invGr
         nameInvGroup.text = invGr?.name?.uppercased()
         descriptionInvGroup.text = invGr?.description
-        specialityInvGroup.delegate = self
-        specialityInvGroup.dataSource = self
+        specialityInvGroup.text = invGr?.speciality
         //ver si esta online o offline
         
         

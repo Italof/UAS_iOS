@@ -21,7 +21,7 @@ struct Investigator{
     var speciality: String?
 
     //funcion inicializadora
-    init(id:Int, name:String?, lastNameP: Int, lastNameM: String?, email:String?, cellphone:String?, area:String?, speciality:String?){
+    init(id:Int, name:String?, lastNameP: String?, lastNameM: String?, email:String?, cellphone:String?, area:String?, speciality:String?){
         self.email = email
         self.name = name
         self.cellphone = cellphone
@@ -34,12 +34,16 @@ struct Investigator{
     
     init(json : [String:Any]){
         //actualizar      
-        let id = pr["id"] as! Int
-        let name = pr["nombre"] as! String
-        let place = pr["lugar"] as! String
-        let date = pr["fecha"] as! String
-        let time = pr["hora"] as! String
-
+        let id = json["id"] as! Int
+        let name = json["nombre"] as! String
+        let lastNameP = json["ape_paterno"] as! String
+        let lastNameM = json["ape_materno"] as! String
+        let email = json["correo"] as! String
+        let cellphone = json["celular"] as! String
+        let faculty = json["faculty"] as! [String:Any]
+        let speciality = faculty["Nombre"] as! String
+        let areaJson = json["area"] as! [String:Any]
+        let area = areaJson["nombre"] as! String
         self.email = email
         self.name = name
         self.cellphone = cellphone

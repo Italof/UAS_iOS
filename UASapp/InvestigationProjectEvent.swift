@@ -15,27 +15,31 @@ struct InvestigationProjectEvent{
     var date: String?
     var time: String?
     var place: String?
+    var description: String?
     //funcion inicializadora
-    init(id:Int, name:String?, date:String?, time:String?, place: String?){
+    init(id:Int, name:String?, date:String?, time:String?, place: String?, description: String?){
         self.date=date
         self.name=name
         self.time=time
         self.id = id
         self.place = place
+        self.description = description
     }
     
     init(json : [String:Any]){
                 
-        let id = pr["id"] as! Int
-        let name = pr["nombre"] as! String
-        let place = pr["lugar"] as! String
-        let date = pr["fecha"] as! String
-        let time = pr["hora"] as! String
-
+        let id = json["id"] as! Int
+        let name = json["nombre"] as! String
+        let place = json["ubicacion"] as! String
+        let date = json["fecha"] as! String
+        let time = json["hora"] as! String
+        let desc = json["descripcion"] as! String
+        
         self.date=date
         self.place=place
         self.time=time
         self.name = name
         self.id = id
+        self.description = desc
     }
 }

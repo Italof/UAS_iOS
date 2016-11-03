@@ -14,7 +14,7 @@ class InvDerivableTableViewController: UITableViewController {
     
     override func viewDidLoad() {        
         super.viewDidLoad()
-        let token = (parent as! InvNavViewController).token.unsafelyUnwrapped
+        let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getDerivables
         let routeApi = get + "?token=" + token
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
@@ -68,7 +68,7 @@ class InvDerivableTableViewController: UITableViewController {
         let invDer = invDerData[indexPath.row] as InvestigationDerivable
         print(invDer.name)
         cell.textLabel?.text = invDer.name
-        cell.detailTextLabel?.text = invDer.percentage 
+        cell.detailTextLabel?.text = String(invDer.percentage)
         
         return cell
     }

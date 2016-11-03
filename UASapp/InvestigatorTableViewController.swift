@@ -14,22 +14,27 @@ class InvestigatorTableViewController: UITableViewController {
     
     override func viewDidLoad() {        
         super.viewDidLoad()
-        let token = (parent as! InvNavViewController).token.unsafelyUnwrapped
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getInvestigators
-        let routeApi = get + "?token=" + token
+        let routeApi = "investigation/" + get + "?token=" + token
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayInv = dataUnwrapped as? [Any]
-                self.invDerData = []
+                self.invData = []
                 for investigator in arrayInv!{
                     let inv = investigator as! [String:AnyObject]
                     
                     //let group : InvestigationGroup =
-                    self.invDerData.append( Investigator( json: inv ) )
+                    self.invData.append( Investigator( json: inv ) )
                     //print(self.invGrData)
-                    //print(pr["id"].unsafelyUnwrapped)                    
+                    //print(pr["id"].unsafelyUnwrapped)
                 }
                 self.do_table_refresh()
             }
@@ -38,9 +43,8 @@ class InvestigatorTableViewController: UITableViewController {
                 
             }
         })
-        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,8 +71,8 @@ class InvestigatorTableViewController: UITableViewController {
         // Configure the cell...
         let inv = invData[indexPath.row] as Investigator
         print(inv.name)
-        cell.textLabel?.text = inv.name + " " + inv.lastNameP + " " + inv.lastNameM
-        cell.detailTextLabel?.text = invDer.email 
+        cell.textLabel?.text = inv.name! + " " + inv.lastNameP! + " " + inv.lastNameM!
+        cell.detailTextLabel?.text = inv.email 
         
         return cell
     }

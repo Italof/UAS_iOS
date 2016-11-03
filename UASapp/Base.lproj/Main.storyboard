@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -66,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118.125" y="122.53521126760563"/>
+            <point key="canvasLocation" x="-287" y="121"/>
         </scene>
         <!--Module View Controller-->
         <scene sceneID="eWr-oH-Wnb">
@@ -1086,7 +1086,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R1M-4h-Kfr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4904.8000000000002" y="121.88905547226388"/>
+            <point key="canvasLocation" x="6857" y="-574"/>
         </scene>
         <!--Calificaciones de alumno-->
         <scene sceneID="88R-v0-OsJ">
@@ -1177,7 +1177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QiT-F9-UwY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4080" y="158"/>
+            <point key="canvasLocation" x="7984" y="-20"/>
         </scene>
         <!--Grupos de Investigación-->
         <scene sceneID="Rvv-1l-4Od">
@@ -1227,7 +1227,55 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ib9-ZJ-tSo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3951" y="343"/>
+            <point key="canvasLocation" x="2631" y="867"/>
+        </scene>
+        <!--Investigadores-->
+        <scene sceneID="DSz-Om-7am">
+            <objects>
+                <tableViewController id="ipp-6R-CUb" customClass="InvestigatorTableViewController" customModule="UASapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pmR-3W-maa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InvestigatorCell" textLabel="mU7-FJ-gRH" detailTextLabel="FXM-0X-aC4" style="IBUITableViewCellStyleSubtitle" id="qzP-5d-6Tb">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qzP-5d-6Tb" id="Dr1-MT-tIm">
+                                    <frame key="frameInset" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mU7-FJ-gRH">
+                                            <frame key="frameInset" minX="15" minY="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FXM-0X-aC4">
+                                            <frame key="frameInset" minX="15" minY="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ZuW-ws-Pvv" kind="show" id="NzN-Zw-owx"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ipp-6R-CUb" id="wCn-Yq-d5v"/>
+                            <outlet property="delegate" destination="ipp-6R-CUb" id="MCP-Xx-hwC"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Investigadores" id="gUd-z2-793"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gw1-fV-coP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1609" y="1757"/>
         </scene>
         <!--Proyectos de Investigación-->
         <scene sceneID="xfy-EL-NWF">
@@ -1275,7 +1323,53 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cu1-qH-p4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3879" y="867"/>
+            <point key="canvasLocation" x="2631" y="1723"/>
+        </scene>
+        <!--Investigador-->
+        <scene sceneID="es2-4Y-XNA">
+            <objects>
+                <viewController id="ZuW-ws-Pvv" customClass="InvestigatorDetailViewController" customModule="UASapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OTb-hf-b6l"/>
+                        <viewControllerLayoutGuide type="bottom" id="OH2-oE-Hd5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8sd-ZM-EiA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Investigador" id="bxc-6q-R0d">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="oCH-1C-Gjb">
+                            <connections>
+                                <segue destination="jy5-mY-M7B" kind="show" id="qMH-rO-JYB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oDl-UI-m5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1611" y="2437"/>
+        </scene>
+        <!--Editar Investigador-->
+        <scene sceneID="Mlp-Hk-hFx">
+            <objects>
+                <viewController id="jy5-mY-M7B" customClass="InvestigatorEditViewController" customModule="UASapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xVB-bC-HVz"/>
+                        <viewControllerLayoutGuide type="bottom" id="3yT-w8-HmX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1O6-40-OCi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Editar Investigador" id="cWn-TA-dmY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="fOd-2p-aW0"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4f9-uV-3sh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1611" y="3176"/>
         </scene>
         <!--Proyecto-->
         <scene sceneID="77s-NK-Jn7">
@@ -1338,34 +1432,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Integrantes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkj-yT-20g">
-                                <frame key="frameInset" minX="16" minY="227" width="102" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GLK-e5-NsQ">
-                                <frame key="frameInset" minX="16" minY="256" width="288" height="162"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nx3-Jz-Ka4">
-                                <frame key="frameInset" minX="106" minY="452" width="109" height="30"/>
+                                <frame key="frameInset" minX="102" minY="518" width="109" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Ver Entregables"/>
                                 <connections>
                                     <segue destination="Pdn-j9-Nna" kind="show" id="UFT-h6-cMc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDc-in-Set">
-                                <frame key="frameInset" minX="114" minY="490" width="82" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Ver Eventos"/>
-                                <connections>
-                                    <segue destination="9qm-sq-n1a" kind="show" id="315-O8-Vmo"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1387,7 +1459,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2f-14-V66" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4770" y="867.25352112676057"/>
+            <point key="canvasLocation" x="3501" y="1723"/>
         </scene>
         <!--Editar Proyecto-->
         <scene sceneID="zSI-pF-BT7">
@@ -1478,12 +1550,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3E-6T-ddw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5580" y="867.25352112676057"/>
+            <point key="canvasLocation" x="4901" y="1723"/>
         </scene>
         <!--Entregables de Proyecto-->
         <scene sceneID="ida-Jr-VZk">
             <objects>
-                <tableViewController id="Pdn-j9-Nna" customClass="DerProjectTableViewController" customModule="UASapp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Pdn-j9-Nna" customClass="InvDerivableTableViewController" customModule="UASapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zmC-fs-82B">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1523,7 +1595,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MK2-Yq-12V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4770" y="2480"/>
+            <point key="canvasLocation" x="3501" y="3613"/>
         </scene>
         <!--Eventos de Proyecto-->
         <scene sceneID="iAg-Wk-nc5">
@@ -1573,7 +1645,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T5y-56-pgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4770" y="1677"/>
+            <point key="canvasLocation" x="3501" y="2825"/>
         </scene>
         <!--Evento-->
         <scene sceneID="UX1-vm-LuL">
@@ -1636,6 +1708,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAq-me-5jK">
+                                <frame key="frameInset" minX="16" minY="310" width="288" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Descripición:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6Y-Wl-49u">
+                                <frame key="frameInset" minX="19" minY="281" width="100" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1648,6 +1734,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dateInvProEvent" destination="cQl-ap-6Xq" id="acp-VK-gb9"/>
+                        <outlet property="descriptionInvProEvent" destination="lAq-me-5jK" id="wMF-Ij-bQ9"/>
                         <outlet property="nameInvProEvent" destination="Q8e-Fu-Arv" id="2iw-hN-U6P"/>
                         <outlet property="placeInvProEvent" destination="DX4-Nk-yK9" id="Hdq-rL-Ku7"/>
                         <outlet property="timeInvProEvent" destination="HRT-hu-R9o" id="pPl-sJ-cAJ"/>
@@ -1655,7 +1742,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="et8-mA-OYT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5721" y="1688"/>
+            <point key="canvasLocation" x="4901.25" y="2824.6478873239439"/>
         </scene>
         <!--Editar Evento-->
         <scene sceneID="kHr-Er-MCx">
@@ -1712,7 +1799,7 @@
                                 </date>
                                 <locale key="locale" localeIdentifier="es_PE"/>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="7i1-G5-9cb">
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="7i1-G5-9cb">
                                 <frame key="frameInset" minX="16" minY="332" height="79" maxX="16"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <date key="date" timeIntervalSinceReferenceDate="499124676.31299901">
@@ -1741,12 +1828,13 @@
                         <outlet property="dateInvPrEvent" destination="oAJ-3f-YjQ" id="u8g-Kk-IFz"/>
                         <outlet property="nameInvPrEvent" destination="vcn-Rc-gG9" id="VdF-Yf-uwd"/>
                         <outlet property="placeInvPrEvent" destination="Szo-dH-evL" id="yPM-7X-Ml9"/>
+                        <outlet property="saveEventButton" destination="uDo-lX-LaO" id="SE3-Gc-k4c"/>
                         <outlet property="timeInvPrEvent" destination="7i1-G5-9cb" id="HLf-IB-kkb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kGl-gs-VlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6761.25" y="1675.3521126760563"/>
+            <point key="canvasLocation" x="6555" y="2825"/>
         </scene>
         <!--Grupo-->
         <scene sceneID="u4L-sr-x99">
@@ -1820,6 +1908,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tp-Wz-bOY">
+                                <frame key="frameInset" minX="116" minY="524" width="88" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ver Eventos"/>
+                                <connections>
+                                    <segue destination="9qm-sq-n1a" kind="show" id="yIw-Mf-UWI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1841,7 +1937,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C6p-WR-ac5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4736.25" y="82.394366197183103"/>
+            <point key="canvasLocation" x="3500.625" y="866.19718309859161"/>
         </scene>
         <!--Editar Grupo-->
         <scene sceneID="Z5R-tj-Id3">
@@ -1876,12 +1972,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YrI-pp-qoI">
-                                <frame key="frameInset" minX="16" minY="201" height="79" maxX="16"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Abm-hS-f1u">
+                                <frame key="frameInset" minX="16" minY="201" width="288" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="4Bt-5c-hsq">
-                                <frame key="frameInset" minX="16" minY="317" width="288" height="124"/>
+                                <frame key="frameInset" minX="16" minY="268" width="288" height="124"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -1889,7 +1989,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Descripción:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xO2-68-zWs">
-                                <frame key="frameInset" minX="16" minY="288" width="96" height="21"/>
+                                <frame key="frameInset" minX="16" minY="239" width="96" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1909,12 +2009,12 @@
                         <outlet property="descriptionInvGroup" destination="4Bt-5c-hsq" id="3mn-IM-fYs"/>
                         <outlet property="nameInvGroup" destination="fqB-Uh-ecD" id="n7s-Lj-8s9"/>
                         <outlet property="saveInvGroup" destination="y4n-xe-DLa" id="q1K-hi-12r"/>
-                        <outlet property="specialityInvGroup" destination="YrI-pp-qoI" id="UAU-KX-B4d"/>
+                        <outlet property="specialityInvGroup" destination="Abm-hS-f1u" id="4qM-0g-zgq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UsZ-fd-p9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5587.5" y="83.450704225352112"/>
+            <point key="canvasLocation" x="4897.5" y="865.14084507042253"/>
         </scene>
         <!--Grupos de Investigaciòn-->
         <scene sceneID="Wmc-8U-Ofz">
@@ -1947,17 +2047,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h99-mE-4Eq">
-                                <frame key="frameInset" minX="64" minY="106" width="192" height="19"/>
+                                <frame key="frameInset" minX="64" minY="101" width="192" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Ver Grupos de investigación"/>
+                                <state key="normal" title="Grupos de investigación"/>
                                 <connections>
                                     <segue destination="gFA-Sp-rHH" kind="show" id="cKR-HL-tuO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9T-7R-Yrd">
-                                <frame key="frameInset" minX="55" minY="151" width="211" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ox6-5S-EVa">
+                                <frame key="frameInset" minX="110" minY="162" width="100" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Ver Proyectos de investigación"/>
+                                <state key="normal" title="Investigadores"/>
+                                <connections>
+                                    <segue destination="ipp-6R-CUb" kind="show" action="showDetailViewController:sender:" id="OUT-l0-Rzg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9T-7R-Yrd">
+                                <frame key="frameInset" minX="126" minY="214" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Proyectos"/>
                                 <connections>
                                     <segue destination="ohr-Ul-xTs" kind="show" id="LxP-dF-dhP"/>
                                 </connections>
@@ -1969,7 +2077,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83L-Qo-OL6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2243" y="133"/>
+            <point key="canvasLocation" x="1610" y="948"/>
         </scene>
     </scenes>
     <resources>

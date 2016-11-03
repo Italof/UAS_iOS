@@ -15,6 +15,7 @@ class InvPrEvEditViewController: UIViewController {
     @IBOutlet weak var dateInvPrEvent: UIDatePicker!
     @IBOutlet weak var timeInvPrEvent: UIDatePicker!
     @IBOutlet weak var placeInvPrEvent: UITextField!
+    @IBOutlet weak var saveEventButton: UIBarButtonItem!
     //varialbles de alert de sistema
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
@@ -26,8 +27,32 @@ class InvPrEvEditViewController: UIViewController {
         //inicializa campos a editar
         invPrEv = (parent as! InvNavViewController).invPrEv
         nameInvPrEvent.text = invPrEv?.name?.uppercased()
-        dateInvPrEvent.minimumDate = today
-        timeInvPrEvent.minimumDate = today
+        
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        let date = dateFormater.date(from: (invPrEv?.date)!)
+        dateFormater.dateFormat = "dd/MM/yyyy"
+        dateInvPrEvent.setDate(date!, animated: false)
+        
+        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        var time = dateFormater.date(from: (invPrEv?.time)!)
+        dateFormater.dateFormat = "HH:mm"
+        if (time == nil){
+            time = Date.init()
+        }
+        timeInvPrEvent.setDate(time!, animated: false)
+        
+        
+        if(dateInvPrEvent.date <= today){
+            saveEventButton.isEnabled = false
+        }
+        else{
+            dateInvPrEvent.minimumDate = today
+        }
+        
+        //endDateInvProject.text = dateFormater.string(from: endDate!)
+        
+        
         //ver si esta online o offline
 
         
@@ -65,22 +90,60 @@ class InvPrEvEditViewController: UIViewController {
         }
         else{
             //Gruadar en servidor
-            let postData = ""
-            print(postData)
-            let token = (parent as! InvNavViewController).token.unsafelyUnwrapped
-            let get = (parent as! InvNavViewController).editEvent
-            let routeApi = get + "?token=" + token
-            HTTPHelper.post(route: routeApi, authenticated: true, body : [:], completion: {(error,data) in
-                if(error != nil){
-                    //Mostrar error y regresar al menù principal
-                }
-                else {
-                    //obtener data
+            let json = NSMutableDictionary()
+            json.setValue(invPrEv?.id, forKey: "id")
+            json.setValue(nameInvPrEvent.text, forKey: "nombre")
+            json.setValue(placeInvPrEvent.text , forKey: "ubicacion")
+            json.setValue(invPrEv?.description, forKey: "descripcion")
+            let date = dateInvPrEvent.date
+            let time = timeInvPrEvent.date
+            let dateFormater = DateFormatter()
+            dateFormater.dateFormat = "yyyy-MM-dd"
+            json.setValue(dateFormater.string(from: date), forKey: "fecha")
+            dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            json.setValue(dateFormater.string(from: time), forKey: "hora")
+            
+            do{
+                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                print(jsonData)
+                let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                print(decoded)
+                let postData = decoded as! [String:AnyObject]
+                print(postData)
+                let token = (parent as! InvNavViewController).token
+                let get = (parent as! InvNavViewController).editEvents
+                let parser = invPrEv?.id
+                let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
+                HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
+                    if(error != nil){
+                        //Mostrar error y regresar al menù principal
+                        print(error)
+                        alert.title = self.errorTitle
+                        alert.message = self.errorMessage
+                        self.present(alert,animated: true, completion:nil)
+                    }
+                    else {
+                        //obtener data
+                        alert.title = self.successTitle
+                        alert.message = self.successMessage
+                        self.present(alert,animated: true, completion:nil)
+                        self.invPrEv?.name = self.nameInvPrEvent.text
+                        self.invPrEv?.place = self.placeInvPrEvent.text
+                        let date = self.dateInvPrEvent.date
+                        let time = self.timeInvPrEvent.date
+                        let dateFormater = DateFormatter()
+                        dateFormater.dateFormat = "yyyy-MM-dd"
+                        self.invPrEv?.date = dateFormater.string(from: date)
+                        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        self.invPrEv?.time = dateFormater.string(from: time)
+                        ((self.parent as! InvNavViewController).invPrEv) = self.invPrEv                         
+                    }
                     
-                    
-                }
+                })
+            }
+            catch{
                 
-            })
+            }
             
         }
                 

@@ -13,7 +13,7 @@ class InvNavViewController: UINavigationController {
     
     //variables que se usan en las pantallas que usan este navegador
     //Perfiles permitidos en edición en este modulo
-    var profilePermited : [Int] = []
+    var profilePermited : [Int] = [3,5]
 
     //Grupo de investigacion elegido
     var invGr: InvestigationGroup?
@@ -24,29 +24,30 @@ class InvNavViewController: UINavigationController {
     //Entregable elegido
     var invDer: InvestigationDerivable?
     //Investigador elegido
-    //var inv: Investigator?
+    var inv: Investigator?
 
     //token que se usa para el consumo del api
-    var token: String = UserDefaults.standart().objects(forkey: "TOKEN")
+  
+    var token: String = UserDefaults.standard.object(forKey: "TOKEN") as! String
     //profile de usuario 
-    var profile: int = UserDefaults.standart().objects(forkey: "PROFILE")
+    var profile: Int = 3//UserDefaults.standard.object(forKey: "PROFILE") as! Int
 
     //rutas que se usarán en el consumo de los apis
     //obtener y editar grupos de investigación
     var getGroups: String = "getAllInvGroups"
-    var editGroups: String = ""
+    var editGroups: String = "groups"
     //obtener y editar proyectos de investigacion
     var getProjects: String = "getAllProjects"
-    var editProjects: String = ""
+    var editProjects: String = "projects"
     //obtener y editar eventos
-    var getEvents: String = ""
-    var editEvents: String = ""
+    var getEvents: String = "events"
+    var editEvents: String = "event"
     //obtener y editar investigadores
-    var getInvestigators: String = ""
-    var editInvestigators: String = ""
+    var getInvestigators: String = "getAllInvestigators"
+    var editInvestigators: String = "investigators"
     //obtener y editar entregables
     var getDerivables: String = ""
-    var editDerivables: String = ""
+    var editDerivables: String = "deriverable"
 
 
     override func viewDidLoad() {

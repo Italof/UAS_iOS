@@ -14,7 +14,7 @@ class InvestigationGroupTableViewController: UITableViewController {
     
     override func viewDidLoad() {        
         super.viewDidLoad()
-        let token = (parent as! InvNavViewController).token.unsafelyUnwrapped
+        let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getGroups
         if AskConectivity.isInternetAvailable(){
             print("conectado")
@@ -22,7 +22,7 @@ class InvestigationGroupTableViewController: UITableViewController {
         else{
             print("error de conexion")
         }
-        let routeApi = get + "?token=" + token
+        let routeApi = "investigation/" + get + "?token=" + token
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if(error == nil){
                 //obtener data
@@ -46,7 +46,38 @@ class InvestigationGroupTableViewController: UITableViewController {
         })
         
     }
-
+  override func viewWillAppear(_ animated: Bool) {
+    let token = (parent as! InvNavViewController).token
+    let get = (parent as! InvNavViewController).getGroups
+    if AskConectivity.isInternetAvailable(){
+      print("conectado")
+    }
+    else{
+      print("error de conexion")
+    }
+    let routeApi = "investigation/" + get + "?token=" + token
+    HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+      if(error == nil){
+        //obtener data
+        let dataUnwrapped = data.unsafelyUnwrapped
+        let arrayGroup = dataUnwrapped as? [Any]
+        self.invGrData = []
+        for group in arrayGroup!{
+          let gr = group as! [String:AnyObject]
+          
+          //let group : InvestigationGroup =
+          self.invGrData.append( InvestigationGroup ( json: gr ) )
+          //print(self.invGrData)
+          //print(pr["id"].unsafelyUnwrapped)
+        }
+        self.do_table_refresh()
+      }
+      else {
+        //Mostrar error y regresar al menù principal
+        
+      }
+    })
+  }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

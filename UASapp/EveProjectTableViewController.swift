@@ -10,27 +10,39 @@ import UIKit
 
 class EveProjectTableViewController: UITableViewController {
     //Arreglo de eventos de un proyecto -- Se llena con el api
-    var invPrEvData : [InvestigationProjectEvent] = [InvestigationProjectEvent.init(id: 1, name: "Evento de iniciación", date: "12/05/2016", time: "12:12 p.m.", place: "No-where")]
+    var invPrEvData : [InvestigationProjectEvent] = []//[InvestigationProjectEvent.init(id: 1, name: "Evento de iniciación", date: "12/05/2016", time: "12:12 p.m.", place: "No-where")]
     override func viewDidLoad() {
         super.viewDidLoad()
-        let token = (parent as! InvNavViewController).token.unsafelyUnwrapped
+       
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        let invGr = ((parent as! InvNavViewController).invGr)
+        let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getEvents
-        let routeApi = get + "?token=" + token
+        let parser = invGr?.id
+        let id = String(parser.unsafelyUnwrapped)
+        let routeApi = "investigation/" + id + "/" + get + "?token=" + token
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
-                let arrayEvents = dataUnwrapped as? [Any]
-                self.invPrData = []
+                let events = dataUnwrapped as! [String:Any]
+                let arrayEvents = events["events"] as? [Any]
+                self.invPrEvData = []
                 for event in arrayEvents!{
                     let ev = event as! [String:AnyObject]
-                    let newEvent : InvestigationProjectEvent = InvestigationProjectEvent.init(json : event)
-                    self.invPrData.append(newEvent)
+                    let newEvent : InvestigationProjectEvent = InvestigationProjectEvent.init(json : ev)
+                    self.invPrEvData.append(newEvent)
                     //print(self.invPrData)
-                    //print(pr["id"].unsafelyUnwrapped)                    
+                    //print(pr["id"].unsafelyUnwrapped)
                 }
                 self.do_table_refresh()
-
+                
             }
             else {
                 //Mostrar error y regresar al menù principal
@@ -39,13 +51,7 @@ class EveProjectTableViewController: UITableViewController {
             }
             
         })
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -77,7 +83,11 @@ class EveProjectTableViewController: UITableViewController {
         let invPrEv = invPrEvData[indexPath.row] as InvestigationProjectEvent
         print(invPrEv.name)
         cell.textLabel?.text = invPrEv.name
-        cell.detailTextLabel?.text = invPrEv.date
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        let date = dateFormater.date(from: (invPrEv.date)!)
+        dateFormater.dateFormat = "dd/MM/yyyy"
+        cell.detailTextLabel?.text = dateFormater.string(from: date!)
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

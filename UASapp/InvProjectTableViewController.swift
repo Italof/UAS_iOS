@@ -12,38 +12,40 @@ class InvProjectTableViewController: UITableViewController {
     var invPrData : [InvestigationProject] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        let token = (parent as! InvNavViewController).token.unsafelyUnwrapped
-        let get = (parent as! InvNavViewController).getProjects
-        let routeApi = get + "?token=" + token
-        HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
-            if(error == nil){
-                //obtener data
-                let dataUnwrapped = data.unsafelyUnwrapped
-                let arrayProjects = dataUnwrapped as? [Any]
-                self.invPrData = []
-                for project in arrayProjects!{
-                    let pr = project as! [String:AnyObject]
-                    let project : InvestigationProject = InvestigationProject.init(json : project)
-                    self.invPrData.append(project)
-                    //print(self.invPrData)
-                    //print(pr["id"].unsafelyUnwrapped)                    
-                }
-                self.do_table_refresh()
-            }
-            else {
-                //Mostrar error y regresar al menù principal
-                
-                
-            }
-            
-        })
+      
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+  override func viewWillAppear(_ animated: Bool) {
+    let token = (parent as! InvNavViewController).token
+    let get = (parent as! InvNavViewController).getProjects
+    let routeApi = "investigation/" + get + "?token=" + token
+    HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+      if(error == nil){
+        //obtener data
+        let dataUnwrapped = data.unsafelyUnwrapped
+        let arrayProjects = dataUnwrapped as? [Any]
+        self.invPrData = []
+        for project in arrayProjects!{
+          let pr = project as! [String:AnyObject]
+          let project : InvestigationProject = InvestigationProject.init(json : pr)
+          self.invPrData.append(project)
+          //print(self.invPrData)
+          //print(pr["id"].unsafelyUnwrapped)
+        }
+        self.do_table_refresh()
+      }
+      else {
+        //Mostrar error y regresar al menù principal
+        
+        
+      }
+      
+    })
+  }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
