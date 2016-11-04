@@ -8,13 +8,12 @@
 
 import UIKit
 
-struct cellData {
-    let cell: Int!
-    let text: String!
-}
 
 class StudentOutcomesViewController: UITableViewController {
-    var cellsArray: [cellData] = []
+    var goal : EducationalGoal?
+    
+    var outcomesArray = [StudentOutcome]()
+    
     let outcomes = ["A - Aplicar los conocimientos relacionados con las matemáticas, ciencias e ingenieria",
                     "B - Diseñar y conducir experimentos, y analizar e interpretar datos",
                     "C - Diseñar sistemas, componentes o procesos que satisfagan las necesidades presentadas"]
@@ -22,28 +21,28 @@ class StudentOutcomesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = "faculties/"
-        HTTPHelper.get(route: url, authenticated: true, completion: { (error, responseData) in
-            if error != nil {
-                print("REQUESTED ERROR: \(error)")
-                let responseError = error?.userInfo[NSLocalizedDescriptionKey] as! NSString
-                let response = responseError.data(using: String.Encoding.utf8.rawValue)
-                print(response!)
-                do {
-                    let jsonError = try JSONSerialization.jsonObject(with: response!, options: []) as! [String:NSString]
-                    let msgError = jsonError["message"]! as NSString
-                    
-                    print(msgError)
-                }
-                catch {
-                    print("NOT VALID JSON")
-                }
-            }
-            else {
-                print("REQUESTED RESPONSE: \(responseData!)")
+//        HTTPHelper.get(route: url, authenticated: true, completion: { (error, responseData) in
+//            if error != nil {
+//                print("REQUESTED ERROR: \(error)")
+//                let responseError = error?.userInfo[NSLocalizedDescriptionKey] as! NSString
+//                let response = responseError.data(using: String.Encoding.utf8.rawValue)
+//                print(response!)
+//                do {
+//                    let jsonError = try JSONSerialization.jsonObject(with: response!, options: []) as! [String:NSString]
+//                    let msgError = jsonError["message"]! as NSString
+//                    
+//                    print(msgError)
+//                }
+//                catch {
+//                    print("NOT VALID JSON")
+//                }
+//            }
+//            else {
+//                print("REQUESTED RESPONSE: \(responseData!)")
 //                let data = responseData as! [String:AnyObject]
-            }
-            
-        })
+//            }
+//            
+//        })
 
     }
 

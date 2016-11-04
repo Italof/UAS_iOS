@@ -7,10 +7,11 @@
 //
 
 import UIKit
+ 
 
 class EducationalGoalsViewController: UITableViewController {
     let userDefaults = UserDefaults.standard
-    var goalsArray = [String]()
+    var goalsArray = [EducationalGoal]()
     let goals = ["Conducir el análisis de procesos de negocio y necesidades de información de la organización",
                  "Dirigir las actividades del ciclo de vida del proyectos informáticos, utilizando tecnología, estadares y herramientas adecuadas"]
     
@@ -40,7 +41,13 @@ class EducationalGoalsViewController: UITableViewController {
                 for goal in data {
                     let goalDetail = goal as! [String:AnyObject]
                     
-                    self.goalsArray.append(goalDetail["Descripcion"]! as! String)
+                    let id = goalDetail["IdObjetivoEducacional"] as! Int
+                    let text = goalDetail["Descripcion"] as! String
+                    let number = Int(goalDetail["Numero"] as! String)
+                    let status = Int(goalDetail["Estado"] as! String)
+                    
+                    let goalStruct = EducationalGoal(id: id, name: text, number: number!, status: status!)
+                    self.goalsArray.append(goalStruct!)
                 }
             }
             
@@ -69,9 +76,17 @@ class EducationalGoalsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "goalCell", for: indexPath) as! CustomGoalCell
-        print(goalsArray[indexPath.row])
-        cell.lblGoal.text = goalsArray[indexPath.row]
         
+        cell.lblGoal.text = goalsArray[indexPath.row].name
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goalDetailSegue" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let controller = segue.destination as! GoalDetailViewController
+                controller.goal = goalsArray[indexPath.row]
+            }
+        }
     }
 }

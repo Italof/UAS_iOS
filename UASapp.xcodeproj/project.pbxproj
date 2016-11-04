@@ -47,6 +47,8 @@
 		9623F25F1DC3A58400EA7B6D /* OutcomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25E1DC3A58400EA7B6D /* OutcomeDetailViewController.swift */; };
 		9623F2611DC3AB0300EA7B6D /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F2601DC3AB0300EA7B6D /* CourseViewController.swift */; };
 		965F44B91DC270C300D7139A /* CustomGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F44B81DC270C300D7139A /* CustomGoalCell.swift */; };
+		966EEACC1DCCE35D00EBC56B /* EducationalGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966EEACB1DCCE35D00EBC56B /* EducationalGoal.swift */; };
+		966EEACE1DCCF04100EBC56B /* StudentOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966EEACD1DCCF04100EBC56B /* StudentOutcome.swift */; };
 		96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +95,8 @@
 		9623F25E1DC3A58400EA7B6D /* OutcomeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutcomeDetailViewController.swift; sourceTree = "<group>"; };
 		9623F2601DC3AB0300EA7B6D /* CourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		965F44B81DC270C300D7139A /* CustomGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGoalCell.swift; sourceTree = "<group>"; };
+		966EEACB1DCCE35D00EBC56B /* EducationalGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationalGoal.swift; sourceTree = "<group>"; };
+		966EEACD1DCCF04100EBC56B /* StudentOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentOutcome.swift; sourceTree = "<group>"; };
 		96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationalGoalsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +130,7 @@
 		46292B001DB9DF7500EC8575 /* UASapp */ = {
 			isa = PBXGroup;
 			children = (
+				966EEAC81DCCE28E00EBC56B /* Model */,
 				12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */,
 				468028601DC07B2900421DFF /* Utility */,
 				46292B011DB9DF7500EC8575 /* AppDelegate.swift */,
@@ -178,6 +183,15 @@
 				125A62021DC2BE50008BD312 /* AskConectivity.swift */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		966EEAC81DCCE28E00EBC56B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				966EEACB1DCCE35D00EBC56B /* EducationalGoal.swift */,
+				966EEACD1DCCF04100EBC56B /* StudentOutcome.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +283,7 @@
 				1268F2711DBFF58700E1CC22 /* DerProjectTableViewController.swift in Sources */,
 				12ADDE991DBACC8300A2B7CA /* InvGroupTableViewController.swift in Sources */,
 				1231D7831DBACE03004E35FD /* SpecialtyViewController.swift in Sources */,
+				966EEACE1DCCF04100EBC56B /* StudentOutcome.swift in Sources */,
 				1231D7871DBAE5D6004E35FD /* PeriodMeasurementViewController.swift in Sources */,
 				965F44B91DC270C300D7139A /* CustomGoalCell.swift in Sources */,
 				96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */,
@@ -283,6 +298,7 @@
 				9623F2611DC3AB0300EA7B6D /* CourseViewController.swift in Sources */,
 				12BCE5291DC2B2710052E607 /* CustomCourseCell.swift in Sources */,
 				1231D7851DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift in Sources */,
+				966EEACC1DCCE35D00EBC56B /* EducationalGoal.swift in Sources */,
 				12BF4DB71DC2EAE5005E7D5A /* CustomCriterioCell.swift in Sources */,
 				9623F25F1DC3A58400EA7B6D /* OutcomeDetailViewController.swift in Sources */,
 				9623F25D1DC3A2E900EA7B6D /* CustomOutcomeCell.swift in Sources */,
