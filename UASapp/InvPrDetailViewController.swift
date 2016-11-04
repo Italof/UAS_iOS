@@ -16,26 +16,45 @@ class InvPrDetailViewController: UIViewController {
     @IBOutlet weak var startDateInvProject: UILabel!
     @IBOutlet weak var endDateInvProject: UILabel!
     @IBOutlet weak var numberDerivablesInvProject: UILabel!
+
+    @IBOutlet var invProjectEditButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         //toma Proyecto desde controlador de navegador
-        invPr = (parent as! InvNavViewController).invPr
-        nameInvProject.text = invPr?.name?.uppercased()
-        startDateInvProject.text = invPr?.startDate
-        endDateInvProject.text = invPr?.endDate
-        //parse to String from optional Int
-        let parser = invPr?.numberDerivables
-        numberDerivablesInvProject.text = String(parser.unsafelyUnwrapped)
-        // inicializa botones -- PERMISOS
-        
-        
-        
-        
+      
         
     }
+  override func viewWillAppear(_ animated: Bool) {
+    invPr = (parent as! InvNavViewController).invPr
+    nameInvProject.text = invPr?.name?.uppercased()
+    
+    let dateFormater = DateFormatter()
+    dateFormater.dateFormat = "yyyy-MM-dd"
+    let startDate = dateFormater.date(from: (invPr?.startDate)!)
+    let endDate = dateFormater.date(from: (invPr?.endDate)!)
+    dateFormater.dateFormat = "dd/MM/yyyy"
+    
+    startDateInvProject.text = dateFormater.string(from: startDate!)
+    endDateInvProject.text = dateFormater.string(from: endDate!)
+    //parse to String from optional Int
+    let parser = invPr?.numberDerivables
+    numberDerivablesInvProject.text = String(parser.unsafelyUnwrapped)
+    // inicializa botones -- PERMISOS
+    //profile user
+    let profile = (parent as! InvNavViewController).profile
+    //profiles permitidos a editar
+    let profilePermited = (parent as! InvNavViewController).profilePermited
+    let isConnected = AskConectivity.isInternetAvailable()
+    if( profilePermited.index( of: profile) == nil || isConnected == false ){
+      //si no se encuentra el perfil permitido
+      //ocultar boton de editar
+      invProjectEditButton.isEnabled = false
+    }
 
+  }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

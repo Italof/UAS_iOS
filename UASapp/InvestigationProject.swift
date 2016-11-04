@@ -25,4 +25,23 @@ struct InvestigationProject {
         self.invGroupName = invGroupName
     }
     
+
+    init(json : [String:Any]){
+                
+        let id = json["id"] as! Int
+        let name = json["nombre"] as! String
+        let numberDerivables: Int? = Int( json["num_entregables"] as! String)
+        let startDate = json["fecha_ini"] as! String
+        let endDate = json["fecha_fin"] as! String
+        let group = json["group"] as! [String:Any]
+        let invGroupName = group["nombre"] as! String
+        let leaderName=""
+
+        self.startDate=startDate
+        self.name=name
+        self.numberDerivables=numberDerivables.unsafelyUnwrapped
+        self.id = id
+        self.endDate = endDate
+        self.invGroupName = invGroupName
+    }
 }

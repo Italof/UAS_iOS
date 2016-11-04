@@ -12,44 +12,39 @@ class InvProjectTableViewController: UITableViewController {
     var invPrData : [InvestigationProject] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        HTTPHelper.get(route: "getAllProjects?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cLzM1LjE2MS43My4yMzZcL2FwaVwvYXV0aGVudGljYXRlIiwiaWF0IjoxNDc3NjE0Mjg0LCJleHAiOjE0Nzg5NzAyODQsIm5iZiI6MTQ3NzYxNDI4NCwianRpIjoiNjYzYWZkNTE1NGM4MDUzOTk0ZmE0ZTVhMzQyZDA3YzIifQ.c96PXegKxbDTw0FPmEp4q05X1rzlN44aUSLKtSytWzs", authenticated: true, completion: {(error,data) in
-            if(error == nil){
-                //obtener data
-                let dataUnwrapped = data.unsafelyUnwrapped
-                let arrayProjects = dataUnwrapped as? [Any]
-                self.invPrData = []
-                for project in arrayProjects!{
-                    let pr = project as! [String:AnyObject]
-                    let id = pr["id"] as! Int
-                    let name = pr["nombre"] as! String
-                    let numberDerivables: Int? = Int( pr["num_entregables"] as! String)
-                    print(numberDerivables!)
-                    let startDate = pr["fecha_ini"] as! String
-                    let endDate = pr["fecha_fin"] as! String
-                    let group = pr["group"] as! [String:Any]
-                    let invNameGroup = group["nombre"] as! String
-                    let leaderName=""
-                    let project : InvestigationProject = InvestigationProject.init(id: id , name: name , numberDerivables: numberDerivables!, startDate: startDate, endDate: endDate, invGroupName: invNameGroup, leaderName: leaderName)
-                    self.invPrData.append(project)
-                    print(self.invPrData)
-                    print(pr["id"].unsafelyUnwrapped)
-                    self.do_table_refresh()
-                }
-            }
-            else {
-                //Mostrar error y regresar al menù principal
-                
-                
-            }
-            
-        })
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+  override func viewWillAppear(_ animated: Bool) {
+    let token = (parent as! InvNavViewController).token
+    let get = (parent as! InvNavViewController).getProjects
+    let routeApi = "investigation/" + get + "?token=" + token
+    HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+      if(error == nil){
+        //obtener data
+        let dataUnwrapped = data.unsafelyUnwrapped
+        let arrayProjects = dataUnwrapped as? [Any]
+        self.invPrData = []
+        for project in arrayProjects!{
+          let pr = project as! [String:AnyObject]
+          let project : InvestigationProject = InvestigationProject.init(json : pr)
+          self.invPrData.append(project)
+          //print(self.invPrData)
+          //print(pr["id"].unsafelyUnwrapped)
+        }
+        self.do_table_refresh()
+      }
+      else {
+        //Mostrar error y regresar al menù principal
+        
+        
+      }
+      
+    })
+  }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

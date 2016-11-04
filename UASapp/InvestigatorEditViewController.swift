@@ -1,50 +1,40 @@
 //
-//  InvPrEvEditViewController.swift
+//  InvestigatorEditViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 25/10/16.
+//  Created by inf227al on 2/11/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
-    var invPrEv : InvestigationProjectEvent?
-    //variables de campos
-    @IBOutlet var nameInvPrEvent: UITextField!
-    @IBOutlet var dateInvPrEvent: UIDatePicker!
-    @IBOutlet var timeInvPrEvent: UIDatePicker!
-    @IBOutlet var placeInvPrEvent: UITextField!
-    @IBOutlet var saveEventButton: UIBarButtonItem!
+class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
+
+    var inv : Investigator?
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    var activeField: UITextField?
+    @IBOutlet var nameInv: UITextField!
+    @IBOutlet var lastNamePInv: UITextField!
+    @IBOutlet var lastNameMInv: UITextField!
+    @IBOutlet var emailInv: UITextField!
+    @IBOutlet var cellphoneInv: UITextField!
+    @IBOutlet var invSaveButton: UIBarButtonItem!
     //varialbles de alert de sistema
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
     let errorTitle: String = "Error"
     let errorMessage: String = "No se han guardado los cambios"
+
+    @IBOutlet var scrollView: UIScrollView!
+
+    var activeField: UITextField?
     override func viewDidLoad() {
         super.viewDidLoad()
-        let today : Date = Date.init()
-        //inicializa campos a editar
-        invPrEv = (parent as! InvNavViewController).invPrEv
-        nameInvPrEvent.text = invPrEv?.name?.uppercased()
-        
-        let dateFormater = DateFormatter()
-        dateFormater.dateFormat = "yyyy-MM-dd"
-        let date = dateFormater.date(from: (invPrEv?.date)!)
-        dateFormater.dateFormat = "dd/MM/yyyy"
-        dateInvPrEvent.setDate(date!, animated: false)
-        self.nameInvPrEvent.delegate = self
-        self.placeInvPrEvent.delegate = self
-        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        var time = dateFormater.date(from: (invPrEv?.time)!)
-        dateFormater.dateFormat = "HH:mm"
-        if (time == nil){
-            time = Date.init()
-        }
-        timeInvPrEvent.setDate(time!, animated: false)
+        inv = ((parent as! InvNavViewController).inv)
+        nameInv.text = inv?.name
+        lastNameMInv.text = inv?.lastNameM
+        lastNamePInv.text = inv?.lastNameP
+        emailInv.text = inv?.email
+        cellphoneInv.text = inv?.cellphone
         //profile user
         let profile = (parent as! InvNavViewController).profile
         //profiles permitidos a editar
@@ -53,26 +43,15 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
         if( profilePermited.index( of: profile) == nil || isConnected == false ){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
-            saveEventButton.isEnabled = false
+            invSaveButton.isEnabled = false
         }
+        self.nameInv.delegate = self
+        self.lastNameMInv.delegate = self
+        self.lastNamePInv.delegate = self
+        self.emailInv.delegate = self
+        self.cellphoneInv.delegate = self
         
-        if(dateInvPrEvent.date <= today){
-            saveEventButton.isEnabled = false
-        }
-        else{
-            dateInvPrEvent.minimumDate = today
-        }
-        
-        //endDateInvProject.text = dateFormater.string(from: endDate!)
-        
-        
-        //ver si esta online o offline
-
-        
-        placeInvPrEvent.text = invPrEv?.place
-        // Do any additional setup after loading the view.
-    }
-    
+      }
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -88,7 +67,7 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
     }
-    
+
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
@@ -133,30 +112,41 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func pressedSaveInvPrEvent(_ sender: AnyObject) {
+    @IBAction func pressedSaveButton(_ sender: AnyObject) {
         let alert : UIAlertController = UIAlertController.init(title: successTitle, message: successMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         //error variable
         var errorMessageCustom : String = ""
         var error = 0
-       
         //verificar que los campos son correctos
-        if((nameInvPrEvent!.text?.characters.count)! > 254){
+        if((nameInv!.text?.characters.count)! > 254 || (nameInv!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre muy largo"
             error = 1
         }
-        if((placeInvPrEvent!.text?.characters.count)! > 254){
-            errorMessageCustom = "Nombre de lugar muy grande"
+        if((lastNamePInv!.text?.characters.count)! > 254 || (lastNamePInv!.text?.characters.count)! < 1 ){
+            errorMessageCustom = "Apellido no válido"
             error = 1
         }
-        
+        if((lastNameMInv!.text?.characters.count)! > 254 || (lastNameMInv!.text?.characters.count)! < 1){
+            errorMessageCustom = "Apellido no válido"
+            error = 1
+        }
+        if((emailInv!.text?.characters.count)! > 100 || (emailInv!.text?.characters.count)! < 3 ){
+            errorMessageCustom = "Correo no válido"
+            error = 1
+        }
+        if((cellphoneInv!.text?.characters.count)! != 9){
+            errorMessageCustom = "Número de celular no válido"
+            error = 1
+        }
         if (error == 1){
             alert.title = errorTitle
             alert.message = errorMessageCustom
@@ -165,18 +155,12 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
         else{
             //Gruadar en servidor
             let json = NSMutableDictionary()
-            json.setValue(invPrEv?.id, forKey: "id")
-            json.setValue(nameInvPrEvent.text, forKey: "nombre")
-            json.setValue(placeInvPrEvent.text , forKey: "ubicacion")
-            json.setValue(invPrEv?.description, forKey: "descripcion")
-            let date = dateInvPrEvent.date
-            let time = timeInvPrEvent.date
-            let dateFormater = DateFormatter()
-            dateFormater.dateFormat = "yyyy-MM-dd"
-            json.setValue(dateFormater.string(from: date), forKey: "fecha")
-            dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            json.setValue(dateFormater.string(from: time), forKey: "hora")
-            
+            json.setValue(inv?.id, forKey: "id")
+            json.setValue(nameInv.text, forKey: "nombre")
+            json.setValue(lastNamePInv.text , forKey: "ape_paterno")
+            json.setValue(lastNameMInv.text , forKey: "ape_materno")
+            json.setValue(emailInv.text , forKey: "correo")
+            json.setValue(cellphoneInv.text , forKey: "celular")
             do{
                 let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
                 print(jsonData)
@@ -185,9 +169,10 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
                 let postData = decoded as! [String:AnyObject]
                 print(postData)
                 let token = (parent as! InvNavViewController).token
-                let get = (parent as! InvNavViewController).editEvents
-                let parser = invPrEv?.id
+                let get = (parent as! InvNavViewController).editInvestigators
+                let parser = inv?.id
                 let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
+                print(routeApi)
                 HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                     if(error != nil){
                         //Mostrar error y regresar al menù principal
@@ -201,26 +186,23 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
                         alert.title = self.successTitle
                         alert.message = self.successMessage
                         self.present(alert,animated: true, completion:nil)
-                        self.invPrEv?.name = self.nameInvPrEvent.text
-                        self.invPrEv?.place = self.placeInvPrEvent.text
-                        let date = self.dateInvPrEvent.date
-                        let time = self.timeInvPrEvent.date
-                        let dateFormater = DateFormatter()
-                        dateFormater.dateFormat = "yyyy-MM-dd"
-                        self.invPrEv?.date = dateFormater.string(from: date)
-                        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                        self.invPrEv?.time = dateFormater.string(from: time)
-                        ((self.parent as! InvNavViewController).invPrEv) = self.invPrEv                         
+                        self.inv?.name = self.nameInv.text
+                        self.inv?.lastNameP = self.lastNamePInv.text
+                        self.inv?.lastNameM = self.lastNameMInv.text
+                        self.inv?.email = self.emailInv.text
+                        self.inv?.cellphone = self.cellphoneInv.text
+                        ((self.parent as! InvNavViewController).inv) = self.inv
                     }
                     
                 })
+                
             }
             catch{
                 
             }
             
         }
-                
+        
     }
 
     /*

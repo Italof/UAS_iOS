@@ -14,26 +14,37 @@
 		1214CECC1DBC0DE80042A3F2 /* InvProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CECB1DBC0DE80042A3F2 /* InvProjectTableViewController.swift */; };
 		1214CECE1DBC125E0042A3F2 /* InvPrDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CECD1DBC125E0042A3F2 /* InvPrDetailViewController.swift */; };
 		1214CED01DBC12A50042A3F2 /* InvPrEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CECF1DBC12A50042A3F2 /* InvPrEditViewController.swift */; };
+
 		121BE3B01DCBAFA200B68A3C /* MyFacultiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121BE3AF1DCBAFA200B68A3C /* MyFacultiesViewController.swift */; };
 		121BE3B21DCBB03500B68A3C /* CustomMyFacultiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121BE3B11DCBB03500B68A3C /* CustomMyFacultiesCell.swift */; };
 		121BE3B41DCBB17300B68A3C /* Faculty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121BE3B31DCBB17300B68A3C /* Faculty.swift */; };
+
+
+		121C14031DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121C14021DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift */; };
+
 		1231D7831DBACE03004E35FD /* SpecialtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7821DBACE03004E35FD /* SpecialtyViewController.swift */; };
 		1231D7851DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7841DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift */; };
 		1231D7871DBAE5D6004E35FD /* PeriodMeasurementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7861DBAE5D6004E35FD /* PeriodMeasurementViewController.swift */; };
 		1231D7891DBAE681004E35FD /* PeriodMeasDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D7881DBAE681004E35FD /* PeriodMeasDetailViewController.swift */; };
 		1231D78B1DBAE869004E35FD /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D78A1DBAE869004E35FD /* ScheduleViewController.swift */; };
 		1231D78D1DBAE87D004E35FD /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1231D78C1DBAE87D004E35FD /* StudentViewController.swift */; };
+
 		1247102E1DCABD63000F9F1D /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1247102D1DCABD63000F9F1D /* Period.swift */; };
 		124710301DCAD039000F9F1D /* UASNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1247102F1DCAD039000F9F1D /* UASNavViewController.swift */; };
 		124710321DCAD809000F9F1D /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124710311DCAD809000F9F1D /* Course.swift */; };
+
 		124DD59C1DBBCB0B004D95FA /* InvGrDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124DD59B1DBBCB0B004D95FA /* InvGrDetailViewController.swift */; };
 		124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124DD59D1DBBCC6F004D95FA /* InvNavViewController.swift */; };
 		125A62031DC2BE50008BD312 /* AskConectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125A62021DC2BE50008BD312 /* AskConectivity.swift */; };
-		1268F2711DBFF58700E1CC22 /* DerProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F2701DBFF58700E1CC22 /* DerProjectTableViewController.swift */; };
 		1268F2731DBFF59E00E1CC22 /* EveProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F2721DBFF59E00E1CC22 /* EveProjectTableViewController.swift */; };
 		1268F2751DBFF6C300E1CC22 /* InvestigationProjectEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F2741DBFF6C300E1CC22 /* InvestigationProjectEvent.swift */; };
 		1268F2771DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F2761DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift */; };
 		1268F2791DC0096100E1CC22 /* InvPrEvEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F2781DC0096100E1CC22 /* InvPrEvEditViewController.swift */; };
+		126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C82FD1DCA87D400168250 /* InvDerivableTableViewController.swift */; };
+		126C83031DCA87D400168250 /* InvestigationDerivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C82FE1DCA87D400168250 /* InvestigationDerivable.swift */; };
+		126C83041DCA87D400168250 /* Investigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C82FF1DCA87D400168250 /* Investigator.swift */; };
+		126C83051DCA87D400168250 /* InvestigatorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C83001DCA87D400168250 /* InvestigatorTableViewController.swift */; };
+		126C83061DCA87D400168250 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C83011DCA87D400168250 /* SplitViewController.swift */; };
 		12ADDE991DBACC8300A2B7CA /* InvGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */; };
 		12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */; };
 		12BCE5291DC2B2710052E607 /* CustomCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */; };
@@ -42,6 +53,7 @@
 		12BF4DB71DC2EAE5005E7D5A /* CustomCriterioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */; };
 		12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */; };
 		12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */; };
+
 		25691CA51DCB4A03005A632D /* DetalleGruposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25691CA41DCB4A03005A632D /* DetalleGruposViewController.swift */; };
 		25A6EF191DCBDF760084AFE0 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EF181DCBDF760084AFE0 /* Test.swift */; };
 		25A6EF2D1DCBE7CA0084AFE0 /* FaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EF2C1DCBE7CA0084AFE0 /* FaseTest.swift */; };
@@ -52,6 +64,10 @@
 		25A968311DCB350100B03060 /* GruposTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A968301DCB350100B03060 /* GruposTableViewController.swift */; };
 		25A968331DCB353100B03060 /* Grupos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A968321DCB353100B03060 /* Grupos.swift */; };
 		25DE42751DCBA0D800BE88C8 /* MenuProvisionalAlumnosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DE42741DCBA0D800BE88C8 /* MenuProvisionalAlumnosViewController.swift */; };
+
+		12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */; };
+		12DF4D211DCADD8700E59AD0 /* InvestigatorEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */; };
+
 		4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616D9E01DC07E12008174B7 /* HTTPHelper.swift */; };
 		4618847E1DCC20A1000858C8 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4618847D1DCC20A1000858C8 /* ConfigTableViewController.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
@@ -88,26 +104,37 @@
 		1214CECB1DBC0DE80042A3F2 /* InvProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvProjectTableViewController.swift; sourceTree = "<group>"; };
 		1214CECD1DBC125E0042A3F2 /* InvPrDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvPrDetailViewController.swift; sourceTree = "<group>"; };
 		1214CECF1DBC12A50042A3F2 /* InvPrEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvPrEditViewController.swift; sourceTree = "<group>"; };
+
 		121BE3AF1DCBAFA200B68A3C /* MyFacultiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFacultiesViewController.swift; sourceTree = "<group>"; };
 		121BE3B11DCBB03500B68A3C /* CustomMyFacultiesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMyFacultiesCell.swift; sourceTree = "<group>"; };
 		121BE3B31DCBB17300B68A3C /* Faculty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Faculty.swift; sourceTree = "<group>"; };
+
+		121C14001DCBCBE100C4CDE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		121C14021DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
+
 		1231D7821DBACE03004E35FD /* SpecialtyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialtyViewController.swift; sourceTree = "<group>"; };
 		1231D7841DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesBySpecialtyViewController.swift; sourceTree = "<group>"; };
 		1231D7861DBAE5D6004E35FD /* PeriodMeasurementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodMeasurementViewController.swift; sourceTree = "<group>"; };
 		1231D7881DBAE681004E35FD /* PeriodMeasDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodMeasDetailViewController.swift; sourceTree = "<group>"; };
 		1231D78A1DBAE869004E35FD /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		1231D78C1DBAE87D004E35FD /* StudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentViewController.swift; sourceTree = "<group>"; };
+
 		1247102D1DCABD63000F9F1D /* Period.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		1247102F1DCAD039000F9F1D /* UASNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UASNavViewController.swift; sourceTree = "<group>"; };
 		124710311DCAD809000F9F1D /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+
 		124DD59B1DBBCB0B004D95FA /* InvGrDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGrDetailViewController.swift; sourceTree = "<group>"; };
 		124DD59D1DBBCC6F004D95FA /* InvNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvNavViewController.swift; sourceTree = "<group>"; };
 		125A62021DC2BE50008BD312 /* AskConectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskConectivity.swift; sourceTree = "<group>"; };
-		1268F2701DBFF58700E1CC22 /* DerProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DerProjectTableViewController.swift; sourceTree = "<group>"; };
 		1268F2721DBFF59E00E1CC22 /* EveProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EveProjectTableViewController.swift; sourceTree = "<group>"; };
 		1268F2741DBFF6C300E1CC22 /* InvestigationProjectEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationProjectEvent.swift; sourceTree = "<group>"; };
 		1268F2761DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvPrEvDetailViewController.swift; sourceTree = "<group>"; };
 		1268F2781DC0096100E1CC22 /* InvPrEvEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvPrEvEditViewController.swift; sourceTree = "<group>"; };
+		126C82FD1DCA87D400168250 /* InvDerivableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDerivableTableViewController.swift; sourceTree = "<group>"; };
+		126C82FE1DCA87D400168250 /* InvestigationDerivable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationDerivable.swift; sourceTree = "<group>"; };
+		126C82FF1DCA87D400168250 /* Investigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Investigator.swift; sourceTree = "<group>"; };
+		126C83001DCA87D400168250 /* InvestigatorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorTableViewController.swift; sourceTree = "<group>"; };
+		126C83011DCA87D400168250 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGroupTableViewController.swift; sourceTree = "<group>"; };
 		12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvestigationGroup.swift; path = ../InvestigationGroup.swift; sourceTree = "<group>"; };
 		12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCourseCell.swift; sourceTree = "<group>"; };
@@ -116,6 +143,7 @@
 		12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCriterioCell.swift; sourceTree = "<group>"; };
 		12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPeriodCell.swift; sourceTree = "<group>"; };
 		12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSpecialtyCell.swift; sourceTree = "<group>"; };
+
 		25691CA41DCB4A03005A632D /* DetalleGruposViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleGruposViewController.swift; sourceTree = "<group>"; };
 		25A6EF161DCBDF760084AFE0 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A6EF181DCBDF760084AFE0 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
@@ -128,6 +156,10 @@
 		25A968301DCB350100B03060 /* GruposTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GruposTableViewController.swift; sourceTree = "<group>"; };
 		25A968321DCB353100B03060 /* Grupos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grupos.swift; sourceTree = "<group>"; };
 		25DE42741DCBA0D800BE88C8 /* MenuProvisionalAlumnosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuProvisionalAlumnosViewController.swift; sourceTree = "<group>"; };
+
+		12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorDetailViewController.swift; sourceTree = "<group>"; };
+		12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorEditViewController.swift; sourceTree = "<group>"; };
+
 		4616D9E01DC07E12008174B7 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		4618847D1DCC20A1000858C8 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigTableViewController.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,11 +229,21 @@
 		46292B001DB9DF7500EC8575 /* UASapp */ = {
 			isa = PBXGroup;
 			children = (
+
 				966EEAC81DCCE28E00EBC56B /* Model */,
+
+
+				126C82FD1DCA87D400168250 /* InvDerivableTableViewController.swift */,
+				126C82FE1DCA87D400168250 /* InvestigationDerivable.swift */,
+				126C82FF1DCA87D400168250 /* Investigator.swift */,
+				126C83001DCA87D400168250 /* InvestigatorTableViewController.swift */,
+				126C83011DCA87D400168250 /* SplitViewController.swift */,
+
 				12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */,
 				468028601DC07B2900421DFF /* Utility */,
 				46292B011DB9DF7500EC8575 /* AppDelegate.swift */,
 				46292B031DB9DF7500EC8575 /* ViewController.swift */,
+
 				25A968281DCB12D700B03060 /* InicioPspViewController.swift */,
 				25A9682A1DCB16EB00B03060 /* FasesTableViewController.swift */,
 				25A9682E1DCB2EA100B03060 /* DetalleFaseViewController.swift */,
@@ -209,6 +251,7 @@
 				25691CA41DCB4A03005A632D /* DetalleGruposViewController.swift */,
 				25DE42741DCBA0D800BE88C8 /* MenuProvisionalAlumnosViewController.swift */,
 				46419A8B1DCC505C00E77B9A /* Main.storyboard */,
+
 				46292B081DB9DF7500EC8575 /* Assets.xcassets */,
 				46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */,
 				46292B0D1DB9DF7500EC8575 /* Info.plist */,
@@ -220,7 +263,6 @@
 				1214CECB1DBC0DE80042A3F2 /* InvProjectTableViewController.swift */,
 				1214CECD1DBC125E0042A3F2 /* InvPrDetailViewController.swift */,
 				1214CECF1DBC12A50042A3F2 /* InvPrEditViewController.swift */,
-				1268F2701DBFF58700E1CC22 /* DerProjectTableViewController.swift */,
 				1268F2721DBFF59E00E1CC22 /* EveProjectTableViewController.swift */,
 				1268F2741DBFF6C300E1CC22 /* InvestigationProjectEvent.swift */,
 				1268F2761DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift */,
@@ -244,12 +286,18 @@
 				12BF4DB21DC2CD70005E7D5A /* CustomStudentCell.swift */,
 				12BF4DB41DC2D73E005E7D5A /* ListStudentViewController.swift */,
 				12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */,
+
 				4618847D1DCC20A1000858C8 /* ConfigTableViewController.swift */,
 				1247102F1DCAD039000F9F1D /* UASNavViewController.swift */,
 				121BE3AF1DCBAFA200B68A3C /* MyFacultiesViewController.swift */,
 				121BE3B11DCBB03500B68A3C /* CustomMyFacultiesCell.swift */,
 				1207C64D1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift */,
 				1207C64F1DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift */,
+
+				12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */,
+				12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */,
+				121C14021DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift */,
+
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -371,7 +419,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				46419A8D1DCC505C00E77B9A /* Main.storyboard in Resources */,
+
 				46292B0C1DB9DF7500EC8575 /* LaunchScreen.storyboard in Resources */,
 				46292B091DB9DF7500EC8575 /* Assets.xcassets in Resources */,
 			);
@@ -402,17 +452,22 @@
 				124DD59C1DBBCB0B004D95FA /* InvGrDetailViewController.swift in Sources */,
 				1214CED01DBC12A50042A3F2 /* InvPrEditViewController.swift in Sources */,
 				1268F2751DBFF6C300E1CC22 /* InvestigationProjectEvent.swift in Sources */,
+				12DF4D211DCADD8700E59AD0 /* InvestigatorEditViewController.swift in Sources */,
 				1214CECC1DBC0DE80042A3F2 /* InvProjectTableViewController.swift in Sources */,
 				1268F2771DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift in Sources */,
 				1214CEC81DBC05A90042A3F2 /* InvGrEditViewController.swift in Sources */,
 				124710301DCAD039000F9F1D /* UASNavViewController.swift in Sources */,
 				1247102E1DCABD63000F9F1D /* Period.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
-				1268F2711DBFF58700E1CC22 /* DerProjectTableViewController.swift in Sources */,
 				12ADDE991DBACC8300A2B7CA /* InvGroupTableViewController.swift in Sources */,
+				126C83061DCA87D400168250 /* SplitViewController.swift in Sources */,
 				1231D7831DBACE03004E35FD /* SpecialtyViewController.swift in Sources */,
+
 				966EEACE1DCCF04100EBC56B /* StudentOutcome.swift in Sources */,
 				121BE3B41DCBB17300B68A3C /* Faculty.swift in Sources */,
+
+				126C83051DCA87D400168250 /* InvestigatorTableViewController.swift in Sources */,
+
 				1231D7871DBAE5D6004E35FD /* PeriodMeasurementViewController.swift in Sources */,
 				965F44B91DC270C300D7139A /* CustomGoalCell.swift in Sources */,
 				96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */,
@@ -428,12 +483,17 @@
 				1207C64E1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift in Sources */,
 				12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */,
 				9623F25B1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift in Sources */,
+
 				25A9682B1DCB16EB00B03060 /* FasesTableViewController.swift in Sources */,
 				25A9682F1DCB2EA100B03060 /* DetalleFaseViewController.swift in Sources */,
 				121BE3B01DCBAFA200B68A3C /* MyFacultiesViewController.swift in Sources */,
+
+				126C83031DCA87D400168250 /* InvestigationDerivable.swift in Sources */,
+
 				9623F2611DC3AB0300EA7B6D /* CourseViewController.swift in Sources */,
 				124710321DCAD809000F9F1D /* Course.swift in Sources */,
 				12BCE5291DC2B2710052E607 /* CustomCourseCell.swift in Sources */,
+				126C83041DCA87D400168250 /* Investigator.swift in Sources */,
 				1231D7851DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift in Sources */,
 				966EEACC1DCCE35D00EBC56B /* EducationalGoal.swift in Sources */,
 				12BF4DB71DC2EAE5005E7D5A /* CustomCriterioCell.swift in Sources */,
@@ -448,7 +508,13 @@
 				1268F2791DC0096100E1CC22 /* InvPrEvEditViewController.swift in Sources */,
 				25A9682D1DCB209700B03060 /* Fases.swift in Sources */,
 				4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */,
+
 				4618847E1DCC20A1000858C8 /* ConfigTableViewController.swift in Sources */,
+
+				121C14031DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift in Sources */,
+				12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */,
+				126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +529,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+
 		46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -12,18 +12,47 @@ class InvNavViewController: UINavigationController {
     //Controlador de navegación de investigación
     
     //variables que se usan en las pantallas que usan este navegador
-    //prueba
-    var elegido: Int = 0
+    //Perfiles permitidos en edición en este modulo
+    var profilePermited : [Int] = [3,5]
+
     //Grupo de investigacion elegido
     var invGr: InvestigationGroup?
     //Proyecto de investigacion elegido
     var invPr: InvestigationProject?
     //Evento de Proyecto de investigacion elegido
     var invPrEv: InvestigationProjectEvent?
-    
+    //Entregable elegido
+    var invDer: InvestigationDerivable?
+    //Investigador elegido
+    var inv: Investigator?
+
+    //token que se usa para el consumo del api
+  
+    var token: String = UserDefaults.standard.object(forKey: "TOKEN") as! String
+    //profile de usuario 
+    var profile: Int = 3//UserDefaults.standard.object(forKey: "PROFILE") as! Int
+
+    //rutas que se usarán en el consumo de los apis
+    //obtener y editar grupos de investigación
+    var getGroups: String = "getAllInvGroups"
+    var editGroups: String = "groups"
+    //obtener y editar proyectos de investigacion
+    var getProjects: String = "getAllProjects"
+    var editProjects: String = "projects"
+    //obtener y editar eventos
+    var getEvents: String = "events"
+    var editEvents: String = "event"
+    //obtener y editar investigadores
+    var getInvestigators: String = "getAllInvestigators"
+    var editInvestigators: String = "investigators"
+    //obtener y editar entregables
+    var getDerivables: String = ""
+    var editDerivables: String = "deriverable"
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.navigationBar.topItem?.title = "Atrás";
         // Do any additional setup after loading the view.
     }
 

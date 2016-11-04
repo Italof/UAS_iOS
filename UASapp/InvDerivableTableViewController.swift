@@ -1,23 +1,44 @@
 //
-//  DerProjectTableViewController.swift
+//  InvestigationGroupTableViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 25/10/16.
+//  Created by inf227al on 21/10/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class DerProjectTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
+class InvDerivableTableViewController: UITableViewController {
+    var invDerData: [InvestigationDerivable] = []
+    var elegido : Int = 9
+    
+    override func viewDidLoad() {        
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        let token = (parent as! InvNavViewController).token
+        let get = (parent as! InvNavViewController).getDerivables
+        let routeApi = get + "?token=" + token
+        HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let arrayDerivable = dataUnwrapped as? [Any]
+                self.invDerData = []
+                for derivable in arrayDerivable!{
+                    let der = derivable as! [String:AnyObject]
+                    
+                    //let group : InvestigationGroup =
+                    self.invDerData.append( InvestigationDerivable( json: der ) )
+                    //print(self.invGrData)
+                    //print(pr["id"].unsafelyUnwrapped)                    
+                }
+                self.do_table_refresh()
+            }
+            else {
+                //Mostrar error y regresar al menù principal
+                
+            }
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,25 +50,47 @@ class DerProjectTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        print(1)
+        return invDerData.count
     }
-
-    /*
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        print(indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DerivableCell", for: indexPath)
 
         // Configure the cell...
-
+        let invDer = invDerData[indexPath.row] as InvestigationDerivable
+        print(invDer.name)
+        cell.textLabel?.text = invDer.name
+        cell.detailTextLabel?.text = String(invDer.percentage)
+        
         return cell
     }
-    */
-
-    /*
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        let invDer = invDerData[indexPath.row] as InvestigationDerivable
+        elegido = indexPath.row
+        //prueba
+        //((parent as! InvNavViewController).elegido) = indexPath.row
+        //asigna el Grupo de investigacion elegido a variable en controlador de navegaciòn
+        ((parent as! InvNavViewController).invDer) = invDer
+    }
+    func do_table_refresh()
+    {
+        self.tableView.reloadData()
+    }
+    
+ /*
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath){
+        
+    }
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.

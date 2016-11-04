@@ -26,23 +26,61 @@ class InvGrDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print((parent as! InvNavViewController).elegido)
+        /*
         //Toma grupo de controlado de navegacion
         invGr = (parent as! InvNavViewController).invGr
-        
+
+        //profile user
+        let profile = (parent as! InvNavViewController).profile
+        //profiles permitidos a editar
+        let profilePermited = (parent as! InvNavViewController).profilePermited
+
         //se inicializan los campos importantes
         nameInvGroup.text = invGr?.name?.uppercased()
         descriptionInvGroup.text = invGr?.description
         specialityInvGroup.text = invGr?.speciality
         leaderInvGroup.text = invGr?.leaderName
+        
         //se maneja la imagen del grupo
         
-        
+        let isConnected = AskConectivity.isInternetAvailable()
+        print(isConnected)
         // inicializa botones  -- PERMISOS
-        print (invGr!)
+
+        if(profilePermited.index( of: profile) == nil || isConnected == false){
+            //si no se encuentra el perfil permitido
+            editInvGroup.isEnabled = false
+        }
+        print (invGr)
+       */
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+      invGr = (parent as! InvNavViewController).invGr
+    
+      //profile user
+      let profile = (parent as! InvNavViewController).profile
+      //profiles permitidos a editar
+      let profilePermited = (parent as! InvNavViewController).profilePermited
+      
+      //se inicializan los campos importantes
+      nameInvGroup.text = invGr?.name?.uppercased()
+      descriptionInvGroup.text = invGr?.description
+      specialityInvGroup.text = invGr?.speciality
+      leaderInvGroup.text = invGr?.leaderName
+    
+      //se maneja la imagen del grupo
+    
+      let isConnected = AskConectivity.isInternetAvailable()
+      print(isConnected)
+      // inicializa botones  -- PERMISOS
+      if(profilePermited.index( of: profile) == nil || isConnected == false){
+        //si no se encuentra el perfil permitido
+        editInvGroup.isEnabled = false
+      }
+      print (invGr)
 
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -17,18 +17,12 @@ class InvPrEvDetailViewController: UIViewController {
     @IBOutlet weak var timeInvProEvent: UILabel!
     @IBOutlet weak var placeInvProEvent: UILabel!
     
+    @IBOutlet var invPrEvEditButton: UIBarButtonItem!
+    @IBOutlet weak var descriptionInvProEvent: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //toma Evento desde controlador de navegador
-        invPrEv = (parent as! InvNavViewController).invPrEv
-        //inicializa campos
-        nameInvProEvent.text = invPrEv?.name?.uppercased()
-        dateInvProEvent.text = invPrEv?.date
-        timeInvProEvent.text = invPrEv?.time
-        placeInvProEvent.text = invPrEv?.place
-        //inicializa botones -- PERMISOS    
         
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -37,6 +31,41 @@ class InvPrEvDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        //toma Evento desde controlador de navegador
+        invPrEv = (parent as! InvNavViewController).invPrEv
+        //inicializa campos
+        nameInvProEvent.text = invPrEv?.name?.uppercased()
+        descriptionInvProEvent.text = invPrEv?.description
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        let date = dateFormater.date(from: (invPrEv?.date)!)
+        dateFormater.dateFormat = "dd/MM/yyyy"
+        
+        dateInvProEvent.text = dateFormater.string(from: date!)
+        //endDateInvProject.text = dateFormater.string(from: endDate!)
+        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        var time = dateFormater.date(from: (invPrEv?.time)!)
+        dateFormater.dateFormat = "HH:mm"
+        if (time == nil){
+            time = Date.init()
+        }
+        
+        //dateInvProEvent.text = invPrEv?.date
+        timeInvProEvent.text = dateFormater.string(from: time!)
+        placeInvProEvent.text = invPrEv?.place
+        //inicializa botones -- PERMISOS
+        //profile user
+        let profile = (parent as! InvNavViewController).profile
+        //profiles permitidos a editar
+        let profilePermited = (parent as! InvNavViewController).profilePermited
+        let isConnected = AskConectivity.isInternetAvailable()
+        if( profilePermited.index( of: profile) == nil || isConnected == false){
+            //si no se encuentra el perfil permitido
+            //ocultar boton de editar
+            invPrEvEditButton.isEnabled = false
+        }
+    }
 
     /*
     // MARK: - Navigation
