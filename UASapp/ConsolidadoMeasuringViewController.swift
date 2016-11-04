@@ -1,21 +1,22 @@
 //
-//  PeriodMeasurementViewController.swift
+//  ConsolidadoMeasuringViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 21/10/16.
+//  Created by inf227al on 3/11/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ConsolidadoMeasuringViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBOutlet var PeriodPicker: UIPickerView!
+    var periods: [Period] = []
     
-    @IBOutlet var tableView: UITableView!
-    //var cycles = ["2015-1 al 2015-2", "2016-1 al 2016-2"]
-    var cycles: [Period] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
         // Do any additional setup after loading the view.
         //UserDefaults.standard.object(forKey: "TOKEN") as! String
         if AskConectivity.isInternetAvailable(){
@@ -34,7 +35,7 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayPeriods = dataUnwrapped as? [Any]
-                self.cycles = []
+                self.periods = []
                 for period in arrayPeriods!{
                     let pr = period as! [String:AnyObject]
                     let id = pr["IdPeriodo"] as! Int
@@ -50,8 +51,8 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
                     let nivEsperado = config["NivelEsperado"] as! String
                     let nivCriterio = config["CantNivelCriterio"] as! String
                     let period : Period = Period.init(id: id,idEspecialidad:idEsp, vigente: vigente,cycleStart:cycleStartName,cycleEnd: cycleEndName,aceptacion:aceptacion, nivEsperado:nivEsperado, nivCriterio:nivCriterio)
-                    self.cycles.append(period)
-                    self.do_table_refresh()
+                    self.periods.append(period)
+                    self.do_picker_refresh()
                 }
             }
             else {
@@ -66,29 +67,23 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cycles.count
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return periods[row].cycleStart! + " al " + periods[row].cycleEnd!
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return periods.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomPeriodCell
-        let periodo = cycles[indexPath.row] as Period
-        
-        cell.lblPeriod.text = periodo.cycleStart!+" al "+periodo.cycleEnd!
-        return cell
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let period = cycles[indexPath.row] as Period
-        ((parent as! UASNavViewController).period) = period
+    func do_picker_refresh()
+    {
+        self.PeriodPicker.reloadAllComponents()
+        
     }
 
-    func do_table_refresh()
-    {
-        self.tableView.reloadData()
-        
-    }
     /*
     // MARK: - Navigation
 
@@ -99,5 +94,4 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
     }
     */
 
-    
 }

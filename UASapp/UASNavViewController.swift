@@ -1,34 +1,26 @@
 //
-//  SpecialtyViewController.swift
+//  UASNavViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 21/10/16.
+//  Created by inf227al on 2/11/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class SpecialtyViewController: UIViewController {
-    var faculty : Faculty?
-
-    @IBOutlet var lblEspec: UILabel!
-    @IBOutlet var lblCode: UILabel!
-    @IBOutlet var lblCoord: UILabel!
-    @IBOutlet var lblDesc: UILabel!
+class UASNavViewController: UINavigationController {
+    
+    //Periodo de medición escogido
+    var period: Period?
+    //Curso de la especialidad escogido
+    var course: Course?
+    //Especialidad
+    var faculty: Faculty?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        faculty = (parent as! UASNavViewController).faculty
-        lblEspec.text = faculty?.name
-        lblCode.text = faculty?.code
-        lblCoord.text = faculty?.coordinator
-        lblDesc.text = faculty?.description
-        lblEspec.sizeToFit()
-        lblDesc.sizeToFit()
-        lblCoord.sizeToFit()
     }
 
     override func didReceiveMemoryWarning() {

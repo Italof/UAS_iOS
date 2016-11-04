@@ -1,31 +1,27 @@
 //
-//  CoursesBySpecialtyViewController.swift
+//  ConsolidadoCoursesViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 21/10/16.
+//  Created by inf227al on 3/11/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
-    
+class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate  {
+
+    @IBOutlet var CyclePicker: UIPickerView!
+    @IBOutlet var LevelPicker: UIPickerView!
+    @IBOutlet var tableView: UITableView!
     var courses: [Course] = []
     var cycles = ["2015-1","2015-2","2016-1","2016-2"]
     
     var levels = ["Nivel 10", "Nivel 9", "Nivel 8","Nivel 7","Nivel 6","Nivel 5","Nivel 4","Nivel 3","Nivel 2","Nivel 1"]
-    var courses10 = ["Desarrollo de programas 2","Proyecto de tesis 2"]
-    var courses9 = ["Desarrollo de programas 1", "PEI","AFI"]
-    var courses8 = ["SW","Redes"]
-    
-    @IBOutlet var CyclePicker: UIPickerView!
-    @IBOutlet var tableView: UITableView!
-    @IBOutlet var LevelPicker: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
-        
         if AskConectivity.isInternetAvailable(){
             print("conectado")
         }
@@ -94,7 +90,7 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
         
         return courses.count
     }
- 
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! CustomSpecialtyCell
@@ -113,7 +109,8 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
         self.tableView.reloadData()
         
     }
-    
+
+
     /*
     // MARK: - Navigation
 
@@ -124,5 +121,4 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
     }
     */
 
-    var index=1
 }

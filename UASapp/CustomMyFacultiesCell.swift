@@ -1,20 +1,19 @@
 //
-//  CustomSpecialtyCell.swift
+//  CustomMyFacultiesCell.swift
 //  UASapp
 //
-//  Created by inf227al on 24/10/16.
+//  Created by inf227al on 3/11/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class CustomSpecialtyCell: UITableViewCell {
+class CustomMyFacultiesCell: UITableViewCell {
 
-    @IBOutlet var lblCycle: UILabel!
+    @IBOutlet var lblFaculty: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        //lblCycle.sizeToFit()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
