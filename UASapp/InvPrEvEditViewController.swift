@@ -8,14 +8,17 @@
 
 import UIKit
 
-class InvPrEvEditViewController: UIViewController {
+class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
     var invPrEv : InvestigationProjectEvent?
     //variables de campos
-    @IBOutlet weak var nameInvPrEvent: UITextField!
-    @IBOutlet weak var dateInvPrEvent: UIDatePicker!
-    @IBOutlet weak var timeInvPrEvent: UIDatePicker!
-    @IBOutlet weak var placeInvPrEvent: UITextField!
-    @IBOutlet weak var saveEventButton: UIBarButtonItem!
+    @IBOutlet var nameInvPrEvent: UITextField!
+    @IBOutlet var dateInvPrEvent: UIDatePicker!
+    @IBOutlet var timeInvPrEvent: UIDatePicker!
+    @IBOutlet var placeInvPrEvent: UITextField!
+    @IBOutlet var saveEventButton: UIBarButtonItem!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    var activeField: UITextField?
     //varialbles de alert de sistema
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
@@ -33,7 +36,8 @@ class InvPrEvEditViewController: UIViewController {
         let date = dateFormater.date(from: (invPrEv?.date)!)
         dateFormater.dateFormat = "dd/MM/yyyy"
         dateInvPrEvent.setDate(date!, animated: false)
-        
+        self.nameInvPrEvent.delegate = self
+        self.placeInvPrEvent.delegate = self
         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
         var time = dateFormater.date(from: (invPrEv?.time)!)
         dateFormater.dateFormat = "HH:mm"
@@ -68,6 +72,67 @@ class InvPrEvEditViewController: UIViewController {
         placeInvPrEvent.text = invPrEv?.place
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        let lCurrentWidth = self.view.frame.size.width;
+        let lCurrentHeight = self.view.frame.size.height;
+        scrollView.contentSize=CGSize(width : lCurrentWidth, height : lCurrentHeight)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(InvestigatorEditViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+        //Need to calculate keyboard exact size due to Apple suggestions
+        self.scrollView.isScrollEnabled = true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+        
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeField = self.activeField {
+            if (!aRect.contains(activeField.frame.origin)){
+                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+            }
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        //Once keyboard disappears, restore original positions
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        self.view.endEditing(true)
+        self.scrollView.isScrollEnabled = false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        activeField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField){
+        activeField = nil
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -19,6 +19,8 @@ class InvestigatorTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        
         let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getInvestigators
         let routeApi = "investigation/" + get + "?token=" + token

@@ -32,6 +32,7 @@ class InvestigatorDetailViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         inv = ((parent! as! InvNavViewController).inv)
         let profile = (parent as! InvNavViewController).profile
         nameInvestigator.text = inv?.name

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
+class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate{
     var invGr : InvestigationGroup?
     var specialities : [String] = ["Ingenierría Informatica","Otros"]
     //variables de campos
@@ -18,7 +18,8 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
     @IBOutlet weak var specialityInvGroup: UITextField!
     
     @IBOutlet var invGroupSaveButton: UIBarButtonItem!
-    
+    var activeField: UITextField?
+    @IBOutlet weak var scrollView: UIScrollView!
     
     //varialbles de alert de sistema
     let successTitle :  String = "Guardado"
@@ -100,6 +101,67 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        let lCurrentWidth = self.view.frame.size.width;
+        let lCurrentHeight = self.view.frame.size.height;
+        scrollView.contentSize=CGSize(width : lCurrentWidth, height : lCurrentHeight)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(InvestigatorEditViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+        //Need to calculate keyboard exact size due to Apple suggestions
+        self.scrollView.isScrollEnabled = true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+        
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeField = self.activeField {
+            if (!aRect.contains(activeField.frame.origin)){
+                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+            }
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        //Once keyboard disappears, restore original positions
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        self.view.endEditing(true)
+        self.scrollView.isScrollEnabled = false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        activeField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField){
+        activeField = nil
+    }
+    
+
+    
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return specialities[row]
@@ -130,7 +192,9 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
             //ocultar boton de editar
             invGroupSaveButton.isEnabled = false
         }
-        
+        self.descriptionInvGroup.delegate = self
+        self.nameInvGroup.delegate = self
+        self.specialityInvGroup.delegate = self
         // Do any additional setup after loading the view.
     }
 

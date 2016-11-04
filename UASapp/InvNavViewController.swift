@@ -52,6 +52,7 @@ class InvNavViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.topItem?.title = "Atrás";
         // Do any additional setup after loading the view.
     }
 
