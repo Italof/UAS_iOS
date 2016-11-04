@@ -12,6 +12,9 @@ class MyFacultiesViewController: UIViewController, UITableViewDataSource, UITabl
 
     @IBOutlet var tableView: UITableView!
     var faculties: [Faculty] = []
+    
+    let userDefault = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -79,6 +82,8 @@ class MyFacultiesViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let faculty = faculties[indexPath.row] as Faculty
         ((parent as! UASNavViewController).faculty) = faculty
+        
+        userDefault.set(faculty.id, forKey: "SPECIALTY")
     }
 
     
