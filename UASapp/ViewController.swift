@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(true)
         
         if (isLoggedIn == 1) {
-            self.performSegue(withIdentifier: "moduleSegue", sender: self)
+            self.performSegue(withIdentifier: "homeSegue", sender: self)
         }
         
     }
@@ -94,7 +94,6 @@ class ViewController: UIViewController {
                         print("REQUESTED RESPONSE: \(responseData)")
                         let data = responseData as! [String:AnyObject]
                         let user = data["user"] as! [String:AnyObject]
-                        
                         let userDefaults = UserDefaults.standard
                         userDefaults.set(1, forKey: "ISLOGGEDIN")
                         userDefaults.set(user["Usuario"], forKey: "USER")
@@ -102,7 +101,36 @@ class ViewController: UIViewController {
                         userDefaults.set(user["IdUsuario"], forKey: "USER_ID")
                         userDefaults.set(user["IdPerfil"], forKey: "ROLE")
                         
-                        self.performSegue(withIdentifier: "moduleSegue", sender: self)
+                        let role = userDefaults.integer(forKey: "ROLE")
+                        var specialty: Int = 1
+                        var name, lastname: String?
+                        
+                        if  (role == 2 || role == 1) {
+                            let professor = user["professor"] as! [String:AnyObject]
+                            specialty = professor["IdEspecialidad"] as! Int
+                            name = professor["Nombre"] as? String
+                            lastname = "\(professor["ApellidoPaterno"]) \(professor["ApellidoMaterno"])"
+                            
+                            userDefaults.set(professor["rolTutoria"], forKey: "TUTORIA")
+                            userDefaults.set(professor["rolEvaluaciones"], forKey: "EVALUA")
+                            userDefaults.set(professor["es_adminpsp"], forKey: "ADMINPSP")
+                            userDefaults.set(professor["es_supervisorpsp"], forKey: "SUPERPSP")
+                        }
+                        else if role == 4 {
+                            let accreditor = user["accreditor"] as! [String:AnyObject]
+                            specialty = accreditor["IdEspecialidad"] as! Int
+                            name = accreditor["Nombre"] as? String
+                            lastname = "\(accreditor["ApellidoPaterno"]) \(accreditor["ApellidoMaterno"])"
+                           
+                        }
+                        else if role == 5 {
+                            
+                        }
+                        
+                        userDefaults.set(specialty, forKey: "SPECIALTY")
+                        userDefaults.set(name, forKey: "NAME")
+                        userDefaults.set(lastname, forKey: "LASTNAME")
+                        self.performSegue(withIdentifier: "homeSegue", sender: self)
                     }
                     
                 })

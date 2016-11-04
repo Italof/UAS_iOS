@@ -42,7 +42,7 @@ class FasesTableViewController: UITableViewController {
         
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if error != nil {
-                print(error)
+                print(error!)
             } else {
                // let question = data!["question"] as? String
                // print("Question: \(question)")
@@ -68,7 +68,7 @@ class FasesTableViewController: UITableViewController {
                     
                     
                     
-                    fasesTemporal=Fases(descripcion: jsonResult["descripcion"]! as! String,fecha_inicio: jsonResult["fecha_inicio"]! as! String,fecha_fin: jsonResult["fecha_fin"]! as! String,idPhase: jsonResult["id"]! as! Int,numero: jsonResult["numero"]! as! String)
+                    fasesTemporal=Fases(descripcion: jsonResult["descripcion"]! as? String,fecha_inicio: jsonResult["fecha_inicio"]! as? String,fecha_fin: jsonResult["fecha_fin"]! as? String,idPhase: jsonResult["id"]! as! Int,numero: jsonResult["numero"]! as? String)
             
         self.fases.append(fasesTemporal)
 

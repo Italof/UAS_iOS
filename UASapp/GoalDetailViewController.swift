@@ -14,9 +14,12 @@ class GoalDetailViewController: UIViewController {
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var btnOutcomes: UIButton!
     
+    var goal : EducationalGoal?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        lblGoal.text = goal?.name
+        lblStatus.text = goal?.status
         // Do any additional setup after loading the view.
     }
 
@@ -25,6 +28,12 @@ class GoalDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "outcomesSegue" {
+            let controller = segue.destination as! StudentOutcomesViewController
+            controller.goal = goal
+        }
+    }
 
     /*
     // MARK: - Navigation

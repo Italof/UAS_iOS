@@ -23,7 +23,7 @@ class GruposTableViewController: UITableViewController {
         let routeApi = getGroups + "?token=" + token
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if error != nil {
-                print(error)
+                print(error!)
             } else {
    
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -39,10 +39,10 @@ class GruposTableViewController: UITableViewController {
                     let validDictionary1 = arrayGroup?[index] as! [String:Any]
                     var jsonResult = validDictionary1
   
-                    var descripcion:String = jsonResult["descripcion"]! as! String
-                    var created_at:String = jsonResult["created_at"]! as! String
+                    let descripcion:String = jsonResult["descripcion"]! as! String
+                    let created_at:String = jsonResult["created_at"]! as! String
                     var deleted_at:String = ""
-                    if let link = jsonResult["deleted_at"] as? String
+                    if (jsonResult["deleted_at"] as? String) != nil
                     {
                         deleted_at = jsonResult["deleted_at"]! as! String
                         
@@ -52,9 +52,9 @@ class GruposTableViewController: UITableViewController {
                     }
                     
               
-                    var updated_at:String = jsonResult["updated_at"]! as! String
-                    var idPspGroups:Int = jsonResult["id"]! as! Int
-                    var numero:String = jsonResult["numero"]! as! String
+                    let updated_at:String = jsonResult["updated_at"]! as! String
+                    let idPspGroups:Int = jsonResult["id"]! as! Int
+                    let numero:String = jsonResult["numero"]! as! String
                     
                     
                     gruposTemporal=Grupos(descripcion: descripcion,created_at: created_at,deleted_at: deleted_at,updated_at: updated_at,id:idPspGroups,numero:numero)
