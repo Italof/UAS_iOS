@@ -45,6 +45,8 @@
 		12BF4DB71DC2EAE5005E7D5A /* CustomCriterioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */; };
 		12C5F6991DCBA2A0004BCF81 /* citaClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C5F6981DCBA2A0004BCF81 /* citaClass.swift */; };
 		12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */; };
+		12DABD341DCBE8ED0055F8FC /* studentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DABD331DCBE8ED0055F8FC /* studentClass.swift */; };
+		12DABD361DCC0C9B0055F8FC /* temaClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DABD351DCC0C9B0055F8FC /* temaClass.swift */; };
 		12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */; };
 		4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616D9E01DC07E12008174B7 /* HTTPHelper.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
@@ -101,6 +103,8 @@
 		12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCriterioCell.swift; sourceTree = "<group>"; };
 		12C5F6981DCBA2A0004BCF81 /* citaClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = citaClass.swift; sourceTree = "<group>"; };
 		12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPeriodCell.swift; sourceTree = "<group>"; };
+		12DABD331DCBE8ED0055F8FC /* studentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentClass.swift; sourceTree = "<group>"; };
+		12DABD351DCC0C9B0055F8FC /* temaClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = temaClass.swift; sourceTree = "<group>"; };
 		12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSpecialtyCell.swift; sourceTree = "<group>"; };
 		4616D9E01DC07E12008174B7 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +207,8 @@
 				12BF4DB41DC2D73E005E7D5A /* ListStudentViewController.swift */,
 				12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */,
 				12C5F6981DCBA2A0004BCF81 /* citaClass.swift */,
+				12DABD331DCBE8ED0055F8FC /* studentClass.swift */,
+				12DABD351DCC0C9B0055F8FC /* temaClass.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -303,6 +309,7 @@
 				1214CECC1DBC0DE80042A3F2 /* InvProjectTableViewController.swift in Sources */,
 				1237D3AF1DCA9CC80081EAF4 /* ViewControllerDatesFilter.swift in Sources */,
 				1268F2771DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift in Sources */,
+				12DABD341DCBE8ED0055F8FC /* studentClass.swift in Sources */,
 				1214CEC81DBC05A90042A3F2 /* InvGrEditViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
 				1268F2711DBFF58700E1CC22 /* DerProjectTableViewController.swift in Sources */,
@@ -341,6 +348,7 @@
 				1268F2791DC0096100E1CC22 /* InvPrEvEditViewController.swift in Sources */,
 				4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */,
 				1237D3B11DCA9CC80081EAF4 /* ViewControllerStudents.swift in Sources */,
+				12DABD361DCC0C9B0055F8FC /* temaClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

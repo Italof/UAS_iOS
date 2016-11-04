@@ -13,8 +13,14 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBOutlet var DateThemesList: UIPickerView!
     
+    @IBOutlet weak var StudentList: UIPickerView!
+    
+    @IBOutlet weak var dateR: UIDatePicker!
+    @IBOutlet weak var timeR: UIDatePicker!
     
     //Este array será alimentado por el contenido de la tabla de temas de reunion
+    var alumA: [alumno] = []
+    var temaA: [tema] = []
     
     var Array = ["Rendimiento académico","económico","familiar","otros"]
     /*
@@ -23,8 +29,83 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        /*
+         ruta: "getStudentsOfTutor/(idUsuario)?token=(token)"
+         */
+        
+        
+        let parser : Int = UserDefaults.standard.object( forKey: "IdUsuario") as! Int
+        let idUsuario = String.init(parser)
+        
+        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        print("ID especialidad = " + idUsuario)
+        print("token = " + token)
+        HTTPHelper.get(route: "getStudentsOfTutor/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
+            
+            
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let tjd = dataUnwrapped as! [AnyObject]
+                
+                
+                
+                for c in tjd {
+                    
+                    let alumn: String?
+                    let codigo: String?
+                    
+                    alumn = c["NombreAlumno"] as! String?
+                    codigo = c["CodigoAlumno"] as! String?
+                    
+                    
+                    
+                    let alumnoO: alumno = alumno.init(alumno: alumn, codigo: codigo)
+                    
+                    self.alumA.append(alumnoO)
+                }
+            }
+        })
+        
+        
+        HTTPHelper.get(route: "getTopics" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+            
+            
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let tjd = dataUnwrapped as! [AnyObject]
+                
+                
+                
+                for c in tjd {
+                    
+                    let idTema: String?
+                    let nombreTema: String?
+                    
+                    idTema = c["Id"] as! String?
+                    nombreTema = c["Nombre"] as! String?
+                    
+                    
+                    
+                    let temaO: tema = tema.init(id: idTema, nombre: nombreTema)
+                    
+                    self.temaA.append(temaO)
+                }
+            }
+        })
+        
+        
+        
+        
+        
+        
         DateThemesList.delegate=self
         DateThemesList.dataSource=self
+        
+        StudentList.delegate=self
+        StudentList.dataSource=self
 
         // Do any additional setup after loading the view.
     }
@@ -35,10 +116,23 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return Array[row]
+        
+        if (pickerView == DateThemesList){
+            return temaA[row].nombre
+        }
+        else {
+            return alumA[row].alumno
+        }
+        
+        
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Array.count
+        if (pickerView == DateThemesList){
+            return temaA.count
+        }
+        else {
+            return alumA.count
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

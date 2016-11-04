@@ -50,6 +50,14 @@ class tutor{
         self.horarioV=horarioV
     }
     
+    init(idDocente: String?, codigo: String?, nombre: String?, apellidoPaterno: String?, apellidoMaterno: String?){
+        self.idDocente = idDocente
+        self.codigo = codigo
+        self.nombre = nombre
+        self.apellidoPaterno = apellidoPaterno
+        self.apellidoMaterno = apellidoMaterno
+    }
+    
 }
 /*
 class schedule{

@@ -12,14 +12,55 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
 
     @IBOutlet var Dates: UITableView!
     
+    var citS: [cita]?
+    /*
+    
+    tutorCode.text=tutorC?.codigo
+    tutorName.text=tutorC?.nombre
+    tutorEmail.text=tutorC?.correo
+    tutorPhoneNumber.text=tutorC?.telefono
+    tutorOffice.text=tutorC?.oficina
+    tutorAnexo.text=tutorC?.anexo
+    
+    horaL.text=tutorC?.horarioL
+    horaMa.text=tutorC?.horarioMa
+    horaMi.text=tutorC?.horarioMi
+    horaJ.text=tutorC?.horarioJ
+    horaV.text=tutorC?.horarioV
+ 
     var datesA = ["12/07/2012","12/09/2016"]
     var times = ["12:00 pm","12:10 pm"]
     var themes = ["Academico","Academico"]
     var students = ["Pedro Perez","Juan Perez"]
     var statusA = ["Pendiente","Pendiente"]
+    */
+    var datesA = ["-"]
+    var times = ["-"]
+    var themes = ["-"]
+    var students = ["-"]
+    var statusA = ["-"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        citS = ((self.parent as! NavigationControllerC).citasOb)
+        
+        if ( citS != nil){
+            for c in citS!{
+                datesA.append(c.fechaI!)
+                times.append(c.horaI!)
+                themes.append(c.tema!)
+                students.append(c.alumno!)
+                statusA.append(c.estado!)
+            }
+        } else {
+            //Mostrar error y regresar al menù principal
+            let alert : UIAlertController = UIAlertController.init(title: "No tiene citas", message: "Usted no ha realizado citas", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert,animated: true, completion:nil)
+        }
 
         // Do any additional setup after loading the view.
     }

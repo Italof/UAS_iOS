@@ -12,15 +12,33 @@ class ViewControllerStudents: UIViewController, UITableViewDataSource, UITableVi
 
     @IBOutlet var tableViewStudents: UITableView!
     
+    /*
     var names = ["Juan Perez","Pedro Velez"]
     var codes = ["20101234","20102345"]
     var tutors = ["Beto Guano","Miguel Rodro"]
     var statusS = ["activo","pasivo"]
+ */
+    var names = [""]
+    var codes = [""]
+    var tutors = [""]
+    var statusS = [""]
+    
+    var alumnosA: [alumno]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        alumnosA = ((self.parent as! NavigationControllerC).alumnosOb)
+        
+        for a in alumnosA!{
+            names.append(a.alumno!)
+            codes.append(a.codigo!)
+            tutors.append(a.tutor!)
+            statusS.append(a.estado!)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

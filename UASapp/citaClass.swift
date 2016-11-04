@@ -11,43 +11,26 @@ import Foundation
 class cita{
     
     
-    
-    var idDocente: String?
-    var idEspecialidad: String?
-    var codigo: String?
-    var nombre: String?
-    var apellidoPaterno: String?
-    var apellidoMaterno: String?
-    var correo: String?
-    var oficina: String?
-    var telefono: String?
-    var anexo: String?
-    var horarioL:String?
-    var horarioMa:String?
-    var horarioMi:String?
-    var horarioJ:String?
-    var horarioV:String?
-    
-    //var schedules: [schedule]
+    var citaId: String?
+    var fechaI: String?
+    var horaI: String?
+    var tema: String?
+    // var tutor: String?
+    var alumno: String?
+    var estado: String?
     
     
     
-    init(idDocente: String?,idEspecialidad: String?, codigo: String?, nombre: String?, apellidoPaterno: String?,apellidoMaterno: String?, correo: String?, oficina: String?, telefono: String?, anexo: String?, horarioL: String?, horarioMa: String?, horarioMi: String?, horarioJ: String?, horarioV: String?){
-        self.idDocente = idDocente
-        self.idEspecialidad=idEspecialidad
-        self.codigo=codigo
-        self.nombre=nombre
-        self.apellidoPaterno=apellidoPaterno
-        self.apellidoMaterno=apellidoMaterno
-        self.correo=correo
-        self.oficina=oficina
-        self.telefono=telefono
-        self.anexo=anexo
-        self.horarioL=horarioL
-        self.horarioMa=horarioMa
-        self.horarioMi=horarioMi
-        self.horarioJ=horarioJ
-        self.horarioV=horarioV
+    
+    
+    init(citaId: String?,fechaI: String?, horaI: String?, tema: String?, alumno: String?,estado: String?){
+        self.citaId = citaId
+        self.fechaI = fechaI
+        self.horaI = horaI
+        self.tema = tema
+        self.alumno = alumno
+        self.estado = estado
+        
     }
     
 }
