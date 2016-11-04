@@ -41,7 +41,16 @@ class InvPrEvEditViewController: UIViewController {
             time = Date.init()
         }
         timeInvPrEvent.setDate(time!, animated: false)
-        
+        //profile user
+        let profile = (parent as! InvNavViewController).profile
+        //profiles permitidos a editar
+        let profilePermited = (parent as! InvNavViewController).profilePermited
+        let isConnected = AskConectivity.isInternetAvailable()
+        if( profilePermited.index( of: profile) == nil || isConnected == false ){
+            //si no se encuentra el perfil permitido
+            //ocultar boton de editar
+            saveEventButton.isEnabled = false
+        }
         
         if(dateInvPrEvent.date <= today){
             saveEventButton.isEnabled = false

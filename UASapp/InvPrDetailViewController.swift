@@ -17,6 +17,7 @@ class InvPrDetailViewController: UIViewController {
     @IBOutlet weak var endDateInvProject: UILabel!
     @IBOutlet weak var numberDerivablesInvProject: UILabel!
 
+    @IBOutlet var invProjectEditButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,7 @@ class InvPrDetailViewController: UIViewController {
     if( profilePermited.index( of: profile) == nil || isConnected == false ){
       //si no se encuentra el perfil permitido
       //ocultar boton de editar
-      //editInvGroup.hidden = true
+      invProjectEditButton.isEnabled = false
     }
 
   }

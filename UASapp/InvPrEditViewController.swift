@@ -21,6 +21,7 @@ class InvPrEditViewController: UIViewController {
     let errorTitle: String = "Error"
     let errorMessage: String = "No se han guardado los cambios"
     
+    @IBOutlet var invPrSaveButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,16 @@ class InvPrEditViewController: UIViewController {
         startDateInvProject.minimumDate = today
         endDateInvProject.minimumDate = today
         //ver si esta online o offline
-        
+        //profile user
+        let profile = (parent as! InvNavViewController).profile
+        //profiles permitidos a editar
+        let profilePermited = (parent as! InvNavViewController).profilePermited
+        let isConnected = AskConectivity.isInternetAvailable()
+        if( profilePermited.index( of: profile) == nil || isConnected == false ){
+            //si no se encuentra el perfil permitido
+            //ocultar boton de editar
+            invPrSaveButton.isEnabled = false
+        }
         
         // Do any additional setup after loading the view.
     }

@@ -17,6 +17,9 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
     @IBOutlet weak var saveInvGroup: UIBarButtonItem!
     @IBOutlet weak var specialityInvGroup: UITextField!
     
+    @IBOutlet var invGroupSaveButton: UIBarButtonItem!
+    
+    
     //varialbles de alert de sistema
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
@@ -117,7 +120,16 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         descriptionInvGroup.text = invGr?.description
         specialityInvGroup.text = invGr?.speciality
         //ver si esta online o offline
-        
+        //profile user
+        let profile = (parent as! InvNavViewController).profile
+        //profiles permitidos a editar
+        let profilePermited = (parent as! InvNavViewController).profilePermited
+        let isConnected = AskConectivity.isInternetAvailable()
+        if( profilePermited.index( of: profile) == nil || isConnected == false ){
+            //si no se encuentra el perfil permitido
+            //ocultar boton de editar
+            invGroupSaveButton.isEnabled = false
+        }
         
         // Do any additional setup after loading the view.
     }

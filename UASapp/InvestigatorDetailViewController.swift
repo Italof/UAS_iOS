@@ -9,13 +9,48 @@
 import UIKit
 
 class InvestigatorDetailViewController: UIViewController {
-
+    var inv : Investigator?
+    
+    @IBOutlet var invEditButton: UIBarButtonItem!
+    
+    @IBOutlet var nameInvestigator: UILabel!
+    
+    @IBOutlet var lastNameInv: UILabel!
+    
+    @IBOutlet var emailInv: UILabel!
+    
+    @IBOutlet var cellphoneInv: UILabel!
+    
+    @IBOutlet var specialityInv: UILabel!
+    
+    @IBOutlet var areaInv: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        inv = ((parent! as! InvNavViewController).inv)
+        let profile = (parent as! InvNavViewController).profile
+        nameInvestigator.text = inv?.name
+        lastNameInv.text = (inv?.lastNameP)! + " " + (inv?.lastNameM)!
+        emailInv.text = inv?.email
+        cellphoneInv.text = inv?.cellphone
+        specialityInv.text = inv?.speciality
+        areaInv.text = inv?.area
+        
+        //profiles permitidos a editar
+        let profilePermited = (parent as! InvNavViewController).profilePermited
+        let isConnected = AskConectivity.isInternetAvailable()
+        if( profilePermited.index( of: profile) == nil || isConnected == false ){
+            //si no se encuentra el perfil permitido
+            //ocultar boton de editar
+            invEditButton.isEnabled = false
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

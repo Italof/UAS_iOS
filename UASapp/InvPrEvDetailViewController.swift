@@ -17,6 +17,7 @@ class InvPrEvDetailViewController: UIViewController {
     @IBOutlet weak var timeInvProEvent: UILabel!
     @IBOutlet weak var placeInvProEvent: UILabel!
     
+    @IBOutlet var invPrEvEditButton: UIBarButtonItem!
     @IBOutlet weak var descriptionInvProEvent: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +63,7 @@ class InvPrEvDetailViewController: UIViewController {
         if( profilePermited.index( of: profile) == nil || isConnected == false){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
-            //editInvGroup.hidden = true
+            invPrEvEditButton.isEnabled = false
         }
     }
 
