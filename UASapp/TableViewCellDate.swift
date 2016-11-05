@@ -16,7 +16,7 @@ class TableViewCellDate: UITableViewCell {
     @IBOutlet var student: UILabel!
     @IBOutlet var status: UILabel!
     
-    
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

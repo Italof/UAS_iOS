@@ -145,31 +145,31 @@ class ViewControllerTutoriaMenu: UIViewController {
                         
                         if ( (diaHo["dia"] as! String) == "1") {
                             
-                            horarioL = horarioL + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            horarioL = horarioL + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
                             
                         }
                         
                         if ( (diaHo["dia"] as! String) == "2") {
                             
-                            horarioMa = horarioMa + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            horarioMa = horarioMa + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
                             
                         }
                         
                         if ( (diaHo["dia"] as! String) == "3") {
                             
-                            horarioMi = horarioMi + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            horarioMi = horarioMi + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
                             
                         }
                         
                         if ( (diaHo["dia"] as! String) == "4") {
                             
-                            horarioJ = horarioJ + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            horarioJ = horarioJ + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
                             
                         }
                         
                         if ( (diaHo["dia"] as! String) == "5") {
                             
-                            horarioV = horarioV + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            horarioV = horarioV + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
                             
                         }
                     }
@@ -226,9 +226,11 @@ class ViewControllerTutoriaMenu: UIViewController {
                 let tjd = dataUnwrapped as! [AnyObject]
                 
                 
-                var cS: [cita]! ///////////
+                var cS: [cita] = [] ///////////
                 
                 for c in tjd {
+                    print("cita:")
+                    print(c)
                     
                     let citaId: String?
                     let fechaI: String?
@@ -238,9 +240,11 @@ class ViewControllerTutoriaMenu: UIViewController {
                     let estado: String?
                     
                     
-                    citaId = c["id"] as! String?
+                    let idc: Int = (c["id"] as! Int?)!
+                    citaId = String(idc)
                     tema = c["nombreTema"] as! String?
-                    alumno = c["nombreAlumno"] as! String?
+                    //alumno = c["nombreAlumno"] as! String?
+                    alumno = "Prueba"
                     estado = c["nombreEstado"] as! String?
                     
                     let dateFormater = DateFormatter()
@@ -255,7 +259,7 @@ class ViewControllerTutoriaMenu: UIViewController {
                     
                     dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
                     let  hI = dateFormater.date(from: (c["inicio"] as! String))
-                    dateFormater.dateFormat = "HH:mm:ss"
+                    dateFormater.dateFormat = "HH:mm"
                     
                     horaI = dateFormater.string(from: hI!)
                     
@@ -269,22 +273,12 @@ class ViewControllerTutoriaMenu: UIViewController {
                 ((self.parent as! NavigationControllerC).citasOb) = cS
                 
                 
-                
-                if (cS != nil) {
-                        print(cS)
-                }
+                self.performSegue(withIdentifier: "citasSegue", sender: self)
             }
-            else {
-                //Mostrar error y regresar al menù principal
-                let alert : UIAlertController = UIAlertController.init(title: "No tiene citas", message: "Usted no ha realizado citas", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alert.addAction(action)
-                self.present(alert,animated: true, completion:nil)
-                
-            }
+            
         })
 
-        
+
     }
     
     

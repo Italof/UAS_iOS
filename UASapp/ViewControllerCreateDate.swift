@@ -176,17 +176,6 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
  
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func registrarCita(_ sender: AnyObject) {
         
         
@@ -202,55 +191,52 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         
         let json = NSMutableDictionary()
         
-        print(dateR.date)
-        print(timeR.date)
         
-        errorAlert.message = "Seleccione un tema o motivo de cita"
-        
-        return
-        
-        /*
         let dateFormater = DateFormatter()
-        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormater.dateFormat = "yyyy-MM-dd" //"yyyy-MM-dd HH:mm:ss"
         
         
-        let  fI = dateFormater.date(from: (dateR.date as! String))
+        let  fI = dateFormater.string(from: dateR.date)
         
-        dateFormater.dateFormat.
-        dateFormater.dateFormat = "yyyy-MM-dd"
-        let fechaCita = dateFormater.string(from: fI!)
-        
-        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let  hI = dateFormater.date(from: (c["inicio"] as! String))
         dateFormater.dateFormat = "HH:mm:ss"
         
-        horaI = dateFormater.string(from: hI!)
+        let hI = dateFormater.string(from: timeR.date)
         
-        json.setValue(dateR.date, forKey: "fecha")
-        json.setValue(timeR.date, forKey: "hora")
+        print(fI)
+        print(hI)
+        
+        
+        json.setValue(fI, forKey: "fecha")  //Seteo la fecha
+        json.setValue(hI, forKey: "hora")   //Seteo la hora
+        
+        let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
+        let idUser = String.init(parser)
+        json.setValue(idUser, forKey: "idUser") //Seteo el idUsuario
+        
         if ( temaSel != 0) {
-            json.setValue(temaA[temaSel].nombre, forKey: "motivo") //nombre de tema
+            json.setValue(temaA[temaSel].nombre, forKey: "motivo") //Seteo el tema
         } else {
             errorAlert.message = "Seleccione un tema o motivo de cita"
         }
         
-        */
+        
+        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+ 
         
         //
-        let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
-        let idUser = String.init(parser)
-        json.setValue(idUser, forKey: "idUser") 
+        
         //
         
         do{
             let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-            print(jsonData)
+            //print(jsonData)
             let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
-            print(decoded)
+            //print(decoded)
             let postData = decoded as! [String:AnyObject]
+            print("Este es post data")
             print(postData)
             
-            HTTPHelper.post(route: "registerStudentAppointment", authenticated: false, body: postData, completion: { (error, responseData) in
+            HTTPHelper.post(route: "registerStudentAppointment?token=" + token, authenticated: false, body: postData, completion: { (error, responseData) in
                 if error != nil {
                     print("REQUESTED ERROR: \(error)")
                     let responseError = error?.userInfo[NSLocalizedDescriptionKey] as! NSString
@@ -283,5 +269,6 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         }
       
     }
+ 
 
 }

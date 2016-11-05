@@ -34,16 +34,15 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
     var students = ["Pedro Perez","Juan Perez"]
     var statusA = ["Pendiente","Pendiente"]
     */
-    var datesA = ["-"]
-    var times = ["-"]
-    var themes = ["-"]
-    var students = ["-"]
-    var statusA = ["-"]
+    var datesA = [String]()
+    var times = [String]()
+    var themes = [String]()
+    var students = [String]()
+    var statusA = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        /*
         citS = ((self.parent as! NavigationControllerC).citasOb)
         
         if ( citS != nil){
@@ -61,10 +60,36 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
             alert.addAction(action)
             self.present(alert,animated: true, completion:nil)
         }
+        
+        self.Dates.reloadData()
+ */
 
+        
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //super.viewDidAppear()
+        citS = ((self.parent as! NavigationControllerC).citasOb)
+        
+        if ( citS?.count != 0){
+            for c in citS!{
+                datesA.append(c.fechaI!)
+                times.append(c.horaI!)
+                themes.append(c.tema!)
+                students.append(c.alumno!)
+                statusA.append(c.estado!)
+            }
+        } else {
+            //Mostrar error y regresar al menù principal
+            let alert : UIAlertController = UIAlertController.init(title: "No tiene citas", message: "Usted no ha realizado citas", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert,animated: true, completion:nil)
+        }
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
