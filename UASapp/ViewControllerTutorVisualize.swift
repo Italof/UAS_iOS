@@ -53,15 +53,30 @@ class ViewControllerTutorVisualize: UIViewController {
         horaMi.text=tutorC?.horarioMi
         horaJ.text=tutorC?.horarioJ
         horaV.text=tutorC?.horarioV
+        
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        tutorC = ((self.parent as! NavigationControllerC).tutorOb)
+        
+        tutorCode.text=tutorC?.codigo
+        tutorName.text=tutorC?.nombre
+        tutorEmail.text=tutorC?.correo
+        tutorPhoneNumber.text=tutorC?.telefono
+        tutorOffice.text=tutorC?.oficina
+        tutorAnexo.text=tutorC?.anexo
+        
+        horaL.text=tutorC?.horarioL
+        horaMa.text=tutorC?.horarioMa
+        horaMi.text=tutorC?.horarioMi
+        horaJ.text=tutorC?.horarioJ
+        horaV.text=tutorC?.horarioV
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
+   
 
     /*
     // MARK: - Navigation

@@ -101,19 +101,21 @@ class ViewControllerTutoriaMenu: UIViewController {
                     correo = "-"
                 }
                 
-                if ((tj["oficina"]) != nil){
+                
+                if ((tj["oficina"] as? String) != nil){
                     oficina = tj["oficina"] as! String?
                 } else {
+                    
                     oficina = "-"
                 }
                 
-                if ((tj["telefono"]) != nil){
+                if ((tj["telefono"] as? String) != nil){
                     telefono = tj["telefono"] as! String?
                 } else {
                     telefono = "-"
                 }
                 
-                if ((tj["anexo"]) != nil){
+                if ((tj["anexo"] as? String) != nil){
                     anexo = tj["anexo"] as! String?
                 } else {
                     anexo = "-"
@@ -189,6 +191,8 @@ class ViewControllerTutoriaMenu: UIViewController {
             
             
                 print(tutorO)
+                
+                
             }
             else {
                 //Mostrar error y regresar al menù principal
@@ -201,6 +205,7 @@ class ViewControllerTutoriaMenu: UIViewController {
     })
     
     }
+    
     
     @IBAction func verCitas(_ sender: AnyObject) {
         /*
@@ -288,8 +293,17 @@ class ViewControllerTutoriaMenu: UIViewController {
          ruta: "getStudents/(idUsuario)?token=(token)"
          */
         
+        var cS: [alumno]=[] ///////////
         
-        let parser : Int = UserDefaults.standard.object( forKey: "IdEspecialidad") as! Int
+        let alumnoO1: alumno = alumno.init(alumno: "Juan Perez", codigo: "20001234", tutor: "Miguel Guano", estado: "activo")
+        cS.append(alumnoO1)
+        let alumnoO2: alumno = alumno.init(alumno: "Juan Perez2", codigo: "20001235", tutor: "Miguel Guano2", estado: "pasivo")
+        cS.append(alumnoO2)
+        let alumnoO3: alumno = alumno.init(alumno: "Juan Perez3", codigo: "20001236", tutor: "Miguel Guano3", estado: "activo")
+        cS.append(alumnoO3)
+        
+        /*
+        let parser : Int = UserDefaults.standard.object( forKey: "SPECIALTY") as! Int
         let idEspecialidad = String.init(parser)
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
@@ -304,7 +318,7 @@ class ViewControllerTutoriaMenu: UIViewController {
                 let tjd = dataUnwrapped as! [AnyObject]
                 
                 
-                var cS: [alumno]! ///////////
+                
                 
                 for c in tjd {
                     
@@ -343,6 +357,11 @@ class ViewControllerTutoriaMenu: UIViewController {
                 
             }
         })
+        
+        */
+        
+        
+        ((self.parent as! NavigationControllerC).alumnosOb) = cS
         
     }
         

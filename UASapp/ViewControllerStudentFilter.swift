@@ -15,7 +15,7 @@ class ViewControllerStudentFilter: UIViewController, UIPickerViewDelegate, UIPic
     var tutors = ["Miguel Guano","Aguilera"]
     */
     
-    var statusS: [String] = []
+    var statusS: [String] = ["activo", "inactivo"]
     var tutors: [tutor] = []
 
     @IBOutlet var tutorP: UIPickerView!
@@ -27,7 +27,7 @@ class ViewControllerStudentFilter: UIViewController, UIPickerViewDelegate, UIPic
         
         /*
          ruta: "getTutores/(idEspecialidad)?token=(token)"  estados de los alumnos
-         */
+ 
         
         let parser : Int = UserDefaults.standard.object( forKey: "IdEspecialidad") as! Int
         let idEspecialidad = String.init(parser)
@@ -78,6 +78,15 @@ class ViewControllerStudentFilter: UIViewController, UIPickerViewDelegate, UIPic
                 }
             }
         })
+    */
+        let tutorX1: tutor = tutor.init(idDocente: "012", codigo: "45", nombre: "Juan", apellidoPaterno: "Perez", apellidoMaterno: "Gomez")
+        self.tutors.append(tutorX1)
+        
+        let tutorX2: tutor = tutor.init(idDocente: "013", codigo: "46", nombre: "Juan2", apellidoPaterno: "Perez2", apellidoMaterno: "Gomez2")
+        self.tutors.append(tutorX2)
+        
+        let tutorX3: tutor = tutor.init(idDocente: "014", codigo: "47", nombre: "Juan3", apellidoPaterno: "Perez3", apellidoMaterno: "Gomez3")
+        self.tutors.append(tutorX3)
         
         status.delegate=self
         status.dataSource=self

@@ -12,11 +12,11 @@ import Foundation
 class tema{
     
     
-    var id: String?
+    var id: Int?
     var nombre: String?
     
     
-    init(id: String?, nombre: String?){
+    init(id: Int?, nombre: String?){
         
         self.id = id
         self.nombre = nombre

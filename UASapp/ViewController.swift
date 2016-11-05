@@ -101,7 +101,7 @@ class ViewController: UIViewController {
                         
                         
                         userDefaults.set(user["IdUsuario"], forKey: "IDUSER")
-                        userDefaults.set(user["IdEspecialidad"], forKey: "IDESPECIALIDAD")
+                        userDefaults.set(user["IdEspecialidad"], forKey: "SPECIALTY")
                         userDefaults.set(user["rolTutoria"], forKey: "ROLTUTORIA")
                         userDefaults.set(user["rolEvaluaciones"], forKey: "ROLEVALUACIONES")
                         

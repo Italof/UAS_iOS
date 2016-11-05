@@ -23,24 +23,36 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     var temaA: [tema] = []
     
     var Array = ["Rendimiento académico","económico","familiar","otros"]
-    /*
-    var PlacementAnswer =0
-    */
+    
+    var temaSel: Int = 0
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        dateR.minimumDate = Date()
+        timeR.minimumDate = Date()
         
         /*
          ruta: "getStudentsOfTutor/(idUsuario)?token=(token)"
          */
         
         
-        let parser : Int = UserDefaults.standard.object( forKey: "IdUsuario") as! Int
+        let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
         let idUsuario = String.init(parser)
+        /*
+        let rolTutoria : Int = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! Int
+        print(rolTutoria)
+        
+        if ( rolTutoria == 1){
+            
+        }
+        */
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         print("ID especialidad = " + idUsuario)
         print("token = " + token)
+        
+        /*
         HTTPHelper.get(route: "getStudentsOfTutor/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
             
             
@@ -68,8 +80,16 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             }
         })
         
+        */
+        
+        let temaX1: tema = tema.init(id: -1, nombre: "Seleccione")
+        
+        self.temaA.append(temaX1)
+        
         
         HTTPHelper.get(route: "getTopics" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+            
+            
             
             
             if(error == nil){
@@ -81,11 +101,11 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                 
                 for c in tjd {
                     
-                    let idTema: String?
-                    let nombreTema: String?
+                    var idTema: Int?
+                    var nombreTema: String?
                     
-                    idTema = c["Id"] as! String?
-                    nombreTema = c["Nombre"] as! String?
+                    idTema = c["id"] as! Int?
+                    nombreTema = c["nombre"] as! String?
                     
                     
                     
@@ -93,6 +113,8 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                     
                     self.temaA.append(temaO)
                 }
+                
+                self.DateThemesList.reloadAllComponents()
             }
         })
         
@@ -108,6 +130,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         StudentList.dataSource=self
 
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -147,11 +170,12 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             Label.text = "Prueba"
         }
     }
+     */
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        PlacementAnswer = row
+        temaSel = row
     }
     
-    */
+ 
     
 
     /*
@@ -163,5 +187,101 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func registrarCita(_ sender: AnyObject) {
+        
+        
+        let errorAlert = UIAlertController(title: "Error al registrar cita!",
+                                           message: nil,
+                                           preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK",
+                                   style: .default,
+                                   handler: nil)
+        errorAlert.addAction(action)
+        
+        
+        
+        let json = NSMutableDictionary()
+        
+        print(dateR.date)
+        print(timeR.date)
+        
+        errorAlert.message = "Seleccione un tema o motivo de cita"
+        
+        return
+        
+        /*
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        
+        let  fI = dateFormater.date(from: (dateR.date as! String))
+        
+        dateFormater.dateFormat.
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        let fechaCita = dateFormater.string(from: fI!)
+        
+        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let  hI = dateFormater.date(from: (c["inicio"] as! String))
+        dateFormater.dateFormat = "HH:mm:ss"
+        
+        horaI = dateFormater.string(from: hI!)
+        
+        json.setValue(dateR.date, forKey: "fecha")
+        json.setValue(timeR.date, forKey: "hora")
+        if ( temaSel != 0) {
+            json.setValue(temaA[temaSel].nombre, forKey: "motivo") //nombre de tema
+        } else {
+            errorAlert.message = "Seleccione un tema o motivo de cita"
+        }
+        
+        */
+        
+        //
+        let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
+        let idUser = String.init(parser)
+        json.setValue(idUser, forKey: "idUser") 
+        //
+        
+        do{
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            print(jsonData)
+            let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+            print(decoded)
+            let postData = decoded as! [String:AnyObject]
+            print(postData)
+            
+            HTTPHelper.post(route: "registerStudentAppointment", authenticated: false, body: postData, completion: { (error, responseData) in
+                if error != nil {
+                    print("REQUESTED ERROR: \(error)")
+                    let responseError = error?.userInfo[NSLocalizedDescriptionKey] as! NSString
+                    let response = responseError.data(using: String.Encoding.utf8.rawValue)
+                    print(response)
+                    do {
+                        let jsonError = try JSONSerialization.jsonObject(with: response!, options: []) as! [String:NSString]
+                        let msgError = jsonError["error"]! as NSString
+                        
+                        if msgError.isEqual(to: "invalid_cedentials") {
+                            errorAlert.message = "Credenciales invalidas, por favor intente nuevamente"
+                        } else {
+                            errorAlert.message = "Se produjo un error, intente nuevamente"
+                        }
+                        
+                        self.present(errorAlert, animated: true, completion: nil)
+                        
+                    } catch {
+                        print("NOT VALID JSON")
+                    }
+                    
+                } else {
+                    print("REQUESTED RESPONSE: \(responseData)")
+                }
+                
+            })
+            
+        } catch let err as NSError{
+            print("JSONObjet ERROR: \(err)")
+        }
+      
+    }
 
 }
