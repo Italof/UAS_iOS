@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1207C64E1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207C64D1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift */; };
 		1207C6501DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207C64F1DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift */; };
+		120B4E421DCE826200BE9D5E /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B4E411DCE826200BE9D5E /* Schedule.swift */; };
+		120B4E441DCE8E2900BE9D5E /* InstrumentsMeasuringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B4E431DCE8E2900BE9D5E /* InstrumentsMeasuringViewController.swift */; };
 		1214CEC81DBC05A90042A3F2 /* InvGrEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CEC71DBC05A90042A3F2 /* InvGrEditViewController.swift */; };
 		1214CECA1DBC0C600042A3F2 /* InvestigationProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CEC91DBC0C600042A3F2 /* InvestigationProject.swift */; };
 		1214CECC1DBC0DE80042A3F2 /* InvProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1214CECB1DBC0DE80042A3F2 /* InvProjectTableViewController.swift */; };
@@ -92,6 +94,8 @@
 /* Begin PBXFileReference section */
 		1207C64D1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsolidadoMeasuringViewController.swift; sourceTree = "<group>"; };
 		1207C64F1DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsolidadoCoursesViewController.swift; sourceTree = "<group>"; };
+		120B4E411DCE826200BE9D5E /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		120B4E431DCE8E2900BE9D5E /* InstrumentsMeasuringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentsMeasuringViewController.swift; sourceTree = "<group>"; };
 		1214CEC71DBC05A90042A3F2 /* InvGrEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGrEditViewController.swift; sourceTree = "<group>"; };
 		1214CEC91DBC0C600042A3F2 /* InvestigationProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationProject.swift; sourceTree = "<group>"; };
 		1214CECB1DBC0DE80042A3F2 /* InvProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvProjectTableViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				124710311DCAD809000F9F1D /* Course.swift */,
 				1247102D1DCABD63000F9F1D /* Period.swift */,
 				121BE3B31DCBB17300B68A3C /* Faculty.swift */,
+				120B4E411DCE826200BE9D5E /* Schedule.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 				121BE3B11DCBB03500B68A3C /* CustomMyFacultiesCell.swift */,
 				1207C64D1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift */,
 				1207C64F1DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift */,
+				120B4E431DCE8E2900BE9D5E /* InstrumentsMeasuringViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -532,6 +538,7 @@
 				966EEACE1DCCF04100EBC56B /* StudentOutcome.swift in Sources */,
 				121BE3B41DCBB17300B68A3C /* Faculty.swift in Sources */,
 				126C83051DCA87D400168250 /* InvestigatorTableViewController.swift in Sources */,
+				120B4E421DCE826200BE9D5E /* Schedule.swift in Sources */,
 				1231D7871DBAE5D6004E35FD /* PeriodMeasurementViewController.swift in Sources */,
 				965F44B91DC270C300D7139A /* CustomGoalCell.swift in Sources */,
 				96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */,
@@ -553,6 +560,7 @@
 				126C83031DCA87D400168250 /* InvestigationDerivable.swift in Sources */,
 				9623F2611DC3AB0300EA7B6D /* CourseViewController.swift in Sources */,
 				124710321DCAD809000F9F1D /* Course.swift in Sources */,
+				120B4E441DCE8E2900BE9D5E /* InstrumentsMeasuringViewController.swift in Sources */,
 				12BCE5291DC2B2710052E607 /* CustomCourseCell.swift in Sources */,
 				126C83041DCA87D400168250 /* Investigator.swift in Sources */,
 				1231D7851DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift in Sources */,
