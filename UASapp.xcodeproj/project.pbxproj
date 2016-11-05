@@ -66,6 +66,7 @@
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
 		46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B031DB9DF7500EC8575 /* ViewController.swift */; };
 		46292B0C1DB9DF7500EC8575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */; };
+		4637A5671DCE747100D65C40 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4637A5661DCE747100D65C40 /* DownloadHelper.swift */; };
 		46419A8D1DCC505C00E77B9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46419A8B1DCC505C00E77B9A /* Main.storyboard */; };
 		9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */; };
 		9623F25B1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */; };
@@ -152,6 +153,7 @@
 		46292B031DB9DF7500EC8575 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		46292B0B1DB9DF7500EC8575 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46292B0D1DB9DF7500EC8575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4637A5661DCE747100D65C40 /* DownloadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
 		46419A8C1DCC505C00E77B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = UASapp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalDetailViewController.swift; sourceTree = "<group>"; };
 		9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentOutcomesViewController.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				121C14021DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift */,
 				4616D9E01DC07E12008174B7 /* HTTPHelper.swift */,
 				125A62021DC2BE50008BD312 /* AskConectivity.swift */,
+				4637A5661DCE747100D65C40 /* DownloadHelper.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				1268F2731DBFF59E00E1CC22 /* EveProjectTableViewController.swift in Sources */,
 				1296D0BC1DCE4B30006B7E73 /* TabBarController.swift in Sources */,
 				1214CECE1DBC125E0042A3F2 /* InvPrDetailViewController.swift in Sources */,
+				4637A5671DCE747100D65C40 /* DownloadHelper.swift in Sources */,
 				12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */,
 				25691CA51DCB4A03005A632D /* DetalleGruposViewController.swift in Sources */,
 				25A968291DCB12D700B03060 /* InicioPspViewController.swift in Sources */,

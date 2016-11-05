@@ -103,15 +103,17 @@ class ViewController: UIViewController {
                         
                         let role = userDefaults.integer(forKey: "ROLE")
                         var specialty: Int = 1
-                        var name, lastname, roleName: String?
+                        var name, lastname, roleName, email: String?
                         // Professor
                         if  (role == 2 || role == 1) {
                             let professor = user["professor"] as! [String:AnyObject]
                             specialty = professor["IdEspecialidad"] as! Int
                             name = professor["Nombre"] as? String
-                            lastname = (professor["ApellidoPaterno"] as! String) + " " + (professor["ApellidoMaterno"] as! String)
+                            lastname = (professor["ApellidoPaterno"] as? String)! + " " + (professor["ApellidoMaterno"] as? String)!
+                            email = professor["Correo"] as? String
                             roleName = "Profesor"
                             
+                            userDefaults.set(professor["IdDocente"], forKey: "DOCENTE_ID")
                             userDefaults.set(professor["rolTutoria"], forKey: "TUTORIA")
                             userDefaults.set(professor["rolEvaluaciones"], forKey: "EVALUA")
                             userDefaults.set(professor["es_adminpsp"], forKey: "ADMINPSP")
@@ -122,7 +124,7 @@ class ViewController: UIViewController {
                             let accreditor = user["accreditor"] as! [String:AnyObject]
                             specialty = accreditor["IdEspecialidad"] as! Int
                             name = accreditor["Nombre"] as? String
-                            lastname = (accreditor["ApellidoPaterno"] as! String) + " " + (accreditor["ApellidoMaterno"] as! String)
+                            lastname = (accreditor["ApellidoPaterno"] as? String)! + " " + (accreditor["ApellidoMaterno"] as? String)!
                             roleName = "Acreditador"
                         }
                         // Investigator
@@ -130,10 +132,11 @@ class ViewController: UIViewController {
                             let investigator = user["investigator"] as! [String:AnyObject]
                             specialty = investigator["id_especialidad"] as! Int
                             name = investigator["nombre"] as? String
-                            lastname = (investigator["ape_paterno"] as! String) + " " + (investigator["ape_materno"] as! String)
+                            lastname = (investigator["ape_paterno"] as? String)! + " " + (investigator["ape_materno"] as? String)!
+                            email = investigator["correo"] as? String
                             roleName = "Investigador"
                             
-                            userDefaults.set(investigator["correo"], forKey: "EMAIL")
+                            
                             userDefaults.set(investigator["id_area"], forKey: "AREA_ID")
                         }
                         
@@ -141,6 +144,8 @@ class ViewController: UIViewController {
                         userDefaults.set(name, forKey: "NAME")
                         userDefaults.set(lastname, forKey: "LASTNAME")
                         userDefaults.set(roleName, forKey: "ROLE_NAME")
+                        userDefaults.set(email, forKey: "EMAIL")
+                        
                         self.performSegue(withIdentifier: "homeSegue", sender: self)
                     }
                     
