@@ -14,6 +14,7 @@ struct Course {
     var name: String?
     var code: String?
     var nivAcademico: String?
+
     //funcion inicializadora
     init(id:Int, idEspecialidad:String?, name:String?, code:String?, nivAcademico: String?){
         self.id = id

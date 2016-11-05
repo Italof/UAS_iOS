@@ -36,7 +36,7 @@ class InvPrDetailViewController: UIViewController {
     let startDate = dateFormater.date(from: (invPr?.startDate)!)
     let endDate = dateFormater.date(from: (invPr?.endDate)!)
     dateFormater.dateFormat = "dd/MM/yyyy"
-    
+    let id = (parent as! InvNavViewController).id
     startDateInvProject.text = dateFormater.string(from: startDate!)
     endDateInvProject.text = dateFormater.string(from: endDate!)
     //parse to String from optional Int
@@ -48,10 +48,11 @@ class InvPrDetailViewController: UIViewController {
     //profiles permitidos a editar
     let profilePermited = (parent as! InvNavViewController).profilePermited
     let isConnected = AskConectivity.isInternetAvailable()
-    if( profilePermited.index( of: profile) == nil || isConnected == false ){
+    invProjectEditButton.isEnabled = false
+    if( profilePermited.index( of: profile) != nil || isConnected != false || invPr?.idLeader == id){
       //si no se encuentra el perfil permitido
       //ocultar boton de editar
-      invProjectEditButton.isEnabled = false
+      invProjectEditButton.isEnabled = true
     }
 
   }

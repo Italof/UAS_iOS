@@ -31,7 +31,7 @@ class InvestigatorDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         inv = ((parent! as! InvNavViewController).inv)
         let profile = (parent as! InvNavViewController).profile
@@ -41,14 +41,15 @@ class InvestigatorDetailViewController: UIViewController {
         cellphoneInv.text = inv?.cellphone
         specialityInv.text = inv?.speciality
         areaInv.text = inv?.area
-        
+        let id = ((parent! as! InvNavViewController).id)
         //profiles permitidos a editar
         let profilePermited = (parent as! InvNavViewController).profilePermited
         let isConnected = AskConectivity.isInternetAvailable()
-        if( profilePermited.index( of: profile) == nil || isConnected == false ){
+        invEditButton.isEnabled = false
+        if( profilePermited.index( of: profile) != nil || isConnected != false || inv?.idUser == id){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
-            invEditButton.isEnabled = false
+            invEditButton.isEnabled = true
         }
     }
     

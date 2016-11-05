@@ -43,11 +43,17 @@ class MyFacultiesViewController: UIViewController, UITableViewDataSource, UITabl
                     let code = fa["Codigo"] as! String
                     let name = fa["Nombre"] as! String
                     let description = fa["Descripcion"] as! String
-                    let coordData = fa["coordinator"] as! [String:AnyObject]
-                    let coordName = coordData["Nombre"] as! String
-                    let coordApePat = coordData["ApellidoPaterno"] as! String
-                    let coordApeMat = coordData["ApellidoMaterno"] as! String
-                    let coord = coordName + " "+coordApePat + " "+coordApeMat
+                    let coord: String?
+                    if let coordData = fa["coordinator"] as? [String:AnyObject]{
+                        
+                        let coordName = coordData["Nombre"] as! String
+                        let coordApePat = coordData["ApellidoPaterno"] as! String
+                        let coordApeMat = coordData["ApellidoMaterno"] as! String
+                        coord = coordName + " "+coordApePat + " "+coordApeMat
+                    }
+                    else{
+                        coord = ""
+                    }
                     let faculty : Faculty = Faculty.init(id: id,name:name, code:code,coordinator: coord,description: description)
                     self.faculties.append(faculty)
                     self.do_table_refresh()

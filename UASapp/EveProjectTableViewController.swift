@@ -31,10 +31,10 @@ class EveProjectTableViewController: UITableViewController {
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
-                let events = dataUnwrapped as! [String:Any]
-                let arrayEvents = events["events"] as? [Any]
+                
+                let arrayEvents = dataUnwrapped as! [AnyObject]
                 self.invPrEvData = []
-                for event in arrayEvents!{
+                for event in arrayEvents{
                     let ev = event as! [String:AnyObject]
                     let newEvent : InvestigationProjectEvent = InvestigationProjectEvent.init(json : ev)
                     self.invPrEvData.append(newEvent)

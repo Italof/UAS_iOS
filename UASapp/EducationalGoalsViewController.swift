@@ -7,7 +7,7 @@
 //
 
 import UIKit
- 
+
 
 class EducationalGoalsViewController: UITableViewController {
     let userDefaults = UserDefaults.standard
@@ -45,7 +45,8 @@ class EducationalGoalsViewController: UITableViewController {
                     let text = goalDetail["Descripcion"] as! String
                     let number = Int(goalDetail["Numero"] as! String)
                     let status = Int(goalDetail["Estado"] as! String)
-                    
+                    print("EDUCATiONAL GOAL")
+                    print(id)
                     let goalStruct = EducationalGoal(id: id, name: text, number: number!, status: status!)
                     self.goalsArray.append(goalStruct!)
                 }
@@ -60,7 +61,7 @@ class EducationalGoalsViewController: UITableViewController {
         })
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

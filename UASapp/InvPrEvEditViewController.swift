@@ -148,12 +148,12 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
         var error = 0
        
         //verificar que los campos son correctos
-        if((nameInvPrEvent!.text?.characters.count)! > 254){
-            errorMessageCustom = "Nombre muy largo"
+        if((nameInvPrEvent!.text?.characters.count)! > 254 || (nameInvPrEvent!.text?.characters.count)! < 1){
+            errorMessageCustom = "Nombre no válido"
             error = 1
         }
-        if((placeInvPrEvent!.text?.characters.count)! > 254){
-            errorMessageCustom = "Nombre de lugar muy grande"
+        if((placeInvPrEvent!.text?.characters.count)! > 254 || (placeInvPrEvent!.text?.characters.count)! < 1){
+            errorMessageCustom = "Nombre de lugar no válido"
             error = 1
         }
         

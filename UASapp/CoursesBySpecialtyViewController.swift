@@ -37,7 +37,8 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         //print("ID user = " + idUser)
         print("token = " + token)
-        HTTPHelper.get(route: "faculties/1/1/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        let facultyId: Int =  UserDefaults.standard.object( forKey: "SPECIALTY") as! Int
+        HTTPHelper.get(route: "faculties/"+String(facultyId)+"/semester/1/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped

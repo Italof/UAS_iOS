@@ -136,12 +136,16 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
         var error = 0
         let today : Date = Date.init()
         //verificar que los campos son correctos
-        if((nameInvProject!.text?.characters.count)! > 254){
-            errorMessageCustom = "Nombre muy largo"
+        if((nameInvProject!.text?.characters.count)! > 254 || (nameInvProject!.text?.characters.count)! < 1){
+            errorMessageCustom = "Nombre no válido"
             error = 1
         }
-        if((numberDerivablesInvPr!.text?.characters.count)! > 3){
-            errorMessageCustom = "Nùmero de entregables muy grande"
+        if((numberDerivablesInvPr!.text?.characters.count)! > 2){
+            errorMessageCustom = "Número de entregables muy grande"
+            error = 1
+        }
+        if((numberDerivablesInvPr!.text?.characters.count)! < 1){
+            errorMessageCustom = "Número de entregables vacío"
             error = 1
         }
         if(startDateInvProject.date >= endDateInvProject.date){

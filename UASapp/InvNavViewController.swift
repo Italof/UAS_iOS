@@ -30,8 +30,9 @@ class InvNavViewController: UINavigationController {
   
     var token: String = UserDefaults.standard.object(forKey: "TOKEN") as! String
     //profile de usuario 
-    var profile: Int = 3//UserDefaults.standard.object(forKey: "PROFILE") as! Int
-
+    var profile: Int = Int(UserDefaults.standard.object(forKey: "ROLE") as! String)!
+    //id de usuario
+    var id : Int = UserDefaults.standard.object(forKey: "USER_ID") as! Int
     //rutas que se usarán en el consumo de los apis
     //obtener y editar grupos de investigación
     var getGroups: String = "getAllInvGroups"

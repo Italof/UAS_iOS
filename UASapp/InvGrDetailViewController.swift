@@ -62,7 +62,7 @@ class InvGrDetailViewController: UIViewController {
       let profile = (parent as! InvNavViewController).profile
       //profiles permitidos a editar
       let profilePermited = (parent as! InvNavViewController).profilePermited
-      
+      let id = (parent as! InvNavViewController).id
       //se inicializan los campos importantes
       nameInvGroup.text = invGr?.name?.uppercased()
       descriptionInvGroup.text = invGr?.description
@@ -74,9 +74,10 @@ class InvGrDetailViewController: UIViewController {
       let isConnected = AskConectivity.isInternetAvailable()
       print(isConnected)
       // inicializa botones  -- PERMISOS
-      if(profilePermited.index( of: profile) == nil || isConnected == false){
-        //si no se encuentra el perfil permitido
         editInvGroup.isEnabled = false
+      if(profilePermited.index( of: profile) != nil || isConnected != false || invGr?.idLeader == id){
+        //si no se encuentra el perfil permitido
+        editInvGroup.isEnabled = true
       }
       print (invGr)
 

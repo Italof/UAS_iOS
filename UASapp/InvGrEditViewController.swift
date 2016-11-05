@@ -36,12 +36,12 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         var errorMessageCustom : String = ""
         var error = 0
         //verificar que los campos son correctos
-        if((nameInvGroup!.text?.characters.count)! > 254){
-            errorMessageCustom = "Nombre muy largo"
+        if((nameInvGroup!.text?.characters.count)! > 254 || (nameInvGroup!.text?.characters.count)! < 1){
+            errorMessageCustom = "Nombre no válido"
             error = 1
         }
-        if((descriptionInvGroup!.text?.characters.count)! > 254){
-            errorMessageCustom = "Descripción muy larga"
+        if((descriptionInvGroup!.text?.characters.count)! > 254 || (descriptionInvGroup!.text?.characters.count)! < 1){
+            errorMessageCustom = "Descripción no válido"
             error = 1
         }
         if (nameInvGroup.text == invGr?.name && descriptionInvGroup.text == invGr?.description){

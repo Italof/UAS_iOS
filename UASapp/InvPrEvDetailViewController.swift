@@ -41,7 +41,7 @@ class InvPrEvDetailViewController: UIViewController {
         dateFormater.dateFormat = "yyyy-MM-dd"
         let date = dateFormater.date(from: (invPrEv?.date)!)
         dateFormater.dateFormat = "dd/MM/yyyy"
-        
+        let id = (parent as! InvNavViewController).id
         dateInvProEvent.text = dateFormater.string(from: date!)
         //endDateInvProject.text = dateFormater.string(from: endDate!)
         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -58,12 +58,13 @@ class InvPrEvDetailViewController: UIViewController {
         //profile user
         let profile = (parent as! InvNavViewController).profile
         //profiles permitidos a editar
+        invPrEvEditButton.isEnabled = false
         let profilePermited = (parent as! InvNavViewController).profilePermited
         let isConnected = AskConectivity.isInternetAvailable()
-        if( profilePermited.index( of: profile) == nil || isConnected == false){
+        if( profilePermited.index( of: profile) != nil || isConnected != false || id == invPrEv?.idLeader){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
-            invPrEvEditButton.isEnabled = false
+            invPrEvEditButton.isEnabled = true
         }
     }
 

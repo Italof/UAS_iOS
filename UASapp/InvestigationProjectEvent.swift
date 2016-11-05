@@ -16,8 +16,10 @@ struct InvestigationProjectEvent{
     var time: String?
     var place: String?
     var description: String?
+    var idLeader: Int
     //funcion inicializadora
-    init(id:Int, name:String?, date:String?, time:String?, place: String?, description: String?){
+    init(id:Int, name:String?, date:String?, time:String?, place: String?, description: String?, idLeader: Int){
+        self.idLeader = idLeader
         self.date=date
         self.name=name
         self.time=time
@@ -27,15 +29,18 @@ struct InvestigationProjectEvent{
     }
     
     init(json : [String:Any]){
-                
+        
         let id = json["id"] as! Int
         let name = json["nombre"] as! String
         let place = json["ubicacion"] as! String
         let date = json["fecha"] as! String
         let time = json["hora"] as! String
         let desc = json["descripcion"] as! String
+        let leader = json["group"] as! [String:AnyObject]
+        let idLeader = leader["id_lider"] as! String
         
         self.date=date
+        self.idLeader = Int(idLeader)!
         self.place=place
         self.time=time
         self.name = name

@@ -10,14 +10,21 @@ import UIKit
 
 class CourseViewController: UIViewController {
 
+    
     @IBOutlet weak var lblCycle: UILabel!
     @IBOutlet weak var lblSpecialty: UILabel!
     @IBOutlet weak var lblProfessor: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblCourse: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let course = (parent as! UASNavViewController).course
+        let faculty = (parent as! UASNavViewController).faculty
+        lblCycle.text = (course?.nivAcademico)!
+        lblSpecialty.text = (faculty?.name)!
+        lblCourse.text = (course?.code)! + " - " + (course?.name)!
+        lblDescription.text = ""
         // Do any additional setup after loading the view.
     }
 
