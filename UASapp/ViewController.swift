@@ -103,33 +103,44 @@ class ViewController: UIViewController {
                         
                         let role = userDefaults.integer(forKey: "ROLE")
                         var specialty: Int = 1
-                        var name, lastname: String?
-                        
+                        var name, lastname, roleName: String?
+                        // Professor
                         if  (role == 2 || role == 1) {
                             let professor = user["professor"] as! [String:AnyObject]
                             specialty = professor["IdEspecialidad"] as! Int
                             name = professor["Nombre"] as? String
-                            lastname = "\(professor["ApellidoPaterno"]) \(professor["ApellidoMaterno"])"
+                            lastname = (professor["ApellidoPaterno"] as! String) + " " + (professor["ApellidoMaterno"] as! String)
+                            roleName = "Profesor"
                             
                             userDefaults.set(professor["rolTutoria"], forKey: "TUTORIA")
                             userDefaults.set(professor["rolEvaluaciones"], forKey: "EVALUA")
                             userDefaults.set(professor["es_adminpsp"], forKey: "ADMINPSP")
                             userDefaults.set(professor["es_supervisorpsp"], forKey: "SUPERPSP")
                         }
+                        // Accreditor
                         else if role == 4 {
                             let accreditor = user["accreditor"] as! [String:AnyObject]
                             specialty = accreditor["IdEspecialidad"] as! Int
                             name = accreditor["Nombre"] as? String
-                            lastname = "\(accreditor["ApellidoPaterno"]) \(accreditor["ApellidoMaterno"])"
-                           
+                            lastname = (accreditor["ApellidoPaterno"] as! String) + " " + (accreditor["ApellidoMaterno"] as! String)
+                            roleName = "Acreditador"
                         }
+                        // Investigator
                         else if role == 5 {
+                            let investigator = user["investigator"] as! [String:AnyObject]
+                            specialty = investigator["id_especialidad"] as! Int
+                            name = investigator["nombre"] as? String
+                            lastname = (investigator["ape_paterno"] as! String) + " " + (investigator["ape_materno"] as! String)
+                            roleName = "Investigador"
                             
+                            userDefaults.set(investigator["correo"], forKey: "EMAIL")
+                            userDefaults.set(investigator["id_area"], forKey: "AREA_ID")
                         }
                         
                         userDefaults.set(specialty, forKey: "SPECIALTY")
                         userDefaults.set(name, forKey: "NAME")
                         userDefaults.set(lastname, forKey: "LASTNAME")
+                        userDefaults.set(roleName, forKey: "ROLE_NAME")
                         self.performSegue(withIdentifier: "homeSegue", sender: self)
                     }
                     

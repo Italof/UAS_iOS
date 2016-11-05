@@ -37,7 +37,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ld2-8y-sdW">
-                                <state key="normal" title="Iniciar Sesion"/>
+                                <state key="normal" title="Iniciar Sesión"/>
                                 <connections>
                                     <action selector="login" destination="BYZ-38-t0r" eventType="touchUpInside" id="wuc-Ps-WGX"/>
                                 </connections>
@@ -75,10 +75,10 @@
         <scene sceneID="GCa-oz-bwg">
             <objects>
                 <navigationController id="rOH-9d-8M1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="PSP" id="TRf-lb-eyR">
+                    <tabBarItem key="tabBarItem" title="PSP" image="Briefcase-30" selectedImage="Briefcase-30" id="TRf-lb-eyR">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="bDb-FN-CmB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="bDb-FN-CmB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -99,7 +99,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="eK8-ev-Ck3">
             <objects>
-                <tabBarController id="tTR-c1-B1F" sceneMemberID="viewController">
+                <tabBarController id="tTR-c1-B1F" customClass="TabBarController" customModule="UASapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="2vH-ev-dDc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -152,7 +152,7 @@
                             <outlet property="delegate" destination="DL8-sm-uk3" id="mV0-im-T5B"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Configuración" id="qCv-O6-Lb1">
+                    <tabBarItem key="tabBarItem" title="Configuración" image="Settings-30" selectedImage="Settings-30" id="qCv-O6-Lb1">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <connections>
@@ -180,7 +180,7 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WWt-FG-foQ">
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="68" id="Psa-pq-8a4" customClass="CustomMyFacultiesCell" customModule="UASapp" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="68" id="Psa-pq-8a4" customClass="CustomMyFacultiesCell" customModule="UASapp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="1000" height="68"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Psa-pq-8a4" id="E5m-YB-ZQS">
@@ -375,10 +375,10 @@
         <scene sceneID="66E-Ea-3cJ">
             <objects>
                 <navigationController id="0P4-eA-Xsp" customClass="UASNavViewController" customModule="UASapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Acreditación" id="9zB-EQ-8Yh">
+                    <tabBarItem key="tabBarItem" title="Acreditación" image="Best Seller-30" selectedImage="Best Seller-30" id="9zB-EQ-8Yh">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="5GC-kE-6fn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="5GC-kE-6fn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -865,7 +865,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="goalCell" textLabel="Q66-sI-9UU" style="IBUITableViewCellStyleDefault" id="tPF-Tx-r0G" customClass="CustomGoalCell" customModule="UASapp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tPF-Tx-r0G" id="XY0-IW-YTs">
                                     <frame key="frameInset" width="342" height="43"/>
@@ -2872,7 +2872,7 @@
         <scene sceneID="Wmc-8U-Ofz">
             <objects>
                 <navigationController title="Grupos de Investigaciòn" automaticallyAdjustsScrollViewInsets="NO" id="YQq-9F-7id" customClass="InvNavViewController" customModule="UASapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Investigación" id="ahK-jM-5aG">
+                    <tabBarItem key="tabBarItem" title="Investigación" image="Microscope-30" selectedImage="Microscope-30" id="ahK-jM-5aG">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -3163,7 +3163,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Fases" textLabel="DQS-SY-QHf" detailTextLabel="1lV-v4-r2X" rowHeight="88" style="IBUITableViewCellStyleSubtitle" id="OTo-5W-QSk">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="88"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OTo-5W-QSk" id="qDa-qq-mC9">
                                     <frame key="frameInset" width="342" height="87"/>
@@ -3216,7 +3216,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Grupos" textLabel="OI6-no-K5F" detailTextLabel="Qhm-Vo-jii" rowHeight="88" style="IBUITableViewCellStyleSubtitle" id="s1e-yY-vCa">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="88"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s1e-yY-vCa" id="Bcq-lA-AaY">
                                     <frame key="frameInset" width="342" height="87"/>
@@ -3256,6 +3256,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Best Seller-30" width="30" height="30"/>
+        <image name="Briefcase-30" width="30" height="30"/>
+        <image name="Microscope-30" width="30" height="30"/>
+        <image name="Settings-30" width="30" height="30"/>
         <image name="home-logo" width="318" height="300"/>
     </resources>
 </document>

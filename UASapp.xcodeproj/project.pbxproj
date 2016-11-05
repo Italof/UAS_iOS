@@ -40,6 +40,7 @@
 		126C83051DCA87D400168250 /* InvestigatorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C83001DCA87D400168250 /* InvestigatorTableViewController.swift */; };
 		126C83061DCA87D400168250 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C83011DCA87D400168250 /* SplitViewController.swift */; };
 		1296D0BA1DCE39DC006B7E73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1296D0B91DCE39DC006B7E73 /* Assets.xcassets */; };
+		1296D0BC1DCE4B30006B7E73 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1296D0BB1DCE4B30006B7E73 /* TabBarController.swift */; };
 		12ADDE991DBACC8300A2B7CA /* InvGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */; };
 		12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */; };
 		12BCE5291DC2B2710052E607 /* CustomCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */; };
@@ -121,6 +122,7 @@
 		126C83001DCA87D400168250 /* InvestigatorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorTableViewController.swift; sourceTree = "<group>"; };
 		126C83011DCA87D400168250 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		1296D0B91DCE39DC006B7E73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1296D0BB1DCE4B30006B7E73 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGroupTableViewController.swift; sourceTree = "<group>"; };
 		12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationGroup.swift; sourceTree = "<group>"; };
 		12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCourseCell.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				468028601DC07B2900421DFF /* Utility */,
 				46292B011DB9DF7500EC8575 /* AppDelegate.swift */,
 				46292B031DB9DF7500EC8575 /* ViewController.swift */,
+				1296D0BB1DCE4B30006B7E73 /* TabBarController.swift */,
 				4618847D1DCC20A1000858C8 /* ConfigTableViewController.swift */,
 				46419A8B1DCC505C00E77B9A /* Main.storyboard */,
 				1296D0B91DCE39DC006B7E73 /* Assets.xcassets */,
@@ -503,6 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1268F2731DBFF59E00E1CC22 /* EveProjectTableViewController.swift in Sources */,
+				1296D0BC1DCE4B30006B7E73 /* TabBarController.swift in Sources */,
 				1214CECE1DBC125E0042A3F2 /* InvPrDetailViewController.swift in Sources */,
 				12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */,
 				25691CA51DCB4A03005A632D /* DetalleGruposViewController.swift in Sources */,
