@@ -71,7 +71,7 @@ class EducationalGoalsViewController: UITableViewController {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(goalsArray.count)
+        // print(goalsArray.count)
         return goalsArray.count
     }
     
