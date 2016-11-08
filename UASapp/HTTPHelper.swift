@@ -42,7 +42,6 @@ class HTTPHelper {
           do {
             print("RESPONSE DATA: \(responseData)")
             let jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: [])
-            print(jsonResponse)
             /*
             if let dictionary = jsonResponse as? [String:Any] {
                 data = dictionary as [String:AnyObject]
@@ -54,7 +53,7 @@ class HTTPHelper {
             }
             */
             data = jsonResponse
-            print(data!)
+//            print(data!)
             
           } catch let err as NSError {
             print(err)

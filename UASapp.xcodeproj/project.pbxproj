@@ -66,6 +66,8 @@
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
 		46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B031DB9DF7500EC8575 /* ViewController.swift */; };
 		46292B0C1DB9DF7500EC8575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */; };
+		463056581DD166A50066C7DB /* CustomImpPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463056571DD166A50066C7DB /* CustomImpPlanCell.swift */; };
+		4630565A1DD169D50066C7DB /* PlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463056591DD169D50066C7DB /* PlanDetailViewController.swift */; };
 		4637A5671DCE747100D65C40 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4637A5661DCE747100D65C40 /* DownloadHelper.swift */; };
 		46419A8D1DCC505C00E77B9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46419A8B1DCC505C00E77B9A /* Main.storyboard */; };
 		9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */; };
@@ -155,6 +157,8 @@
 		46292B031DB9DF7500EC8575 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		46292B0B1DB9DF7500EC8575 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46292B0D1DB9DF7500EC8575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		463056571DD166A50066C7DB /* CustomImpPlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImpPlanCell.swift; sourceTree = "<group>"; };
+		463056591DD169D50066C7DB /* PlanDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanDetailViewController.swift; sourceTree = "<group>"; };
 		4637A5661DCE747100D65C40 /* DownloadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
 		46419A8C1DCC505C00E77B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = UASapp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalDetailViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +269,8 @@
 				1207C64D1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift */,
 				1207C64F1DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift */,
 				967045C41DD1053700DE2E8E /* ImprovementPlanTableViewController.swift */,
+				463056571DD166A50066C7DB /* CustomImpPlanCell.swift */,
+				463056591DD169D50066C7DB /* PlanDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -552,11 +558,13 @@
 				25DE42751DCBA0D800BE88C8 /* MenuProvisionalAlumnosViewController.swift in Sources */,
 				1231D78D1DBAE87D004E35FD /* StudentViewController.swift in Sources */,
 				967045C71DD1062600DE2E8E /* ImprovementPlan.swift in Sources */,
+				463056581DD166A50066C7DB /* CustomImpPlanCell.swift in Sources */,
 				1207C64E1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift in Sources */,
 				12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */,
 				9623F25B1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift in Sources */,
 				25A9682B1DCB16EB00B03060 /* FasesTableViewController.swift in Sources */,
 				25A9682F1DCB2EA100B03060 /* DetalleFaseViewController.swift in Sources */,
+				4630565A1DD169D50066C7DB /* PlanDetailViewController.swift in Sources */,
 				121BE3B01DCBAFA200B68A3C /* MyFacultiesViewController.swift in Sources */,
 				126C83031DCA87D400168250 /* InvestigationDerivable.swift in Sources */,
 				9623F2611DC3AB0300EA7B6D /* CourseViewController.swift in Sources */,
