@@ -239,6 +239,8 @@ class ViewControllerTutoriaMenu: UIViewController {
                     let alumno: String?
                     let estado: String?
                     
+                    var fI: Date?
+                    var hI: Date?
                     
                     let idc: Int = (c["id"] as! Int?)!
                     citaId = String(idc)
@@ -251,14 +253,23 @@ class ViewControllerTutoriaMenu: UIViewController {
                     dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
                     
                     
-                    let  fI = dateFormater.date(from: (c["inicio"] as! String))
-                    
-                    
-                    dateFormater.dateFormat = "yyyy-MM-dd"
+                    print("Fecha inicio del JSON")
+                    print(c["inicio"])
+                    fI = dateFormater.date(from: (c["inicio"] as! String))
+                    //Verificando que la fecha de cita que se registro no es nula
+                    if (fI == nil){
+                        fI = Date()
+                    }
+                                        
+                    dateFormater.dateFormat = "yyyy-MM-dd"//"yyyy-MM-dd"
                     fechaI = dateFormater.string(from: fI!)
                     
                     dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                    let  hI = dateFormater.date(from: (c["inicio"] as! String))
+                    hI = dateFormater.date(from: (c["inicio"] as! String))
+                    
+                    if (hI == nil){
+                        hI = Date()
+                    }
                     dateFormater.dateFormat = "HH:mm"
                     
                     horaI = dateFormater.string(from: hI!)

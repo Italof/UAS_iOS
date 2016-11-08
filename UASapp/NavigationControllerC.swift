@@ -24,6 +24,8 @@ class NavigationControllerC: UINavigationController {
     var tutorOb: tutor?
     var citasOb: [cita]?
     var alumnosOb: [alumno]?
+    var citEsc: cita?
+    
 
     /*
     // MARK: - Navigation

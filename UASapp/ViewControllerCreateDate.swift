@@ -193,15 +193,18 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         
         
         let dateFormater = DateFormatter()
-        dateFormater.dateFormat = "yyyy-MM-dd" //"yyyy-MM-dd HH:mm:ss"
+        dateFormater.dateFormat = "dd/MM/yyyy" //"yyyy-MM-dd HH:mm:ss"
         
         
         let  fI = dateFormater.string(from: dateR.date)
         
-        dateFormater.dateFormat = "HH:mm:ss"
+        //LA hora que se le pasa solo es hora y min
+        
+        dateFormater.dateFormat = "HH:mm"
         
         let hI = dateFormater.string(from: timeR.date)
         
+        print("Fecha y hora registrada")
         print(fI)
         print(hI)
         
@@ -261,6 +264,10 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                 } else {
                     print("REQUESTED RESPONSE: \(responseData)")
                 }
+                
+                print("Fecha y hora registrada")
+                print(fI)
+                print(hI)
                 
             })
             

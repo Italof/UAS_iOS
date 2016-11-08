@@ -12,28 +12,12 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
 
     @IBOutlet var Dates: UITableView!
     
+    
+    
     var citS: [cita]?
-    /*
     
-    tutorCode.text=tutorC?.codigo
-    tutorName.text=tutorC?.nombre
-    tutorEmail.text=tutorC?.correo
-    tutorPhoneNumber.text=tutorC?.telefono
-    tutorOffice.text=tutorC?.oficina
-    tutorAnexo.text=tutorC?.anexo
+    var elegido: Int = -1
     
-    horaL.text=tutorC?.horarioL
-    horaMa.text=tutorC?.horarioMa
-    horaMi.text=tutorC?.horarioMi
-    horaJ.text=tutorC?.horarioJ
-    horaV.text=tutorC?.horarioV
- 
-    var datesA = ["12/07/2012","12/09/2016"]
-    var times = ["12:00 pm","12:10 pm"]
-    var themes = ["Academico","Academico"]
-    var students = ["Pedro Perez","Juan Perez"]
-    var statusA = ["Pendiente","Pendiente"]
-    */
     var datesA = [String]()
     var times = [String]()
     var themes = [String]()
@@ -111,6 +95,15 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         
         return cell
         
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        let citEsc = (citS?[indexPath.row])! as cita
+        elegido = indexPath.row
+        
+        ((self.parent as! NavigationControllerC).citEsc) = citEsc
     }
     
 
