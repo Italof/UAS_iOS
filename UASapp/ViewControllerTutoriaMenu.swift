@@ -10,8 +10,20 @@ import UIKit
 
 class ViewControllerTutoriaMenu: UIViewController {
 
+    @IBOutlet var botonMiTutor: UIButton!
+    @IBOutlet var botonCitas: UIButton!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
+        
+        if (rol == "T"){
+            botonMiTutor.isHidden = true
+        }
 
         // Do any additional setup after loading the view.
     }

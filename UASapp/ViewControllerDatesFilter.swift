@@ -11,11 +11,19 @@ import UIKit
 class ViewControllerDatesFilter: UIViewController {
 
       
+    @IBOutlet var labelAlumno: UILabel!
     
+    @IBOutlet var textoAlumno: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
+        
+        if ( rol == "A"){
+            labelAlumno.isHidden = true
+            textoAlumno.isHidden = true
+        }
 
         // Do any additional setup after loading the view.
     }

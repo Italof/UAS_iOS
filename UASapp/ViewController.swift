@@ -99,14 +99,27 @@ class ViewController: UIViewController {
                         
                         let user = data["user"] as! [String:Any]
                         
-                        
+                        userDefaults.set(user["IdPerfil"], forKey: "IDPERFIL")
                         userDefaults.set(user["IdUsuario"], forKey: "IDUSER")
                         userDefaults.set(user["IdEspecialidad"], forKey: "SPECIALTY")
-                        userDefaults.set(user["rolTutoria"], forKey: "ROLTUTORIA")
+                        //userDefaults.set(user["rolTutoria"], forKey: "ROLTUTORIA")
                         userDefaults.set(user["rolEvaluaciones"], forKey: "ROLEVALUACIONES")
                         
                         
+                        if ( (user["IdPerfil"] as! String) == "0") {
+                            userDefaults.set("A", forKey: "ROLTUTORIA")
+                        }
+                        
+                        if ( (user["IdPerfil"] as! String) == "1") {
+                            userDefaults.set("T", forKey: "ROLTUTORIA")
+                        }
+                       
+                        
+                        
+                        
                         print(userDefaults.string(forKey: "TOKEN"))
+                        print(userDefaults.string(forKey: "ROLTUTORIA"))
+                        print(userDefaults.string(forKey: "IDPERFIL"))
                         self.performSegue(withIdentifier: "moduleSegue", sender: self)
                     }
                     

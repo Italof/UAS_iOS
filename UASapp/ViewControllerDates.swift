@@ -12,6 +12,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
 
     @IBOutlet var Dates: UITableView!
     
+    @IBOutlet var botonAtenderSinCita: UIButton!
     
     
     var citS: [cita]?
@@ -26,6 +27,12 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
+        
+        if ( rol == "A"){
+            botonAtenderSinCita.isHidden = true
+        }
         /*
         citS = ((self.parent as! NavigationControllerC).citasOb)
         

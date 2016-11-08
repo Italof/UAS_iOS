@@ -18,6 +18,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var dateR: UIDatePicker!
     @IBOutlet weak var timeR: UIDatePicker!
     
+    @IBOutlet var labelAlumno: UILabel!
     //Este array será alimentado por el contenido de la tabla de temas de reunion
     var alumA: [alumno] = []
     var temaA: [tema] = []
@@ -31,6 +32,13 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         
         dateR.minimumDate = Date()
         timeR.minimumDate = Date()
+        
+        let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
+        
+        if (rol == "A"){
+            labelAlumno.isHidden = true
+            StudentList.isHidden = true
+        }
         
         /*
          ruta: "getStudentsOfTutor/(idUsuario)?token=(token)"
@@ -220,6 +228,8 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             json.setValue(temaA[temaSel].nombre, forKey: "motivo") //Seteo el tema
         } else {
             errorAlert.message = "Seleccione un tema o motivo de cita"
+            self.present(errorAlert, animated: true, completion: nil)
+            return
         }
         
         
@@ -240,36 +250,15 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             print(postData)
             
             HTTPHelper.post(route: "registerStudentAppointment?token=" + token, authenticated: false, body: postData, completion: { (error, responseData) in
-                if error != nil {
-                    print("REQUESTED ERROR: \(error)")
-                    let responseError = error?.userInfo[NSLocalizedDescriptionKey] as! NSString
-                    let response = responseError.data(using: String.Encoding.utf8.rawValue)
-                    print(response)
-                    do {
-                        let jsonError = try JSONSerialization.jsonObject(with: response!, options: []) as! [String:NSString]
-                        let msgError = jsonError["error"]! as NSString
-                        
-                        if msgError.isEqual(to: "invalid_cedentials") {
-                            errorAlert.message = "Credenciales invalidas, por favor intente nuevamente"
-                        } else {
-                            errorAlert.message = "Se produjo un error, intente nuevamente"
-                        }
-                        
-                        self.present(errorAlert, animated: true, completion: nil)
-                        
-                    } catch {
-                        print("NOT VALID JSON")
-                    }
-                    
+                if error == nil {
+                    errorAlert.title = "Registro exitoso"
+                    errorAlert.message = "Se registró exitosamente la cita"
+                    self.present(errorAlert, animated: true, completion: nil)
                 } else {
                     print("REQUESTED RESPONSE: \(responseData)")
                 }
-                
-                print("Fecha y hora registrada")
-                print(fI)
-                print(hI)
-                
             })
+         
             
         } catch let err as NSError{
             print("JSONObjet ERROR: \(err)")
