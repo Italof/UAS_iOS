@@ -16,14 +16,6 @@ class FilesTableViewController: UITableViewController , UIDocumentInteractionCon
     //let destinationUrl = documentsUrl?.appendingPathComponent((url?.lastPathComponent!)!)
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    override func viewWillAppear(_ animated: Bool) {
         do{
             let filesIndirectory = try FileManager.default.contentsOfDirectory(atPath: (documentsUrl?.path)!)
             filesArray = []
@@ -35,6 +27,14 @@ class FilesTableViewController: UITableViewController , UIDocumentInteractionCon
         catch let err as NSError{
             print(err)
         }
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -97,7 +97,9 @@ class FilesTableViewController: UITableViewController , UIDocumentInteractionCon
             let path = (self.documentsUrl?.path)! + "/" + self.filesArray[indexPath.row]
             do{
                 try FileManager.default.removeItem(atPath: path)
-                self.tableView.reloadData()
+                self.filesArray.remove(at: indexPath.row)
+                //self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                self.do_table_refresh()
             }
             catch let err as NSError{
                 print(err)
@@ -119,7 +121,11 @@ class FilesTableViewController: UITableViewController , UIDocumentInteractionCon
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController{
         return self
     }
-
+    func do_table_refresh()
+    {
+        self.tableView.reloadData()
+        
+    }
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

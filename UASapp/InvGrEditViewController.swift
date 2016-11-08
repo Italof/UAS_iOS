@@ -89,12 +89,19 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
                         }
                         else {
                             //obtener data
-                            alert.title = self.successTitle
-                            alert.message = self.successMessage
-                            self.present(alert,animated: true, completion:nil)
                             self.invGr?.name = self.nameInvGroup.text
                             self.invGr?.description = self.descriptionInvGroup.text
                             ((self.parent as! InvNavViewController).invGr) = self.invGr
+                            let alertSuccess : UIAlertController = UIAlertController.init(title: self.successTitle, message: self.successMessage, preferredStyle: .alert)
+                            let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                                let navController = self.navigationController
+                                if navController != nil {
+                                    navController?.popViewController(animated: true)
+                                }
+                                print(navController)
+                            })
+                            alertSuccess.addAction(action)
+                            self.present(alertSuccess,animated: false, completion:nil)
                         }
                         
                     })

@@ -10,6 +10,14 @@ import UIKit
 
 class InvNavViewController: UINavigationController {
     //Controlador de navegación de investigación
+    //variables offline
+    var jsonGroups: Any?
+    var jsonProjects: Any?
+    var jsonEvents: Any?
+    var jsonInves: Any?
+    var jsonDer:Any?
+    var jsonDoc:Any?
+    
     
     //variables que se usan en las pantallas que usan este navegador
     //Perfiles permitidos en edición en este modulo
@@ -25,6 +33,8 @@ class InvNavViewController: UINavigationController {
     var invDer: InvestigationDerivable?
     //Investigador elegido
     var inv: Investigator?
+    //Documento elegido
+    var invDoc: InvestigationDocument?
 
     //token que se usa para el consumo del api
   
@@ -49,7 +59,8 @@ class InvNavViewController: UINavigationController {
     //obtener y editar entregables
     var getDerivables: String = "deriverables"
     var editDerivables: String = "deriverable"
-
+    //obtener  documentos
+    var getDocuments: String = "deriverables"
 
     override func viewDidLoad() {
         super.viewDidLoad()

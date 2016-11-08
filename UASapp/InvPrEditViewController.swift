@@ -215,9 +215,6 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
                         }
                         else {
                             //obtener data
-                            alert.title = self.successTitle
-                            alert.message = self.successMessage
-                            self.present(alert,animated: true, completion:nil)
                             self.invPr?.name = self.nameInvProject.text
                             self.invPr?.numberDerivables = Int (self.numberDerivablesInvPr.text!)!
                             let startDate = self.startDateInvProject.date
@@ -227,6 +224,16 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
                             self.invPr?.endDate = dateFormater.string(from: endDate)
                             self.invPr?.startDate = dateFormater.string(from: startDate)
                             ((self.parent as! InvNavViewController).invPr) = self.invPr
+                            let alertSuccess : UIAlertController = UIAlertController.init(title: self.successTitle, message: self.successMessage, preferredStyle: .alert)
+                            let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                                let navController = self.navigationController
+                                if navController != nil {
+                                    navController?.popViewController(animated: true)
+                                }
+                                print(navController)
+                            })
+                            alertSuccess.addAction(action)
+                            self.present(alertSuccess,animated: false, completion:nil)
                         }
                         
                     })

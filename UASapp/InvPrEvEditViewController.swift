@@ -216,9 +216,6 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
                         }
                         else {
                             //obtener data
-                            alert.title = self.successTitle
-                            alert.message = self.successMessage
-                            self.present(alert,animated: true, completion:nil)
                             self.invPrEv?.name = self.nameInvPrEvent.text
                             self.invPrEv?.place = self.placeInvPrEvent.text
                             let date = self.dateInvPrEvent.date
@@ -229,6 +226,16 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
                             dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
                             self.invPrEv?.time = dateFormater.string(from: time)
                             ((self.parent as! InvNavViewController).invPrEv) = self.invPrEv
+                            let alertSuccess : UIAlertController = UIAlertController.init(title: self.successTitle, message: self.successMessage, preferredStyle: .alert)
+                            let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                                let navController = self.navigationController
+                                if navController != nil {
+                                    navController?.popViewController(animated: true)
+                                }
+                                print(navController)
+                            })
+                            alertSuccess.addAction(action)
+                            self.present(alertSuccess,animated: false, completion:nil)
                         }
                         
                     })

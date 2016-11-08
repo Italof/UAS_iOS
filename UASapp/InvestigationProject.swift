@@ -38,7 +38,7 @@ struct InvestigationProject {
         let group = json["group"] as! [String:Any]
         let invGroupName = group["nombre"] as! String
         let idLeader = group["id_lider"] as! String
-        let leaderName=""
+        
         
         self.startDate=startDate
         self.name=name

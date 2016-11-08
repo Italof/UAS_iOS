@@ -197,15 +197,23 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
                         }
                         else {
                             //obtener data
-                            alert.title = self.successTitle
-                            alert.message = self.successMessage
-                            self.present(alert,animated: true, completion:nil)
+                            
                             self.inv?.name = self.nameInv.text
                             self.inv?.lastNameP = self.lastNamePInv.text
                             self.inv?.lastNameM = self.lastNameMInv.text
                             self.inv?.email = self.emailInv.text
                             self.inv?.cellphone = self.cellphoneInv.text
                             ((self.parent as! InvNavViewController).inv) = self.inv
+                            let alertSuccess : UIAlertController = UIAlertController.init(title: self.successTitle, message: self.successMessage, preferredStyle: .alert)
+                            let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                                let navController = self.navigationController
+                                if navController != nil {
+                                    navController?.popViewController(animated: true)
+                                }
+                                print(navController)
+                            })
+                            alertSuccess.addAction(action)
+                            self.present(alertSuccess,animated: false, completion:nil)
                         }
                         
                     })
