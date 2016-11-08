@@ -33,7 +33,7 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
         nameInvProject.text = invPr?.name
         let parser = invPr?.numberDerivables
         numberDerivablesInvPr.text = String(parser.unsafelyUnwrapped)
-        
+        let id = (parent as! InvNavViewController).id
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "yyyy-MM-dd"
         let startDate = dateFormater.date(from: (invPr?.startDate)!)
@@ -49,10 +49,11 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
         //profiles permitidos a editar
         let profilePermited = (parent as! InvNavViewController).profilePermited
         let isConnected = AskConectivity.isInternetAvailable()
-        if( profilePermited.index( of: profile) == nil || isConnected == false ){
+        invPrSaveButton.isEnabled = false
+        if( profilePermited.index( of: profile) != nil || isConnected != false || invPr?.idLeader == id){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
-            invPrSaveButton.isEnabled = false
+            invPrSaveButton.isEnabled = true
         }
         self.nameInvProject.delegate = self
         self.numberDerivablesInvPr.delegate = self
@@ -135,24 +136,39 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
         var errorMessageCustom : String = ""
         var error = 0
         let today : Date = Date.init()
+        let numberDer = invPr?.numberDerivables
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        let startDate = dateFormater.string(from: startDateInvProject.date)
+        let endDate = dateFormater.string(from: endDateInvProject.date)
         //verificar que los campos son correctos
-        if((nameInvProject!.text?.characters.count)! > 254 || (nameInvProject!.text?.characters.count)! < 1){
+        if (AskConectivity.isInternetAvailable() == false){
+            errorMessageCustom = "No conectado a internet"
+            error = 1
+        }
+        else
+        {
+        if (nameInvProject.text == invPr?.name && numberDerivablesInvPr.text == String(numberDer.unsafelyUnwrapped) && startDate == invPr?.startDate && endDate == invPr?.endDate){
+            errorMessageCustom = "No hay cambios"
+            error = 1
+        }
+        else if((nameInvProject!.text?.characters.count)! > 254 || (nameInvProject!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre no válido"
             error = 1
         }
-        if((numberDerivablesInvPr!.text?.characters.count)! > 2){
+        else if((numberDerivablesInvPr!.text?.characters.count)! > 2){
             errorMessageCustom = "Número de entregables muy grande"
             error = 1
         }
-        if((numberDerivablesInvPr!.text?.characters.count)! < 1){
+        else if((numberDerivablesInvPr!.text?.characters.count)! < 1){
             errorMessageCustom = "Número de entregables vacío"
             error = 1
         }
-        if(startDateInvProject.date >= endDateInvProject.date){
+        else if(startDateInvProject.date >= endDateInvProject.date){
             errorMessageCustom = "Fecha de fin anterior o igual a fecha de inicio"
             error = 1
         }
-        if(startDateInvProject.date <= today){
+        else if(startDateInvProject.date <= today){
             errorMessageCustom = "Fecha de inicio igual a hoy"
             error = 1
         }
@@ -162,64 +178,72 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
             present(alert,animated: true, completion:nil)
         }
         else{
-            //Gruadar en servidor
-            let json = NSMutableDictionary()
-            json.setValue(invPr?.id, forKey: "id")
-            json.setValue(nameInvProject.text, forKey: "nombre")
-            json.setValue(numberDerivablesInvPr.text , forKey: "num_entregables")
-            let startDate = startDateInvProject.date
-            let endDate = endDateInvProject.date
-            let dateFormater = DateFormatter()
-            dateFormater.dateFormat = "yyyy-MM-dd"
-            json.setValue(dateFormater.string(from: startDate), forKey: "fecha_ini")
-            json.setValue(dateFormater.string(from: endDate), forKey: "fecha_fin")
-            //json.setValue(startDate, forKey: "fecha_ini")
-            //json.setValue(endDate, forKey: "fecha_fin")
-            do{
-                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-                print(jsonData)
-                let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
-                print(decoded)
-                let postData = decoded as! [String:AnyObject]
-                print(postData)
-                let token = (parent as! InvNavViewController).token
-                let get = (parent as! InvNavViewController).editProjects
-                let parser = invPr?.id
-                let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
-                print(routeApi)
-                HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
-                    if(error != nil){
-                        //Mostrar error y regresar al menù principal
-                        print(error)
-                        alert.title = self.errorTitle
-                        alert.message = self.errorMessage
-                        self.present(alert,animated: true, completion:nil)
-                    }
-                    else {
-                        //obtener data
-                        alert.title = self.successTitle
-                        alert.message = self.successMessage
-                        self.present(alert,animated: true, completion:nil)
-                        self.invPr?.name = self.nameInvProject.text
-                        self.invPr?.numberDerivables = Int (self.numberDerivablesInvPr.text!)!
-                        let startDate = self.startDateInvProject.date
-                        let endDate = self.endDateInvProject.date
-                        let dateFormater = DateFormatter()
-                        dateFormater.dateFormat = "yyyy-MM-dd"
-                        self.invPr?.endDate = dateFormater.string(from: endDate)
-                        self.invPr?.startDate = dateFormater.string(from: startDate)
-                        ((self.parent as! InvNavViewController).invPr) = self.invPr
-                    }
+            let uiAlert = UIAlertController(title: "Aviso", message: "¿Desea guardar los cambios?", preferredStyle: UIAlertControllerStyle.alert)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                //Gruadar en servidor
+                let json = NSMutableDictionary()
+                json.setValue(self.invPr?.id, forKey: "id")
+                json.setValue(self.nameInvProject.text, forKey: "nombre")
+                json.setValue(self.numberDerivablesInvPr.text , forKey: "num_entregables")
+                let startDate = self.startDateInvProject.date
+                let endDate = self.endDateInvProject.date
+                let dateFormater = DateFormatter()
+                dateFormater.dateFormat = "yyyy-MM-dd"
+                json.setValue(dateFormater.string(from: startDate), forKey: "fecha_ini")
+                json.setValue(dateFormater.string(from: endDate), forKey: "fecha_fin")
+                //json.setValue(startDate, forKey: "fecha_ini")
+                //json.setValue(endDate, forKey: "fecha_fin")
+                do{
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                    print(jsonData)
+                    let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                    print(decoded)
+                    let postData = decoded as! [String:AnyObject]
+                    print(postData)
+                    let token = (self.parent as! InvNavViewController).token
+                    let get = (self.parent as! InvNavViewController).editProjects
+                    let parser = self.invPr?.id
+                    let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
+                    print(routeApi)
+                    HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
+                        if(error != nil){
+                            //Mostrar error y regresar al menù principal
+                            print(error)
+                            alert.title = self.errorTitle
+                            alert.message = self.errorMessage
+                            self.present(alert,animated: true, completion:nil)
+                        }
+                        else {
+                            //obtener data
+                            alert.title = self.successTitle
+                            alert.message = self.successMessage
+                            self.present(alert,animated: true, completion:nil)
+                            self.invPr?.name = self.nameInvProject.text
+                            self.invPr?.numberDerivables = Int (self.numberDerivablesInvPr.text!)!
+                            let startDate = self.startDateInvProject.date
+                            let endDate = self.endDateInvProject.date
+                            let dateFormater = DateFormatter()
+                            dateFormater.dateFormat = "yyyy-MM-dd"
+                            self.invPr?.endDate = dateFormater.string(from: endDate)
+                            self.invPr?.startDate = dateFormater.string(from: startDate)
+                            ((self.parent as! InvNavViewController).invPr) = self.invPr
+                        }
+                        
+                    })
                     
-                })
+                }
+                catch{
+                    
+                }
 
-            }
-            catch{
-                
-            }
+            }))
+            
+            uiAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+            self.present(uiAlert, animated: true, completion: nil)
+            
             
         }
-        
+        }
         //enviar a api web
         
         //alerta de guardado

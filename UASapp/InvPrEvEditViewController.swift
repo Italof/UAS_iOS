@@ -30,7 +30,7 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
         //inicializa campos a editar
         invPrEv = (parent as! InvNavViewController).invPrEv
         nameInvPrEvent.text = invPrEv?.name?.uppercased()
-        
+        let id = (parent as! InvNavViewController).id
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "yyyy-MM-dd"
         let date = dateFormater.date(from: (invPrEv?.date)!)
@@ -50,10 +50,11 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
         //profiles permitidos a editar
         let profilePermited = (parent as! InvNavViewController).profilePermited
         let isConnected = AskConectivity.isInternetAvailable()
-        if( profilePermited.index( of: profile) == nil || isConnected == false ){
+        saveEventButton.isEnabled = false
+        if( profilePermited.index( of: profile) != nil || isConnected != false || id == invPrEv?.idLeader){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
-            saveEventButton.isEnabled = false
+            saveEventButton.isEnabled = true
         }
         
         if(dateInvPrEvent.date <= today){
@@ -146,13 +147,27 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
         //error variable
         var errorMessageCustom : String = ""
         var error = 0
-       
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        let date = dateFormater.string(from:dateInvPrEvent.date)
+        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let time = dateFormater.string(from: timeInvPrEvent.date)
         //verificar que los campos son correctos
-        if((nameInvPrEvent!.text?.characters.count)! > 254 || (nameInvPrEvent!.text?.characters.count)! < 1){
+        if (AskConectivity.isInternetAvailable() == false){
+            errorMessageCustom = "No conectado a internet"
+            error = 1
+        }
+        else
+        {
+        if (nameInvPrEvent.text == invPrEv?.name && placeInvPrEvent.text == invPrEv?.place && date == invPrEv?.date && time == invPrEv?.time){
+            errorMessageCustom = "No hay cambios"
+            error = 1
+        }
+        else if((nameInvPrEvent!.text?.characters.count)! > 254 || (nameInvPrEvent!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre no válido"
             error = 1
         }
-        if((placeInvPrEvent!.text?.characters.count)! > 254 || (placeInvPrEvent!.text?.characters.count)! < 1){
+        else if((placeInvPrEvent!.text?.characters.count)! > 254 || (placeInvPrEvent!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre de lugar no válido"
             error = 1
         }
@@ -163,64 +178,72 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
             present(alert,animated: true, completion:nil)
         }
         else{
-            //Gruadar en servidor
-            let json = NSMutableDictionary()
-            json.setValue(invPrEv?.id, forKey: "id")
-            json.setValue(nameInvPrEvent.text, forKey: "nombre")
-            json.setValue(placeInvPrEvent.text , forKey: "ubicacion")
-            json.setValue(invPrEv?.description, forKey: "descripcion")
-            let date = dateInvPrEvent.date
-            let time = timeInvPrEvent.date
-            let dateFormater = DateFormatter()
-            dateFormater.dateFormat = "yyyy-MM-dd"
-            json.setValue(dateFormater.string(from: date), forKey: "fecha")
-            dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            json.setValue(dateFormater.string(from: time), forKey: "hora")
             
-            do{
-                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-                print(jsonData)
-                let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
-                print(decoded)
-                let postData = decoded as! [String:AnyObject]
-                print(postData)
-                let token = (parent as! InvNavViewController).token
-                let get = (parent as! InvNavViewController).editEvents
-                let parser = invPrEv?.id
-                let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
-                HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
-                    if(error != nil){
-                        //Mostrar error y regresar al menù principal
-                        print(error)
-                        alert.title = self.errorTitle
-                        alert.message = self.errorMessage
-                        self.present(alert,animated: true, completion:nil)
-                    }
-                    else {
-                        //obtener data
-                        alert.title = self.successTitle
-                        alert.message = self.successMessage
-                        self.present(alert,animated: true, completion:nil)
-                        self.invPrEv?.name = self.nameInvPrEvent.text
-                        self.invPrEv?.place = self.placeInvPrEvent.text
-                        let date = self.dateInvPrEvent.date
-                        let time = self.timeInvPrEvent.date
-                        let dateFormater = DateFormatter()
-                        dateFormater.dateFormat = "yyyy-MM-dd"
-                        self.invPrEv?.date = dateFormater.string(from: date)
-                        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                        self.invPrEv?.time = dateFormater.string(from: time)
-                        ((self.parent as! InvNavViewController).invPrEv) = self.invPrEv                         
-                    }
-                    
-                })
-            }
-            catch{
+            let uiAlert = UIAlertController(title: "Aviso", message: "¿Desea guardar los cambios?", preferredStyle: UIAlertControllerStyle.alert)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                //Gruadar en servidor
+                let json = NSMutableDictionary()
+                json.setValue(self.invPrEv?.id, forKey: "id")
+                json.setValue(self.nameInvPrEvent.text, forKey: "nombre")
+                json.setValue(self.placeInvPrEvent.text , forKey: "ubicacion")
+                json.setValue(self.invPrEv?.description, forKey: "descripcion")
+                let date = self.dateInvPrEvent.date
+                let time = self.timeInvPrEvent.date
+                let dateFormater = DateFormatter()
+                dateFormater.dateFormat = "yyyy-MM-dd"
+                json.setValue(dateFormater.string(from: date), forKey: "fecha")
+                dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                json.setValue(dateFormater.string(from: time), forKey: "hora")
                 
-            }
+                do{
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                    print(jsonData)
+                    let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                    print(decoded)
+                    let postData = decoded as! [String:AnyObject]
+                    print(postData)
+                    let token = (self.parent as! InvNavViewController).token
+                    let get = (self.parent as! InvNavViewController).editEvents
+                    let parser = self.invPrEv?.id
+                    let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
+                    HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
+                        if(error != nil){
+                            //Mostrar error y regresar al menù principal
+                            print(error)
+                            alert.title = self.errorTitle
+                            alert.message = self.errorMessage
+                            self.present(alert,animated: true, completion:nil)
+                        }
+                        else {
+                            //obtener data
+                            alert.title = self.successTitle
+                            alert.message = self.successMessage
+                            self.present(alert,animated: true, completion:nil)
+                            self.invPrEv?.name = self.nameInvPrEvent.text
+                            self.invPrEv?.place = self.placeInvPrEvent.text
+                            let date = self.dateInvPrEvent.date
+                            let time = self.timeInvPrEvent.date
+                            let dateFormater = DateFormatter()
+                            dateFormater.dateFormat = "yyyy-MM-dd"
+                            self.invPrEv?.date = dateFormater.string(from: date)
+                            dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                            self.invPrEv?.time = dateFormater.string(from: time)
+                            ((self.parent as! InvNavViewController).invPrEv) = self.invPrEv
+                        }
+                        
+                    })
+                }
+                catch{
+                    
+                }
+
+            }))
+            
+            uiAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+            self.present(uiAlert, animated: true, completion: nil)
             
         }
-                
+    }
     }
 
     /*

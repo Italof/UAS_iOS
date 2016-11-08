@@ -36,7 +36,7 @@ class ConfigTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -49,7 +49,10 @@ class ConfigTableViewController: UITableViewController {
         let appDomain = Bundle.main.bundleIdentifier
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
         
-        self.performSegue(withIdentifier: "logoutSegue", sender: self)
+        //self.performSegue(withIdentifier: "logoutSegue", sender: self)
+        //let storyboard =
+        let Login = (storyboard?.instantiateViewController(withIdentifier: "login"))! as UIViewController
+        self.present(Login, animated: true, completion: nil)
 //        userDefaults.set(isLoggedIn, forKey: "ISLOGGEDIN")
 //        userDefaults.removeObject(forKey: "USER")
 //        userDefaults.removeObject(forKey: "TOKEN")

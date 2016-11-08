@@ -51,6 +51,7 @@
 		12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */; };
 		12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */; };
 		12DF4D211DCADD8700E59AD0 /* InvestigatorEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */; };
+		12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */; };
 		25691CA51DCB4A03005A632D /* DetalleGruposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25691CA41DCB4A03005A632D /* DetalleGruposViewController.swift */; };
 		25A6EF191DCBDF760084AFE0 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EF181DCBDF760084AFE0 /* Test.swift */; };
 		25A6EF2D1DCBE7CA0084AFE0 /* FaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EF2C1DCBE7CA0084AFE0 /* FaseTest.swift */; };
@@ -134,6 +135,7 @@
 		12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSpecialtyCell.swift; sourceTree = "<group>"; };
 		12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorDetailViewController.swift; sourceTree = "<group>"; };
 		12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorEditViewController.swift; sourceTree = "<group>"; };
+		12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
 		25691CA41DCB4A03005A632D /* DetalleGruposViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleGruposViewController.swift; sourceTree = "<group>"; };
 		25A6EF161DCBDF760084AFE0 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A6EF181DCBDF760084AFE0 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				1296D0B91DCE39DC006B7E73 /* Assets.xcassets */,
 				46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */,
 				46292B0D1DB9DF7500EC8575 /* Info.plist */,
+				12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */,
 				4618847E1DCC20A1000858C8 /* ConfigTableViewController.swift in Sources */,
 				121C14031DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift in Sources */,
+				12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */,
 				12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */,
 				126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */,
 			);

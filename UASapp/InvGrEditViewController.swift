@@ -36,15 +36,21 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         var errorMessageCustom : String = ""
         var error = 0
         //verificar que los campos son correctos
+        if (AskConectivity.isInternetAvailable() == false){
+            errorMessageCustom = "No conectado a internet"
+            error = 1
+        }
+        else
+        {
         if((nameInvGroup!.text?.characters.count)! > 254 || (nameInvGroup!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre no válido"
             error = 1
         }
-        if((descriptionInvGroup!.text?.characters.count)! > 254 || (descriptionInvGroup!.text?.characters.count)! < 1){
+        else if((descriptionInvGroup!.text?.characters.count)! > 254 || (descriptionInvGroup!.text?.characters.count)! < 1){
             errorMessageCustom = "Descripción no válido"
             error = 1
         }
-        if (nameInvGroup.text == invGr?.name && descriptionInvGroup.text == invGr?.description){
+        else if (nameInvGroup.text == invGr?.name && descriptionInvGroup.text == invGr?.description){
             errorMessageCustom = "No hay cambios"
             error = 1
         }
@@ -54,49 +60,55 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
             present(alert,animated: true, completion:nil)
         }
         else{
-            //Gruadar en servidor
-            let json = NSMutableDictionary()
-            json.setValue(invGr?.id, forKey: "id")
-            json.setValue(nameInvGroup.text, forKey: "nombre")
-            json.setValue(descriptionInvGroup.text , forKey: "descripcion")
-            do{
-              let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-              print(jsonData)
-              let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
-              print(decoded)
-              let postData = decoded as! [String:AnyObject]
-              print(postData)
-              let token = (parent as! InvNavViewController).token
-              let get = (parent as! InvNavViewController).editGroups
-              let parser = invGr?.id
-              let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
-              print(routeApi)
-              HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
-                if(error != nil){
-                  //Mostrar error y regresar al menù principal
-                  print(error)
-                  alert.title = self.errorTitle
-                  alert.message = self.errorMessage
-                  self.present(alert,animated: true, completion:nil)
+            let uiAlert = UIAlertController(title: "Aviso", message: "¿Desea guardar los cambios?", preferredStyle: UIAlertControllerStyle.alert)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                //Gruadar en servidor
+                let json = NSMutableDictionary()
+                json.setValue(self.invGr?.id, forKey: "id")
+                json.setValue(self.nameInvGroup.text, forKey: "nombre")
+                json.setValue(self.descriptionInvGroup.text , forKey: "descripcion")
+                do{
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                    print(jsonData)
+                    let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                    print(decoded)
+                    let postData = decoded as! [String:AnyObject]
+                    print(postData)
+                    let token = (self.parent as! InvNavViewController).token
+                    let get = (self.parent as! InvNavViewController).editGroups
+                    let parser = self.invGr?.id
+                    let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
+                    print(routeApi)
+                    HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
+                        if(error != nil){
+                            //Mostrar error y regresar al menù principal
+                            print(error)
+                            alert.title = self.errorTitle
+                            alert.message = self.errorMessage
+                            self.present(alert,animated: true, completion:nil)
+                        }
+                        else {
+                            //obtener data
+                            alert.title = self.successTitle
+                            alert.message = self.successMessage
+                            self.present(alert,animated: true, completion:nil)
+                            self.invGr?.name = self.nameInvGroup.text
+                            self.invGr?.description = self.descriptionInvGroup.text
+                            ((self.parent as! InvNavViewController).invGr) = self.invGr
+                        }
+                        
+                    })
                 }
-                else {
-                  //obtener data
-                  alert.title = self.successTitle
-                  alert.message = self.successMessage
-                  self.present(alert,animated: true, completion:nil)
-                  self.invGr?.name = self.nameInvGroup.text
-                  self.invGr?.description = self.descriptionInvGroup.text
-                  ((self.parent as! InvNavViewController).invGr) = self.invGr
+                catch let err as NSError{
+                    print("JSON OBJECT ERROR: \(err)")
                 }
                 
-              })
-            }
-            catch let err as NSError{
-                print("JSON OBJECT ERROR: \(err)")
-            }
-          
+                print("Click of default button")
+            }))
+            uiAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(uiAlert, animated: true, completion: nil)
         }
-        
+        }
         
         
     }
@@ -176,6 +188,7 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let id = (parent as! InvNavViewController).id
         //inicializa campos a editar
         invGr = (parent as! InvNavViewController).invGr
         nameInvGroup.text = invGr?.name?.uppercased()
@@ -187,11 +200,12 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         //profiles permitidos a editar
         let profilePermited = (parent as! InvNavViewController).profilePermited
         let isConnected = AskConectivity.isInternetAvailable()
-        if( profilePermited.index( of: profile) == nil || isConnected == false ){
+        invGroupSaveButton.isEnabled = false
+        if(profilePermited.index( of: profile) != nil || isConnected != false || invGr?.idLeader == id){
             //si no se encuentra el perfil permitido
-            //ocultar boton de editar
-            invGroupSaveButton.isEnabled = false
+            invGroupSaveButton.isEnabled = true
         }
+
         self.descriptionInvGroup.delegate = self
         self.nameInvGroup.delegate = self
         self.specialityInvGroup.delegate = self

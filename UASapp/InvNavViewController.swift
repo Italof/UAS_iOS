@@ -47,7 +47,7 @@ class InvNavViewController: UINavigationController {
     var getInvestigators: String = "getAllInvestigators"
     var editInvestigators: String = "investigators"
     //obtener y editar entregables
-    var getDerivables: String = ""
+    var getDerivables: String = "deriverables"
     var editDerivables: String = "deriverable"
 
 

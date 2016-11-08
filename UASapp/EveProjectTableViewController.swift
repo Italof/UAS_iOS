@@ -84,10 +84,19 @@ class EveProjectTableViewController: UITableViewController {
         print(invPrEv.name!)
         cell.textLabel?.text = invPrEv.name
         let dateFormater = DateFormatter()
+        let dateFormaterTime = DateFormatter()
         dateFormater.dateFormat = "yyyy-MM-dd"
         let date = dateFormater.date(from: (invPrEv.date)!)
         dateFormater.dateFormat = "dd/MM/yyyy"
-        cell.detailTextLabel?.text = dateFormater.string(from: date!)
+        dateFormaterTime.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let time = dateFormaterTime.date(from: invPrEv.time!)
+        dateFormaterTime.dateFormat = "HH:mm"
+        if(time != nil) {
+            cell.detailTextLabel?.text = dateFormater.string(from: date!) + " " + dateFormaterTime.string(from: time!)
+        }
+        else{
+            cell.detailTextLabel?.text = " "
+        }
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

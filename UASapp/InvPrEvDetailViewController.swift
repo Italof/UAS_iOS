@@ -56,19 +56,22 @@ class InvPrEvDetailViewController: UIViewController {
         timeInvProEvent.text = dateFormater.string(from: time!)
         placeInvProEvent.text = invPrEv?.place
         let image = invPrEv?.image.unsafelyUnwrapped
-      ///cambiar
-        if (invPrEv?.image != nil || image != "")
-        {
-           let route = "http://52.89.227.55/" + (invPrEv?.image)!
-           DownloadHelper.loadFileAsync(route: route, completion:{(path, error) in
-              let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
-              if isFileFound == true {
-                 let url = URL(fileURLWithPath: path!)
-                 let imageData = NSData(contentsOf: url)
-                 self.imgInvProEvent.image = UIImage(data: imageData as! Data)
-              }
-           })
+        ///cambiar
+        if (image != ""){
+            if (invPrEv?.image != nil)
+            {
+                let route = "http://52.89.227.55/" + (invPrEv?.image)!
+                DownloadHelper.loadFileAsync(route: route, completion:{(path, error) in
+                    let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
+                    if isFileFound == true {
+                        let url = URL(fileURLWithPath: path!)
+                        let imageData = NSData(contentsOf: url)
+                        self.imgInvProEvent.image = UIImage(data: imageData as! Data)
+                    }
+                })
+            }
         }
+        
 
       
         //inicializa botones -- PERMISOS

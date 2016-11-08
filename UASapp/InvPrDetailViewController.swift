@@ -46,6 +46,7 @@ class InvPrDetailViewController: UIViewController {
     //profile user
     let profile = (parent as! InvNavViewController).profile
     //profiles permitidos a editar
+    
     let profilePermited = (parent as! InvNavViewController).profilePermited
     let isConnected = AskConectivity.isInternetAvailable()
     invProjectEditButton.isEnabled = false
