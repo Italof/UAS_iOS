@@ -42,24 +42,16 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         print("token = " + token)
         HTTPHelper.get(route: "getTutorInfo/" + idUser + "?token=" + token, authenticated: true, completion:{ (error,data) in
             
-            
             if(error == nil){
                 //obtener data
-                
-                
+                self.botonNuevaCitaM.isHidden = false
             }
             else {
                 print(error)
-                
                 //Se oculta el boton para realizar citas
                 self.botonNuevaCitaM.isHidden = true
-                
-          
-                
             }
         })
-
-        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -110,11 +102,17 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("Id de cita escogida")
+        
         print(indexPath.row)
+        
+        /*
         let citEsc = (citS?[indexPath.row])! as cita
         elegido = indexPath.row
         
         ((self.parent as! NavigationControllerC).citEsc) = citEsc
+        */
     }
     
 

@@ -28,6 +28,18 @@ class ViewControllerTutorVisualize: UIViewController {
     @IBOutlet weak var horaMi: UILabel!
     @IBOutlet weak var horaJ: UILabel!
     @IBOutlet weak var horaV: UILabel!
+    ////////
+    @IBOutlet weak var labelCodigo: UILabel!
+    @IBOutlet weak var labelNombresyAp: UILabel!
+    @IBOutlet weak var labelCorreo: UILabel!
+    @IBOutlet weak var labelTelefono: UILabel!
+    @IBOutlet weak var labelOficina: UILabel!
+    @IBOutlet weak var labelAnexo: UILabel!
+    @IBOutlet weak var labelHorario: UILabel!
+    
+    
+    
+    
     
     @IBOutlet weak var botonNuevaCita: UIButton!
     
@@ -250,6 +262,22 @@ class ViewControllerTutorVisualize: UIViewController {
                 self.tutorC = tutorX
                 if (self.tutorC != nil){
                     
+                    
+                    
+                    self.labelCodigo.isHidden = false
+                    self.labelNombresyAp.isHidden = false
+                    self.labelCorreo.isHidden = false
+                    self.labelTelefono.isHidden = false
+                    self.labelOficina.isHidden = false
+                    self.labelAnexo.isHidden = false
+                    self.labelHorario.isHidden = false
+                    
+                    self.horaL.isHidden = false
+                    self.horaMa.isHidden = false
+                    self.horaMi.isHidden = false
+                    self.horaJ.isHidden = false
+                    self.horaV.isHidden = false
+                    
                     self.tutorCode.text=self.tutorC?.codigo
                     self.tutorName.text=self.tutorC?.nombre
                     self.tutorEmail.text=self.tutorC?.correo
@@ -267,13 +295,6 @@ class ViewControllerTutorVisualize: UIViewController {
                     
                 }
 
-                
-                
-                //((self.parent as! NavigationControllerC).tutorOb) = tutorO
-                
-                
-                
-                
             }
             else {
                 
@@ -281,6 +302,32 @@ class ViewControllerTutorVisualize: UIViewController {
                 
                 //Se oculta el boton para realizar citas
                 self.botonNuevaCita.isHidden = true
+                
+                /*
+                self.tutorCode.isHidden = true
+                self.tutorName.isHidden = true
+                self.tutorEmail.isHidden = true
+                self.tutorPhoneNumber.isHidden = true
+                self.tutorOffice.isHidden = true
+                self.tutorAnexo.isHidden = true
+                */
+                
+                self.labelCodigo.isHidden = true
+                self.labelNombresyAp.isHidden = true
+                self.labelCorreo.isHidden = true
+                self.labelTelefono.isHidden = true
+                self.labelOficina.isHidden = true
+                self.labelAnexo.isHidden = true
+                self.labelHorario.isHidden = true
+                
+                self.horaL.isHidden = true
+                self.horaMa.isHidden = true
+                self.horaMi.isHidden = true
+                self.horaJ.isHidden = true
+                self.horaV.isHidden = true
+                
+                
+                
                 
                 //Se envia el mensaje de error
                 let alert : UIAlertController = UIAlertController.init(title: "Sin tutor asignado", message: "Usted no cuenta con un tutor asignado", preferredStyle: .alert)
