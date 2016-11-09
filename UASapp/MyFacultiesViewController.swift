@@ -26,10 +26,7 @@ class MyFacultiesViewController: UIViewController, UITableViewDataSource, UITabl
             print("error de conexion")
         }
         
-        //let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
-        //let idUser = String.init(parser)
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
-        //print("ID user = " + idUser)
         print("token = " + token)
         HTTPHelper.get(route: "faculties" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
@@ -44,7 +41,7 @@ class MyFacultiesViewController: UIViewController, UITableViewDataSource, UITabl
                     let name = fa["Nombre"] as! String
                     let description = fa["Descripcion"] as! String
                     let coord: String?
-                    if let coordData = fa["coordinator"] as? [String:AnyObject]{
+                    if let coordData = fa["teacher"] as? [String:AnyObject]{
                         
                         let coordName = coordData["Nombre"] as! String
                         let coordApePat = coordData["ApellidoPaterno"] as! String
