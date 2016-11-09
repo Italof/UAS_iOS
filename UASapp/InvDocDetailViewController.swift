@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InvDocDetailViewController: UIViewController {
+class InvDocDetailViewController: UIViewController, UIDocumentInteractionControllerDelegate  {
     var invDer: InvestigationDerivable?
     var invDoc: InvestigationDocument?
     @IBOutlet weak var nameInvDoc: UILabel!
@@ -16,19 +16,24 @@ class InvDocDetailViewController: UIViewController {
     @IBOutlet weak var versionInvDoc: UILabel!
     @IBOutlet weak var respInvDoc: UITextView!
     @IBOutlet weak var observationInvdoc: UITextView!
-    
+    var viewer: UIDocumentInteractionController?
+    @IBAction func downloadDocument(_ sender: AnyObject) {
+        
+        let route = "http://52.89.227.55/" + "download"
+        DownloadHelper.loadFileAsync(route: route,completion:{(path, error) in
+            let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
+            if isFileFound == true {
+                self.viewer = UIDocumentInteractionController(url: NSURL(fileURLWithPath: path!) as URL)
+                self.viewer?.delegate = self
+                self.viewer?.presentPreview(animated: true)
+            }
+        })
+    }
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController{
+        return self
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func downloadDocument(_ sender: AnyObject) {
         invDer = (parent as! InvNavViewController).invDer
         invDoc = (parent as! InvNavViewController).invDoc
         nameInvDoc.text = invDer?.name
@@ -39,8 +44,15 @@ class InvDocDetailViewController: UIViewController {
         let limitDate = dateFormat.date(from: (invDoc?.dateDeliver)!)
         dateFormat.dateFormat = "dd/MM/yyyy"
         dateDeliverInvDoc.text = dateFormat.string(from: limitDate!)
-        
+        // Do any additional setup after loading the view.
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
     
     
     /*

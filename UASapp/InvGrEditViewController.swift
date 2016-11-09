@@ -198,7 +198,7 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         let id = (parent as! InvNavViewController).id
         //inicializa campos a editar
         invGr = (parent as! InvNavViewController).invGr
-        nameInvGroup.text = invGr?.name?.uppercased()
+        nameInvGroup.text = invGr?.name
         descriptionInvGroup.text = invGr?.description
         specialityInvGroup.text = invGr?.speciality
         //ver si esta online o offline

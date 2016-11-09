@@ -29,7 +29,7 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
         let today : Date = Date.init()
         //inicializa campos a editar
         invPrEv = (parent as! InvNavViewController).invPrEv
-        nameInvPrEvent.text = invPrEv?.name?.uppercased()
+        nameInvPrEvent.text = invPrEv?.name
         let id = (parent as! InvNavViewController).id
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "yyyy-MM-dd"

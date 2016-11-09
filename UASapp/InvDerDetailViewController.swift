@@ -8,8 +8,9 @@
 
 import UIKit
 
-class InvDerDetailViewController: UIViewController {
+class InvDerDetailViewController: UIViewController, UIDocumentInteractionControllerDelegate {
     var invDer: InvestigationDerivable?
+    
     @IBOutlet weak var nameInvDer: UILabel!
     @IBOutlet weak var versionInvDer: UILabel!
     @IBOutlet weak var respInvDer: UITextView!
@@ -18,16 +19,27 @@ class InvDerDetailViewController: UIViewController {
     @IBOutlet weak var percentageInvDer: UILabel!
     
     @IBOutlet weak var observationInvDoc: UITextView!
-    
+    var viewer: UIDocumentInteractionController?
     @IBAction func downloadDocument(_ sender: AnyObject) {
-       
+        
+        let route = "http://52.89.227.55/" + "download"
+        DownloadHelper.loadFileAsync(route: route,completion:{(path, error) in
+            let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
+            if isFileFound == true {
+                self.viewer = UIDocumentInteractionController(url: NSURL(fileURLWithPath: path!) as URL)
+                self.viewer?.delegate = self
+                self.viewer?.presentPreview(animated: true)
+            }
+        })
     }
-    
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController{
+        return self
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {

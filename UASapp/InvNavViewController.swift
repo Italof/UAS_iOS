@@ -64,7 +64,21 @@ class InvNavViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = "Atrás";
+        //self.navigationController?.navigationBar.topItem?.title = "Atrás";
+        /*
+        UserDefaults.standard.set(nil, forKey: "GROUPS")
+        jsonGroups = UserDefaults.standard.object(forKey: "GROUPS")
+        UserDefaults.standard.set(nil, forKey: "PROJECTS")
+        jsonProjects = UserDefaults.standard.object(forKey: "PROJECTS")
+        UserDefaults.standard.set(nil, forKey: "EVENTS")
+        jsonEvents = UserDefaults.standard.object(forKey: "EVENTS")
+        UserDefaults.standard.set(nil, forKey: "INVESTIGATORS")
+        jsonInves =  UserDefaults.standard.object(forKey: "INVESTIGATORS")
+        UserDefaults.standard.set(nil, forKey: "DERIVABLES")
+        jsonDer = UserDefaults.standard.object(forKey: "DERIVABLES")
+        UserDefaults.standard.set(nil, forKey: "DOCUMENTS")
+        jsonDoc = UserDefaults.standard.object(forKey: "DOCUMENTS")
+        */
         // Do any additional setup after loading the view.
     }
 
