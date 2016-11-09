@@ -75,6 +75,10 @@
 		9623F25D1DC3A2E900EA7B6D /* CustomOutcomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25C1DC3A2E900EA7B6D /* CustomOutcomeCell.swift */; };
 		9623F25F1DC3A58400EA7B6D /* OutcomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25E1DC3A58400EA7B6D /* OutcomeDetailViewController.swift */; };
 		9623F2611DC3AB0300EA7B6D /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F2601DC3AB0300EA7B6D /* CourseViewController.swift */; };
+		96332A021DD26F8F00D4CB08 /* Aspect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96332A011DD26F8F00D4CB08 /* Aspect.swift */; };
+		96332A041DD275E800D4CB08 /* AspectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96332A031DD275E800D4CB08 /* AspectsTableViewController.swift */; };
+		96332A061DD2760800D4CB08 /* CustomAspectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96332A051DD2760800D4CB08 /* CustomAspectCell.swift */; };
+		96332A081DD2762400D4CB08 /* AspectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96332A071DD2762400D4CB08 /* AspectDetailViewController.swift */; };
 		965F44B91DC270C300D7139A /* CustomGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F44B81DC270C300D7139A /* CustomGoalCell.swift */; };
 		966EEACC1DCCE35D00EBC56B /* EducationalGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966EEACB1DCCE35D00EBC56B /* EducationalGoal.swift */; };
 		966EEACE1DCCF04100EBC56B /* StudentOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966EEACD1DCCF04100EBC56B /* StudentOutcome.swift */; };
@@ -166,6 +170,10 @@
 		9623F25C1DC3A2E900EA7B6D /* CustomOutcomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomOutcomeCell.swift; sourceTree = "<group>"; };
 		9623F25E1DC3A58400EA7B6D /* OutcomeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutcomeDetailViewController.swift; sourceTree = "<group>"; };
 		9623F2601DC3AB0300EA7B6D /* CourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
+		96332A011DD26F8F00D4CB08 /* Aspect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aspect.swift; sourceTree = "<group>"; };
+		96332A031DD275E800D4CB08 /* AspectsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AspectsTableViewController.swift; sourceTree = "<group>"; };
+		96332A051DD2760800D4CB08 /* CustomAspectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAspectCell.swift; sourceTree = "<group>"; };
+		96332A071DD2762400D4CB08 /* AspectDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AspectDetailViewController.swift; sourceTree = "<group>"; };
 		965F44B81DC270C300D7139A /* CustomGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGoalCell.swift; sourceTree = "<group>"; };
 		966EEACB1DCCE35D00EBC56B /* EducationalGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationalGoal.swift; sourceTree = "<group>"; };
 		966EEACD1DCCF04100EBC56B /* StudentOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentOutcome.swift; sourceTree = "<group>"; };
@@ -237,6 +245,7 @@
 				1247102D1DCABD63000F9F1D /* Period.swift */,
 				121BE3B31DCBB17300B68A3C /* Faculty.swift */,
 				967045C61DD1062600DE2E8E /* ImprovementPlan.swift */,
+				96332A011DD26F8F00D4CB08 /* Aspect.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -271,6 +280,9 @@
 				967045C41DD1053700DE2E8E /* ImprovementPlanTableViewController.swift */,
 				463056571DD166A50066C7DB /* CustomImpPlanCell.swift */,
 				463056591DD169D50066C7DB /* PlanDetailViewController.swift */,
+				96332A031DD275E800D4CB08 /* AspectsTableViewController.swift */,
+				96332A051DD2760800D4CB08 /* CustomAspectCell.swift */,
+				96332A071DD2762400D4CB08 /* AspectDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -527,14 +539,17 @@
 				12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */,
 				25691CA51DCB4A03005A632D /* DetalleGruposViewController.swift in Sources */,
 				25A968291DCB12D700B03060 /* InicioPspViewController.swift in Sources */,
+				96332A021DD26F8F00D4CB08 /* Aspect.swift in Sources */,
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
 				124DD59C1DBBCB0B004D95FA /* InvGrDetailViewController.swift in Sources */,
+				96332A081DD2762400D4CB08 /* AspectDetailViewController.swift in Sources */,
 				1214CED01DBC12A50042A3F2 /* InvPrEditViewController.swift in Sources */,
 				1268F2751DBFF6C300E1CC22 /* InvestigationProjectEvent.swift in Sources */,
 				12DF4D211DCADD8700E59AD0 /* InvestigatorEditViewController.swift in Sources */,
 				1214CECC1DBC0DE80042A3F2 /* InvProjectTableViewController.swift in Sources */,
 				1268F2771DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift in Sources */,
 				1214CEC81DBC05A90042A3F2 /* InvGrEditViewController.swift in Sources */,
+				96332A041DD275E800D4CB08 /* AspectsTableViewController.swift in Sources */,
 				124710301DCAD039000F9F1D /* UASNavViewController.swift in Sources */,
 				1247102E1DCABD63000F9F1D /* Period.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
@@ -578,6 +593,7 @@
 				121BE3B21DCBB03500B68A3C /* CustomMyFacultiesCell.swift in Sources */,
 				9623F25D1DC3A2E900EA7B6D /* CustomOutcomeCell.swift in Sources */,
 				9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */,
+				96332A061DD2760800D4CB08 /* CustomAspectCell.swift in Sources */,
 				124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */,
 				1214CECA1DBC0C600042A3F2 /* InvestigationProject.swift in Sources */,
 				125A62031DC2BE50008BD312 /* AskConectivity.swift in Sources */,
