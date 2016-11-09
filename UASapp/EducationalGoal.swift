@@ -29,7 +29,7 @@ class EducationalGoal {
         case 1:
             self.status = "Activo"
         default:
-            self.status = "Activo"
+            self.status = "Inactivo"
         }
     }
 }

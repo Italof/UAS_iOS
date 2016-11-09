@@ -84,6 +84,8 @@
 		966EEACE1DCCF04100EBC56B /* StudentOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966EEACD1DCCF04100EBC56B /* StudentOutcome.swift */; };
 		967045C51DD1053700DE2E8E /* ImprovementPlanTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967045C41DD1053700DE2E8E /* ImprovementPlanTableViewController.swift */; };
 		967045C71DD1062600DE2E8E /* ImprovementPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967045C61DD1062600DE2E8E /* ImprovementPlan.swift */; };
+		969D91F11DD37F0A00D0456B /* Criterion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969D91F01DD37F0A00D0456B /* Criterion.swift */; };
+		969D91F31DD389FA00D0456B /* CustomCriterionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969D91F21DD389FA00D0456B /* CustomCriterionCell.swift */; };
 		96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +181,8 @@
 		966EEACD1DCCF04100EBC56B /* StudentOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentOutcome.swift; sourceTree = "<group>"; };
 		967045C41DD1053700DE2E8E /* ImprovementPlanTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImprovementPlanTableViewController.swift; sourceTree = "<group>"; };
 		967045C61DD1062600DE2E8E /* ImprovementPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImprovementPlan.swift; sourceTree = "<group>"; };
+		969D91F01DD37F0A00D0456B /* Criterion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Criterion.swift; sourceTree = "<group>"; };
+		969D91F21DD389FA00D0456B /* CustomCriterionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCriterionCell.swift; sourceTree = "<group>"; };
 		96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationalGoalsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,6 +250,7 @@
 				121BE3B31DCBB17300B68A3C /* Faculty.swift */,
 				967045C61DD1062600DE2E8E /* ImprovementPlan.swift */,
 				96332A011DD26F8F00D4CB08 /* Aspect.swift */,
+				969D91F01DD37F0A00D0456B /* Criterion.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				96332A031DD275E800D4CB08 /* AspectsTableViewController.swift */,
 				96332A051DD2760800D4CB08 /* CustomAspectCell.swift */,
 				96332A071DD2762400D4CB08 /* AspectDetailViewController.swift */,
+				969D91F21DD389FA00D0456B /* CustomCriterionCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -595,6 +601,7 @@
 				9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */,
 				96332A061DD2760800D4CB08 /* CustomAspectCell.swift in Sources */,
 				124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */,
+				969D91F11DD37F0A00D0456B /* Criterion.swift in Sources */,
 				1214CECA1DBC0C600042A3F2 /* InvestigationProject.swift in Sources */,
 				125A62031DC2BE50008BD312 /* AskConectivity.swift in Sources */,
 				1207C6501DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift in Sources */,
@@ -605,6 +612,7 @@
 				121C14031DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift in Sources */,
 				12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */,
 				126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */,
+				969D91F31DD389FA00D0456B /* CustomCriterionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
