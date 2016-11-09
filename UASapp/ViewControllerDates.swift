@@ -14,6 +14,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet var botonAtenderSinCita: UIButton!
     
+    @IBOutlet weak var botonNuevaCitaM: UIButton!
     
     var citS: [cita]?
     
@@ -33,27 +34,30 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         if ( rol == "A"){
             botonAtenderSinCita.isHidden = true
         }
-        /*
-        citS = ((self.parent as! NavigationControllerC).citasOb)
         
-        if ( citS != nil){
-            for c in citS!{
-                datesA.append(c.fechaI!)
-                times.append(c.horaI!)
-                themes.append(c.tema!)
-                students.append(c.alumno!)
-                statusA.append(c.estado!)
+        let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
+        let idUser = String.init(parser)
+        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        print("ID user = " + idUser)
+        print("token = " + token)
+        HTTPHelper.get(route: "getTutorInfo/" + idUser + "?token=" + token, authenticated: true, completion:{ (error,data) in
+            
+            
+            if(error == nil){
+                //obtener data
+                
+                
             }
-        } else {
-            //Mostrar error y regresar al menù principal
-            let alert : UIAlertController = UIAlertController.init(title: "No tiene citas", message: "Usted no ha realizado citas", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(action)
-            self.present(alert,animated: true, completion:nil)
-        }
-        
-        self.Dates.reloadData()
- */
+            else {
+                print(error)
+                
+                //Se oculta el boton para realizar citas
+                self.botonNuevaCitaM.isHidden = true
+                
+          
+                
+            }
+        })
 
         
         // Do any additional setup after loading the view.

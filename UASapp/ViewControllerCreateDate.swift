@@ -30,8 +30,8 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateR.minimumDate = Date()
-        timeR.minimumDate = Date()
+        //dateR.minimumDate = Date()
+        //timeR.minimumDate = Date()
         
         let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
         
@@ -195,13 +195,14 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                                    handler: nil)
         errorAlert.addAction(action)
         
-        
-        
         let json = NSMutableDictionary()
         
         
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "dd/MM/yyyy" //"yyyy-MM-dd HH:mm:ss"
+        
+        
+ 
         
         
         let  fI = dateFormater.string(from: dateR.date)
@@ -212,13 +213,27 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         
         let hI = dateFormater.string(from: timeR.date)
         
-        print("Fecha y hora registrada")
-        print(fI)
-        print(hI)
+        //CONCATENO EL DATE PICKER Y EL TIME PICKER PARA VERIFICAR QUE ES UNA FECHA Y HORA VALIDA
+        
+        let fechaYhoraS: String = fI + " " + hI + ":" + "00"
+        dateFormater.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        let fechayhoraD: Date = dateFormater.date(from: fechaYhoraS)!
         
         
-        json.setValue(fI, forKey: "fecha")  //Seteo la fecha
-        json.setValue(hI, forKey: "hora")   //Seteo la hora
+        if ( fechayhoraD > Date.init() ) {
+            
+            print("Valido")
+            
+            json.setValue(fI, forKey: "fecha")  //Seteo la fecha
+            json.setValue(hI, forKey: "hora")   //Seteo la hora
+        } else {
+            print("No valido")
+            errorAlert.message = "Fecha y hora seleccionadas no son válidas"
+            self.present(errorAlert, animated: true, completion: nil)
+            return
+            
+        }
+        
         
         let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
         let idUser = String.init(parser)
@@ -251,9 +266,25 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             
             HTTPHelper.post(route: "registerStudentAppointment?token=" + token, authenticated: false, body: postData, completion: { (error, responseData) in
                 if error == nil {
-                    errorAlert.title = "Registro exitoso"
-                    errorAlert.message = "Se registró exitosamente la cita"
-                    self.present(errorAlert, animated: true, completion: nil)
+                    
+                    
+                    let alertSuccess : UIAlertController = UIAlertController.init(title: "Registro de cita exitoso", message: "Se ha registrado la cita exitosamente", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                        let navController = self.navigationController
+                        if navController != nil {
+                            navController?.popViewController(animated: true)
+                        }
+                        print(navController)
+                    })
+                    alertSuccess.addAction(action)
+                    self.present(alertSuccess,animated: false, completion:nil)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 } else {
                     print("REQUESTED RESPONSE: \(responseData)")
                 }

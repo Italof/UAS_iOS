@@ -40,6 +40,8 @@ class ViewControllerTutoriaMenu: UIViewController {
         ruta: "getTutorInfo/(idUsuario)?token=(token)"
         */
         
+        
+        /*
         let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
         let idUser = String.init(parser)
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
@@ -215,6 +217,8 @@ class ViewControllerTutoriaMenu: UIViewController {
                 
             }
     })
+ 
+ */
     
     }
     
