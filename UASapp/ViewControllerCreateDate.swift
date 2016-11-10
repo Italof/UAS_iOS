@@ -273,6 +273,9 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                         let navController = self.navigationController
                         if navController != nil {
                             navController?.popViewController(animated: true)
+                            
+                            //Actualizar citas
+                            
                         }
                         print(navController)
                     })

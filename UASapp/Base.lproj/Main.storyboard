@@ -287,6 +287,7 @@
                                 <state key="normal" title="Citas"/>
                                 <connections>
                                     <action selector="verCitas:" destination="bvi-vB-ryl" eventType="touchUpInside" id="Uef-z0-yUq"/>
+                                    <segue destination="cvr-jI-uTq" kind="show" id="Zse-SL-zpT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aee-C4-1VO">
@@ -312,6 +313,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Tutoria" id="AS3-W4-PBo"/>
                     <connections>
+                        <outlet property="botonAlumnos" destination="aee-C4-1VO" id="bNh-we-2EA"/>
                         <outlet property="botonCitas" destination="2Se-fY-Een" id="6Iy-WI-A6r"/>
                         <outlet property="botonMiTutor" destination="tmD-Sc-lbT" id="ckD-xb-25A"/>
                         <segue destination="cvr-jI-uTq" kind="show" identifier="citasSegue" id="6b1-Iw-EG0"/>
@@ -1011,7 +1013,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="P0K-X1-OOa">
-                                <frame key="frameInset" minX="39" minY="50" height="109" maxX="38"/>
+                                <frame key="frameInset" minX="38" minY="50" height="109" maxX="38"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <date key="date" timeIntervalSinceReferenceDate="498866066.85996002">
                                     <!--2016-10-22 21:54:26 +0000-->
@@ -1026,7 +1028,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="10" translatesAutoresizingMaskIntoConstraints="NO" id="6WQ-77-hJK">
-                                <frame key="frameInset" minX="71" minY="174" height="85" maxX="70"/>
+                                <frame key="frameInset" minX="70" minY="174" height="85" maxX="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <date key="date" timeIntervalSinceReferenceDate="498867480.85413802">
                                     <!--2016-10-22 22:18:00 +0000-->
@@ -1034,11 +1036,11 @@
                                 <locale key="locale" localeIdentifier="es_PE"/>
                             </datePicker>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9dY-xt-fIZ">
-                                <frame key="frameInset" minX="62" minY="289" height="63" maxX="65"/>
+                                <frame key="frameInset" minX="62" minY="289" height="63" maxX="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XjQ-4C-Bmx">
-                                <frame key="frameInset" minY="381" height="69"/>
+                                <frame key="frameInset" minX="-1" minY="381" height="69" maxX="1"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alumno:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ne9-Is-jMO">
@@ -2981,8 +2983,9 @@
         <image name="home-logo" width="318" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="6b1-Iw-EG0"/>
         <segue reference="hGk-Mp-pAd"/>
-        <segue reference="KOP-oE-R5x"/>
         <segue reference="v5K-VP-MCv"/>
+        <segue reference="KOP-oE-R5x"/>
     </inferredMetricsTieBreakers>
 </document>

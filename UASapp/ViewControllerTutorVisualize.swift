@@ -51,53 +51,6 @@ class ViewControllerTutorVisualize: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        //Estos labels serán alimentados por la info del tutor del alumno
-        
-        
-
-        
-        
-        //tutorC = consultarMitutor()
-        
-        
-        
-        ///////////////////////////////////////////////////////////////
-       
-        //tutorC = ((self.parent as! NavigationControllerC).tutorOb)
-        
-        tutorCode.text=tutorC?.codigo
-        tutorName.text=tutorC?.nombre
-        tutorEmail.text=tutorC?.correo
-        tutorPhoneNumber.text=tutorC?.telefono
-        tutorOffice.text=tutorC?.oficina
-        tutorAnexo.text=tutorC?.anexo
-        
-        horaL.text=tutorC?.horarioL
-        horaMa.text=tutorC?.horarioMa
-        horaMi.text=tutorC?.horarioMi
-        horaJ.text=tutorC?.horarioJ
-        horaV.text=tutorC?.horarioV
-        
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        //tutorC = ((self.parent as! NavigationControllerC).tutorOb)
-        
-        tutorCode.text=tutorC?.codigo
-        tutorName.text=tutorC?.nombre
-        tutorEmail.text=tutorC?.correo
-        tutorPhoneNumber.text=tutorC?.telefono
-        tutorOffice.text=tutorC?.oficina
-        tutorAnexo.text=tutorC?.anexo
-        
-        horaL.text=tutorC?.horarioL
-        horaMa.text=tutorC?.horarioMa
-        horaMi.text=tutorC?.horarioMi
-        horaJ.text=tutorC?.horarioJ
-        horaV.text=tutorC?.horarioV
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
         let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
         let idUser = String.init(parser)
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
@@ -197,7 +150,7 @@ class ViewControllerTutorVisualize: UIViewController {
                 var horarioJ: String! = "Jueves: "
                 var horarioV: String! = "Viernes: "
                 
-                if ((tj["scheduleInfo"]) != nil){
+                if ((tj["scheduleInfo"])?.count != 0){
                     print(tj["scheduleInfo"])
                     horario = tj["scheduleInfo"] as! [AnyObject]
                     
@@ -250,6 +203,14 @@ class ViewControllerTutorVisualize: UIViewController {
                     horarioMi = horarioMi + "-"
                     horarioJ = horarioJ + "-"
                     horarioV = horarioV + "-"
+                    
+                    self.horaL.isHidden = true
+                    self.horaMa.isHidden = true
+                    self.horaMi.isHidden = true
+                    self.horaJ.isHidden = true
+                    self.horaV.isHidden = true
+                    
+                    self.botonNuevaCita.isHidden = true
                 }
                 
                 
@@ -260,57 +221,57 @@ class ViewControllerTutorVisualize: UIViewController {
                 print("tutor consultado")
                 print(tutorX.nombre! + " " + tutorX.apellidoPaterno! + " " + tutorX.apellidoMaterno!)
                 self.tutorC = tutorX
-                if (self.tutorC != nil){
+                
                     
                     
                     
-                    self.labelCodigo.isHidden = false
-                    self.labelNombresyAp.isHidden = false
-                    self.labelCorreo.isHidden = false
-                    self.labelTelefono.isHidden = false
-                    self.labelOficina.isHidden = false
-                    self.labelAnexo.isHidden = false
-                    self.labelHorario.isHidden = false
-                    
-                    self.horaL.isHidden = false
-                    self.horaMa.isHidden = false
-                    self.horaMi.isHidden = false
-                    self.horaJ.isHidden = false
-                    self.horaV.isHidden = false
-                    
-                    self.tutorCode.text=self.tutorC?.codigo
-                    self.tutorName.text=self.tutorC?.nombre
-                    self.tutorEmail.text=self.tutorC?.correo
-                    self.tutorPhoneNumber.text=self.tutorC?.telefono
-                    self.tutorOffice.text=self.tutorC?.oficina
-                    self.tutorAnexo.text=self.tutorC?.anexo
-                    
-                    self.horaL.text=self.tutorC?.horarioL
-                    self.horaMa.text=self.tutorC?.horarioMa
-                    self.horaMi.text=self.tutorC?.horarioMi
-                    self.horaJ.text=self.tutorC?.horarioJ
-                    self.horaV.text=self.tutorC?.horarioV
-                    
-                } else {
-                    
-                }
-
+                self.labelCodigo.isHidden = false
+                self.labelNombresyAp.isHidden = false
+                self.labelCorreo.isHidden = false
+                self.labelTelefono.isHidden = false
+                self.labelOficina.isHidden = false
+                self.labelAnexo.isHidden = false
+                self.labelHorario.isHidden = false
+                
+                /*
+                 self.horaL.isHidden = false
+                 self.horaMa.isHidden = false
+                 self.horaMi.isHidden = false
+                 self.horaJ.isHidden = false
+                 self.horaV.isHidden = false
+                 */
+                self.tutorCode.text=self.tutorC?.codigo
+                self.tutorName.text=self.tutorC?.nombre
+                self.tutorEmail.text=self.tutorC?.correo
+                self.tutorPhoneNumber.text=self.tutorC?.telefono
+                self.tutorOffice.text=self.tutorC?.oficina
+                self.tutorAnexo.text=self.tutorC?.anexo
+                
+                self.horaL.text=self.tutorC?.horarioL
+                self.horaMa.text=self.tutorC?.horarioMa
+                self.horaMi.text=self.tutorC?.horarioMi
+                self.horaJ.text=self.tutorC?.horarioJ
+                self.horaV.text=self.tutorC?.horarioV
+                
+                
+                
             }
             else {
                 
                 print(error)
+                self.tutorC = nil
                 
                 //Se oculta el boton para realizar citas
                 self.botonNuevaCita.isHidden = true
                 
                 /*
-                self.tutorCode.isHidden = true
-                self.tutorName.isHidden = true
-                self.tutorEmail.isHidden = true
-                self.tutorPhoneNumber.isHidden = true
-                self.tutorOffice.isHidden = true
-                self.tutorAnexo.isHidden = true
-                */
+                 self.tutorCode.isHidden = true
+                 self.tutorName.isHidden = true
+                 self.tutorEmail.isHidden = true
+                 self.tutorPhoneNumber.isHidden = true
+                 self.tutorOffice.isHidden = true
+                 self.tutorAnexo.isHidden = true
+                 */
                 
                 self.labelCodigo.isHidden = true
                 self.labelNombresyAp.isHidden = true
@@ -334,42 +295,38 @@ class ViewControllerTutorVisualize: UIViewController {
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(action)
                 self.present(alert,animated: true, completion:nil)
-                
-                
-                
-                //Mostrar error y regresar al menù principal
-                
-                /*
-                 let alert : UIAlertController = UIAlertController.init(title: "Sin tutor asignado", message: "Usted no cuenta con un tutor asignado", preferredStyle: .alert)
-                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                 alert.addAction(action)
-                 self.present(alert,animated: true, completion:nil)
-                 */
-                
+            
             }
         })
+        
+        tutorCode.text=tutorC?.codigo
+        tutorName.text=tutorC?.nombre
+        tutorEmail.text=tutorC?.correo
+        tutorPhoneNumber.text=tutorC?.telefono
+        tutorOffice.text=tutorC?.oficina
+        tutorAnexo.text=tutorC?.anexo
+        
+        horaL.text=tutorC?.horarioL
+        horaMa.text=tutorC?.horarioMa
+        horaMi.text=tutorC?.horarioMi
+        horaJ.text=tutorC?.horarioJ
+        horaV.text=tutorC?.horarioV
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
 
-        
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+
         
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
 
-    
-   
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 }
