@@ -1,26 +1,20 @@
 //
-//  UASNavViewController.swift
+//  AportesByCourseController.swift
 //  UASapp
 //
-//  Created by inf227al on 2/11/16.
+//  Created by inf227al on 9/11/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class UASNavViewController: UINavigationController {
-    
-    //Periodo de medición escogido
-    var period: Period?
-    //Curso de la especialidad escogido
-    var course: Course?
-    //Especialidad
-    var faculty: Faculty?
-    //Semestre
-    var semester: Semester?
-    
+class AportesByCourseController: UIViewController {
+
+    @IBOutlet var lblCourse: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let course = (parent as! UASNavViewController).course
+        lblCourse.text = (course?.code)! + " - " + (course?.name)!
 
         // Do any additional setup after loading the view.
     }

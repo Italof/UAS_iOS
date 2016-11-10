@@ -11,14 +11,9 @@ import UIKit
 class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var courses: [Course] = []
-    var cycles = ["2015-1","2015-2","2016-1","2016-2"]
-    
+    var pickerSelected: Int?
     var levels = ["Nivel 10", "Nivel 9", "Nivel 8","Nivel 7","Nivel 6","Nivel 5","Nivel 4","Nivel 3","Nivel 2","Nivel 1"]
-    var courses10 = ["Desarrollo de programas 2","Proyecto de tesis 2"]
-    var courses9 = ["Desarrollo de programas 1", "PEI","AFI"]
-    var courses8 = ["SW","Redes"]
     
-    @IBOutlet var CyclePicker: UIPickerView!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var LevelPicker: UIPickerView!
     
@@ -38,7 +33,8 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
         //print("ID user = " + idUser)
         print("token = " + token)
         let facultyId: Int =  UserDefaults.standard.object( forKey: "SPECIALTY") as! Int
-        HTTPHelper.get(route: "faculties/"+String(facultyId)+"/semester/1/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        let semesterId: Int = UserDefaults.standard.object(forKey: "SEMESTER") as! Int
+        HTTPHelper.get(route: "faculties/"+String(facultyId)+"/semester/"+String(semesterId)+"/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -69,20 +65,10 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if(pickerView==CyclePicker){
-            return cycles[row]
-        }
-        else{
-            return levels[row]
-        }
+        return levels[row]
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if(pickerView==CyclePicker){
-            return cycles.count
-        }
-        else{
-            return levels.count
-        }
+        return levels.count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

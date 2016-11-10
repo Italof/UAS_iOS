@@ -9,7 +9,10 @@
 import UIKit
 
 class SemesterViewController: UITableViewController {
-
+    
+    let userDefault = UserDefaults.standard
+    
+    var semesters: [Semester] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +21,38 @@ class SemesterViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        if AskConectivity.isInternetAvailable(){
+            print("conectado")
+        }
+        else{
+            print("error de conexion")
+        }
+        
+        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        let idPeriodo: Int = UserDefaults.standard.object(forKey: "PERIOD") as! Int
+        HTTPHelper.get(route: "periods/" + String(idPeriodo) + "/actual/semesters" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let period = dataUnwrapped as? [String:AnyObject]
+                let arraySemesters = period?["semesters"] as? [Any]
+                self.semesters = []
+                
+                for semester in arraySemesters!{
+                    let sm = semester as! [String:AnyObject]
+                    let id = sm["IdCicloAcademico"] as! Int
+                    let descripcion = sm["Descripcion"] as! String
+                    let semester : Semester = Semester.init(id:id, descripcion:descripcion)
+                    self.semesters.append(semester)
+                    self.do_table_refresh()
+                }
+            }
+            else {
+                //Mostrar error y regresar al men˘ principal
+                
+            }
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,13 +64,38 @@ class SemesterViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return semesters.count
+        
     }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        // Configure the cell...
+        let semester = semesters[indexPath.row] as Semester
+        cell.textLabel?.text = semester.descripcion
+        return cell
+    }
+    
+    func do_table_refresh()
+    {
+        self.tableView.reloadData()
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let semester = semesters[indexPath.row] as Semester
+        ((parent as! UASNavViewController).semester) = semester
+        userDefault.set(semester.id, forKey: "SEMESTER")
+    }
+    
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

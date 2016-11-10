@@ -9,7 +9,8 @@
 import UIKit
 
 class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
+    let userDefault = UserDefaults.standard
     
     @IBOutlet var tableView: UITableView!
     //var cycles = ["2015-1 al 2015-2", "2016-1 al 2016-2"]
@@ -80,6 +81,7 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let period = cycles[indexPath.row] as Period
         ((parent as! UASNavViewController).period) = period
+        userDefault.set(period.id, forKey: "PERIOD")
     }
 
     func do_table_refresh()

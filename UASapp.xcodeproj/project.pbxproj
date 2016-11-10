@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120565991DD3F8070059C16B /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120565981DD3F8070059C16B /* Semester.swift */; };
 		1207C64E1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207C64D1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift */; };
 		1207C6501DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1207C64F1DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift */; };
 		120B4E421DCE826200BE9D5E /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B4E411DCE826200BE9D5E /* Schedule.swift */; };
@@ -37,6 +38,7 @@
 		1268F2751DBFF6C300E1CC22 /* InvestigationProjectEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F2741DBFF6C300E1CC22 /* InvestigationProjectEvent.swift */; };
 		1268F2771DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F2761DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift */; };
 		1268F2791DC0096100E1CC22 /* InvPrEvEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F2781DC0096100E1CC22 /* InvPrEvEditViewController.swift */; };
+		126AE5D11DD418FC00D8F268 /* AportesByCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE5D01DD418FC00D8F268 /* AportesByCourseController.swift */; };
 		126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C82FD1DCA87D400168250 /* InvDerivableTableViewController.swift */; };
 		126C83031DCA87D400168250 /* InvestigationDerivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C82FE1DCA87D400168250 /* InvestigationDerivable.swift */; };
 		126C83041DCA87D400168250 /* Investigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C82FF1DCA87D400168250 /* Investigator.swift */; };
@@ -93,6 +95,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		120565981DD3F8070059C16B /* Semester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
 		1207C64D1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsolidadoMeasuringViewController.swift; sourceTree = "<group>"; };
 		1207C64F1DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsolidadoCoursesViewController.swift; sourceTree = "<group>"; };
 		120B4E411DCE826200BE9D5E /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 		1268F2741DBFF6C300E1CC22 /* InvestigationProjectEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationProjectEvent.swift; sourceTree = "<group>"; };
 		1268F2761DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvPrEvDetailViewController.swift; sourceTree = "<group>"; };
 		1268F2781DC0096100E1CC22 /* InvPrEvEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvPrEvEditViewController.swift; sourceTree = "<group>"; };
+		126AE5D01DD418FC00D8F268 /* AportesByCourseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AportesByCourseController.swift; sourceTree = "<group>"; };
 		126C82FD1DCA87D400168250 /* InvDerivableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDerivableTableViewController.swift; sourceTree = "<group>"; };
 		126C82FE1DCA87D400168250 /* InvestigationDerivable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationDerivable.swift; sourceTree = "<group>"; };
 		126C82FF1DCA87D400168250 /* Investigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Investigator.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 				1247102D1DCABD63000F9F1D /* Period.swift */,
 				121BE3B31DCBB17300B68A3C /* Faculty.swift */,
 				120B4E411DCE826200BE9D5E /* Schedule.swift */,
+				120565981DD3F8070059C16B /* Semester.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				1207C64F1DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift */,
 				120B4E431DCE8E2900BE9D5E /* InstrumentsMeasuringViewController.swift */,
 				125DF5841DD2A25300647C82 /* SemesterViewController.swift */,
+				126AE5D01DD418FC00D8F268 /* AportesByCourseController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -563,11 +569,13 @@
 				121BE3B01DCBAFA200B68A3C /* MyFacultiesViewController.swift in Sources */,
 				126C83031DCA87D400168250 /* InvestigationDerivable.swift in Sources */,
 				9623F2611DC3AB0300EA7B6D /* CourseViewController.swift in Sources */,
+				120565991DD3F8070059C16B /* Semester.swift in Sources */,
 				124710321DCAD809000F9F1D /* Course.swift in Sources */,
 				120B4E441DCE8E2900BE9D5E /* InstrumentsMeasuringViewController.swift in Sources */,
 				12BCE5291DC2B2710052E607 /* CustomCourseCell.swift in Sources */,
 				126C83041DCA87D400168250 /* Investigator.swift in Sources */,
 				1231D7851DBAE4BF004E35FD /* CoursesBySpecialtyViewController.swift in Sources */,
+				126AE5D11DD418FC00D8F268 /* AportesByCourseController.swift in Sources */,
 				966EEACC1DCCE35D00EBC56B /* EducationalGoal.swift in Sources */,
 				12BF4DB71DC2EAE5005E7D5A /* CustomCriterioCell.swift in Sources */,
 				9623F25F1DC3A58400EA7B6D /* OutcomeDetailViewController.swift in Sources */,
