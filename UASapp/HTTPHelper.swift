@@ -40,9 +40,11 @@ class HTTPHelper {
         let httpResponse = response as! HTTPURLResponse
         if httpResponse.statusCode == 200 {
           do {
+            
             print("RESPONSE DATA: \(responseData)")
             let jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: [])
             print(jsonResponse)
+
             /*
             if let dictionary = jsonResponse as? [String:Any] {
                 data = dictionary as [String:AnyObject]
@@ -52,9 +54,12 @@ class HTTPHelper {
                 let array = jsonResponse as? [Any]
                 data = array?.first as? [String:AnyObject]
             }
+
             */
+
             data = jsonResponse
             print(data!)
+            
             
           } catch let err as NSError {
             print(err)
@@ -75,6 +80,7 @@ class HTTPHelper {
     dataTask.resume()
   }
   
+
   class func get(route:String, authenticated:Bool, completion:((_ error:NSError?, _ data:Any?) -> ())?) {
     self.request(route: route, method: "GET", body: nil, authenticated:authenticated, completion: completion)
   }
@@ -84,6 +90,7 @@ class HTTPHelper {
   }
   
   class func put(route:String, authenticated:Bool, body:[String:AnyObject]?, completion:((_ error:NSError?, _ data:Any?) -> ())?) {
+
     self.request(route: route, method: "PUT", body: body, authenticated:authenticated, completion: completion)
   }
 }
