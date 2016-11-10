@@ -10,8 +10,10 @@ import UIKit
 
 class ViewControllerViewDate: UIViewController {
     
-    
+    //Contenido
     @IBOutlet weak var codigo: UILabel!
+    @IBOutlet weak var estadoC: UILabel!
+    
     @IBOutlet weak var alumnoOtutor: UILabel!
     @IBOutlet weak var fecha: UILabel!
     @IBOutlet weak var hora: UILabel!
@@ -21,8 +23,11 @@ class ViewControllerViewDate: UIViewController {
     @IBOutlet weak var observaciones: UILabel!
     
     
+    //Etiquetas
     @IBOutlet weak var labelAlumnoOtutor: UILabel!
     
+    //Botones
+    @IBOutlet weak var botonAtender: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +36,7 @@ class ViewControllerViewDate: UIViewController {
         
         if (rol == "A"){
             labelAlumnoOtutor.text = "Tutor:"
+            botonAtender.isHidden = true
         }
         if (rol == "T"){
             labelAlumnoOtutor.text = "Alumno:"
@@ -43,10 +49,19 @@ class ViewControllerViewDate: UIViewController {
         ///Jalar del API toda la info necesaria de la cita
         //Esto de aca es chancho
         codigo.text = citaO?.citaId
+        estadoC.text = citaO?.estado
         alumnoOtutor.text = citaO?.alumno
         fecha.text = citaO?.fechaI
         hora.text = citaO?.horaI
         tema.text = citaO?.tema
+ 
+        /*
+        codigo.text = "u"
+        alumnoOtutor.text = "e"
+        fecha.text = "r"
+        hora.text = "d"
+        tema.text = " c"
+ */
 
         // Do any additional setup after loading the view.
     }
@@ -57,14 +72,5 @@ class ViewControllerViewDate: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

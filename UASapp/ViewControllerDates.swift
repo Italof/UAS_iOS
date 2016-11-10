@@ -63,15 +63,9 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
             }
         })
         
-        
-        //let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
-        //let idUser = String.init(parser)
-        //let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
-        print("Haciendo el get")
+      
         HTTPHelper.get(route: "getAppointmentList/" + idUser + "?token=" + token, authenticated: true, completion:{ (error,data) in
-            
-            print("Dentro  del get")
-            
+           
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -128,39 +122,25 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                     let citaO: cita = cita.init(citaId: citaId, fechaI: fechaI, horaI: horaI, tema: tema, alumno: alumno, estado: estado)
                     
                     cS.append(citaO)
-                    //self.citS?.append(citaO)
+                    
                 }
                 
-                print("temporal")
-                for c in cS {
-                    print(c.citaId)
-                }
+                
+                cS.reverse()
+                
                 
                 ((self.parent as! NavigationControllerC).citasOb) = cS
              
-                /*
-                self.citS = cS
-                
-                print("real")
-                for x in (self.citS)! {
-                    print(x.citaId)
-                }
-                */
-                
-              
                 
             }   else {
                 print("error,NO HAY NADA ACA")
             }
             
         })
-        print("Acabo el get")
         
         
         citS = ((self.parent as! NavigationControllerC).citasOb)
        
-        
- 
         
         if ( citS != nil || citS?.count == 0){
             for c in citS!{
@@ -184,7 +164,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         
         //super.viewDidAppear()
-        
+        /*
         citS = ((self.parent as! NavigationControllerC).citasOb)
         print("Numero de citas")
         print(citS?.count)
@@ -204,7 +184,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
             alert.addAction(action)
             self.present(alert,animated: true, completion:nil)
         }
-       
+       */
     }
     
     override func didReceiveMemoryWarning() {
@@ -242,7 +222,16 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         let citEsc = (citS?[indexPath.row])! as cita
         elegido = indexPath.row
         
+        
+        
+        print("Antes de asignar")
+        print(citEsc.citaId)
         ((self.parent as! NavigationControllerC).citEsc) = citEsc
+        
+        print("Despues de asignar")
+        print(((self.parent as! NavigationControllerC).citEsc)?.citaId)
+        
+        self.performSegue(withIdentifier: "SegueVerCita", sender: self)
         
     }
     

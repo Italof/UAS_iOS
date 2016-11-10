@@ -45,88 +45,9 @@ class ViewControllerTutoriaMenu: UIViewController {
     
     
     @IBAction func verCitas(_ sender: AnyObject) {
-        /*
-         ruta: "getAppointmentList/(idUsuario)?token=(token)"
-         */
         
-        /*
-        let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
-        let idUser = String.init(parser)
-        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
-        print("ID user = " + idUser)
-        print("token = " + token)
-        HTTPHelper.get(route: "getAppointmentList/" + idUser + "?token=" + token, authenticated: true, completion:{ (error,data) in
-            
-            
-            if(error == nil){
-                //obtener data
-                let dataUnwrapped = data.unsafelyUnwrapped
-                let tjd = dataUnwrapped as! [AnyObject]
-                
-                
-                var cS: [cita] = [] ///////////
-                
-                for c in tjd {
-                    print("cita:")
-                    print(c)
-                    
-                    let citaId: String?
-                    let fechaI: String?
-                    let horaI: String?
-                    let tema: String?
-                    let alumno: String?
-                    let estado: String?
-                    
-                    var fI: Date?
-                    var hI: Date?
-                    
-                    let idc: Int = (c["id"] as! Int?)!
-                    citaId = String(idc)
-                    tema = c["nombreTema"] as! String?
-                    //alumno = c["nombreAlumno"] as! String?
-                    alumno = "Prueba"
-                    estado = c["nombreEstado"] as! String?
-                    
-                    let dateFormater = DateFormatter()
-                    dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                    
-                    
-                    print("Fecha inicio del JSON")
-                    print(c["inicio"])
-                    fI = dateFormater.date(from: (c["inicio"] as! String))
-                    //Verificando que la fecha de cita que se registro no es nula
-                    if (fI == nil){
-                        fI = Date()
-                    }
-                                        
-                    dateFormater.dateFormat = "yyyy-MM-dd"//"yyyy-MM-dd"
-                    fechaI = dateFormater.string(from: fI!)
-                    
-                    dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                    hI = dateFormater.date(from: (c["inicio"] as! String))
-                    
-                    if (hI == nil){
-                        hI = Date()
-                    }
-                    dateFormater.dateFormat = "HH:mm"
-                    
-                    horaI = dateFormater.string(from: hI!)
-                    
-                    let citaO: cita = cita.init(citaId: citaId, fechaI: fechaI, horaI: horaI, tema: tema, alumno: alumno, estado: estado)
-                    
-                    cS.append(citaO)
-                    
-                }
-                
-                
-                ((self.parent as! NavigationControllerC).citasOb) = cS
-                
                 
                 self.performSegue(withIdentifier: "citasSegue", sender: self)
-            }
-            
-        })
-*/
 
     }
     

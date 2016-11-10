@@ -283,7 +283,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                     self.present(alertSuccess,animated: false, completion:nil)
                     
                     
-                    
+                    self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
                     
                     
                     
