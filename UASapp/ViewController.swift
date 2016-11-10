@@ -115,7 +115,7 @@ class ViewController: UIViewController {
                             
                             userDefaults.set(professor["IdDocente"], forKey: "DOCENTE_ID")
                             userDefaults.set(professor["rolTutoria"], forKey: "ROLTUTORIA")
-                            userDefaults.set(professor["rolEvaluaciones"], forKey: "EVALUA")
+                            userDefaults.set(professor["rolEvaluaciones"], forKey: "ROLEVALUA")
                             userDefaults.set(professor["es_adminpsp"], forKey: "ADMINPSP")
                             userDefaults.set(professor["es_supervisorpsp"], forKey: "SUPERPSP")
                         }
