@@ -102,7 +102,7 @@ class ViewController: UIViewController {
                         userDefaults.set(user["IdPerfil"], forKey: "ROLE")
                         
                         let role = userDefaults.integer(forKey: "ROLE")
-                        var specialty: Int = 1
+                        var specialty: Int = 0
                         var name, lastname, roleName, email: String?
                         // Professor
                         if  (role == 2 || role == 1) {
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
                             roleName = "Profesor"
                             
                             userDefaults.set(professor["IdDocente"], forKey: "DOCENTE_ID")
-                            userDefaults.set(professor["rolTutoria"], forKey: "TUTORIA")
+                            userDefaults.set(professor["rolTutoria"], forKey: "ROLTUTORIA")
                             userDefaults.set(professor["rolEvaluaciones"], forKey: "EVALUA")
                             userDefaults.set(professor["es_adminpsp"], forKey: "ADMINPSP")
                             userDefaults.set(professor["es_supervisorpsp"], forKey: "SUPERPSP")
