@@ -306,6 +306,9 @@
 				121BE3B31DCBB17300B68A3C /* Faculty.swift */,
 				120B4E411DCE826200BE9D5E /* Schedule.swift */,
 				120565981DD3F8070059C16B /* Semester.swift */,
+				967045C61DD1062600DE2E8E /* ImprovementPlan.swift */,
+				96332A011DD26F8F00D4CB08 /* Aspect.swift */,
+				969D91F01DD37F0A00D0456B /* Criterion.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -341,6 +344,13 @@
 				125DF5841DD2A25300647C82 /* SemesterViewController.swift */,
 				126AE5D01DD418FC00D8F268 /* AportesByCourseController.swift */,
 				120CE10F1DD53996001F8A41 /* CustomScheduleByCourseCell.swift */,
+				967045C41DD1053700DE2E8E /* ImprovementPlanTableViewController.swift */,
+				463056571DD166A50066C7DB /* CustomImpPlanCell.swift */,
+				463056591DD169D50066C7DB /* PlanDetailViewController.swift */,
+				96332A031DD275E800D4CB08 /* AspectsTableViewController.swift */,
+				96332A051DD2760800D4CB08 /* CustomAspectCell.swift */,
+				96332A071DD2762400D4CB08 /* AspectDetailViewController.swift */,
+				969D91F21DD389FA00D0456B /* CustomCriterionCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -645,6 +655,7 @@
 				966EEACE1DCCF04100EBC56B /* StudentOutcome.swift in Sources */,
 				121BE3B41DCBB17300B68A3C /* Faculty.swift in Sources */,
 				12B92A831DD2664300441786 /* InvDerDetailViewController.swift in Sources */,
+				967045C51DD1053700DE2E8E /* ImprovementPlanTableViewController.swift in Sources */,
 				126C83051DCA87D400168250 /* InvestigatorTableViewController.swift in Sources */,
 				120B4E421DCE826200BE9D5E /* Schedule.swift in Sources */,
 				1231D7871DBAE5D6004E35FD /* PeriodMeasurementViewController.swift in Sources */,
@@ -693,8 +704,10 @@
 				1237D3AD1DCA9CC80081EAF4 /* ViewControllerCreateDate.swift in Sources */,
 				9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */,
 				12C5F6991DCBA2A0004BCF81 /* citaClass.swift in Sources */,
+				96332A061DD2760800D4CB08 /* CustomAspectCell.swift in Sources */,
 				124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */,
 				12B92A7F1DD2624B00441786 /* InvDocumentTableViewController.swift in Sources */,
+				969D91F11DD37F0A00D0456B /* Criterion.swift in Sources */,
 				1214CECA1DBC0C600042A3F2 /* InvestigationProject.swift in Sources */,
 				12B92A851DD267A400441786 /* InvDocDetailViewController.swift in Sources */,
 				125A62031DC2BE50008BD312 /* AskConectivity.swift in Sources */,
