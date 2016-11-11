@@ -58,7 +58,7 @@ class HTTPHelper {
             */
 
             data = jsonResponse
-            print(data!)
+//            print(data!)
             
             
           } catch let err as NSError {

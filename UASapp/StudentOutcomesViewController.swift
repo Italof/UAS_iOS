@@ -21,7 +21,7 @@ class StudentOutcomesViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(goal?.id)
+        
         let token = userDefaults.string(forKey: "TOKEN")!
         let url = "faculties/\(userDefaults.string(forKey: "SPECIALTY")!)/eob/\((goal?.id)!)/students_results/?token=\(token)"
         HTTPHelper.get(route: url, authenticated: true, completion: { (error, responseData) in

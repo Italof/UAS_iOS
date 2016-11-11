@@ -18,8 +18,8 @@ class EducationalGoalsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let token = userDefaults.string(forKey: "TOKEN")!
-        print(token)
         let url = "faculties/\(userDefaults.string(forKey: "SPECIALTY")!)/educational-objectives/?token=\(token)"
+        
         HTTPHelper.get(route: url, authenticated: true, completion: { (error, responseData) in
             if error != nil {
                 print("REQUESTED ERROR: \(error)")
@@ -71,7 +71,7 @@ class EducationalGoalsViewController: UITableViewController {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(goalsArray.count)
+        // print(goalsArray.count)
         return goalsArray.count
     }
     
