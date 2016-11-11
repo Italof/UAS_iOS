@@ -11,10 +11,10 @@ import UIKit
 class InvDerEditViewController: UIViewController {
     var invDer : InvestigationDerivable?
     
-    @IBOutlet var saveButtonInvDoc: UIBarButtonItem!
-    @IBOutlet var limitDateInvDoc: UIDatePicker!
-    
     @IBOutlet var startDateInvDoc: UIDatePicker!
+    @IBOutlet var limitDatePicker: UIDatePicker!
+    
+    @IBOutlet var saveButtonInvDoc: UIBarButtonItem!
     
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
@@ -29,7 +29,7 @@ class InvDerEditViewController: UIViewController {
         dateformat.dateFormat = "yyyy-MM-dd"
         let limitDate = dateformat.date(from: (invDer?.dateLimit)!)
         let startDate = dateformat.date(from: (invDer?.dateStart)!)
-        limitDateInvDoc.setDate(limitDate!, animated: true)
+        limitDatePicker.setDate(limitDate!, animated: true)
         startDateInvDoc.setDate(startDate!, animated: true)
         let id = (parent as! InvNavViewController).id
         //profile user
@@ -44,7 +44,8 @@ class InvDerEditViewController: UIViewController {
         }
         let today = Date()
         if (today>startDateInvDoc.date){
-            saveButtonInvDoc.isEnabled = false
+            limitDatePicker.isEnabled = false
+            //saveButtonInvDoc.isEnabled = false
         }
         // Do any additional setup after loading the view.
     }
@@ -69,7 +70,7 @@ class InvDerEditViewController: UIViewController {
         }
         else
         {
-            if(startDateInvDoc.date < limitDateInvDoc.date){
+            if(startDateInvDoc.date < limitDatePicker.date){
                 errorMessageCustom = "Fechas no válidas"
                 error = 1
             }
@@ -88,7 +89,7 @@ class InvDerEditViewController: UIViewController {
                     let dateformat = DateFormatter()
                     dateformat.dateFormat = "yyyy-MM-dd"
                     json.setValue(dateformat.string(from: (self.startDateInvDoc?.date)!) , forKey: "fecha_ini")
-                    json.setValue(dateformat.string(from: (self.limitDateInvDoc?.date)!) , forKey: "fecha_fin")
+                    json.setValue(dateformat.string(from: (self.limitDatePicker?.date)!) , forKey: "fecha_fin")
                     do{
                         let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
                         print(jsonData)
@@ -114,7 +115,7 @@ class InvDerEditViewController: UIViewController {
                                 let dateformat = DateFormatter()
                                 dateformat.dateFormat = "yyyy-MM-dd"
                                 self.invDer?.dateStart = dateformat.string(from: self.startDateInvDoc.date)
-                                self.invDer?.dateLimit = dateformat.string(from: self.limitDateInvDoc.date)
+                                self.invDer?.dateLimit = dateformat.string(from: self.limitDatePicker.date)
                                 ((self.parent as! InvNavViewController).invDer) = self.invDer
                                 let alertSuccess : UIAlertController = UIAlertController.init(title: self.successTitle, message: self.successMessage, preferredStyle: .alert)
                                 let action = UIAlertAction(title: "OK", style: .default, handler:{ action in

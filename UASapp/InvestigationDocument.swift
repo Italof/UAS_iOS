@@ -14,14 +14,14 @@ struct InvestigationDocument {
     var id: Int
     var name: String?
     var version: String?
-    var description: String?
+    //var description: String?
     var dateDeliver: String?
     var observation: String?
     var route: String?
     
     //funcion inicializadora
     init(id:Int, name:String?, version:String?, description:String?, dateDeliver: String?, observation: String?, route:String?){
-        self.description=description
+        //self.description=description
         self.name=name
         self.version=version
         self.id = id
@@ -35,14 +35,14 @@ struct InvestigationDocument {
         
         let id = json["id"] as! Int
         let name = json["nombre"] as! String
-        let description = json["fecha_ini"] as! String
-        let route = json["fecha_fin"] as! String
-        let dateDeliver = json["group"] as! String
-        let observation = json["nombre"] as! String
-        let version = json["id_lider"] as! String
+        //let description = json["fecha_ini"] as! String
+        let route = json["ruta"] as! String
+        let dateDeliver = json["created_at"] as! String
+        let observation = json["observacion"] as! String
+        let version = json["version"] as! String
         
         
-        self.description=description
+        //self.description=description
         self.name=name
         self.version=version
         self.id = id

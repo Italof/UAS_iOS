@@ -9,7 +9,7 @@
 import UIKit
 
 class InvDerivableTableViewController: UITableViewController {
-    var invDerData: [InvestigationDerivable] = [InvestigationDerivable.init(id: 1, name: "hola", idProject: 2, projectName: "hola2", dateLimit: "2016-12-12", dateStart: "2016-12-12", percentage: 25)]
+    var invDerData: [InvestigationDerivable] = [InvestigationDerivable.init(id: 1, name: "hola", idProject: 1, projectName: "hola2", dateLimit: "2016-12-12", dateStart: "2016-12-13", percentage: 25)]
     var elegido : Int = 9
     var invPr: InvestigationProject?
     override func viewDidLoad() {        
