@@ -62,6 +62,11 @@
 		12ADDE991DBACC8300A2B7CA /* InvGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */; };
 		12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */; };
 		12BB00021DD3FD1A009463B5 /* TableViewControllerDatesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BB00011DD3FD1A009463B5 /* TableViewControllerDatesTable.swift */; };
+		12B92A7F1DD2624B00441786 /* InvDocumentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A7E1DD2624B00441786 /* InvDocumentTableViewController.swift */; };
+		12B92A811DD262AA00441786 /* InvestigationDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A801DD262AA00441786 /* InvestigationDocument.swift */; };
+		12B92A831DD2664300441786 /* InvDerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A821DD2664300441786 /* InvDerDetailViewController.swift */; };
+		12B92A851DD267A400441786 /* InvDocDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A841DD267A400441786 /* InvDocDetailViewController.swift */; };
+		12B92A871DD267B300441786 /* InvDerEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A861DD267B300441786 /* InvDerEditViewController.swift */; };
 		12BCE5291DC2B2710052E607 /* CustomCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */; };
 		12BF4DB31DC2CD70005E7D5A /* CustomStudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BF4DB21DC2CD70005E7D5A /* CustomStudentCell.swift */; };
 		12BF4DB51DC2D73E005E7D5A /* ListStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BF4DB41DC2D73E005E7D5A /* ListStudentViewController.swift */; };
@@ -168,6 +173,11 @@
 		12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGroupTableViewController.swift; sourceTree = "<group>"; };
 		12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationGroup.swift; sourceTree = "<group>"; };
 		12BB00011DD3FD1A009463B5 /* TableViewControllerDatesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerDatesTable.swift; sourceTree = "<group>"; };
+		12B92A7E1DD2624B00441786 /* InvDocumentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDocumentTableViewController.swift; sourceTree = "<group>"; };
+		12B92A801DD262AA00441786 /* InvestigationDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationDocument.swift; sourceTree = "<group>"; };
+		12B92A821DD2664300441786 /* InvDerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDerDetailViewController.swift; sourceTree = "<group>"; };
+		12B92A841DD267A400441786 /* InvDocDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDocDetailViewController.swift; sourceTree = "<group>"; };
+		12B92A861DD267B300441786 /* InvDerEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDerEditViewController.swift; sourceTree = "<group>"; };
 		12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCourseCell.swift; sourceTree = "<group>"; };
 		12BF4DB21DC2CD70005E7D5A /* CustomStudentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStudentCell.swift; sourceTree = "<group>"; };
 		12BF4DB41DC2D73E005E7D5A /* ListStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListStudentViewController.swift; sourceTree = "<group>"; };
