@@ -86,8 +86,26 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                         let fechaI: String?
                         let horaI: String?
                         let tema: String?
-                        let alumno: String?
+                        var alumno: String?
                         let estado: String?
+                        
+                        //Nuevos campos del Json
+                        //var citaId: String?
+                        //var fechaI: String?
+                        //var horaI: String?
+                        var idTema: Int?
+                        //var tema: String?
+                        var lugar: String?
+                        var infoExtra: String?
+                        var asistio: String?
+                        var observaciones: String?
+                        var idEstado: Int?
+                        //var estado: String?
+                        var flagCreador: String?
+                        var idTutor: Int?
+                        var tutor: String?
+                        var idAlumno: Int?
+                        //var alumno: String?
                         
                         var fI: Date?
                         var hI: Date?
@@ -98,6 +116,52 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                         //alumno = c["nombreAlumno"] as! String?
                         alumno = "Prueba"
                         estado = c["nombreEstado"] as! String?
+                        let idTemaTemp = c["id_topic"] as! String?
+                        idTema = Int(idTemaTemp!)
+                        
+                        if ((c["lugar"] as? String!) != nil){
+                            lugar = c["lugar"] as! String?
+                        } else {
+                            lugar = "-"
+                        }
+                        /*
+                        if ((tj["telefono"] as? String) != nil){
+                            telefono = tj["telefono"] as! String?
+                        } else {
+                            telefono = "-"
+                        }
+                         */
+                        
+                        if ((c["adicional"] as? String!) != nil){
+                            infoExtra = c["adicional"] as! String?
+                        } else {
+                            infoExtra = "-"
+                        }
+                        
+                        
+                        asistio = "-"
+                        
+                        if ((c["observacion"] as? String!) != nil){
+                            observaciones = c["observacion"] as! String?
+                        } else {
+                            observaciones = "-"
+                        }
+                        
+                        let idEstadoTemp = c["estado"] as! String?
+                        idEstado = Int(idEstadoTemp!)
+                        let flagCreadorTemp = c["creador"] as! String?
+                        if flagCreadorTemp == "0" {
+                            flagCreador = "A"
+                        }
+                        if flagCreadorTemp == "1" {
+                            flagCreador = "T"
+                        }
+                        let idTutorTemp = c["id_docente"] as! String?
+                        idTutor = Int(idTutorTemp!)
+                        tutor = "---"
+                        let idAlumnoTemp = c["id_tutstudent"] as! String?
+                        idAlumno = Int(idAlumnoTemp!)
+                        alumno = "----"
                         
                         let dateFormater = DateFormatter()
                         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -122,8 +186,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                         
                         horaI = dateFormater.string(from: hI!)
                         
-                        let citaO: cita = cita.init(citaId: citaId, fechaI: fechaI, horaI: horaI, tema: tema, alumno: alumno, estado: estado)
-                        
+                        let citaO: cita = cita.init(citaId: citaId, fechaI: fechaI, horaI: horaI, idTema: idTema, tema: tema, lugar: lugar, infoExtra: infoExtra, asistio: asistio, observaciones: observaciones, idEstado: idEstado, estado: estado, flagCreador: flagCreador, idTutor: idTutor, tutor: tutor, idAlumno: idAlumno, alumno: alumno)
                         cS.append(citaO)
                         
                     }
@@ -134,6 +197,11 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                     
                     ((self.parent as! NavigationControllerC).citasOb) = cS
                     
+                    DispatchQueue.main.async {
+                        self.loadData()
+                        self.Dates.reloadData()
+                        return
+                    }
                     
                 }   else {
                     print("error,NO HAY NADA ACA")
@@ -242,6 +310,14 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                     
                     ((self.parent as! NavigationControllerC).citasOb) = cS
                     
+                    DispatchQueue.main.async {
+                        self.loadData()
+                        self.Dates.reloadData()
+                        return
+                    }
+                    
+                    
+                    
                     
                 }   else {
                     print("error,NO HAY NADA ACA")
@@ -251,29 +327,6 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         //EN ESTE PUNTO YA SE TIENEN LAS CITAS ( SEA DE ALUMNO O TUTOR )
-        
-        citS = ((self.parent as! NavigationControllerC).citasOb)
-        if (citS == nil){// || citS?.count == 0){
-            botonFiltrar.isHidden = true
-        }
-        
-        
-        
-        if ( citS != nil ){//|| citS?.count != 0){
-            for c in citS!{
-                datesA.append(c.fechaI!)
-                times.append(c.horaI!)
-                themes.append(c.tema!)
-                students.append(c.alumno!)
-                statusA.append(c.estado!)
-            }
-        } else {
-            //Mostrar error y regresar al menù principal
-            let alert : UIAlertController = UIAlertController.init(title: "No tiene citas", message: "Usted no ha realizado citas", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(action)
-            self.present(alert,animated: true, completion:nil)
-        }
         
         
         
@@ -305,6 +358,30 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         
         return cell
         
+    }
+    
+    func loadData() {
+        citS = ((self.parent as! NavigationControllerC).citasOb)
+        if (citS == nil){// || citS?.count == 0){
+            botonFiltrar.isHidden = true
+        }
+        
+        if ( citS != nil ){//|| citS?.count != 0){
+            for c in citS!{
+                datesA.append(c.fechaI!)
+                times.append(c.horaI!)
+                themes.append(c.tema!)
+                students.append(c.alumno!)
+                statusA.append(c.estado!)
+            }
+        } else {
+            //Mostrar error y regresar al menù principal
+            let alert : UIAlertController = UIAlertController.init(title: "No tiene citas", message: "Usted no ha realizado citas", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert,animated: true, completion:nil)
+        }
+    
     }
     
     

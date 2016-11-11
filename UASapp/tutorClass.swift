@@ -27,12 +27,13 @@ class tutor{
     var horarioMi:String?
     var horarioJ:String?
     var horarioV:String?
+    var horarioS:String?
     
     //var schedules: [schedule]
     
     
     
-    init(idDocente: String?,idEspecialidad: String?, codigo: String?, nombre: String?, apellidoPaterno: String?,apellidoMaterno: String?, correo: String?, oficina: String?, telefono: String?, anexo: String?, horarioL: String?, horarioMa: String?, horarioMi: String?, horarioJ: String?, horarioV: String?){
+    init(idDocente: String?,idEspecialidad: String?, codigo: String?, nombre: String?, apellidoPaterno: String?,apellidoMaterno: String?, correo: String?, oficina: String?, telefono: String?, anexo: String?, horarioL: String?, horarioMa: String?, horarioMi: String?, horarioJ: String?, horarioV: String?, horarioS: String?){
         self.idDocente = idDocente
         self.idEspecialidad=idEspecialidad
         self.codigo=codigo
@@ -48,6 +49,7 @@ class tutor{
         self.horarioMi=horarioMi
         self.horarioJ=horarioJ
         self.horarioV=horarioV
+        self.horarioS = horarioS
     }
     
     init(idDocente: String?, codigo: String?, nombre: String?, apellidoPaterno: String?, apellidoMaterno: String?){

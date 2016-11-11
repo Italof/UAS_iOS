@@ -29,6 +29,10 @@ class ViewControllerViewDate: UIViewController {
     //Botones
     @IBOutlet weak var botonAtender: UIButton!
 
+    @IBOutlet var botonCancelarRechazar: UIButton!
+    
+    @IBOutlet var botonConfirmar: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +41,9 @@ class ViewControllerViewDate: UIViewController {
         if (rol == "A"){
             labelAlumnoOtutor.text = "Tutor:"
             botonAtender.isHidden = true
+            
+            
+            
         }
         if (rol == "T"){
             labelAlumnoOtutor.text = "Alumno:"
@@ -45,15 +52,34 @@ class ViewControllerViewDate: UIViewController {
         
         let citaO = ((self.parent as! NavigationControllerC).citEsc)
         
+        //Visibilidad de los botones de cambio de estados y segun el usuario
+        if (rol == "A"){
+            //Pendiente
+            if (citaO?.idEstado == 1){
+                botonConfirmar.isHidden = false
+                botonCancelarRechazar.isHidden = false
+                botonCancelarRechazar.titleLabel?.text = "Cancelar"
+            }
+        }
+        
+        
         
         ///Jalar del API toda la info necesaria de la cita
         //Esto de aca es chancho
         codigo.text = citaO?.citaId
         estadoC.text = citaO?.estado
-        alumnoOtutor.text = citaO?.alumno
+        if (rol == "A"){
+            alumnoOtutor.text = citaO?.alumno
+        }
+        if (rol == "T"){
+            alumnoOtutor.text = citaO?.tutor
+        }
         fecha.text = citaO?.fechaI
         hora.text = citaO?.horaI
+        lugar.text = citaO?.lugar
         tema.text = citaO?.tema
+        infoExtra.text = citaO?.infoExtra
+        observaciones.text = citaO?.observaciones
  
         /*
         codigo.text = "u"

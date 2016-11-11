@@ -28,6 +28,7 @@ class ViewControllerTutorVisualize: UIViewController {
     @IBOutlet weak var horaMi: UILabel!
     @IBOutlet weak var horaJ: UILabel!
     @IBOutlet weak var horaV: UILabel!
+    @IBOutlet var horaS: UILabel!
     ////////
     @IBOutlet weak var labelCodigo: UILabel!
     @IBOutlet weak var labelNombresyAp: UILabel!
@@ -149,6 +150,7 @@ class ViewControllerTutorVisualize: UIViewController {
                 var horarioMi: String! = "Miercoles: "
                 var horarioJ: String! = "Jueves: "
                 var horarioV: String! = "Viernes: "
+                var horarioS: String! = "Sábado: "
                 
                 if ((tj["scheduleInfo"])?.count != 0){
                     print(tj["scheduleInfo"])
@@ -195,6 +197,11 @@ class ViewControllerTutorVisualize: UIViewController {
                             horarioV = horarioV + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
                             
                         }
+                        if ( (diaHo["dia"] as! String) == "6") {
+                            
+                            horarioS = horarioS + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            
+                        }
                     }
                 }
                 else {
@@ -203,20 +210,21 @@ class ViewControllerTutorVisualize: UIViewController {
                     horarioMi = horarioMi + "-"
                     horarioJ = horarioJ + "-"
                     horarioV = horarioV + "-"
+                    horarioS = horarioS + "-"
                     
                     self.horaL.isHidden = true
                     self.horaMa.isHidden = true
                     self.horaMi.isHidden = true
                     self.horaJ.isHidden = true
                     self.horaV.isHidden = true
-                    
+                    self.horaS.isHidden = true
                     self.botonNuevaCita.isHidden = true
                 }
                 
                 
                 
                 
-                let tutorX : tutor = tutor.init(idDocente: idDocente, idEspecialidad: idEspecialidad, codigo: codigo, nombre: nombre, apellidoPaterno: apellidoPaterno, apellidoMaterno: apellidoMaterno, correo: correo, oficina: oficina, telefono: telefono, anexo: anexo, horarioL: horarioL, horarioMa: horarioMa, horarioMi: horarioMi, horarioJ: horarioJ, horarioV: horarioV )
+                let tutorX : tutor = tutor.init(idDocente: idDocente, idEspecialidad: idEspecialidad, codigo: codigo, nombre: nombre, apellidoPaterno: apellidoPaterno, apellidoMaterno: apellidoMaterno, correo: correo, oficina: oficina, telefono: telefono, anexo: anexo, horarioL: horarioL, horarioMa: horarioMa, horarioMi: horarioMi, horarioJ: horarioJ, horarioV: horarioV, horarioS: horarioS )
                 
                 print("tutor consultado")
                 print(tutorX.nombre! + " " + tutorX.apellidoPaterno! + " " + tutorX.apellidoMaterno!)
@@ -252,7 +260,7 @@ class ViewControllerTutorVisualize: UIViewController {
                 self.horaMi.text=self.tutorC?.horarioMi
                 self.horaJ.text=self.tutorC?.horarioJ
                 self.horaV.text=self.tutorC?.horarioV
-                
+                self.horaS.text = self.tutorC?.horarioS
                 
                 
             }
@@ -286,7 +294,7 @@ class ViewControllerTutorVisualize: UIViewController {
                 self.horaMi.isHidden = true
                 self.horaJ.isHidden = true
                 self.horaV.isHidden = true
-                
+                self.horaS.isHidden = true
                 
                 
                 
@@ -311,7 +319,7 @@ class ViewControllerTutorVisualize: UIViewController {
         horaMi.text=tutorC?.horarioMi
         horaJ.text=tutorC?.horarioJ
         horaV.text=tutorC?.horarioV
-        
+        horaS.text=tutorC?.horarioS
     }
     override func viewDidAppear(_ animated: Bool) {
 
