@@ -16,6 +16,7 @@ struct Schedule {
     var codeCourse: String?
     var idProfesor: String?
     var nivAcademico: String?
+    var nameProf: String?
     //funcion inicializadora
     init(id:Int, code:String?,idEspecialidad:String?, course:String?,codeCourse:String?, idProfesor:String?, nivAcademico: String?){
         self.id = id
@@ -25,6 +26,13 @@ struct Schedule {
         self.codeCourse = codeCourse
         self.idProfesor = idProfesor
         self.nivAcademico = nivAcademico
+    }
+    
+    init(id:Int,code:String, nameProf: String){
+        self.id=id
+        self.code = code
+        self.nameProf = nameProf
+        
     }
     
 }
