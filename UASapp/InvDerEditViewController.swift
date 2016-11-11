@@ -12,8 +12,10 @@ class InvDerEditViewController: UIViewController {
     var invDer : InvestigationDerivable?
     
     @IBOutlet var saveButtonInvDoc: UIBarButtonItem!
-    @IBOutlet var nameInvDoc: UITextField!
     @IBOutlet var limitDateInvDoc: UIDatePicker!
+    
+    @IBOutlet var startDateInvDoc: UIDatePicker!
+    
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
     let errorTitle: String = "Error"
@@ -22,11 +24,13 @@ class InvDerEditViewController: UIViewController {
         super.viewDidLoad()
         let invPr = (parent as! InvNavViewController).invPr
         invDer = (parent as! InvNavViewController).invDer
-        nameInvDoc.text = invDer?.name
+        //nameInvDoc.text = invDer?.name
         let dateformat = DateFormatter()
         dateformat.dateFormat = "yyyy-MM-dd"
         let limitDate = dateformat.date(from: (invDer?.dateLimit)!)
+        let startDate = dateformat.date(from: (invDer?.dateStart)!)
         limitDateInvDoc.setDate(limitDate!, animated: true)
+        startDateInvDoc.setDate(startDate!, animated: true)
         let id = (parent as! InvNavViewController).id
         //profile user
         let profile = (parent as! InvNavViewController).profile
@@ -38,7 +42,10 @@ class InvDerEditViewController: UIViewController {
             //si no se encuentra el perfil permitido
             saveButtonInvDoc.isEnabled = true
         }
-
+        let today = Date()
+        if (today>startDateInvDoc.date){
+            saveButtonInvDoc.isEnabled = false
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -62,8 +69,8 @@ class InvDerEditViewController: UIViewController {
         }
         else
         {
-            if((nameInvDoc!.text?.characters.count)! > 254 || (nameInvDoc!.text?.characters.count)! < 1){
-                errorMessageCustom = "Nombre no válido"
+            if(startDateInvDoc.date < limitDateInvDoc.date){
+                errorMessageCustom = "Fechas no válidas"
                 error = 1
             }
             if (error == 1){
@@ -77,10 +84,11 @@ class InvDerEditViewController: UIViewController {
                     //Gruadar en servidor
                     let json = NSMutableDictionary()
                     json.setValue(self.invDer?.id, forKey: "id")
-                    json.setValue(self.nameInvDoc.text, forKey: "nombre")
+                    //json.setValue(self.nameInvDoc.text, forKey: "nombre")
                     let dateformat = DateFormatter()
                     dateformat.dateFormat = "yyyy-MM-dd"
-                    json.setValue(dateformat.string(from: (self.limitDateInvDoc?.date)!) , forKey: "descripcion")
+                    json.setValue(dateformat.string(from: (self.startDateInvDoc?.date)!) , forKey: "fecha_ini")
+                    json.setValue(dateformat.string(from: (self.limitDateInvDoc?.date)!) , forKey: "fecha_fin")
                     do{
                         let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
                         print(jsonData)
@@ -105,7 +113,7 @@ class InvDerEditViewController: UIViewController {
                                 //obtener data
                                 let dateformat = DateFormatter()
                                 dateformat.dateFormat = "yyyy-MM-dd"
-                                self.invDer?.name = self.nameInvDoc.text
+                                self.invDer?.dateStart = dateformat.string(from: self.startDateInvDoc.date)
                                 self.invDer?.dateLimit = dateformat.string(from: self.limitDateInvDoc.date)
                                 ((self.parent as! InvNavViewController).invDer) = self.invDer
                                 let alertSuccess : UIAlertController = UIAlertController.init(title: self.successTitle, message: self.successMessage, preferredStyle: .alert)

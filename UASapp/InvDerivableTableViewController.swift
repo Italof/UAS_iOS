@@ -9,7 +9,7 @@
 import UIKit
 
 class InvDerivableTableViewController: UITableViewController {
-    var invDerData: [InvestigationDerivable] = []
+    var invDerData: [InvestigationDerivable] = [InvestigationDerivable.init(id: 1, name: "hola", idProject: 2, projectName: "hola2", dateLimit: "2016-12-12", dateStart: "2016-12-12", percentage: 25)]
     var elegido : Int = 9
     var invPr: InvestigationProject?
     override func viewDidLoad() {        
@@ -28,7 +28,7 @@ class InvDerivableTableViewController: UITableViewController {
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayDerivable = dataUnwrapped as? [Any]
-                self.invDerData = []
+                //self.invDerData = []
                 for deriverable in arrayDerivable!{
                     let der = deriverable as! [String:AnyObject]
                     

@@ -14,11 +14,13 @@ struct InvestigationDerivable{
     var name: String?
     var idProject: Int
     var projectName: String?
+    var dateStart: String?
     var dateLimit: String?
     var percentage: Int
     //funcion inicializadora
-    init(id:Int, name:String?, idProject: Int, projectName: String?, dateLimit:String?, percentage:Int){
+    init(id:Int, name:String?, idProject: Int, projectName: String?, dateLimit:String?, dateStart:String?, percentage:Int){
         self.dateLimit = dateLimit
+        self.dateStart = dateStart
         self.name = name
         self.percentage = percentage
         self.id = id
@@ -31,9 +33,10 @@ struct InvestigationDerivable{
         let id = json["id"] as! Int
         let name = json["nombre"] as! String
         let place = json["lugar"] as! String
-        let dateLimit = json["fecha"] as! String
+        let dateLimit = json["fecha_fin"] as! String
         let time = json["hora"] as! String
-
+        let dateStart = json["fecha_ini"] as! String
+        self.dateStart=dateStart
         self.dateLimit=dateLimit
         self.projectName=place
         self.name=time
