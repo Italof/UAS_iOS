@@ -1,63 +1,66 @@
 //
-//  EveProjectTableViewController.swift
+//  SemesterViewController.swift
 //  UASapp
 //
-//  Created by inf227al on 25/10/16.
+//  Created by inf227al on 8/11/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class EveProjectTableViewController: UITableViewController {
-    //Arreglo de eventos de un proyecto -- Se llena con el api
-    var invPrEvData : [InvestigationProjectEvent] = []//[InvestigationProjectEvent.init(id: 1, name: "Evento de iniciación", date: "12/05/2016", time: "12:12 p.m.", place: "No-where")]
+class SemesterViewController: UITableViewController {
+    
+    let userDefault = UserDefaults.standard
+    
+    var semesters: [Semester] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        let invGr = ((parent as! InvNavViewController).invGr)
-        let token = (parent as! InvNavViewController).token
-        let get = (parent as! InvNavViewController).getEvents
-        let parser = invGr?.id
-        let id = String(parser.unsafelyUnwrapped)
-        let routeApi = "investigation/" + id + "/" + get + "?token=" + token
-        HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+        if AskConectivity.isInternetAvailable(){
+            print("conectado")
+        }
+        else{
+            print("error de conexion")
+        }
+        
+        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        let idPeriodo: Int = UserDefaults.standard.object(forKey: "PERIOD") as! Int
+        HTTPHelper.get(route: "periods/" + String(idPeriodo) + "/actual/semesters" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
+                let period = dataUnwrapped as? [String:AnyObject]
+                let arraySemesters = period?["semesters"] as? [Any]
+                self.semesters = []
                 
-                let arrayEvents = dataUnwrapped as! [AnyObject]
-                self.invPrEvData = []
-                for event in arrayEvents{
-                    let ev = event as! [String:AnyObject]
-                    let newEvent : InvestigationProjectEvent = InvestigationProjectEvent.init(json : ev)
-                    self.invPrEvData.append(newEvent)
-                    //print(self.invPrData)
-                    //print(pr["id"].unsafelyUnwrapped)
+                for semester in arraySemesters!{
+                    let sm = semester as! [String:AnyObject]
+                    let id = sm["IdCicloAcademico"] as! Int
+                    let descripcion = sm["Descripcion"] as! String
+                    let semester : Semester = Semester.init(id:id, descripcion:descripcion)
+                    self.semesters.append(semester)
+                    self.do_table_refresh()
                 }
-                self.do_table_refresh()
-                
             }
             else {
-                //Mostrar error y regresar al menù principal
-                
+                //Mostrar error y regresar al men˘ principal
                 
             }
-            
         })
+        
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source/Users/inf227al/Documents/DP2/UAS_iOS/UASapp/PeriodMeasurementViewController.swift
+    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -66,43 +69,34 @@ class EveProjectTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return invPrEvData.count
+        return semesters.count
+        
     }
-    
-    
-    
-    
-    
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath)
-        print(indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
         // Configure the cell...
-        let invPrEv = invPrEvData[indexPath.row] as InvestigationProjectEvent
-        print(invPrEv.name!)
-        cell.textLabel?.text = invPrEv.name
-        let dateFormater = DateFormatter()
-        dateFormater.dateFormat = "yyyy-MM-dd"
-        let date = dateFormater.date(from: (invPrEv.date)!)
-        dateFormater.dateFormat = "dd/MM/yyyy"
-        cell.detailTextLabel?.text = dateFormater.string(from: date!)
+        let semester = semesters[indexPath.row] as Semester
+        cell.textLabel?.text = semester.descripcion
         return cell
     }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        let invPrEv = invPrEvData[indexPath.row] as InvestigationProjectEvent
-        //elegido = indexPath.row
-        //((parent as! InvNavViewController).elegido) = indexPath.row
-        //asigna el Evento elegido a variable en controlador de navegaciòn
-        ((parent as! InvNavViewController).invPrEv) = invPrEv
-    }
+    
     func do_table_refresh()
     {
         self.tableView.reloadData()
         
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let semester = semesters[indexPath.row] as Semester
+        ((parent as! UASNavViewController).semester) = semester
+        userDefault.set(semester.id, forKey: "SEMESTER")
+    }
+    
+
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

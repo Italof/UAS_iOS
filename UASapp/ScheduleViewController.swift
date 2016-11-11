@@ -14,17 +14,16 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var CyclePicker: UIPickerView!
     var codes = ["INF392","INF290","INF291"]
     var courses = ["Proyecto de tesis 2", "Desarrollo de programas 2", "Ingenierìa de software"]
-    var schedules = ["H1001","H1002","H0801"]
+    //var schedules = ["H1001","H1002","H0801"]
     var cycles = ["2015-1","2015-2","2016-1","2016-2"]
-    
-    
+    var schedules: [Schedule] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         //UserDefaults.standard.object(forKey: "TOKEN") as! String
-        /*if AskConectivity.isInternetAvailable(){
+        if AskConectivity.isInternetAvailable(){
             print("conectado")
         }
         else{
@@ -35,26 +34,43 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         //print("ID user = " + idUser)
         print("token = " + token)
-        HTTPHelper.get(route: "..." + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        HTTPHelper.get(route: "faculties/teacher/4/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
-                let arrayPeriods = dataUnwrapped as? [Any]
-                self.cycles = []
-                for period in arrayPeriods!{
-                    let pr = period as! [String:AnyObject]
-                    let id = pr["IdPeriodo"] as! Int
-                    self.cycles.append(period)
-                    self.do_table_refresh()
+                let arrayCourses = dataUnwrapped as? [Any]
+                self.schedules = []
+                for arrayCourse2 in arrayCourses!{
+                    let arrayCourses2 = arrayCourse2 as? [Any]
+                    for course in arrayCourses2!{
+                        let cr = course as! [String:AnyObject]
+                        let idEsp = cr["IdEspecialidad"] as! String
+                        let course = cr["Nombre"] as! String
+                        let nivAcademico = cr["NivelAcademico"] as! String
+                        let codeCourse = cr["Codigo"] as! String
+                        
+                        let arraySchedules = cr["schedules"] as? [AnyObject]
+                        for schedule in arraySchedules!{
+                            let sc = schedule as! [String:AnyObject]
+                            let code = sc["Codigo"] as! String
+                            let schedule: Schedule = Schedule.init(id:0, code:code,idEspecialidad:idEsp, course:course,codeCourse:codeCourse,idProfesor:course, nivAcademico: nivAcademico)
+                            self.schedules.append(schedule)
+                            self.do_table_refresh()
+                            
+                        }
+                    }
+                    
                 }
+                
             }
             else {
                 //Mostrar error y regresar al menù principal
                 
             }
-        })*/
+        })
         
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -62,21 +78,19 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return codes.count
+        return schedules.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCourseCell
-        cell.lblCode.text=codes[indexPath.row]
-        cell.lblCourse.text=courses[indexPath.row]
-        cell.lblSchedule.text=schedules[indexPath.row]
-        return cell
-        /*let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCourseCell
-        let periodo = cycles[indexPath.row] as Period
         
-        cell.lblPeriod.text = periodo.cycleStart!+" al "+periodo.cycleEnd!
-        return cell*/
+        let schedule = schedules[indexPath.row] as Schedule
+        cell.lblCode.text = schedule.codeCourse
+        cell.lblCourse.text = schedule.course
+        cell.lblSchedule.text = schedule.code
+        return cell
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

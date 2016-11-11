@@ -9,7 +9,8 @@
 import UIKit
 
 class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
+    let userDefault = UserDefaults.standard
     
     @IBOutlet var tableView: UITableView!
     //var cycles = ["2015-1 al 2015-2", "2016-1 al 2016-2"]
@@ -24,12 +25,10 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
         else{
             print("error de conexion")
         }
-        //let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
-        //let idUser = String.init(parser)
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
-        //print("ID user = " + idUser)
+        let facultyId: Int = UserDefaults.standard.object(forKey: "SPECIALTY") as! Int
         print("token = " + token)
-        HTTPHelper.get(route: "periods/1/list" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        HTTPHelper.get(route: "periods/"+String(facultyId)+"/list" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -82,6 +81,7 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let period = cycles[indexPath.row] as Period
         ((parent as! UASNavViewController).period) = period
+        userDefault.set(period.id, forKey: "PERIOD")
     }
 
     func do_table_refresh()

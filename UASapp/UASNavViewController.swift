@@ -16,6 +16,8 @@ class UASNavViewController: UINavigationController {
     var course: Course?
     //Especialidad
     var faculty: Faculty?
+    //Semestre
+    var semester: Semester?
     
     override func viewDidLoad() {
         super.viewDidLoad()
