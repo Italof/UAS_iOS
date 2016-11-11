@@ -23,6 +23,7 @@ class InvGrDetailViewController: UIViewController {
     //Boton de editar grupo, desactivar si no es lider de especialidad
     @IBOutlet weak var editInvGroup: UIBarButtonItem!
     
+    @IBOutlet weak var imgInvGroup: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,7 @@ class InvGrDetailViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
       invGr = (parent as! InvNavViewController).invGr
-    
+      
       //profile user
       let profile = (parent as! InvNavViewController).profile
       //profiles permitidos a editar
@@ -68,10 +69,23 @@ class InvGrDetailViewController: UIViewController {
       descriptionInvGroup.text = invGr?.description
       specialityInvGroup.text = invGr?.speciality
       leaderInvGroup.text = invGr?.leaderName
-    
+      
       //se maneja la imagen del grupo
     
       let isConnected = AskConectivity.isInternetAvailable()
+      if (invGr?.imageInvGr != nil)
+      {
+         let route = "http://52.89.227.55/" + (invGr?.imageInvGr)!
+         DownloadHelper.loadFileSync(route: route, completion:{(path, error) in
+            let isFileFound:Bool? = FileManager.default.fileExists(atPath: path)
+            if isFileFound == true {
+               let url = URL(fileURLWithPath: path)
+               let imageData = NSData(contentsOf: url)
+               self.imgInvGroup.image = UIImage(data: imageData as! Data)
+            }
+         })
+      }
+      
       print(isConnected)
       // inicializa botones  -- PERMISOS
         editInvGroup.isEnabled = false

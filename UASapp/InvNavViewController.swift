@@ -10,6 +10,14 @@ import UIKit
 
 class InvNavViewController: UINavigationController {
     //Controlador de navegación de investigación
+    //variables offline
+    var jsonGroups: Any?
+    var jsonProjects: Any?
+    var jsonEvents: Any?
+    var jsonInves: Any?
+    var jsonDer:Any?
+    var jsonDoc:Any?
+    
     
     //variables que se usan en las pantallas que usan este navegador
     //Perfiles permitidos en edición en este modulo
@@ -25,6 +33,8 @@ class InvNavViewController: UINavigationController {
     var invDer: InvestigationDerivable?
     //Investigador elegido
     var inv: Investigator?
+    //Documento elegido
+    var invDoc: InvestigationDocument?
 
     //token que se usa para el consumo del api
   
@@ -47,13 +57,28 @@ class InvNavViewController: UINavigationController {
     var getInvestigators: String = "getAllInvestigators"
     var editInvestigators: String = "investigators"
     //obtener y editar entregables
-    var getDerivables: String = ""
+    var getDerivables: String = "deriverables"
     var editDerivables: String = "deriverable"
-
+    //obtener  documentos
+    var getDocuments: String = "deriverables"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = "Atrás";
+        //self.navigationController?.navigationBar.topItem?.title = "Atrás";
+        /*
+        UserDefaults.standard.set(nil, forKey: "GROUPS")
+        jsonGroups = UserDefaults.standard.object(forKey: "GROUPS")
+        UserDefaults.standard.set(nil, forKey: "PROJECTS")
+        jsonProjects = UserDefaults.standard.object(forKey: "PROJECTS")
+        UserDefaults.standard.set(nil, forKey: "EVENTS")
+        jsonEvents = UserDefaults.standard.object(forKey: "EVENTS")
+        UserDefaults.standard.set(nil, forKey: "INVESTIGATORS")
+        jsonInves =  UserDefaults.standard.object(forKey: "INVESTIGATORS")
+        UserDefaults.standard.set(nil, forKey: "DERIVABLES")
+        jsonDer = UserDefaults.standard.object(forKey: "DERIVABLES")
+        UserDefaults.standard.set(nil, forKey: "DOCUMENTS")
+        jsonDoc = UserDefaults.standard.object(forKey: "DOCUMENTS")
+        */
         // Do any additional setup after loading the view.
     }
 

@@ -73,6 +73,7 @@
 		12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */; };
 		12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */; };
 		12DF4D211DCADD8700E59AD0 /* InvestigatorEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */; };
+		12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */; };
 		25691CA51DCB4A03005A632D /* DetalleGruposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25691CA41DCB4A03005A632D /* DetalleGruposViewController.swift */; };
 		25A6EF191DCBDF760084AFE0 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EF181DCBDF760084AFE0 /* Test.swift */; };
 		25A6EF2D1DCBE7CA0084AFE0 /* FaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EF2C1DCBE7CA0084AFE0 /* FaseTest.swift */; };
@@ -178,6 +179,7 @@
 		12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSpecialtyCell.swift; sourceTree = "<group>"; };
 		12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorDetailViewController.swift; sourceTree = "<group>"; };
 		12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorEditViewController.swift; sourceTree = "<group>"; };
+		12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
 		25691CA41DCB4A03005A632D /* DetalleGruposViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleGruposViewController.swift; sourceTree = "<group>"; };
 		25A6EF161DCBDF760084AFE0 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A6EF181DCBDF760084AFE0 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */,
 				1214CEC91DBC0C600042A3F2 /* InvestigationProject.swift */,
 				1268F2741DBFF6C300E1CC22 /* InvestigationProjectEvent.swift */,
+				12B92A801DD262AA00441786 /* InvestigationDocument.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -342,6 +345,10 @@
 				1268F2761DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift */,
 				1268F2781DC0096100E1CC22 /* InvPrEvEditViewController.swift */,
 				12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */,
+				12B92A7E1DD2624B00441786 /* InvDocumentTableViewController.swift */,
+				12B92A821DD2664300441786 /* InvDerDetailViewController.swift */,
+				12B92A841DD267A400441786 /* InvDocDetailViewController.swift */,
+				12B92A861DD267B300441786 /* InvDerEditViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -443,6 +450,7 @@
 				1296D0B91DCE39DC006B7E73 /* Assets.xcassets */,
 				46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */,
 				46292B0D1DB9DF7500EC8575 /* Info.plist */,
+				12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */,
 			);
 			path = UASapp;
 			sourceTree = "<group>";
@@ -603,6 +611,7 @@
 				1231D7831DBACE03004E35FD /* SpecialtyViewController.swift in Sources */,
 				966EEACE1DCCF04100EBC56B /* StudentOutcome.swift in Sources */,
 				121BE3B41DCBB17300B68A3C /* Faculty.swift in Sources */,
+				12B92A831DD2664300441786 /* InvDerDetailViewController.swift in Sources */,
 				126C83051DCA87D400168250 /* InvestigatorTableViewController.swift in Sources */,
 				120B4E421DCE826200BE9D5E /* Schedule.swift in Sources */,
 				1231D7871DBAE5D6004E35FD /* PeriodMeasurementViewController.swift in Sources */,
@@ -649,7 +658,9 @@
 				9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */,
 				12C5F6991DCBA2A0004BCF81 /* citaClass.swift in Sources */,
 				124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */,
+				12B92A7F1DD2624B00441786 /* InvDocumentTableViewController.swift in Sources */,
 				1214CECA1DBC0C600042A3F2 /* InvestigationProject.swift in Sources */,
+				12B92A851DD267A400441786 /* InvDocDetailViewController.swift in Sources */,
 				125A62031DC2BE50008BD312 /* AskConectivity.swift in Sources */,
 				1207C6501DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift in Sources */,
 				1268F2791DC0096100E1CC22 /* InvPrEvEditViewController.swift in Sources */,
@@ -658,7 +669,10 @@
 				1237D3B11DCA9CC80081EAF4 /* ViewControllerStudents.swift in Sources */,
 				12DABD361DCC0C9B0055F8FC /* temaClass.swift in Sources */,
 				4618847E1DCC20A1000858C8 /* ConfigTableViewController.swift in Sources */,
+				12B92A871DD267B300441786 /* InvDerEditViewController.swift in Sources */,
 				121C14031DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift in Sources */,
+				12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */,
+				12B92A811DD262AA00441786 /* InvestigationDocument.swift in Sources */,
 				12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */,
 				126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */,
 			);

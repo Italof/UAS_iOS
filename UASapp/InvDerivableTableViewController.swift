@@ -9,27 +9,33 @@
 import UIKit
 
 class InvDerivableTableViewController: UITableViewController {
-    var invDerData: [InvestigationDerivable] = []
+    var invDerData: [InvestigationDerivable] = [InvestigationDerivable.init(id: 1, name: "hola", idProject: 1, projectName: "hola2", dateLimit: "2016-12-12", dateStart: "2016-12-13", percentage: 25)]
     var elegido : Int = 9
-    
+    var invPr: InvestigationProject?
     override func viewDidLoad() {        
         super.viewDidLoad()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        invPr = (parent as! InvNavViewController).invPr!
+        let parser = invPr?.id
+        let id = String.init(parser.unsafelyUnwrapped)
         let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getDerivables
-        let routeApi = get + "?token=" + token
+        let routeApi = "investigation/" + id + "/" + get + "?token=" + token
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayDerivable = dataUnwrapped as? [Any]
-                self.invDerData = []
-                for derivable in arrayDerivable!{
-                    let der = derivable as! [String:AnyObject]
+                //self.invDerData = []
+                for deriverable in arrayDerivable!{
+                    let der = deriverable as! [String:AnyObject]
                     
                     //let group : InvestigationGroup =
                     self.invDerData.append( InvestigationDerivable( json: der ) )
                     //print(self.invGrData)
-                    //print(pr["id"].unsafelyUnwrapped)                    
+                    //print(pr["id"].unsafelyUnwrapped)
                 }
                 self.do_table_refresh()
             }
@@ -38,9 +44,8 @@ class InvDerivableTableViewController: UITableViewController {
                 
             }
         })
-        
-    }
 
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

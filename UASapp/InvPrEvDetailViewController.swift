@@ -16,6 +16,7 @@ class InvPrEvDetailViewController: UIViewController {
     @IBOutlet weak var dateInvProEvent: UILabel!
     @IBOutlet weak var timeInvProEvent: UILabel!
     @IBOutlet weak var placeInvProEvent: UILabel!
+    @IBOutlet weak var imgInvProEvent: UIImageView!
     
     @IBOutlet var invPrEvEditButton: UIBarButtonItem!
     @IBOutlet weak var descriptionInvProEvent: UITextView!
@@ -54,6 +55,25 @@ class InvPrEvDetailViewController: UIViewController {
         //dateInvProEvent.text = invPrEv?.date
         timeInvProEvent.text = dateFormater.string(from: time!)
         placeInvProEvent.text = invPrEv?.place
+        let image = invPrEv?.image.unsafelyUnwrapped
+        ///cambiar
+        if (image != ""){
+            if (invPrEv?.image != nil)
+            {
+                let route = "http://52.89.227.55/" + (invPrEv?.image)!
+                DownloadHelper.loadFileAsync(route: route, completion:{(path, error) in
+                    let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
+                    if isFileFound == true {
+                        let url = URL(fileURLWithPath: path!)
+                        let imageData = NSData(contentsOf: url)
+                        self.imgInvProEvent.image = UIImage(data: imageData as! Data)
+                    }
+                })
+            }
+        }
+        
+
+      
         //inicializa botones -- PERMISOS
         //profile user
         let profile = (parent as! InvNavViewController).profile

@@ -40,10 +40,12 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
         //profiles permitidos a editar
         let profilePermited = (parent as! InvNavViewController).profilePermited
         let isConnected = AskConectivity.isInternetAvailable()
-        if( profilePermited.index( of: profile) == nil || isConnected == false ){
+        let id = (parent as! InvNavViewController).id
+        invSaveButton.isEnabled = false
+        if( profilePermited.index( of: profile) != nil || isConnected != false || inv?.idUser == id){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
-            invSaveButton.isEnabled = false
+            invSaveButton.isEnabled = true
         }
         self.nameInv.delegate = self
         self.lastNameMInv.delegate = self
@@ -127,23 +129,32 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
         var errorMessageCustom : String = ""
         var error = 0
         //verificar que los campos son correctos
-        if((nameInv!.text?.characters.count)! > 254 || (nameInv!.text?.characters.count)! < 1){
+        if (AskConectivity.isInternetAvailable() == false){
+            errorMessageCustom = "No conectado a internet"
+            error = 1
+        }
+        else{
+        if (nameInv.text == inv?.name && lastNameMInv.text == inv?.lastNameM && lastNamePInv.text == inv?.lastNameP && emailInv.text == inv?.email && cellphoneInv.text == inv?.cellphone){
+            errorMessageCustom = "No hay cambios"
+            error = 1
+        }
+        else if((nameInv!.text?.characters.count)! > 254 || (nameInv!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre muy largo"
             error = 1
         }
-        if((lastNamePInv!.text?.characters.count)! > 254 || (lastNamePInv!.text?.characters.count)! < 1 ){
+        else if((lastNamePInv!.text?.characters.count)! > 254 || (lastNamePInv!.text?.characters.count)! < 1 ){
             errorMessageCustom = "Apellido no válido"
             error = 1
         }
-        if((lastNameMInv!.text?.characters.count)! > 254 || (lastNameMInv!.text?.characters.count)! < 1){
+        else if((lastNameMInv!.text?.characters.count)! > 254 || (lastNameMInv!.text?.characters.count)! < 1){
             errorMessageCustom = "Apellido no válido"
             error = 1
         }
-        if((emailInv!.text?.characters.count)! > 100 || (emailInv!.text?.characters.count)! < 3 ){
+        else if((emailInv!.text?.characters.count)! > 100 || (emailInv!.text?.characters.count)! < 3 ){
             errorMessageCustom = "Correo no válido"
             error = 1
         }
-        if((cellphoneInv!.text?.characters.count)! != 9){
+        else if((cellphoneInv!.text?.characters.count)! != 9){
             errorMessageCustom = "Número de celular no válido"
             error = 1
         }
@@ -153,56 +164,70 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
             present(alert,animated: true, completion:nil)
         }
         else{
-            //Gruadar en servidor
-            let json = NSMutableDictionary()
-            json.setValue(inv?.id, forKey: "id")
-            json.setValue(nameInv.text, forKey: "nombre")
-            json.setValue(lastNamePInv.text , forKey: "ape_paterno")
-            json.setValue(lastNameMInv.text , forKey: "ape_materno")
-            json.setValue(emailInv.text , forKey: "correo")
-            json.setValue(cellphoneInv.text , forKey: "celular")
-            do{
-                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-                print(jsonData)
-                let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
-                print(decoded)
-                let postData = decoded as! [String:AnyObject]
-                print(postData)
-                let token = (parent as! InvNavViewController).token
-                let get = (parent as! InvNavViewController).editInvestigators
-                let parser = inv?.id
-                let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
-                print(routeApi)
-                HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
-                    if(error != nil){
-                        //Mostrar error y regresar al menù principal
-                        print(error)
-                        alert.title = self.errorTitle
-                        alert.message = self.errorMessage
-                        self.present(alert,animated: true, completion:nil)
-                    }
-                    else {
-                        //obtener data
-                        alert.title = self.successTitle
-                        alert.message = self.successMessage
-                        self.present(alert,animated: true, completion:nil)
-                        self.inv?.name = self.nameInv.text
-                        self.inv?.lastNameP = self.lastNamePInv.text
-                        self.inv?.lastNameM = self.lastNameMInv.text
-                        self.inv?.email = self.emailInv.text
-                        self.inv?.cellphone = self.cellphoneInv.text
-                        ((self.parent as! InvNavViewController).inv) = self.inv
-                    }
-                    
-                })
-                
-            }
-            catch{
-                
-            }
             
+            let uiAlert = UIAlertController(title: "Aviso", message: "¿Desea guardar los cambios?", preferredStyle: UIAlertControllerStyle.alert)
+            uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                //Gruadar en servidor
+                let json = NSMutableDictionary()
+                json.setValue(self.inv?.id, forKey: "id")
+                json.setValue(self.nameInv.text, forKey: "nombre")
+                json.setValue(self.lastNamePInv.text , forKey: "ape_paterno")
+                json.setValue(self.lastNameMInv.text , forKey: "ape_materno")
+                json.setValue(self.emailInv.text , forKey: "correo")
+                json.setValue(self.cellphoneInv.text , forKey: "celular")
+                do{
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                    print(jsonData)
+                    let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                    print(decoded)
+                    let postData = decoded as! [String:AnyObject]
+                    print(postData)
+                    let token = (self.parent as! InvNavViewController).token
+                    let get = (self.parent as! InvNavViewController).editInvestigators
+                    let parser = self.inv?.id
+                    let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
+                    print(routeApi)
+                    HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
+                        if(error != nil){
+                            //Mostrar error y regresar al menù principal
+                            print(error)
+                            alert.title = self.errorTitle
+                            alert.message = self.errorMessage
+                            self.present(alert,animated: true, completion:nil)
+                        }
+                        else {
+                            //obtener data
+                            
+                            self.inv?.name = self.nameInv.text
+                            self.inv?.lastNameP = self.lastNamePInv.text
+                            self.inv?.lastNameM = self.lastNameMInv.text
+                            self.inv?.email = self.emailInv.text
+                            self.inv?.cellphone = self.cellphoneInv.text
+                            ((self.parent as! InvNavViewController).inv) = self.inv
+                            let alertSuccess : UIAlertController = UIAlertController.init(title: self.successTitle, message: self.successMessage, preferredStyle: .alert)
+                            let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                                let navController = self.navigationController
+                                if navController != nil {
+                                    navController?.popViewController(animated: true)
+                                }
+                                print(navController)
+                            })
+                            alertSuccess.addAction(action)
+                            self.present(alertSuccess,animated: false, completion:nil)
+                        }
+                        
+                    })
+                    
+                }
+                catch{
+                    
+                }
+            }))
+            
+            uiAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+            self.present(uiAlert, animated: true, completion: nil)
         }
-        
+        }
     }
 
     /*
