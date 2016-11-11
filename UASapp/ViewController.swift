@@ -107,17 +107,25 @@ class ViewController: UIViewController {
                         // Professor
                         if  (role == 2 || role == 1) {
                             let professor = user["professor"] as! [String:AnyObject]
-                            specialty = professor["IdEspecialidad"] as! Int
+                            specialty = Int(professor["IdEspecialidad"] as! String)!
                             name = professor["Nombre"] as? String
                             lastname = (professor["ApellidoPaterno"] as? String)! + " " + (professor["ApellidoMaterno"] as? String)!
                             email = professor["Correo"] as? String
                             roleName = "Profesor"
                             
                             userDefaults.set(professor["IdDocente"], forKey: "DOCENTE_ID")
-                            userDefaults.set(professor["rolTutoria"], forKey: "ROLTUTORIA")
-                            userDefaults.set(professor["rolEvaluaciones"], forKey: "ROLEVALUA")
-                            userDefaults.set(professor["es_adminpsp"], forKey: "ADMINPSP")
-                            userDefaults.set(professor["es_supervisorpsp"], forKey: "SUPERPSP")
+//                            userDefaults.set(professor["rolEvaluaciones"], forKey: "ROLEVALUA")
+                            userDefaults.set(professor["es_adminpsp"] as? String, forKey: "ADMINPSP")
+                            userDefaults.set(professor["es_supervisorpsp"] as? String, forKey: "SUPERPSP")
+                            
+                            let idTuto = professor["rolTutoria"] as! String
+                            if ( idTuto == "1") {
+                                userDefaults.set("T", forKey: "ROLTUTORIA")
+                            }
+                            else {
+                                userDefaults.set("", forKey: "ROLTUTORIA")
+                            }
+                            
                         }
                         // Accreditor
                         else if role == 4 {
@@ -138,6 +146,11 @@ class ViewController: UIViewController {
                             
                             
                             userDefaults.set(investigator["id_area"], forKey: "AREA_ID")
+                        }
+                        // Student
+                        else if role == 0 {
+                            userDefaults.set("A", forKey: "ROLTUTORIA")
+                            roleName = "Alumno"
                         }
                         
                         userDefaults.set(specialty, forKey: "SPECIALTY")
