@@ -26,12 +26,34 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     var Array = ["Rendimiento académico","económico","familiar","otros"]
     
     var temaSel: Int = 0
+    
+    
+    var horarioL: [Int] = []
+    var horarioMa: [Int] = []
+    var horarioMi: [Int] = []
+    var horarioJ: [Int] = []
+    var horarioV: [Int] = []
+    var horarioS: [Int] = []
  
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //dateR.minimumDate = Date()
+        dateR.minimumDate = Date()
         //timeR.minimumDate = Date()
+        
+        //ACA SE CONFIGURA EL TIME PICKER CON LA DURACION DE LAS CITAS DE LA ESPECIALIDAD
+        
+        //SE DEBE JALAR DE API, PERO UN NO EXISTE GG GERARDO
+        
+        timeR.minuteInterval = 10 //Si del api viene cero, seteamos 1
+        
+        //ACA SE CONFIGURA EL PLAZO MAXIMO DE TIEMPO QUE SE PUEDE RESERVAR UNA CITA CON ANTICIPACION
+        
+        let intervaloAnticipacion:Int = 5184000
+        
+        
+        dateR.maximumDate = Date(timeIntervalSinceNow: TimeInterval(intervaloAnticipacion))
+        
         
         let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
         
@@ -201,8 +223,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "dd/MM/yyyy" //"yyyy-MM-dd HH:mm:ss"
         
-        
- 
+       
         
         
         let  fI = dateFormater.string(from: dateR.date)
@@ -216,9 +237,193 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         //CONCATENO EL DATE PICKER Y EL TIME PICKER PARA VERIFICAR QUE ES UNA FECHA Y HORA VALIDA
         
         let fechaYhoraS: String = fI + " " + hI + ":" + "00"
-        dateFormater.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        dateFormater.dateFormat = "dd/MM/yyyy HH:mm:ss" // "EEEE"
         let fechayhoraD: Date = dateFormater.date(from: fechaYhoraS)!
         
+        
+        dateFormater.dateFormat = "EEEE" // "EEEE" devuelve el dia de semana
+
+        //VERIFICAR QUE EL DIA Y HORA SELECCIONADOS SEAN ACORDE AL HORARIO DEL TUTOR
+        let diaSemana = dateFormater.string(from: fechayhoraD) //En ingles
+        
+        print(diaSemana)
+        
+        dateFormater.dateFormat = "HH"
+        
+        let horaCita = Int(dateFormater.string(from: fechayhoraD))
+        
+        let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
+        let idUsuario = String.init(parser)
+        
+        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        
+        HTTPHelper.get(route: "getTutorInfo/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
+            
+            
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let tjd = dataUnwrapped as! [AnyObject]
+                let tj = tjd[0] as! [String:AnyObject]
+                print(tj)
+                
+                
+                let horario: [Any]
+                
+
+                
+                if ((tj["scheduleInfo"])?.count != 0){
+                    print(tj["scheduleInfo"])
+                    horario = tj["scheduleInfo"] as! [AnyObject]
+                    
+                    
+                    for diaH in horario {
+                        
+                        let dateFormater = DateFormatter()
+                        dateFormater.dateFormat = "HH:mm:ss"
+                        let diaHo = diaH as! [String:AnyObject]
+                        
+                        let  hI = dateFormater.date(from: (diaHo["hora_inicio"] as! String))
+                        print(diaHo["hora_inicio"] as! String)
+                        
+                        dateFormater.dateFormat = "HH"
+                        
+                        if ( (diaHo["dia"] as! String) == "1") {
+                            
+                            self.horarioL.append(Int( dateFormater.string(from: hI!))!)
+                            
+                        }
+                        
+                        if ( (diaHo["dia"] as! String) == "2") {
+                            
+                            self.horarioMa.append(Int( dateFormater.string(from: hI!))!)
+                            
+                        }
+                        
+                        if ( (diaHo["dia"] as! String) == "3") {
+                            
+                            self.horarioMi.append(Int( dateFormater.string(from: hI!))!)
+                            
+                        }
+                        
+                        if ( (diaHo["dia"] as! String) == "4") {
+                            
+                            self.horarioJ.append(Int( dateFormater.string(from: hI!))!)
+                            
+                        }
+                        
+                        if ( (diaHo["dia"] as! String) == "5") {
+                            
+                            self.horarioV.append(Int( dateFormater.string(from: hI!))!)
+                            
+                        }
+                        
+                        if ( (diaHo["dia"] as! String) == "6") {
+                            
+                            self.horarioS.append(Int( dateFormater.string(from: hI!))!)
+                            
+                        }
+                    }
+                }
+            }
+        })
+        
+        
+        
+        print("dia y")
+        for d in horarioL {
+            print(d)
+        }
+        print("dia y")
+        for d in horarioMa {
+            print(d)
+        }
+        print("dia y")
+        for d in horarioMi {
+            print(d)
+        }
+        print("dia y")
+        for d in horarioJ {
+            print(d)
+        }
+        print("dia y")
+        for d in horarioV {
+            print(d)
+        }
+        print("dia y")
+        for d in horarioS {
+            print(d)
+        }
+        
+        //return
+        
+        //diaSemana y horaCita
+        if diaSemana == "Monday" {
+            if horarioL.contains(horaCita!) == false {
+                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                self.present(errorAlert, animated: true, completion: nil)
+                return
+                
+            }
+        }
+        
+        if diaSemana == "Tuesday" {
+            if horarioMa.contains(horaCita!) == false {
+                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                self.present(errorAlert, animated: true, completion: nil)
+                return
+                
+            }
+        }
+        
+        if diaSemana == "Wednesday" {
+            if horarioMi.contains(horaCita!) == false {
+                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                self.present(errorAlert, animated: true, completion: nil)
+                return
+                
+            }
+        }
+        
+        if diaSemana == "Thursday" {
+            if horarioJ.contains(horaCita!) == false {
+                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                self.present(errorAlert, animated: true, completion: nil)
+                return
+                
+            }
+        }
+        
+        if diaSemana == "Friday" {
+            if horarioV.contains(horaCita!) == false {
+                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                self.present(errorAlert, animated: true, completion: nil)
+                return
+                
+            }
+        }
+        
+        if diaSemana == "Saturday" {
+            if horarioS.contains(horaCita!) == false {
+                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                self.present(errorAlert, animated: true, completion: nil)
+                return
+                
+            }
+        }
+        
+        if diaSemana == "Sunday" {
+            if horarioS.contains(horaCita!) == false {
+                errorAlert.message = "Los domingos no se brindan asesorias"
+                self.present(errorAlert, animated: true, completion: nil)
+                return
+                
+            }
+        }
+        
+        
+        
+        //////////////////////////////////////////////////SETEAR VALORES AL JSON DEL POST
         
         if ( fechayhoraD > Date.init() ) {
             
@@ -235,9 +440,9 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         }
         
         
-        let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
-        let idUser = String.init(parser)
-        json.setValue(idUser, forKey: "idUser") //Seteo el idUsuario
+        //let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
+        //let idUser = String.init(parser)
+        json.setValue(idUsuario, forKey: "idUser") //Seteo el idUsuario
         
         if ( temaSel != 0) {
             json.setValue(temaA[temaSel].nombre, forKey: "motivo") //Seteo el tema
@@ -248,7 +453,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         }
         
         
-        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        //let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
  
         
         //

@@ -146,6 +146,11 @@ class ViewController: UIViewController {
                             
                             userDefaults.set(investigator["id_area"], forKey: "AREA_ID")
                         }
+                        // Student
+                        else if role == 0 {
+                            userDefaults.set("A", forKey: "ROLTUTORIA")
+                            roleName = "Alumno"
+                        }
                         
                         userDefaults.set(specialty, forKey: "SPECIALTY")
                         userDefaults.set(name, forKey: "NAME")

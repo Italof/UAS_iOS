@@ -25,6 +25,8 @@ class NavigationControllerC: UINavigationController {
     var citasOb: [cita]?
     var alumnosOb: [alumno]?
     var citEsc: cita?
+    var filtroCitas: String = "N"
+    
     
 
     /*

@@ -8,26 +8,11 @@
 
 import UIKit
 
-class ViewControllerTutoriaMenu: UIViewController {
+class ViewControllerTutoriaMenu: UITableViewController {
 
-    @IBOutlet var botonMiTutor: UIButton!
-    @IBOutlet var botonCitas: UIButton!
-    @IBOutlet weak var botonAlumnos: UIButton!
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let rol : String? = UserDefaults.standard.object( forKey: "ROLTUTORIA") as? String
-        
-        //Se oculta el boton de alumnos, porque gerardo no quiere hacer mas APIS
-        botonAlumnos.isHidden = true
-        
-        if (rol == "T"){
-            botonMiTutor.isHidden = true
-        }
 
         // Do any additional setup after loading the view.
     }
@@ -37,20 +22,15 @@ class ViewControllerTutoriaMenu: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-    @IBAction func viewMyTutor(_ sender: AnyObject) {
-            
-    }
-    
-    
-    @IBAction func verCitas(_ sender: AnyObject) {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let rol : String? = UserDefaults.standard.object( forKey: "ROLTUTORIA") as? String
         
-                
-                self.performSegue(withIdentifier: "citasSegue", sender: self)
-
+        if (rol == "T"){
+            return 1
+            
+        }
+        return 2
     }
-    
     
     @IBAction func verAlumnos(_ sender: AnyObject) {
         /*
