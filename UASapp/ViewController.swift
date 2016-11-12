@@ -102,12 +102,12 @@ class ViewController: UIViewController {
                         userDefaults.set(user["IdPerfil"], forKey: "ROLE")
                         
                         let role = userDefaults.integer(forKey: "ROLE")
-                        var specialty: Int = 0
+                        var specialty = 0
                         var name, lastname, roleName, email: String?
                         // Professor
                         if  (role == 2 || role == 1) {
                             let professor = user["professor"] as! [String:AnyObject]
-                            specialty = professor["IdEspecialidad"] as! Int
+                            specialty = Int(professor["IdEspecialidad"] as! String)!
                             name = professor["Nombre"] as? String
                             lastname = (professor["ApellidoPaterno"] as? String)! + " " + (professor["ApellidoMaterno"] as? String)!
                             email = professor["Correo"] as? String
@@ -116,13 +116,25 @@ class ViewController: UIViewController {
                             userDefaults.set(professor["IdDocente"], forKey: "DOCENTE_ID")
                             userDefaults.set(professor["rolTutoria"], forKey: "ROLTUTORIA")
                             userDefaults.set(professor["rolEvaluaciones"], forKey: "ROLEVALUA")
-                            userDefaults.set(professor["es_adminpsp"], forKey: "ADMINPSP")
-                            userDefaults.set(professor["es_supervisorpsp"], forKey: "SUPERPSP")
+                            if let esAdmin = professor["es_adminpsp"] {
+                                userDefaults.set(esAdmin, forKey: "ADMINPSP")
+                            }
+                            else {
+                                userDefaults.set("", forKey: "ADMINPSP")
+                            }
+                            
+                            if let esSuper = professor["es_supervisorpsp"] {
+                                userDefaults.set(esSuper, forKey: "SUPERPSP")
+                            }
+                            else {
+                                userDefaults.set("", forKey: "SUPERPSP")
+                            }
+                            
                         }
                         // Accreditor
                         else if role == 4 {
                             let accreditor = user["accreditor"] as! [String:AnyObject]
-                            specialty = accreditor["IdEspecialidad"] as! Int
+                            specialty = Int(accreditor["IdEspecialidad"] as! String)!
                             name = accreditor["Nombre"] as? String
                             lastname = (accreditor["ApellidoPaterno"] as? String)! + " " + (accreditor["ApellidoMaterno"] as? String)!
                             roleName = "Acreditador"
@@ -130,7 +142,7 @@ class ViewController: UIViewController {
                         // Investigator
                         else if role == 5 {
                             let investigator = user["investigator"] as! [String:AnyObject]
-                            specialty = investigator["id_especialidad"] as! Int
+                            specialty = Int(investigator["id_especialidad"] as! String)!
                             name = investigator["nombre"] as? String
                             lastname = (investigator["ape_paterno"] as? String)! + " " + (investigator["ape_materno"] as? String)!
                             email = investigator["correo"] as? String
