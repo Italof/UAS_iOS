@@ -44,13 +44,13 @@ class InvPrDetailViewController: UIViewController {
     numberDerivablesInvProject.text = String(parser.unsafelyUnwrapped)
     // inicializa botones -- PERMISOS
     //profile user
-    let profile = (parent as! InvNavViewController).profile
+    //let profile = (parent as! InvNavViewController).profile
     //profiles permitidos a editar
     
-    let profilePermited = (parent as! InvNavViewController).profilePermited
+    //let profilePermited = (parent as! InvNavViewController).profilePermited
     let isConnected = AskConectivity.isInternetAvailable()
     invProjectEditButton.isEnabled = false
-    if( profilePermited.index( of: profile) != nil || isConnected != false || invPr?.idLeader == id){
+    if(isConnected != false && invPr?.idLeader == id){
       //si no se encuentra el perfil permitido
       //ocultar boton de editar
       invProjectEditButton.isEnabled = true

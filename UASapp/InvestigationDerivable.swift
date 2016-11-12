@@ -30,7 +30,7 @@ struct InvestigationDerivable{
     
     init(json : [String:Any]){
         //actualizar      
-        let id = json["Id"] as! Int
+        let id = json["id"] as! Int
         let name = json["nombre"] as! String
         let percentage = json["porcen_avance"] as! String
         let dateLimit = json["fecha_limite"] as! String

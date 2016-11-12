@@ -10,13 +10,14 @@ import UIKit
 
 class InvDerDetailViewController: UIViewController, UIDocumentInteractionControllerDelegate ,UIPickerViewDataSource , UIPickerViewDelegate {
     var invDer: InvestigationDerivable?
+    var invPr: InvestigationProject?
     var invDocData: [InvestigationDocument] = []
     var versionDer: [String] = ["1.0","1.1","2.1"]
     var dowloadRoute: String?
     @IBOutlet weak var nameInvDer: UILabel!
     @IBOutlet weak var respInvDer: UITextView!
     @IBOutlet weak var limitDateInvDer: UILabel!
-    //@IBOutlet weak var deliverDateInvDer: UILabel!
+    @IBOutlet weak var deliverDateInvDer: UILabel!
     @IBOutlet weak var percentageInvDer: UILabel!
     @IBOutlet var startDateInvDer: UILabel!
     var dataTaskD : URLSessionDataTask?
@@ -64,6 +65,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
         //cambia fecha de entrrega
     }
     
+    @IBOutlet weak var invDerEditButton: UIBarButtonItem!
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -75,6 +77,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
     }
     override func viewWillAppear(_ animated: Bool) {
         invDer = (parent as! InvNavViewController).invDer
+        invPr = (parent as! InvNavViewController).invPr
         nameInvDer.text = invDer?.name?.uppercased()
         //versionInvDer.text = "Ultima Versión"
         percentageInvDer.text = String((invDer?.percentage)!) + "%"
@@ -89,7 +92,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
         limitDateInvDer.text = dateFormat.string(from: limitDate!)
         startDateInvDer.text = dateFormat.string(from: startDate!)
         //deliverDateInvDer.text = "asdasdasd"
-        let get = (parent as! InvNavViewController).getDerivables
+        let get = (parent as! InvNavViewController).getDocuments
         let routeApi = "investigation/" + id + "/" + get + "?token=" + token
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if(error == nil){
@@ -122,9 +125,16 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
             downloadButton.isHidden = true
             versionPicker.isHidden = true
             versionInvDerlbl.text = "No entregado"
-            
+            deliverDateInvDer.text = "No entregado"
         }
-        
+        invDerEditButton.isEnabled = false
+        //let profilePermited = (parent as! InvNavViewController).profilePermited
+        let isConnected = AskConectivity.isInternetAvailable()
+        if(isConnected != false && Int(id) == invPr?.idLeader){
+            //si no se encuentra el perfil permitido
+            //ocultar boton de editar
+            invDerEditButton.isEnabled = true
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
