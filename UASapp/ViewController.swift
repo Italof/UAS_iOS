@@ -114,11 +114,17 @@ class ViewController: UIViewController {
                             roleName = "Profesor"
                             
                             userDefaults.set(professor["IdDocente"], forKey: "DOCENTE_ID")
+//                            userDefaults.set(professor["rolEvaluaciones"], forKey: "ROLEVALUA")
+                            userDefaults.set(professor["es_adminpsp"] as? String, forKey: "ADMINPSP")
+                            userDefaults.set(professor["es_supervisorpsp"] as? String, forKey: "SUPERPSP")
                             
                             let rolTuto = professor["rolTutoria"] as? String
-                            userDefaults.set(rolTuto, forKey: "ROLTUTORIA")
+                            userDefaults.set(rolTuto, forKey: "TUTORIA")
+                            if rolTuto == "1" {
+                                userDefaults.set("T", forKey: "ROLTUTORIA")
+                            }
                             let rolEvalua = professor["rolEvaluaciones"] as? String
-                            userDefaults.set(rolEvalua, forKey: "ROLEVALUA")
+                            userDefaults.set(rolEvalua, forKey: "EVALUA")
                             let esAdmin = professor["es_adminpsp"] as? String
                             userDefaults.set(esAdmin, forKey: "ADMINPSP")
                             let esSuper = professor["es_supervisorpsp"] as? String

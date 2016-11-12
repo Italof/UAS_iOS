@@ -225,8 +225,8 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             })
             
             
-            
-            
+        }
+        
             
             
             //Citas para el tutor getTutorAppoints
@@ -339,5 +339,5 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             
         }
         
-    }
+    
 }
