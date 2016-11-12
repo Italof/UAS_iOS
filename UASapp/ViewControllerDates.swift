@@ -26,6 +26,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
     var themes = [String]()
     var students = [String]()
     var statusA = [String]()
+    var filtroC: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,8 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         if ( rol == "A"){
             botonAtenderSinCita.isHidden = true
         }
+        
+        filtroC = ((self.parent as! NavigationControllerC).filtroCitas)
         //print("id usuario")
         //print(UserDefaults.standard.object( forKey: "USER_ID"))
         let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
@@ -67,147 +70,153 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
             })
             
             
-            HTTPHelper.get(route: "getAppointmentList/" + idUser + "?token=" + token, authenticated: true, completion:{ (error,data) in
-                
-                if(error == nil){
-                    //obtener data
-                    let dataUnwrapped = data.unsafelyUnwrapped
-                    let tjd = dataUnwrapped as! [AnyObject]
+            
+            if ( filtroC == "S"){
+                self.loadData()
+                ((self.parent as! NavigationControllerC).filtroCitas) = "N"
+            } else {
+                HTTPHelper.get(route: "getAppointmentList/" + idUser + "?token=" + token, authenticated: true, completion:{ (error,data) in
                     
-                    
-                    var cS: [cita] = [] ///////////
-                    
-                    for c in tjd {
-                        print("cita:")
-                        print(c)
+                    if(error == nil){
+                        //obtener data
+                        let dataUnwrapped = data.unsafelyUnwrapped
+                        let tjd = dataUnwrapped as! [AnyObject]
                         
                         
-                        let citaId: String?
-                        let fechaI: String?
-                        let horaI: String?
-                        let tema: String?
-                        var alumno: String?
-                        let estado: String?
+                        var cS: [cita] = [] ///////////
                         
-                        //Nuevos campos del Json
-                        //var citaId: String?
-                        //var fechaI: String?
-                        //var horaI: String?
-                        var idTema: Int?
-                        //var tema: String?
-                        var lugar: String?
-                        var infoExtra: String?
-                        var asistio: String?
-                        var observaciones: String?
-                        var idEstado: Int?
-                        //var estado: String?
-                        var flagCreador: String?
-                        var idTutor: Int?
-                        var tutor: String?
-                        var idAlumno: Int?
-                        //var alumno: String?
-                        
-                        var fI: Date?
-                        var hI: Date?
-                        
-                        let idc: Int = (c["id"] as! Int?)!
-                        citaId = String(idc)
-                        tema = c["nombreTema"] as! String?
-                        //alumno = c["nombreAlumno"] as! String?
-                        alumno = "Prueba"
-                        estado = c["nombreEstado"] as! String?
-                        let idTemaTemp = c["id_topic"] as! String?
-                        idTema = Int(idTemaTemp!)
-                        
-                        if ((c["lugar"] as? String!) != nil){
-                            lugar = c["lugar"] as! String?
-                        } else {
-                            lugar = "-"
+                        for c in tjd {
+                            print("cita:")
+                            print(c)
+                            
+                            
+                            let citaId: String?
+                            let fechaI: String?
+                            let horaI: String?
+                            let tema: String?
+                            var alumno: String?
+                            let estado: String?
+                            
+                            //Nuevos campos del Json
+                            //var citaId: String?
+                            //var fechaI: String?
+                            //var horaI: String?
+                            var idTema: Int?
+                            //var tema: String?
+                            var lugar: String?
+                            var infoExtra: String?
+                            var asistio: String?
+                            var observaciones: String?
+                            var idEstado: Int?
+                            //var estado: String?
+                            var flagCreador: String?
+                            var idTutor: Int?
+                            var tutor: String?
+                            var idAlumno: Int?
+                            //var alumno: String?
+                            
+                            var fI: Date?
+                            var hI: Date?
+                            
+                            let idc: Int = (c["id"] as! Int?)!
+                            citaId = String(idc)
+                            tema = c["nombreTema"] as! String?
+                            //alumno = c["nombreAlumno"] as! String?
+                            alumno = "Prueba"
+                            estado = c["nombreEstado"] as! String?
+                            let idTemaTemp = c["id_topic"] as! String?
+                            idTema = Int(idTemaTemp!)
+                            
+                            if ((c["lugar"] as? String!) != nil){
+                                lugar = c["lugar"] as! String?
+                            } else {
+                                lugar = "-"
+                            }
+                            /*
+                             if ((tj["telefono"] as? String) != nil){
+                             telefono = tj["telefono"] as! String?
+                             } else {
+                             telefono = "-"
+                             }
+                             */
+                            
+                            if ((c["adicional"] as? String!) != nil){
+                                infoExtra = c["adicional"] as! String?
+                            } else {
+                                infoExtra = "-"
+                            }
+                            
+                            
+                            asistio = "-"
+                            
+                            if ((c["observacion"] as? String!) != nil){
+                                observaciones = c["observacion"] as! String?
+                            } else {
+                                observaciones = "-"
+                            }
+                            
+                            let idEstadoTemp = c["estado"] as! String?
+                            idEstado = Int(idEstadoTemp!)
+                            let flagCreadorTemp = c["creador"] as! String?
+                            if flagCreadorTemp == "0" {
+                                flagCreador = "A"
+                            }
+                            if flagCreadorTemp == "1" {
+                                flagCreador = "T"
+                            }
+                            let idTutorTemp = c["id_docente"] as! String?
+                            idTutor = Int(idTutorTemp!)
+                            tutor = "---"
+                            let idAlumnoTemp = c["id_tutstudent"] as! String?
+                            idAlumno = Int(idAlumnoTemp!)
+                            alumno = "----"
+                            
+                            let dateFormater = DateFormatter()
+                            dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                            
+                            
+                            fI = dateFormater.date(from: (c["inicio"] as! String))
+                            //Verificando que la fecha de cita que se registro no es nula
+                            if (fI == nil){
+                                fI = Date()
+                            }
+                            
+                            dateFormater.dateFormat = "yyyy-MM-dd"//"yyyy-MM-dd"
+                            fechaI = dateFormater.string(from: fI!)
+                            
+                            dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                            hI = dateFormater.date(from: (c["inicio"] as! String))
+                            
+                            if (hI == nil){
+                                hI = Date()
+                            }
+                            dateFormater.dateFormat = "HH:mm"
+                            
+                            horaI = dateFormater.string(from: hI!)
+                            
+                            let citaO: cita = cita.init(citaId: citaId, fechaI: fechaI, horaI: horaI, idTema: idTema, tema: tema, lugar: lugar, infoExtra: infoExtra, asistio: asistio, observaciones: observaciones, idEstado: idEstado, estado: estado, flagCreador: flagCreador, idTutor: idTutor, tutor: tutor, idAlumno: idAlumno, alumno: alumno)
+                            cS.append(citaO)
+                            
                         }
-                        /*
-                        if ((tj["telefono"] as? String) != nil){
-                            telefono = tj["telefono"] as! String?
-                        } else {
-                            telefono = "-"
-                        }
-                         */
-                        
-                        if ((c["adicional"] as? String!) != nil){
-                            infoExtra = c["adicional"] as! String?
-                        } else {
-                            infoExtra = "-"
-                        }
                         
                         
-                        asistio = "-"
+                        cS.reverse()
                         
-                        if ((c["observacion"] as? String!) != nil){
-                            observaciones = c["observacion"] as! String?
-                        } else {
-                            observaciones = "-"
+                        
+                        ((self.parent as! NavigationControllerC).citasOb) = cS
+                        
+                        DispatchQueue.main.async {
+                            self.loadData()
+                            self.Dates.reloadData()
+                            return
                         }
                         
-                        let idEstadoTemp = c["estado"] as! String?
-                        idEstado = Int(idEstadoTemp!)
-                        let flagCreadorTemp = c["creador"] as! String?
-                        if flagCreadorTemp == "0" {
-                            flagCreador = "A"
-                        }
-                        if flagCreadorTemp == "1" {
-                            flagCreador = "T"
-                        }
-                        let idTutorTemp = c["id_docente"] as! String?
-                        idTutor = Int(idTutorTemp!)
-                        tutor = "---"
-                        let idAlumnoTemp = c["id_tutstudent"] as! String?
-                        idAlumno = Int(idAlumnoTemp!)
-                        alumno = "----"
-                        
-                        let dateFormater = DateFormatter()
-                        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                        
-                        
-                        fI = dateFormater.date(from: (c["inicio"] as! String))
-                        //Verificando que la fecha de cita que se registro no es nula
-                        if (fI == nil){
-                            fI = Date()
-                        }
-                        
-                        dateFormater.dateFormat = "yyyy-MM-dd"//"yyyy-MM-dd"
-                        fechaI = dateFormater.string(from: fI!)
-                        
-                        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                        hI = dateFormater.date(from: (c["inicio"] as! String))
-                        
-                        if (hI == nil){
-                            hI = Date()
-                        }
-                        dateFormater.dateFormat = "HH:mm"
-                        
-                        horaI = dateFormater.string(from: hI!)
-                        
-                        let citaO: cita = cita.init(citaId: citaId, fechaI: fechaI, horaI: horaI, idTema: idTema, tema: tema, lugar: lugar, infoExtra: infoExtra, asistio: asistio, observaciones: observaciones, idEstado: idEstado, estado: estado, flagCreador: flagCreador, idTutor: idTutor, tutor: tutor, idAlumno: idAlumno, alumno: alumno)
-                        cS.append(citaO)
-                        
+                    }   else {
+                        print("error,NO HAY NADA ACA")
                     }
                     
-                    
-                    cS.reverse()
-                    
-                    
-                    ((self.parent as! NavigationControllerC).citasOb) = cS
-                    
-                    DispatchQueue.main.async {
-                        self.loadData()
-                        self.Dates.reloadData()
-                        return
-                    }
-                    
-                }   else {
-                    print("error,NO HAY NADA ACA")
-                }
-                
-            })
+                })
+            }
         }
         
         
@@ -216,6 +225,13 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         //Citas para el tutor getTutorAppoints
         
         if ( rol == "T"){
+            
+            if ( filtroC == "S"){
+                self.loadData()
+                ((self.parent as! NavigationControllerC).filtroCitas) = "N"
+            }else {
+                
+            
             
             /* QUE GERARDO SUBA EL API A PRODUCCION Y CORRERA
              
@@ -324,6 +340,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                 }
                 
             })
+            }
         }
         
         //EN ESTE PUNTO YA SE TIENEN LAS CITAS ( SEA DE ALUMNO O TUTOR )

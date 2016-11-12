@@ -754,12 +754,20 @@
                     </view>
                     <navigationItem key="navigationItem" title="Filtrar citas" id="E1n-v2-vOh">
                         <barButtonItem key="backBarButtonItem" title="Atrás" id="DBN-GP-3m9"/>
-                        <barButtonItem key="rightBarButtonItem" title="Aceptar" id="AKn-8e-ZTy"/>
+                        <barButtonItem key="rightBarButtonItem" title="Aceptar" id="AKn-8e-ZTy">
+                            <connections>
+                                <action selector="filtrar:" destination="cyt-cg-ex0" id="WdB-w5-1Aw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="botonFiltrar" destination="AKn-8e-ZTy" id="lAc-6z-HdM"/>
+                        <outlet property="fechaFF" destination="s4F-YQ-g0h" id="ldO-WS-hNY"/>
+                        <outlet property="fechaIF" destination="1OS-kG-aXY" id="ckm-B7-nSZ"/>
                         <outlet property="labelAlumno" destination="kzO-tE-wng" id="C6I-F7-8wH"/>
                         <outlet property="pickerViewEstados" destination="dQ8-A3-dIe" id="olR-A9-zKs"/>
                         <outlet property="textoAlumno" destination="Od0-Dv-68u" id="79K-4n-6ol"/>
+                        <segue destination="cvr-jI-uTq" kind="show" identifier="SegueFiltrarCitas" id="n1i-9W-eQb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYf-9F-1g4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -775,7 +783,7 @@
                         <viewControllerLayoutGuide type="bottom" id="AXK-WI-EaY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Im4-kW-c6w">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Código" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V3-tf-ua1">
@@ -4322,7 +4330,7 @@
         <image name="home-logo" width="318" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Nx9-Sd-qWK"/>
-        <segue reference="WB0-pu-TO7"/>
+        <segue reference="hGk-Mp-pAd"/>
+        <segue reference="n1i-9W-eQb"/>
     </inferredMetricsTieBreakers>
 </document>
