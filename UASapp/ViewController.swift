@@ -114,21 +114,16 @@ class ViewController: UIViewController {
                             roleName = "Profesor"
                             
                             userDefaults.set(professor["IdDocente"], forKey: "DOCENTE_ID")
-                            userDefaults.set(professor["rolTutoria"], forKey: "ROLTUTORIA")
-                            userDefaults.set(professor["rolEvaluaciones"], forKey: "ROLEVALUA")
-                            if let esAdmin = professor["es_adminpsp"] {
-                                userDefaults.set(esAdmin, forKey: "ADMINPSP")
-                            }
-                            else {
-                                userDefaults.set("", forKey: "ADMINPSP")
-                            }
                             
-                            if let esSuper = professor["es_supervisorpsp"] {
-                                userDefaults.set(esSuper, forKey: "SUPERPSP")
-                            }
-                            else {
-                                userDefaults.set("", forKey: "SUPERPSP")
-                            }
+                            let rolTuto = professor["rolTutoria"] as? String
+                            userDefaults.set(rolTuto, forKey: "ROLTUTORIA")
+                            let rolEvalua = professor["rolEvaluaciones"] as? String
+                            userDefaults.set(rolEvalua, forKey: "ROLEVALUA")
+                            let esAdmin = professor["es_adminpsp"] as? String
+                            userDefaults.set(esAdmin, forKey: "ADMINPSP")
+                            let esSuper = professor["es_supervisorpsp"] as? String
+                            userDefaults.set(esSuper, forKey: "SUPERPSP")
+                            
                             
                         }
                         // Accreditor

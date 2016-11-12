@@ -29,7 +29,7 @@ class TabBarController: UITabBarController {
         case 1:
             // Coordinador
             let roleTuto = userDefaults.integer(forKey: "ROLTUTORIA")
-            if roleTuto != 1 && roleTuto != 2 {
+            if roleTuto != 1 {
                 // Borra tutoria y psp
                 self.viewControllers?.remove(at: 2)
                 self.viewControllers?.remove(at: 2)
@@ -41,7 +41,7 @@ class TabBarController: UITabBarController {
         case 2:
             // Profesor
             let roleTuto = userDefaults.integer(forKey: "ROLTUTORIA")
-            if roleTuto != 1 && roleTuto != 2 {
+            if roleTuto != 1 {
                 // Borra tutoria y psp
                 self.viewControllers?.remove(at: 2)
                 self.viewControllers?.remove(at: 2)
