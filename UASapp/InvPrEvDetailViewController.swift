@@ -76,12 +76,12 @@ class InvPrEvDetailViewController: UIViewController {
       
         //inicializa botones -- PERMISOS
         //profile user
-        let profile = (parent as! InvNavViewController).profile
+        //let profile = (parent as! InvNavViewController).profile
         //profiles permitidos a editar
         invPrEvEditButton.isEnabled = false
-        let profilePermited = (parent as! InvNavViewController).profilePermited
+        //let profilePermited = (parent as! InvNavViewController).profilePermited
         let isConnected = AskConectivity.isInternetAvailable()
-        if( profilePermited.index( of: profile) != nil || isConnected != false || id == invPrEv?.idLeader){
+        if(isConnected != false && id == invPrEv?.idLeader){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
             invPrEvEditButton.isEnabled = true

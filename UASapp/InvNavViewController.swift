@@ -21,7 +21,7 @@ class InvNavViewController: UINavigationController {
     
     //variables que se usan en las pantallas que usan este navegador
     //Perfiles permitidos en edición en este modulo
-    var profilePermited : [Int] = [3,5]
+    var profilePermited : [Int] = [3]
 
     //Grupo de investigacion elegido
     var invGr: InvestigationGroup?
@@ -57,10 +57,10 @@ class InvNavViewController: UINavigationController {
     var getInvestigators: String = "getAllInvestigators"
     var editInvestigators: String = "investigators"
     //obtener y editar entregables
-    var getDerivables: String = "deriverables"
-    var editDerivables: String = "deriverable"
+    var getDerivables: String = "deliverables"
+    var editDerivables: String = "deliverable"
     //obtener  documentos
-    var getDocuments: String = "deriverables"
+    var getDocuments: String = "documents"
 
     override func viewDidLoad() {
         super.viewDidLoad()

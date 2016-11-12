@@ -44,9 +44,9 @@ class InvestigatorDetailViewController: UIViewController {
         let id = ((parent! as! InvNavViewController).id)
         //profiles permitidos a editar
         let profilePermited = (parent as! InvNavViewController).profilePermited
-        let isConnected = AskConectivity.isInternetAvailable()
+        //let isConnected = AskConectivity.isInternetAvailable()
         invEditButton.isEnabled = false
-        if( profilePermited.index( of: profile) != nil || isConnected != false || inv?.idUser == id){
+        if( profilePermited.index( of: profile) != nil || inv?.idUser == id){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
             invEditButton.isEnabled = true

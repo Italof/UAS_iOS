@@ -28,7 +28,7 @@ class InvDerivableTableViewController: UITableViewController {
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayDerivable = dataUnwrapped as? [Any]
-                //self.invDerData = []
+                self.invDerData = []
                 for deriverable in arrayDerivable!{
                     let der = deriverable as! [String:AnyObject]
                     
@@ -73,7 +73,7 @@ class InvDerivableTableViewController: UITableViewController {
         let invDer = invDerData[indexPath.row] as InvestigationDerivable
         print(invDer.name)
         cell.textLabel?.text = invDer.name
-        cell.detailTextLabel?.text = String(invDer.percentage)
+        cell.detailTextLabel?.text = "Avance: " + String(invDer.percentage) + "%"
         
         return cell
     }
