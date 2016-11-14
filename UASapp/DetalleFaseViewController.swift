@@ -41,7 +41,7 @@ class DetalleFaseViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        numero.text =  fase?.numero
+        numero.text =  String(describing: fase!.numero)
         descripcion.text = fase?.descripcion
         fechaInicio.text = fase?.fecha_inicio
         fechaFin.text = fase?.fecha_fin

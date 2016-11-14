@@ -11,10 +11,29 @@ import UIKit
 class InicioPspViewController: UIViewController {
     var token: String = UserDefaults.standard.object(forKey: "TOKEN") as! String
     var user: String = (UserDefaults.standard.object(forKey: "USER")  as! String)
+     var role: Int = Int(UserDefaults.standard.object(forKey: "ROLE")  as! String)!
+    
+    @IBOutlet weak var profesor: UIButton!
+    @IBOutlet weak var alumno: UIButton!
+    @IBOutlet weak var supervisor: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if(role==0)
+        {
+            profesor.isHidden=true
+            supervisor.isHidden=true
+        }
+        else if(role==2)
+        {
+         alumno.isHidden=true
+        supervisor.isHidden=true
+        }
+        else if(role==6)
+        {
+            profesor.isHidden=true
+            alumno.isHidden=true
+        }
         // Do any additional setup after loading the view.
     }
 
