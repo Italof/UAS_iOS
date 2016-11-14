@@ -13,14 +13,23 @@ class Fases {
     var fecha_inicio: String?
     var fecha_fin: String?
     var idPhase: Int
-    var numero: String?
+    var numero: Int?
+    var idpspprocess: Int?
+    var created_at:String?
+    var updated_at:String?
+    var deleted_at:String?
     
-    init(descripcion: String? = nil,fecha_inicio:String? = nil,fecha_fin:String? = nil,idPhase:Int,numero:String? = nil) {
+    init(descripcion: String? = nil,fecha_inicio:String? = nil,fecha_fin:String? = nil,idPhase:Int,numero:Int? = nil,idpspprocess:Int?=nil,created_at:String?=nil,updated_at:String?=nil,deleted_at:String?=nil) {
+       
         self.descripcion = descripcion
         self.fecha_inicio = fecha_inicio
         self.fecha_fin = fecha_fin
         self.idPhase = idPhase
         self.numero = numero
+        self.idpspprocess = idpspprocess
+        self.created_at=created_at
+        self.updated_at=updated_at
+        self.deleted_at=deleted_at
     }
 
 }

@@ -22,7 +22,7 @@ class FasesTableViewController: UITableViewController {
     var getGroups: String = "psp/phases/all/"
     var token: String = UserDefaults.standard.object(forKey: "TOKEN") as! String
     var user: String = (UserDefaults.standard.object(forKey: "USER")  as! String)
-    
+    //var token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUsImlzcyI6Imh0dHA6XC9cLzVjNmYzMGZhLm5ncm9rLmlvXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ3ODkwMzY2MywiZXhwIjoxNDgwMjU5NjYzLCJuYmYiOjE0Nzg5MDM2NjMsImp0aSI6ImI1MTk2NDQ5Nzg5N2ViYTJmYjI1NmViY2Y3MjIyNTdlIn0.5tlXtcbsH6prNtu9G5LHktPjWkSxw_ypqkkBv44uKV4"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class FasesTableViewController: UITableViewController {
         
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if error != nil {
-                print(error!)
+                print(error)
             } else {
                // let question = data!["question"] as? String
                // print("Question: \(question)")
@@ -66,9 +66,12 @@ class FasesTableViewController: UITableViewController {
                    let validDictionary1 = arrayGroup?[index] as! [String:Any]
                     var jsonResult = validDictionary1
                     
+                    let created_at: String? = self.isNullString(jsonResult:jsonResult as Dictionary<String, AnyObject>,identificador: "created_at")
+                    let deleted_at: String? = self.isNullString(jsonResult:jsonResult as Dictionary<String, AnyObject>,identificador: "deleted_at")
+                    let updated_at: String? = self.isNullString(jsonResult:jsonResult as Dictionary<String, AnyObject>,identificador: "updated_at")
+                    let idpspprocess:Int? = self.isNullInt(jsonResult:jsonResult as Dictionary<String, AnyObject>,identificador: "idpspprocess")
                     
-                    
-                    fasesTemporal=Fases(descripcion: jsonResult["descripcion"]! as? String,fecha_inicio: jsonResult["fecha_inicio"]! as? String,fecha_fin: jsonResult["fecha_fin"]! as? String,idPhase: jsonResult["id"]! as! Int,numero: jsonResult["numero"]! as? String)
+                    fasesTemporal=Fases(descripcion: jsonResult["descripcion"]! as! String,fecha_inicio: jsonResult["fecha_inicio"]! as! String,fecha_fin: jsonResult["fecha_fin"]! as! String,idPhase: jsonResult["id"]! as! Int,numero: jsonResult["numero"]! as! Int,idpspprocess:idpspprocess,created_at:created_at,updated_at:updated_at,deleted_at:deleted_at)
             
         self.fases.append(fasesTemporal)
 
@@ -92,6 +95,31 @@ class FasesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    func isNullInt(jsonResult:Dictionary<String, AnyObject>,identificador:String) -> Int?
+    {
+        var entero: Int?
+        if let id = jsonResult[identificador] as? NSNull {
+            entero=nil
+        }
+        else{
+            entero = jsonResult[identificador]! as! Int
+        }
+        return entero
+    }
+    
+    func isNullString(jsonResult:Dictionary<String, AnyObject>,identificador:String) -> String?
+    {
+        var cadena: String?
+        if let id = jsonResult[identificador] as? NSNull {
+            cadena=nil
+        }
+        else{
+            cadena = jsonResult[identificador]! as! String
+        }
+        return cadena
+    }
+    
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return kSectionCount
@@ -117,7 +145,7 @@ class FasesTableViewController: UITableViewController {
         
         switch (indexPath.section){
         case kRedSection:
-            cell.textLabel!.text=(fases[indexPath.row].descripcion!) + " "+(fases[indexPath.row].numero!)
+            cell.textLabel!.text=(fases[indexPath.row].descripcion!) + " "+String(fases[indexPath.row].numero!)
             cell.detailTextLabel!.text=fases[indexPath.row].fecha_inicio!+" - "+fases[indexPath.row].fecha_fin!
             
         default:
@@ -148,7 +176,7 @@ class FasesTableViewController: UITableViewController {
     
     @IBAction func dismiss(_ sender: AnyObject) {
         //  dismissViewControllerAnimated(true,completion:nil)
-        dismiss(animated: true,completion:nil)
+        navigationController?.popViewController(animated: true)
     }
     
     /*

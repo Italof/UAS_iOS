@@ -15,15 +15,20 @@ class GruposTableViewController: UITableViewController {
 
     var grupos: [Grupos] = []
     var token: String = UserDefaults.standard.object(forKey: "TOKEN") as! String
+   // var token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQxLCJpc3MiOiJodHRwOlwvXC81YzZmMzBmYS5uZ3Jvay5pb1wvYXBpXC9hdXRoZW50aWNhdGUiLCJpYXQiOjE0Nzg5MDM5NTAsImV4cCI6MTQ4MDI1OTk1MCwibmJmIjoxNDc4OTAzOTUwLCJqdGkiOiJkZTM1NjFiZTcxMWFjZDZhYjg2MGExOTFkODA2ZjkxZCJ9.fWuAjw9Xe7Qo-o9F3JTRzs-aR9rjKZk8IjVm2POcQxo"
+    
     var user: String = (UserDefaults.standard.object(forKey: "USER")  as! String)
     var getGroups: String = "psp/groups/all/"
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let routeApi = getGroups + "?token=" + token
+        
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if error != nil {
-                print(error!)
+                print(error)
             } else {
    
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -39,26 +44,19 @@ class GruposTableViewController: UITableViewController {
                     let validDictionary1 = arrayGroup?[index] as! [String:Any]
                     var jsonResult = validDictionary1
   
-                    let descripcion:String = jsonResult["descripcion"]! as! String
-                    let created_at:String = jsonResult["created_at"]! as! String
-                    var deleted_at:String = ""
-                    if (jsonResult["deleted_at"] as? String) != nil
-                    {
-                        deleted_at = jsonResult["deleted_at"]! as! String
-                        
-                    }
-                    else {
-                        deleted_at = ""
-                    }
+                    var descripcion:String = jsonResult["descripcion"]! as! String
+                 
+                    var idPspGroups:Int = jsonResult["id"]! as! Int
+                    var numero:String = jsonResult["numero"]! as! String
                     
-              
-                    let updated_at:String = jsonResult["updated_at"]! as! String
-                    let idPspGroups:Int = jsonResult["id"]! as! Int
-                    let numero:String = jsonResult["numero"]! as! String
+                    let created_at: String? = self.isNullString(jsonResult:jsonResult as Dictionary<String, AnyObject>,identificador: "created_at")
+                    let deleted_at: String? = self.isNullString(jsonResult:jsonResult as Dictionary<String, AnyObject>,identificador: "deleted_at")
+                    let updated_at: String? = self.isNullString(jsonResult:jsonResult as Dictionary<String, AnyObject>,identificador: "updated_at")
+                    let idpspprocess:Int? = self.isNullInt(jsonResult:jsonResult as Dictionary<String, AnyObject>,identificador: "idpspprocess")
                     
                     
-                    gruposTemporal=Grupos(descripcion: descripcion,created_at: created_at,deleted_at: deleted_at,updated_at: updated_at,id:idPspGroups,numero:numero)
-        
+                    gruposTemporal=Grupos(descripcion: descripcion,id:idPspGroups,numero:numero,idpspprocess:idpspprocess,created_at:created_at,updated_at:updated_at,deleted_at:deleted_at)
+                    
                     self.grupos.append(gruposTemporal)
                 
                     
@@ -84,6 +82,30 @@ class GruposTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func isNullInt(jsonResult:Dictionary<String, AnyObject>,identificador:String) -> Int?
+    {
+        var entero: Int?
+        if let id = jsonResult[identificador] as? NSNull {
+            entero=nil
+        }
+        else{
+            entero = jsonResult[identificador]! as! Int
+        }
+        return entero
+    }
+    
+    func isNullString(jsonResult:Dictionary<String, AnyObject>,identificador:String) -> String?
+    {
+        var cadena: String?
+        if let id = jsonResult[identificador] as? NSNull {
+            cadena=nil
+        }
+        else{
+            cadena = jsonResult[identificador]! as! String
+        }
+        return cadena
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -145,7 +167,7 @@ class GruposTableViewController: UITableViewController {
     
     @IBAction func dismiss(_ sender: AnyObject) {
         //  dismissViewControllerAnimated(true,completion:nil)
-        dismiss(animated: true,completion:nil)
+         navigationController?.popViewController(animated: true)
     }
  
     /*

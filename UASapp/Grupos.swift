@@ -10,19 +10,23 @@ import Foundation
 
 class Grupos {
     var descripcion:String?
-    var created_at: String?
-    var deleted_at: String?
-    var updated_at: String?
     var id: Int
     var numero: String?
+    var created_at: String?
+    var updated_at: String?
+    var deleted_at: String?
+    var idpspprocess: Int?
     
-    init(descripcion: String? = nil,created_at:String? = nil,deleted_at:String? = nil,updated_at:String? = nil,id:Int,numero:String? = nil) {
+    init(descripcion: String? = nil,id:Int,numero:String? = nil,idpspprocess: Int?,created_at:String?,updated_at:String?,deleted_at:String?) {
         self.descripcion = descripcion
-        self.created_at = created_at
-        self.deleted_at = deleted_at
-        self.updated_at = updated_at
         self.id = id
         self.numero = numero
+        self.idpspprocess = idpspprocess
+        self.created_at = created_at
+        self.updated_at = updated_at
+        self.deleted_at = deleted_at
+        
+        
     }
     
 }
