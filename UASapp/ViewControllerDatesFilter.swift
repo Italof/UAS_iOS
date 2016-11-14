@@ -15,7 +15,7 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet var labelAlumno: UILabel!
     
     @IBOutlet var textoAlumno: UITextField!
-    var estadosCitasTemp: [String] = []
+    var estadosCitasTemp: [String] = ["Seleccionar"]
     
     var citS: [cita]?
     
@@ -33,7 +33,7 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             labelAlumno.isHidden = true
             textoAlumno.isHidden = true
         }
-        
+        textoAlumno.text = ""
         
         //SE ELABORA EL LISTADO DE LOS ESTADOS DE LAS CITAS
         
@@ -224,9 +224,9 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
                 
             })
             
-            
-            
-            
+        }
+        
+        
             
             
             //Citas para el tutor getTutorAppoints
@@ -309,35 +309,45 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             
             //SE COMIENZA A FILTRAR LAS CITAS DE ACUERDO A LOS PARAMETROS
             
-            print("Se hizo la consulta de todas las citas")
-            citS = ((self.parent as! NavigationControllerC).citasOb)
-            var citSFiltrado: [cita] = []
-            
-            let dateFormater = DateFormatter()
-            dateFormater.dateFormat = "yyyy-MM-dd"
-            var fff: String
-            for x in citS! {
-                if ( x.estado == estadosCitasTemp[estadoSeleccionado]){
-                    fff = x.fechaI!
-                    let dI = dateFormater.date(from: (fff))
-                    if ( fechaIF.date <= dI! && fechaFF.date >= dI!){ //Fechas
-                        citSFiltrado.append(x)
+        print("Se hizo la consulta de todas las citas")
+        citS = ((self.parent as! NavigationControllerC).citasOb)
+        var citSFiltrado: [cita] = []
+        
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        var fff: String
+        for x in citS! {
+            fff = x.fechaI!
+            let dI = dateFormater.date(from: (fff))
+            if ( fechaIF.date <= dI! && fechaFF.date >= dI!){                   //Fechas
+                
+                if (estadoSeleccionado != 0){
+                    if ( x.estado != estadosCitasTemp[estadoSeleccionado]){     //Estados
+                        continue
                     }
                 }
+                if (textoAlumno.text != "") {
+                    
+                    if (x.alumno?.range(of: textoAlumno.text!) == nil) {        //Alumnos
+                        continue
+                    }
+                }
+                citSFiltrado.append(x)
             }
-            ((self.parent as! NavigationControllerC).citasOb) = citSFiltrado
-            ((self.parent as! NavigationControllerC).filtroCitas) = "S"
-            
-            for d in citS! {
-                print(d.fechaI)
-                print(d.estado)
-            }
-            
-            self.performSegue(withIdentifier: "SegueFiltrarCitas", sender: self)
-            
-            
-            
         }
         
+        ((self.parent as! NavigationControllerC).citasOb) = citSFiltrado
+        ((self.parent as! NavigationControllerC).filtroCitas) = "S"
+        
+        for d in citS! {
+            print(d.fechaI)
+            print(d.estado)
+            print(d.alumno)
+        }
+        self.performSegue(withIdentifier: "SegueFiltrarCitas", sender: self)
+            
+        
     }
+    
+    
 }
