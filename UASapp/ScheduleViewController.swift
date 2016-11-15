@@ -40,28 +40,21 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayCourses = dataUnwrapped as? [Any]
                 self.schedules = []
-                for arrayCourse2 in arrayCourses!{
-                    let arrayCourses2 = arrayCourse2 as? [Any]
-                    for course in arrayCourses2!{
-                        let cr = course as! [String:AnyObject]
-                        let idEsp = cr["IdEspecialidad"] as! String
-                        let course = cr["Nombre"] as! String
-                        let nivAcademico = cr["NivelAcademico"] as! String
-                        let codeCourse = cr["Codigo"] as! String
-                        
-                        let arraySchedules = cr["schedules"] as? [AnyObject]
-                        for schedule in arraySchedules!{
-                            let sc = schedule as! [String:AnyObject]
-                            let code = sc["Codigo"] as! String
-                            let schedule: Schedule = Schedule.init(id:0, code:code,idEspecialidad:idEsp, course:course,codeCourse:codeCourse,idProfesor:course, nivAcademico: nivAcademico)
-                            self.schedules.append(schedule)
-                            self.do_table_refresh()
-                            
-                        }
+                for course in arrayCourses!{
+                    let cr = course as! [String:AnyObject]
+                    let idEsp = cr["IdEspecialidad"] as! String
+                    let course = cr["Nombre"] as! String
+                    let nivAcademico = cr["NivelAcademico"] as! String
+                    let codeCourse = cr["Codigo"] as! String
+                    let arraySchedules = cr["schedules"] as? [AnyObject]
+                    for schedule in arraySchedules!{
+                        let sc = schedule as! [String:AnyObject]
+                        let code = sc["Codigo"] as! String
+                        let schedule: Schedule = Schedule.init(id:0, code:code,idEspecialidad:idEsp, course:course,codeCourse:codeCourse,idProfesor:course, nivAcademico: nivAcademico)
+                        self.schedules.append(schedule)
+                        self.do_table_refresh()
                     }
-                    
                 }
-                
             }
             else {
                 //Mostrar error y regresar al menù principal

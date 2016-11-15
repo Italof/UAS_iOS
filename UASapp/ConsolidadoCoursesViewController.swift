@@ -12,7 +12,8 @@ class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource,
 
     @IBOutlet var CyclePicker: UIPickerView!
     @IBOutlet var LevelPicker: UIPickerView!
-    @IBOutlet var tableView: UITableView!
+    
+    @IBOutlet weak var tableView: UITableView!
     var courses: [Course] = []
     var cycles = ["2015-1","2015-2","2016-1","2016-2"]
     
@@ -33,7 +34,7 @@ class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource,
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         //print("ID user = " + idUser)
         print("token = " + token)
-        HTTPHelper.get(route: "faculties/1/1/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        HTTPHelper.get(route: "faculties/1/semester/1/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -95,7 +96,7 @@ class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource,
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! CustomSpecialtyCell
         let course = courses[indexPath.row] as Course
-        cell.lblCycle.text=course.code!+" "+course.name!
+        cell.lblCycle.text=course.code!+" - "+course.name!
         return cell
     }
     

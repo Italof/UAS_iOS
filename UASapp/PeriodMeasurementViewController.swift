@@ -12,9 +12,10 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
     
     let userDefault = UserDefaults.standard
     
-    @IBOutlet var tableView: UITableView!
+    
+    @IBOutlet weak var tableView: UITableView!
     //var cycles = ["2015-1 al 2015-2", "2016-1 al 2016-2"]
-    var cycles: [Period] = []
+    var periods: [Period] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -33,7 +34,7 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayPeriods = dataUnwrapped as? [Any]
-                self.cycles = []
+                self.periods = []
                 for period in arrayPeriods!{
                     let pr = period as! [String:AnyObject]
                     let id = pr["IdPeriodo"] as! Int
@@ -49,7 +50,7 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
                     let nivEsperado = config["NivelEsperado"] as! String
                     let nivCriterio = config["CantNivelCriterio"] as! String
                     let period : Period = Period.init(id: id,idEspecialidad:idEsp, vigente: vigente,cycleStart:cycleStartName,cycleEnd: cycleEndName,aceptacion:aceptacion, nivEsperado:nivEsperado, nivCriterio:nivCriterio)
-                    self.cycles.append(period)
+                    self.periods.append(period)
                     self.do_table_refresh()
                 }
             }
@@ -58,6 +59,19 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
                 
             }
         })
+        
+        /*if(periods.count==0){
+            let errorAlert = UIAlertController(title: "Error al filtrar citas!",
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+                errorAlert.message = "Rango de fechas seleccionado no es válido"
+                self.present(errorAlert, animated: true, completion: nil)
+            
+        }*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,20 +80,20 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cycles.count
+        return periods.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomPeriodCell
-        let periodo = cycles[indexPath.row] as Period
+        let periodo = periods[indexPath.row] as Period
         
         cell.lblPeriod.text = periodo.cycleStart!+" al "+periodo.cycleEnd!
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let period = cycles[indexPath.row] as Period
+        let period = periods[indexPath.row] as Period
         ((parent as! UASNavViewController).period) = period
         userDefault.set(period.id, forKey: "PERIOD")
     }
