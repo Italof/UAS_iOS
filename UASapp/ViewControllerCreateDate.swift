@@ -26,7 +26,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     var Array = ["Rendimiento académico","económico","familiar","otros"]
     
     var temaSel: Int = 0
-    
+    var alumnoSel: Int = 0
     
     var horarioL: [Int] = []
     var horarioMa: [Int] = []
@@ -34,6 +34,9 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
     var horarioJ: [Int] = []
     var horarioV: [Int] = []
     var horarioS: [Int] = []
+    
+    var intervaloAnticipacion: Int = 1
+    var intervaloDuracionCita: Int = 1
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +47,16 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         //ACA SE CONFIGURA EL TIME PICKER CON LA DURACION DE LAS CITAS DE LA ESPECIALIDAD
         
         //SE DEBE JALAR DE API, PERO UN NO EXISTE GG GERARDO
+        intervaloDuracionCita = 10
         
-        timeR.minuteInterval = 10 //Si del api viene cero, seteamos 1
-        
+        if (intervaloDuracionCita == 0){
+            intervaloDuracionCita = 1   //Si del api viene cero, seteamos 1
+        } else {
+            timeR.minuteInterval = intervaloDuracionCita
+        }
         //ACA SE CONFIGURA EL PLAZO MAXIMO DE TIEMPO QUE SE PUEDE RESERVAR UNA CITA CON ANTICIPACION
         
-        let intervaloAnticipacion:Int = 5184000
+        intervaloAnticipacion = 5184000
         
         
         dateR.maximumDate = Date(timeIntervalSinceNow: TimeInterval(intervaloAnticipacion))
@@ -82,40 +89,46 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         print("ID especialidad = " + idUsuario)
         print("token = " + token)
         
-        /*
-        HTTPHelper.get(route: "getStudentsOfTutor/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        //getAppointInformationTuto/5?token=
+        let alumnoX1: alumno = alumno.init(alumno: "Seleccione", codigo: -1)
+        self.alumA.append(alumnoX1)
+        
+        HTTPHelper.get(route: "getAppointInformationTuto/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
             
             
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let tjd = dataUnwrapped as! [AnyObject]
-                
+                //let x = tjd[0] as! [String:AnyObject]
                 
                 
                 for c in tjd {
                     
                     let alumn: String?
-                    let codigo: String?
+                    let codigo: Int?
                     
-                    alumn = c["NombreAlumno"] as! String?
-                    codigo = c["CodigoAlumno"] as! String?
+                    alumn = c["fullName"] as! String?
+                    codigo = c["id"] as! Int?
                     
-                    
+                    print("Alumno de este tutor")
+                    print(alumn)
                     
                     let alumnoO: alumno = alumno.init(alumno: alumn, codigo: codigo)
                     
                     self.alumA.append(alumnoO)
                 }
+                
+                self.StudentList.reloadAllComponents()
             }
         })
         
-        */
+ 
         
         let temaX1: tema = tema.init(id: -1, nombre: "Seleccione")
-        
         self.temaA.append(temaX1)
         
+       
         
         HTTPHelper.get(route: "getTopics" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             
@@ -192,22 +205,21 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         return 1
     }
     
-    /*
-     
-    Ejemplo de utilizar la opcion escogida del pickerview
-    @IBAction func Submit(sender: AnyObject){
-        if (PlacementAnswer == 0){
-            Label.text = "Prueba"
-        }
-    }
-     */
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        temaSel = row
+        
+        if (pickerView == DateThemesList){
+            temaSel = row
+        }
+        else {
+            alumnoSel = row
+        }
     }
     
  
     @IBAction func registrarCita(_ sender: AnyObject) {
         
+        let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
         
         let errorAlert = UIAlertController(title: "Error al registrar cita!",
                                            message: nil,
@@ -256,179 +268,181 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         let idUsuario = String.init(parser)
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
-        
-        HTTPHelper.get(route: "getTutorInfo/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
-            
-            
-            if(error == nil){
-                //obtener data
-                let dataUnwrapped = data.unsafelyUnwrapped
-                let tjd = dataUnwrapped as! [AnyObject]
-                let tj = tjd[0] as! [String:AnyObject]
-                print(tj)
+        if (rol == "A"){
+            HTTPHelper.get(route: "getTutorInfo/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
                 
                 
-                let horario: [Any]
-                
-
-                
-                if ((tj["scheduleInfo"])?.count != 0){
-                    print(tj["scheduleInfo"])
-                    horario = tj["scheduleInfo"] as! [AnyObject]
+                if(error == nil){
+                    //obtener data
+                    let dataUnwrapped = data.unsafelyUnwrapped
+                    let tjd = dataUnwrapped as! [AnyObject]
+                    let tj = tjd[0] as! [String:AnyObject]
+                    print(tj)
                     
                     
-                    for diaH in horario {
+                    let horario: [Any]
+                    
+                    
+                    
+                    if ((tj["scheduleInfo"])?.count != 0){
+                        print(tj["scheduleInfo"])
+                        horario = tj["scheduleInfo"] as! [AnyObject]
                         
-                        let dateFormater = DateFormatter()
-                        dateFormater.dateFormat = "HH:mm:ss"
-                        let diaHo = diaH as! [String:AnyObject]
                         
-                        let  hI = dateFormater.date(from: (diaHo["hora_inicio"] as! String))
-                        print(diaHo["hora_inicio"] as! String)
-                        
-                        dateFormater.dateFormat = "HH"
-                        
-                        if ( (diaHo["dia"] as! String) == "1") {
+                        for diaH in horario {
                             
-                            self.horarioL.append(Int( dateFormater.string(from: hI!))!)
+                            let dateFormater = DateFormatter()
+                            dateFormater.dateFormat = "HH:mm:ss"
+                            let diaHo = diaH as! [String:AnyObject]
                             
-                        }
-                        
-                        if ( (diaHo["dia"] as! String) == "2") {
+                            let  hI = dateFormater.date(from: (diaHo["hora_inicio"] as! String))
+                            print(diaHo["hora_inicio"] as! String)
                             
-                            self.horarioMa.append(Int( dateFormater.string(from: hI!))!)
+                            dateFormater.dateFormat = "HH"
                             
-                        }
-                        
-                        if ( (diaHo["dia"] as! String) == "3") {
+                            if ( (diaHo["dia"] as! String) == "1") {
+                                
+                                self.horarioL.append(Int( dateFormater.string(from: hI!))!)
+                                
+                            }
                             
-                            self.horarioMi.append(Int( dateFormater.string(from: hI!))!)
+                            if ( (diaHo["dia"] as! String) == "2") {
+                                
+                                self.horarioMa.append(Int( dateFormater.string(from: hI!))!)
+                                
+                            }
                             
-                        }
-                        
-                        if ( (diaHo["dia"] as! String) == "4") {
+                            if ( (diaHo["dia"] as! String) == "3") {
+                                
+                                self.horarioMi.append(Int( dateFormater.string(from: hI!))!)
+                                
+                            }
                             
-                            self.horarioJ.append(Int( dateFormater.string(from: hI!))!)
+                            if ( (diaHo["dia"] as! String) == "4") {
+                                
+                                self.horarioJ.append(Int( dateFormater.string(from: hI!))!)
+                                
+                            }
                             
-                        }
-                        
-                        if ( (diaHo["dia"] as! String) == "5") {
+                            if ( (diaHo["dia"] as! String) == "5") {
+                                
+                                self.horarioV.append(Int( dateFormater.string(from: hI!))!)
+                                
+                            }
                             
-                            self.horarioV.append(Int( dateFormater.string(from: hI!))!)
-                            
-                        }
-                        
-                        if ( (diaHo["dia"] as! String) == "6") {
-                            
-                            self.horarioS.append(Int( dateFormater.string(from: hI!))!)
-                            
+                            if ( (diaHo["dia"] as! String) == "6") {
+                                
+                                self.horarioS.append(Int( dateFormater.string(from: hI!))!)
+                                
+                            }
                         }
                     }
                 }
+            })
+            
+            print("dia Lunes")
+            for d in horarioL {
+                print(d)
             }
-        })
-        
-        
-        
-        print("dia y")
-        for d in horarioL {
-            print(d)
-        }
-        print("dia y")
-        for d in horarioMa {
-            print(d)
-        }
-        print("dia y")
-        for d in horarioMi {
-            print(d)
-        }
-        print("dia y")
-        for d in horarioJ {
-            print(d)
-        }
-        print("dia y")
-        for d in horarioV {
-            print(d)
-        }
-        print("dia y")
-        for d in horarioS {
-            print(d)
-        }
-        
-        //return
-        
-        //diaSemana y horaCita
-        if diaSemana == "Monday" {
-            if horarioL.contains(horaCita!) == false {
-                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
-                self.present(errorAlert, animated: true, completion: nil)
-                return
-                
+            print("dia Martes")
+            for d in horarioMa {
+                print(d)
             }
-        }
-        
-        if diaSemana == "Tuesday" {
-            if horarioMa.contains(horaCita!) == false {
-                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
-                self.present(errorAlert, animated: true, completion: nil)
-                return
-                
+            print("dia Miercoles")
+            for d in horarioMi {
+                print(d)
             }
-        }
-        
-        if diaSemana == "Wednesday" {
-            if horarioMi.contains(horaCita!) == false {
-                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
-                self.present(errorAlert, animated: true, completion: nil)
-                return
-                
+            print("dia Jueves")
+            for d in horarioJ {
+                print(d)
             }
-        }
-        
-        if diaSemana == "Thursday" {
-            if horarioJ.contains(horaCita!) == false {
-                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
-                self.present(errorAlert, animated: true, completion: nil)
-                return
-                
+            print("dia Viernes")
+            for d in horarioV {
+                print(d)
             }
-        }
-        
-        if diaSemana == "Friday" {
-            if horarioV.contains(horaCita!) == false {
-                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
-                self.present(errorAlert, animated: true, completion: nil)
-                return
-                
+            print("dia Sabado")
+            for d in horarioS {
+                print(d)
             }
-        }
-        
-        if diaSemana == "Saturday" {
-            if horarioS.contains(horaCita!) == false {
-                errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
-                self.present(errorAlert, animated: true, completion: nil)
-                return
-                
+            
+            
+            
+            
+            
+            
+            //return
+            
+            //diaSemana y horaCita
+            if diaSemana == "Monday" {
+                if horarioL.contains(horaCita!) == false {
+                    errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
+                    
+                }
             }
-        }
-        
-        if diaSemana == "Sunday" {
-            if horarioS.contains(horaCita!) == false {
-                errorAlert.message = "Los domingos no se brindan asesorias"
-                self.present(errorAlert, animated: true, completion: nil)
-                return
-                
+            
+            if diaSemana == "Tuesday" {
+                if horarioMa.contains(horaCita!) == false {
+                    errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
+                    
+                }
             }
+            
+            if diaSemana == "Wednesday" {
+                if horarioMi.contains(horaCita!) == false {
+                    errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
+                    
+                }
+            }
+            
+            if diaSemana == "Thursday" {
+                if horarioJ.contains(horaCita!) == false {
+                    errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
+                    
+                }
+            }
+            
+            if diaSemana == "Friday" {
+                if horarioV.contains(horaCita!) == false {
+                    errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
+                    
+                }
+            }
+            
+            if diaSemana == "Saturday" {
+                if horarioS.contains(horaCita!) == false {
+                    errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
+                    
+                }
+            }
+            
+            if diaSemana == "Sunday" {
+                if horarioS.contains(horaCita!) == false {
+                    errorAlert.message = "Los domingos no se brindan asesorias"
+                    self.present(errorAlert, animated: true, completion: nil)
+                    return
+                    
+                }
+            }
+            
         }
-        
-        
-        
+    
         //////////////////////////////////////////////////SETEAR VALORES AL JSON DEL POST
         
-        if ( fechayhoraD > Date.init() ) {
+        if ( fechayhoraD > Date.init() && fechayhoraD < Date(timeIntervalSinceNow: TimeInterval(intervaloAnticipacion))) {
             
             print("Valido")
-            
             json.setValue(fI, forKey: "fecha")  //Seteo la fecha
             json.setValue(hI, forKey: "hora")   //Seteo la hora
         } else {
@@ -459,50 +473,87 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         //
         
         //
-        
-        do{
-            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-            //print(jsonData)
-            let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
-            //print(decoded)
-            let postData = decoded as! [String:AnyObject]
-            print("Este es post data")
-            print(postData)
-            
-            HTTPHelper.post(route: "registerStudentAppointment?token=" + token, authenticated: false, body: postData, completion: { (error, responseData) in
-                if error == nil {
-                    
-                    
-                    let alertSuccess : UIAlertController = UIAlertController.init(title: "Registro de cita exitoso", message: "Se ha registrado la cita exitosamente", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
-                        let navController = self.navigationController
-                        if navController != nil {
-                            navController?.popViewController(animated: true)
-                            
-                            //Actualizar citas
-                            
-                        }
-                        print(navController!)
-                    })
-                    alertSuccess.addAction(action)
-                    self.present(alertSuccess,animated: false, completion:nil)
-                    
-                    
-                    self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
-                    
-                    
-                    
-                    
-                } else {
-                    print("REQUESTED RESPONSE: \(responseData)")
-                }
-            })
-         
-            
-        } catch let err as NSError{
-            print("JSONObjet ERROR: \(err)")
+        if (rol == "A"){
+            do{
+                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                //print(jsonData)
+                let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                //print(decoded)
+                let postData = decoded as! [String:AnyObject]
+                print("Este es post data")
+                print(postData)
+                
+                HTTPHelper.post(route: "registerStudentAppointment?token=" + token, authenticated: false, body: postData, completion: { (error, responseData) in
+                    if error == nil {
+                        
+                        let alertSuccess : UIAlertController = UIAlertController.init(title: "Registro de cita exitoso", message: "Se ha registrado la cita exitosamente", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                            let navController = self.navigationController
+                            if navController != nil {
+                                navController?.popViewController(animated: true)
+                                //Actualizar citas
+                            }
+                            print(navController!)
+                        })
+                        alertSuccess.addAction(action)
+                        self.present(alertSuccess,animated: false, completion:nil)
+                        
+                        self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
+                        
+                    } else {
+                        print("REQUESTED RESPONSE: \(responseData)")
+                    }
+                })
+                
+            } catch let err as NSError{
+                print("JSONObjet ERROR: \(err)")
+            }
         }
-      
+        if (rol == "T"){
+            if ( alumnoSel != 0) {
+                json.setValue(alumA[alumnoSel].alumno, forKey: "studentFullName") //Seteo el alumno, el nombre, porque gerardo lo hizo chancho, debio meterle el idAlumno
+            } else {
+                errorAlert.message = "Seleccione un alumno"
+                self.present(errorAlert, animated: true, completion: nil)
+                return
+            }
+            do{
+                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                //print(jsonData)
+                let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                //print(decoded)
+                let postData = decoded as! [String:AnyObject]
+                print("Este es post data")
+                print(postData)
+                
+                HTTPHelper.post(route: "registerTutorAppointment?token=" + token, authenticated: false, body: postData, completion: { (error, responseData) in
+                    if error == nil {
+                        
+                        let alertSuccess : UIAlertController = UIAlertController.init(title: "Registro de cita exitoso", message: "Se ha registrado la cita exitosamente", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                            let navController = self.navigationController
+                            if navController != nil {
+                                navController?.popViewController(animated: true)
+                                //Actualizar citas
+                            }
+                            print(navController!)
+                        })
+                        alertSuccess.addAction(action)
+                        self.present(alertSuccess,animated: false, completion:nil)
+                        
+                        self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
+                        
+                    } else {
+                        print("REQUESTED RESPONSE: \(responseData)")
+                    }
+                })
+                
+            } catch let err as NSError{
+                print("JSONObjet ERROR: \(err)")
+            }
+            
+        }
+        
     }
  
 

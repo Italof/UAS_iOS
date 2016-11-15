@@ -34,7 +34,7 @@ class ViewControllerStudents: UIViewController, UITableViewDataSource, UITableVi
         
         for a in alumnosA!{
             names.append(a.alumno!)
-            codes.append(a.codigo!)
+            //codes.append(a.codigo!)
             tutors.append(a.tutor!)
             statusS.append(a.estado!)
         }

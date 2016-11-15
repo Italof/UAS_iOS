@@ -83,6 +83,21 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
         let idUser = String.init(parser)
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         
+        
+        let errorAlert = UIAlertController(title: "Error al filtrar citas!",
+                                           message: nil,
+                                           preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK",
+                                   style: .default,
+                                   handler: nil)
+        errorAlert.addAction(action)
+        if ( fechaIF.date > fechaFF.date){
+            errorAlert.message = "Rango de fechas seleccionado no es válido"
+            self.present(errorAlert, animated: true, completion: nil)
+            return
+        }
+        
+        
         if ( rol == "A") {
             
             

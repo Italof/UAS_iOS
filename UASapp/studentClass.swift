@@ -15,13 +15,13 @@ class alumno{
     var alumno: String?
     var tutor: String?
     var estado: String?
-    var codigo: String?
+    var codigo: Int?
     
     
     
     
     
-    init(alumno: String?, codigo: String?, tutor: String?, estado: String?){
+    init(alumno: String?, codigo: Int?, tutor: String?, estado: String?){
         
         self.alumno = alumno
         self.tutor = tutor
@@ -30,7 +30,7 @@ class alumno{
         
     }
     
-    init(alumno: String?, codigo: String?){
+    init(alumno: String?, codigo: Int?){
         self.alumno = alumno
         self.codigo = codigo
     }
