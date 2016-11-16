@@ -381,7 +381,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             
             
             
-            return
+            //return
             
             //diaSemana y horaCita
             if diaSemana == "Monday" {
