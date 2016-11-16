@@ -59,6 +59,69 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                     //SI EL TUTOR NO HA REGISTRADO SU HORARIO DE ATENCION, EL ALUMNO NO PODRA REALIZAR CITAS
                     if ((tj["scheduleInfo"])?.count == 0){
                         self.botonNuevaCitaM.isHidden = true
+                    } else {
+                        
+                        ((self.parent as! NavigationControllerC).horasL) = []
+                        ((self.parent as! NavigationControllerC).horasMa) = []
+                        ((self.parent as! NavigationControllerC).horasMi) = []
+                        ((self.parent as! NavigationControllerC).horasJ) = []
+                        ((self.parent as! NavigationControllerC).horasV) = []
+                        ((self.parent as! NavigationControllerC).horasS) = []
+                        
+                        
+                        let horario = tj["scheduleInfo"] as! [AnyObject]
+                        
+                        
+                        for diaH in horario {
+                            
+                            let dateFormater = DateFormatter()
+                            dateFormater.dateFormat = "HH:mm:ss"
+                            let diaHo = diaH as! [String:AnyObject]
+                            
+                            let  hI = dateFormater.date(from: (diaHo["hora_inicio"] as! String))
+                            //print(diaHo["hora_inicio"] as! String)
+                            
+                            dateFormater.dateFormat = "HH"
+                            
+                            if ( (diaHo["dia"] as! String) == "1") {
+                                
+                                //self.horarioL.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasL.append(Int( dateFormater.string(from: hI!))!))
+                                
+                            }
+                            
+                            if ( (diaHo["dia"] as! String) == "2") {
+                                
+                                //self.horarioMa.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasMa.append(Int( dateFormater.string(from: hI!))!))
+                            }
+                            
+                            if ( (diaHo["dia"] as! String) == "3") {
+                                
+                                //self.horarioMi.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasMi.append(Int( dateFormater.string(from: hI!))!))
+                            }
+                            
+                            if ( (diaHo["dia"] as! String) == "4") {
+                                
+                                //self.horarioJ.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasJ.append(Int( dateFormater.string(from: hI!))!))
+                            }
+                            
+                            if ( (diaHo["dia"] as! String) == "5") {
+                                
+                                //self.horarioV.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasV.append(Int( dateFormater.string(from: hI!))!))
+                            }
+                            
+                            if ( (diaHo["dia"] as! String) == "6") {
+                                
+                                //self.horarioS.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasS.append(Int( dateFormater.string(from: hI!))!))
+                            }
+                        }
+
+                        
                     }
                     
                 }
@@ -379,11 +442,16 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
     
     func loadData() {
         citS = ((self.parent as! NavigationControllerC).citasOb)
-        if (citS == nil){// || citS?.count == 0){
+        if (citS == nil || citS?.count == 0){
             botonFiltrar.isHidden = true
+            //Mostrar error y regresar al menù principal
+            let alert : UIAlertController = UIAlertController.init(title: "No tiene citas", message: "Usted no ha realizado citas", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert,animated: true, completion:nil)
         }
         
-        if ( citS != nil ){//|| citS?.count != 0){
+        if ( citS != nil || citS?.count != 0){
             for c in citS!{
                 datesA.append(c.fechaI!)
                 times.append(c.horaI!)
@@ -391,12 +459,6 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                 students.append(c.alumno!)
                 statusA.append(c.estado!)
             }
-        } else {
-            //Mostrar error y regresar al menù principal
-            let alert : UIAlertController = UIAlertController.init(title: "No tiene citas", message: "Usted no ha realizado citas", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(action)
-            self.present(alert,animated: true, completion:nil)
         }
     
     }

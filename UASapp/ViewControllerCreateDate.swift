@@ -232,6 +232,15 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         let json = NSMutableDictionary()
         
         
+        
+        if ( temaSel != 0) {
+            json.setValue(temaA[temaSel].nombre, forKey: "motivo") //Seteo el tema
+        } else {
+            errorAlert.message = "Seleccione un tema o motivo de cita"
+            self.present(errorAlert, animated: true, completion: nil)
+            return
+        }
+        
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "dd/MM/yyyy" //"yyyy-MM-dd HH:mm:ss"
         
@@ -269,6 +278,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         if (rol == "A"){
+            /*
             HTTPHelper.get(route: "getTutorInfo/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
                 
                 
@@ -296,81 +306,82 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                             let diaHo = diaH as! [String:AnyObject]
                             
                             let  hI = dateFormater.date(from: (diaHo["hora_inicio"] as! String))
-                            print(diaHo["hora_inicio"] as! String)
+                            //print(diaHo["hora_inicio"] as! String)
                             
                             dateFormater.dateFormat = "HH"
                             
                             if ( (diaHo["dia"] as! String) == "1") {
                                 
-                                self.horarioL.append(Int( dateFormater.string(from: hI!))!)
+                                //self.horarioL.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasL.append(Int( dateFormater.string(from: hI!))!))
                                 
                             }
                             
                             if ( (diaHo["dia"] as! String) == "2") {
                                 
-                                self.horarioMa.append(Int( dateFormater.string(from: hI!))!)
-                                
+                                //self.horarioMa.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasMa.append(Int( dateFormater.string(from: hI!))!))
                             }
                             
                             if ( (diaHo["dia"] as! String) == "3") {
                                 
-                                self.horarioMi.append(Int( dateFormater.string(from: hI!))!)
-                                
+                                //self.horarioMi.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasMi.append(Int( dateFormater.string(from: hI!))!))
                             }
                             
                             if ( (diaHo["dia"] as! String) == "4") {
                                 
-                                self.horarioJ.append(Int( dateFormater.string(from: hI!))!)
-                                
+                                //self.horarioJ.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasJ.append(Int( dateFormater.string(from: hI!))!))
                             }
                             
                             if ( (diaHo["dia"] as! String) == "5") {
                                 
-                                self.horarioV.append(Int( dateFormater.string(from: hI!))!)
-                                
+                                //self.horarioV.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasV.append(Int( dateFormater.string(from: hI!))!))
                             }
                             
                             if ( (diaHo["dia"] as! String) == "6") {
                                 
-                                self.horarioS.append(Int( dateFormater.string(from: hI!))!)
-                                
+                                //self.horarioS.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasS.append(Int( dateFormater.string(from: hI!))!))
                             }
                         }
                     }
                 }
             })
-            
+             */
+            //getHorarioTutor()
+            horarioL = ((self.parent as! NavigationControllerC).horasL)
+            horarioMa = ((self.parent as! NavigationControllerC).horasMa)
             print("dia Lunes")
-            for d in horarioL {
+            for d in ((self.parent as! NavigationControllerC).horasL){
                 print(d)
             }
             print("dia Martes")
-            for d in horarioMa {
+            for d in ((self.parent as! NavigationControllerC).horasMa) {
                 print(d)
             }
             print("dia Miercoles")
-            for d in horarioMi {
+            for d in ((self.parent as! NavigationControllerC).horasMi) {
                 print(d)
             }
             print("dia Jueves")
-            for d in horarioJ {
+            for d in ((self.parent as! NavigationControllerC).horasJ) {
                 print(d)
             }
             print("dia Viernes")
-            for d in horarioV {
+            for d in ((self.parent as! NavigationControllerC).horasV) {
                 print(d)
             }
             print("dia Sabado")
-            for d in horarioS {
+            for d in ((self.parent as! NavigationControllerC).horasS) {
                 print(d)
             }
             
             
             
-            
-            
-            
-            //return
+            return
             
             //diaSemana y horaCita
             if diaSemana == "Monday" {
@@ -458,13 +469,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         //let idUser = String.init(parser)
         json.setValue(idUsuario, forKey: "idUser") //Seteo el idUsuario
         
-        if ( temaSel != 0) {
-            json.setValue(temaA[temaSel].nombre, forKey: "motivo") //Seteo el tema
-        } else {
-            errorAlert.message = "Seleccione un tema o motivo de cita"
-            self.present(errorAlert, animated: true, completion: nil)
-            return
-        }
+        
         
         
         //let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
@@ -554,6 +559,88 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             
         }
         
+    }
+    
+    func getHorarioTutor(){
+        
+        let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
+        let idUsuario = String.init(parser)
+        let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
+        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        if (rol == "A"){
+            HTTPHelper.get(route: "getTutorInfo/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
+                
+                
+                if(error == nil){
+                    //obtener data
+                    let dataUnwrapped = data.unsafelyUnwrapped
+                    let tjd = dataUnwrapped as! [AnyObject]
+                    let tj = tjd[0] as! [String:AnyObject]
+                    print(tj)
+                    
+                    
+                    let horario: [Any]
+                    
+                    
+                    
+                    if ((tj["scheduleInfo"])?.count != 0){
+                        print(tj["scheduleInfo"])
+                        horario = tj["scheduleInfo"] as! [AnyObject]
+                        
+                        
+                        for diaH in horario {
+                            
+                            let dateFormater = DateFormatter()
+                            dateFormater.dateFormat = "HH:mm:ss"
+                            let diaHo = diaH as! [String:AnyObject]
+                            
+                            let  hI = dateFormater.date(from: (diaHo["hora_inicio"] as! String))
+                            //print(diaHo["hora_inicio"] as! String)
+                            
+                            dateFormater.dateFormat = "HH"
+                            
+                            if ( (diaHo["dia"] as! String) == "1") {
+                                
+                                //self.horarioL.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasL.append(Int( dateFormater.string(from: hI!))!))
+                                
+                            }
+                            
+                            if ( (diaHo["dia"] as! String) == "2") {
+                                
+                                //self.horarioMa.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasMa.append(Int( dateFormater.string(from: hI!))!))
+                            }
+                            
+                            if ( (diaHo["dia"] as! String) == "3") {
+                                
+                                //self.horarioMi.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasMi.append(Int( dateFormater.string(from: hI!))!))
+                            }
+                            
+                            if ( (diaHo["dia"] as! String) == "4") {
+                                
+                                //self.horarioJ.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasJ.append(Int( dateFormater.string(from: hI!))!))
+                            }
+                            
+                            if ( (diaHo["dia"] as! String) == "5") {
+                                
+                                //self.horarioV.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasV.append(Int( dateFormater.string(from: hI!))!))
+                            }
+                            
+                            if ( (diaHo["dia"] as! String) == "6") {
+                                
+                                //self.horarioS.append(Int( dateFormater.string(from: hI!))!)
+                                ((self.parent as! NavigationControllerC).horasS.append(Int( dateFormater.string(from: hI!))!))
+                            }
+                        }
+                    }
+                }
+            })
+            
+        }
     }
  
 

@@ -27,6 +27,15 @@ class NavigationControllerC: UINavigationController {
     var citEsc: cita?
     var filtroCitas: String = "N"
     
+    //Horario del tutor
+    
+    var horasL: [Int] = []
+    var horasMa: [Int] = []
+    var horasMi: [Int] = []
+    var horasJ: [Int] = []
+    var horasV: [Int] = []
+    var horasS: [Int] = []
+    
     
 
     /*
