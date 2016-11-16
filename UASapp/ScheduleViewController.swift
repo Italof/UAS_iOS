@@ -49,8 +49,9 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
                     let arraySchedules = cr["schedules"] as? [AnyObject]
                     for schedule in arraySchedules!{
                         let sc = schedule as! [String:AnyObject]
+                        let id = sc["IdHorario"] as! Int
                         let code = sc["Codigo"] as! String
-                        let schedule: Schedule = Schedule.init(id:0, code:code,idEspecialidad:idEsp, course:course,codeCourse:codeCourse,idProfesor:course, nivAcademico: nivAcademico)
+                        let schedule: Schedule = Schedule.init(id:id, code:code,idEspecialidad:idEsp, course:course,codeCourse:codeCourse,idProfesor:course, nivAcademico: nivAcademico)
                         self.schedules.append(schedule)
                         self.do_table_refresh()
                     }
@@ -84,6 +85,12 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.lblSchedule.text = schedule.code
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let schedule = schedules[indexPath.row] as Schedule
+        ((parent as! UASNavViewController).schedule) = schedule
+        //userDefault.set(schedule.id, forKey: "SCHEDULE")
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

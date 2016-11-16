@@ -9,7 +9,9 @@
 import UIKit
 
 class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
+    var schedule : Schedule?
 
+    @IBOutlet var lblSchedule: UILabel!
     @IBOutlet var StudentResultPicker: UIPickerView!
     @IBOutlet var AspectPicker: UIPickerView!
     @IBOutlet var progressiveBar: UIProgressView!
@@ -25,6 +27,11 @@ class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        var horario: String?
+        schedule = (parent as! UASNavViewController).schedule
+        horario = (schedule?.codeCourse)! + " - " + (schedule?.course)!
+        horario =  horario! + " - Horario: " + (schedule?.code)!
+        lblSchedule.text = horario
     }
 
     override func didReceiveMemoryWarning() {
