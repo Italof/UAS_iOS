@@ -29,9 +29,24 @@ class ViewControllerViewDate: UIViewController {
     //Botones
     @IBOutlet weak var botonAtender: UIButton!
 
-    @IBOutlet var botonCancelarRechazar: UIButton!
+    @IBOutlet var botonCancelar: UIButton!
+    
+    @IBOutlet var botonNoAtender: UIButton!
     
     @IBOutlet var botonConfirmar: UIButton!
+    
+    @IBOutlet var botonRechazar: UIButton!
+    
+    
+    /*
+     Pendiente ----1
+     Confirmada ---2
+     Cancelada ----3
+     Sugerida -----4
+     Rechazada ----5
+     Asistida -----6
+     No asistida --7
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +56,7 @@ class ViewControllerViewDate: UIViewController {
         if (rol == "A"){
             labelAlumnoOtutor.text = "Tutor:"
             botonAtender.isHidden = true
-            
+            botonNoAtender.isHidden = true
             
             
         }
@@ -56,9 +71,106 @@ class ViewControllerViewDate: UIViewController {
         if (rol == "A"){
             //Pendiente
             if (citaO?.idEstado == 1){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = true
+            }
+            //Confirmada
+            if (citaO?.idEstado == 2){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = false
+                botonRechazar.isHidden = true
+            }
+            //Cancelada
+            if (citaO?.idEstado == 3){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = true
+            }
+            //Sugerida
+            if (citaO?.idEstado == 4){
                 botonConfirmar.isHidden = false
-                botonCancelarRechazar.isHidden = false
-                botonCancelarRechazar.titleLabel?.text = "Cancelar"
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = false
+            }
+            //Rechazada
+            if (citaO?.idEstado == 5){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = true
+                
+            }
+            //Asistida
+            if (citaO?.idEstado == 6){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = true
+                
+            }
+            //No asistida
+            if (citaO?.idEstado == 7){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = true
+            }
+        }
+        
+        if (rol == "T"){
+            //Pendiente
+            if (citaO?.idEstado == 1){
+                botonConfirmar.isHidden = false
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = false
+                botonAtender.isHidden = true
+                botonNoAtender.isHidden = true
+            }
+            //Confirmada
+            if (citaO?.idEstado == 2){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = false
+                botonRechazar.isHidden = true
+                botonAtender.isHidden = false
+                botonNoAtender.isHidden = false
+            }
+            //Cancelada
+            if (citaO?.idEstado == 3){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = true
+                botonAtender.isHidden = true
+                botonNoAtender.isHidden = true
+            }
+            //Sugerida
+            if (citaO?.idEstado == 4){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = true
+                botonAtender.isHidden = true
+                botonNoAtender.isHidden = true
+            }
+            //Rechazada
+            if (citaO?.idEstado == 5){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = true
+                botonAtender.isHidden = true
+                botonNoAtender.isHidden = true
+            }
+            //Asistida
+            if (citaO?.idEstado == 6){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = true
+                botonAtender.isHidden = true
+                botonNoAtender.isHidden = true
+            }
+            //No asistida
+            if (citaO?.idEstado == 7){
+                botonConfirmar.isHidden = true
+                botonCancelar.isHidden = true
+                botonRechazar.isHidden = true
+                botonAtender.isHidden = true
+                botonNoAtender.isHidden = true
             }
         }
         
@@ -81,15 +193,7 @@ class ViewControllerViewDate: UIViewController {
         infoExtra.text = citaO?.infoExtra
         observaciones.text = citaO?.observaciones
  
-        /*
-        codigo.text = "u"
-        alumnoOtutor.text = "e"
-        fecha.text = "r"
-        hora.text = "d"
-        tema.text = " c"
- */
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,6 +201,16 @@ class ViewControllerViewDate: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func cancelarCita(_ sender: AnyObject) {        
+        ((self.parent as! NavigationControllerC).citaCanRec) = "C"
+        self.performSegue(withIdentifier: "SegueCRCita", sender: self)
+    }
 
+    
+    @IBAction func rechazarCita(_ sender: AnyObject) {
+        ((self.parent as! NavigationControllerC).citaCanRec) = "R"
+        self.performSegue(withIdentifier: "SegueCRCita", sender: self)
+    }
 
 }
