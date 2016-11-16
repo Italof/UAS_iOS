@@ -385,7 +385,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             
             //diaSemana y horaCita
             if diaSemana == "Monday" {
-                if horarioL.contains(horaCita!) == false {
+                if ((self.parent as! NavigationControllerC).horasL).contains(horaCita!) == false {
                     errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
                     self.present(errorAlert, animated: true, completion: nil)
                     return
@@ -394,7 +394,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             }
             
             if diaSemana == "Tuesday" {
-                if horarioMa.contains(horaCita!) == false {
+                if ((self.parent as! NavigationControllerC).horasMa).contains(horaCita!) == false {
                     errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
                     self.present(errorAlert, animated: true, completion: nil)
                     return
@@ -403,7 +403,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             }
             
             if diaSemana == "Wednesday" {
-                if horarioMi.contains(horaCita!) == false {
+                if ((self.parent as! NavigationControllerC).horasMi).contains(horaCita!) == false {
                     errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
                     self.present(errorAlert, animated: true, completion: nil)
                     return
@@ -412,7 +412,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             }
             
             if diaSemana == "Thursday" {
-                if horarioJ.contains(horaCita!) == false {
+                if ((self.parent as! NavigationControllerC).horasJ).contains(horaCita!) == false {
                     errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
                     self.present(errorAlert, animated: true, completion: nil)
                     return
@@ -421,7 +421,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             }
             
             if diaSemana == "Friday" {
-                if horarioV.contains(horaCita!) == false {
+                if ((self.parent as! NavigationControllerC).horasV).contains(horaCita!) == false {
                     errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
                     self.present(errorAlert, animated: true, completion: nil)
                     return
@@ -430,7 +430,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             }
             
             if diaSemana == "Saturday" {
-                if horarioS.contains(horaCita!) == false {
+                if ((self.parent as! NavigationControllerC).horasS).contains(horaCita!) == false {
                     errorAlert.message = "Fecha y hora seleccionadas no estan en la disponibilidad del tutor"
                     self.present(errorAlert, animated: true, completion: nil)
                     return
