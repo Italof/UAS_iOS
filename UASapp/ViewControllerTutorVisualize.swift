@@ -23,12 +23,7 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
     
     @IBOutlet var tutorAnexo: UILabel!
     
-    @IBOutlet weak var horaL: UILabel!
-    @IBOutlet weak var horaMa: UILabel!
-    @IBOutlet weak var horaMi: UILabel!
-    @IBOutlet weak var horaJ: UILabel!
-    @IBOutlet weak var horaV: UILabel!
-    @IBOutlet var horaS: UILabel!
+
     
     @IBOutlet weak var labelCodigo: UILabel!
     @IBOutlet weak var labelNombresyAp: UILabel!
@@ -41,14 +36,14 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
     
     @IBOutlet weak var tableViewHorario: UITableView!
     
-    var horasCitas = ["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"]
+    var horasCitas = ["Horas", "8:00 hs", "9:00 hs", "10:00 hs", "11:00 hs", "12:00 hs", "13:00 hs", "14:00 hs", "15:00 hs", "16:00 hs", "17:00 hs", "18:00 hs", "19:00 hs", "20:00 hs", "21:00 hs"]
     
-    var hLu = ["", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-    var hMa = ["", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-    var hMi = ["", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-    var hJu = ["", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-    var hVi = ["", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-    var hSa = ["", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hLu = ["Lun", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hMa = ["Mar", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hMi = ["Mie", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hJu = ["Jue", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hVi = ["Vie", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hSa = ["Sab", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     @IBOutlet weak var botonNuevaCita: UIButton!
     
     var tutorC: tutor?
@@ -171,52 +166,7 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
                     ((self.parent as! NavigationControllerC).horasS) = []
                     
                     for diaH in horario {
-                        /*
-                        let dateFormater = DateFormatter()
-                        dateFormater.dateFormat = "HH:mm:ss"
-                        let diaHo = diaH as! [String:AnyObject]
-                        
-                        let  hI = dateFormater.date(from: (diaHo["hora_inicio"] as! String))
-                        let  hF = dateFormater.date(from: (diaHo["hora_fin"] as! String))
-                        
-                        dateFormater.dateFormat = "HH:mm"
-                        
-                        if ( (diaHo["dia"] as! String) == "1") {
-                            
-                            horarioL = horarioL + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
-                        }
-                        
-                        if ( (diaHo["dia"] as! String) == "2") {
-                            
-                            horarioMa = horarioMa + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
-                        }
-                        
-                        if ( (diaHo["dia"] as! String) == "3") {
-                            
-                            horarioMi = horarioMi + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
-                        }
-                        
-                        if ( (diaHo["dia"] as! String) == "4") {
-                            
-                            horarioJ = horarioJ + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
-                        }
-                        
-                        if ( (diaHo["dia"] as! String) == "5") {
-                            
-                            horarioV = horarioV + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
-                        }
-                        if ( (diaHo["dia"] as! String) == "6") {
-                            
-                            horarioS = horarioS + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
-                        }
-                        */
-                        
+                      
                         
                         
                         let dateFormater = DateFormatter()
@@ -268,13 +218,7 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
                     horarioJ = horarioJ + "-"
                     horarioV = horarioV + "-"
                     horarioS = horarioS + "-"
-                    
-                    //self.horaL.isHidden = true
-                    //self.horaMa.isHidden = true
-                    //self.horaMi.isHidden = true
-                    //self.horaJ.isHidden = true
-                    //self.horaV.isHidden = true
-                    //self.horaS.isHidden = true
+ 
                     self.botonNuevaCita.isHidden = true
                 }
                 print("dia Lunes")
@@ -322,26 +266,14 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
                 self.labelAnexo.isHidden = false
                 self.labelHorario.isHidden = false
                 
-                /*
-                 self.horaL.isHidden = false
-                 self.horaMa.isHidden = false
-                 self.horaMi.isHidden = false
-                 self.horaJ.isHidden = false
-                 self.horaV.isHidden = false
-                 */
+ 
                 self.tutorCode.text=self.tutorC?.codigo
                 self.tutorName.text=self.tutorC?.nombre
                 self.tutorEmail.text=self.tutorC?.correo
                 self.tutorPhoneNumber.text=self.tutorC?.telefono
                 self.tutorOffice.text=self.tutorC?.oficina
                 self.tutorAnexo.text=self.tutorC?.anexo
-                
-                //self.horaL.text=self.tutorC?.horarioL
-                //self.horaMa.text=self.tutorC?.horarioMa
-                //self.horaMi.text=self.tutorC?.horarioMi
-                //self.horaJ.text=self.tutorC?.horarioJ
-                //self.horaV.text=self.tutorC?.horarioV
-                //self.horaS.text = self.tutorC?.horarioS
+
                 
                 DispatchQueue.main.async {
                     self.loadData()
@@ -375,12 +307,6 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
                 self.labelAnexo.isHidden = true
                 self.labelHorario.isHidden = true
                 
-                //self.horaL.isHidden = true
-                //self.horaMa.isHidden = true
-                //self.horaMi.isHidden = true
-                //self.horaJ.isHidden = true
-                //self.horaV.isHidden = true
-                //self.horaS.isHidden = true
                 
                 
                 
@@ -392,13 +318,7 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
             
             }
         })
-        
-        self.horaL.isHidden = true
-        self.horaMa.isHidden = true
-        self.horaMi.isHidden = true
-        self.horaJ.isHidden = true
-        self.horaV.isHidden = true
-        self.horaS.isHidden = true
+
         
         /*
         tutorCode.text=tutorC?.codigo
@@ -407,13 +327,7 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
         tutorPhoneNumber.text=tutorC?.telefono
         tutorOffice.text=tutorC?.oficina
         tutorAnexo.text=tutorC?.anexo
-        
-        horaL.text=tutorC?.horarioL
-        horaMa.text=tutorC?.horarioMa
-        horaMi.text=tutorC?.horarioMi
-        horaJ.text=tutorC?.horarioJ
-        horaV.text=tutorC?.horarioV
-        horaS.text=tutorC?.horarioS
+
         
         print("dia Lunes")
         for d in ((self.parent as! NavigationControllerC).horasL){
@@ -456,48 +370,43 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
     
     func loadData() {
         tutorCode.text=tutorC?.codigo
-        tutorName.text=tutorC?.nombre
+        
+        tutorName.text=(tutorC?.nombre)! + " " + (tutorC?.apellidoPaterno)! + " " + (tutorC?.apellidoMaterno)!
         tutorEmail.text=tutorC?.correo
         tutorPhoneNumber.text=tutorC?.telefono
         tutorOffice.text=tutorC?.oficina
         tutorAnexo.text=tutorC?.anexo
-        
-        //horaL.text=tutorC?.horarioL
-        //horaMa.text=tutorC?.horarioMa
-        //horaMi.text=tutorC?.horarioMi
-        //horaJ.text=tutorC?.horarioJ
-        //horaV.text=tutorC?.horarioV
-        //horaS.text=tutorC?.horarioS
+
         
         print("dia Lunes")
         for d in ((self.parent as! NavigationControllerC).horasL){
             print(d)
-            hLu[d-8] = "O"
+            hLu[d-7] = "O"
         }
         print("dia Martes")
         for d in ((self.parent as! NavigationControllerC).horasMa) {
             print(d)
-            hMa[d-8] = "O"
+            hMa[d-7] = "O"
         }
         print("dia Miercoles")
         for d in ((self.parent as! NavigationControllerC).horasMi) {
             print(d)
-            hMi[d-8] = "O"
+            hMi[d-7] = "O"
         }
         print("dia Jueves")
         for d in ((self.parent as! NavigationControllerC).horasJ) {
             print(d)
-            hJu[d-8] = "O"
+            hJu[d-7] = "O"
         }
         print("dia Viernes")
         for d in ((self.parent as! NavigationControllerC).horasV) {
             print(d)
-            hVi[d-8] = "O"
+            hVi[d-7] = "O"
         }
         print("dia Sabado")
         for d in ((self.parent as! NavigationControllerC).horasS) {
             print(d)
-            hSa[d-8] = "O"
+            hSa[d-7] = "O"
         }
     }
     
