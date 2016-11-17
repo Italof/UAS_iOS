@@ -8,11 +8,13 @@
 
 import UIKit
 
-class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate  {
+class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIDocumentInteractionControllerDelegate  {
 
     @IBOutlet var CyclePicker: UIPickerView!
     @IBOutlet var LevelPicker: UIPickerView!
     
+    var dowloadRoute: String?
+    var viewer: UIDocumentInteractionController?
     @IBOutlet weak var tableView: UITableView!
     var courses: [Course] = []
     var cycles = ["2015-1","2015-2","2016-1","2016-2"]
@@ -29,12 +31,11 @@ class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource,
         else{
             print("error de conexion")
         }
-        //let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
-        //let idUser = String.init(parser)
+        
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
-        //print("ID user = " + idUser)
+        let idEspecialidad: Int = UserDefaults.standard.object(forKey: "SPECIALTY") as! Int
         print("token = " + token)
-        HTTPHelper.get(route: "faculties/1/semester/1/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        HTTPHelper.get(route: "faculties/" + String(idEspecialidad) + "/semester/1/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -101,8 +102,25 @@ class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Fila " + String(indexPath.row))
         let course = courses[indexPath.row] as Course
-        ((parent as! UASNavViewController).course) = course
+        //let route = "http://52.89.227.55/" + dowloadRoute!
+        var route: String?
+        route = "http://www.uruguayeduca.edu.uy/Userfiles/P0001/File/El%20loro%20pelado_.pdf"
+        if (route != nil && route != "" )
+        {
+            DownloadHelper.loadFileAsync(route: route!,completion:{(path, error) in
+                let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
+                if isFileFound == true {
+                    self.viewer = UIDocumentInteractionController(url: NSURL(fileURLWithPath: path!) as URL)
+                    self.viewer?.delegate = self
+                    self.viewer?.presentPreview(animated: true)
+                }
+            })
+        }
+    }
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController{
+        return self
     }
     
     func do_table_refresh()

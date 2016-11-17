@@ -32,6 +32,7 @@ class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         horario = (schedule?.codeCourse)! + " - " + (schedule?.course)!
         horario =  horario! + " - Horario: " + (schedule?.code)!
         lblSchedule.text = horario
+        progressiveBar.progress = 0.15
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,14 +8,11 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var CyclePicker: UIPickerView!
     var codes = ["INF392","INF290","INF291"]
     var courses = ["Proyecto de tesis 2", "Desarrollo de programas 2", "Ingenierìa de software"]
-    //var schedules = ["H1001","H1002","H0801"]
-    var cycles = ["2015-1","2015-2","2016-1","2016-2"]
     var schedules: [Schedule] = []
     
     override func viewDidLoad() {
@@ -93,13 +90,6 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
         //userDefault.set(schedule.id, forKey: "SCHEDULE")
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return cycles[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return cycles.count
-    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

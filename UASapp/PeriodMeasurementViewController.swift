@@ -60,7 +60,14 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
             }
         })
         
-        /*if(periods.count==0){
+        /*DispatchQueue.main.async {
+            self.loadData()
+            return
+        }*/
+    }
+
+    /*func loadData() {
+        if(self.periods.count==0){
             let errorAlert = UIAlertController(title: "Error al filtrar citas!",
                                                message: nil,
                                                preferredStyle: .alert)
@@ -68,12 +75,13 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
                                        style: .default,
                                        handler: nil)
             errorAlert.addAction(action)
-                errorAlert.message = "Rango de fechas seleccionado no es válido"
-                self.present(errorAlert, animated: true, completion: nil)
+            errorAlert.message = "Rango de fechas seleccionado no es válido"
+            self.present(errorAlert, animated: true, completion: nil)
             
-        }*/
-    }
-
+        }
+        
+    }*/
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
