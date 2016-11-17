@@ -196,8 +196,6 @@ class ViewControllerViewDate: UIViewController {
         tema.text = citaO?.tema
         infoExtra.text = citaO?.infoExtra
         observaciones.text = citaO?.observaciones
- 
-
     }
 
     override func didReceiveMemoryWarning() {
