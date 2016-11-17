@@ -10,17 +10,56 @@ import UIKit
 
 class ViewControllerCRCita: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    var statusS: [String] = ["activo", "inactivo"]
-    var tutors: [tutor] = []
+    
+    var motivos : [tema] = []
+    
+    var motivoSel: Int = 0
 
     @IBOutlet var pickerViewMotivos: UIPickerView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        status.delegate=self
-        status.dataSource=self
-        tutorP.delegate=self
-        tutorP.dataSource=self
+        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        
+        let temaX1: tema = tema.init(id: -1, nombre: "Seleccione")
+        self.motivos.append(temaX1)
+        
+        
+        //Esta ruta debe ser de Motivos de cancelacion o rechazo
+        HTTPHelper.get(route: "getTopics" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+            
+            
+            
+            
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let tjd = dataUnwrapped as! [AnyObject]
+                
+                
+                
+                for c in tjd {
+                    
+                    var idTema: Int?
+                    var nombreTema: String?
+                    
+                    idTema = c["id"] as! Int?
+                    nombreTema = c["nombre"] as! String?
+                    
+                    
+                    
+                    let temaO: tema = tema.init(id: idTema, nombre: nombreTema)
+                    
+                    self.motivos.append(temaO)
+                }
+                
+                self.pickerViewMotivos.reloadAllComponents()
+            }
+        })
+        
+        pickerViewMotivos.delegate=self
+        pickerViewMotivos.dataSource=self
+        
 
         // Do any additional setup after loading the view.
     }
@@ -42,25 +81,22 @@ class ViewControllerCRCita: UIViewController, UIPickerViewDelegate, UIPickerView
     */
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        if (pickerView == status){
-            return statusS[row]
-        }
-        else {
-            return tutors[row].nombre! + " " + tutors[row].apellidoPaterno! + " " + tutors[row].apellidoMaterno!
-        }
+        
+        return motivos[row].nombre
+        
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if (pickerView == status){
-            return statusS.count
-        }
-        else {
-            return tutors.count
-        }
+        return motivos.count
         
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        motivoSel = row
+        
     }
 
 }

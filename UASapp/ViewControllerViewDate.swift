@@ -52,6 +52,8 @@ class ViewControllerViewDate: UIViewController {
         super.viewDidLoad()
         
         let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
+        print("rol es")
+        print(rol)
         
         if (rol == "A"){
             labelAlumnoOtutor.text = "Tutor:"
@@ -66,6 +68,8 @@ class ViewControllerViewDate: UIViewController {
         
         
         let citaO = ((self.parent as! NavigationControllerC).citEsc)
+        
+        print(citaO?.idEstado)
         
         //Visibilidad de los botones de cambio de estados y segun el usuario
         if (rol == "A"){
@@ -181,10 +185,10 @@ class ViewControllerViewDate: UIViewController {
         codigo.text = citaO?.citaId
         estadoC.text = citaO?.estado
         if (rol == "A"){
-            alumnoOtutor.text = citaO?.alumno
+            alumnoOtutor.text = citaO?.tutor
         }
         if (rol == "T"){
-            alumnoOtutor.text = citaO?.tutor
+            alumnoOtutor.text = citaO?.alumno
         }
         fecha.text = citaO?.fechaI
         hora.text = citaO?.horaI
