@@ -12,6 +12,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
     var invDer: InvestigationDerivable?
     var invPr: InvestigationProject?
     var invDocData: [InvestigationDocument] = []
+    var invInvData: [Investigator] = []
     var versionDer: [String] = ["1.0","1.1","2.1"]
     var dowloadRoute: String?
     @IBOutlet weak var nameInvDer: UILabel!
@@ -63,6 +64,18 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
         dowloadRoute = invDocData[row].route
         observationInvDoc.text = invDocData[row].observation
         //cambia fecha de entrrega
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateDeliver = dateFormat.date(from: invDocData[row].dateDeliver!)
+        dateFormat.dateFormat = "dd/MM/yyyy"
+        let dateDeliverString = dateFormat.string(from: dateDeliver!)
+        deliverDateInvDer.text = dateDeliverString
+        //actualizar responsables
+        var responsibles : String = ""
+        for inv in invInvData{
+            let name = inv.name
+            responsibles = responsibles + "\n" + name
+        }
     }
     
     @IBOutlet weak var invDerEditButton: UIBarButtonItem!
@@ -78,7 +91,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
     override func viewWillAppear(_ animated: Bool) {
         invDer = (parent as! InvNavViewController).invDer
         invPr = (parent as! InvNavViewController).invPr
-        nameInvDer.text = invDer?.name?.uppercased()
+        nameInvDer.text = invDer?.name?.uppercased() + "\n" + "kpda"
         //versionInvDer.text = "Ultima Versión"
         percentageInvDer.text = String((invDer?.percentage)!) + "%"
         let dateFormat = DateFormatter()
@@ -114,6 +127,31 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
                 }
                 self.versionPicker.dataSource = self
                 self.versionPicker.reloadAllComponents()
+            }
+            else {
+                //Mostrar error y regresar al menù principal
+                
+            }
+        })
+        let getInv = (parent as! InvNavViewController).getResponsibles
+        let routeApiInv = "investigation/" + id + getInv + "?token=" + token
+        HTTPHelper.get(route: routeApiInv, authenticated: true, completion: {(error,data) in
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let arrayDocument = dataUnwrapped as? [Any]
+                self.invDocData = []
+                self.versionDer = []
+                for doc in arrayDocument!{
+                    let document = doc as! [String:AnyObject]
+                    
+                    //let group : InvestigationGroup =
+                    let inv = Investigator( json: document )
+                    self.invInvData.append( inv )
+                    
+                    //print(self.invGrData)
+                    //print(pr["id"].unsafelyUnwrapped)
+                }
             }
             else {
                 //Mostrar error y regresar al menù principal

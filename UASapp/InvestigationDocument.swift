@@ -12,7 +12,7 @@ struct InvestigationDocument {
     //EStructura de grupo de investigaciòn
     //modelo
     var id: Int
-    var name: String?
+    //var idDer: String?
     var version: String?
     //var description: String?
     var dateDeliver: String?
@@ -20,9 +20,9 @@ struct InvestigationDocument {
     var route: String?
     
     //funcion inicializadora
-    init(id:Int, name:String?, version:String?, description:String?, dateDeliver: String?, observation: String?, route:String?){
+    init(id:Int,  version:String?, description:String?, dateDeliver: String?, observation: String?, route:String?){
         //self.description=description
-        self.name=name
+        //self.name=name
         self.version=version
         self.id = id
         self.route = route
@@ -34,7 +34,7 @@ struct InvestigationDocument {
     init(json : [String:Any]){
         
         let id = json["id"] as! Int
-        let name = json["nombre"] as! String
+        //let name = json["nombre"] as! String
         //let description = json["fecha_ini"] as! String
         let route = json["ruta"] as! String
         let dateDeliver = json["created_at"] as! String
@@ -43,7 +43,7 @@ struct InvestigationDocument {
         
         
         //self.description=description
-        self.name=name
+        //self.name=name
         self.version=version
         self.id = id
         self.route = route

@@ -10,6 +10,7 @@ import UIKit
 
 class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet var postActivity: UIActivityIndicatorView!
     var inv : Investigator?
     
     @IBOutlet var nameInv: UITextField!
@@ -187,6 +188,7 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
                     let parser = self.inv?.id
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                     print(routeApi)
+                    self.postActivity.startAnimating()
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                         if(error != nil){
                             //Mostrar error y regresar al menù principal
@@ -197,7 +199,7 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
                         }
                         else {
                             //obtener data
-                            
+                            self.postActivity.stopAnimating()
                             self.inv?.name = self.nameInv.text
                             self.inv?.lastNameP = self.lastNamePInv.text
                             self.inv?.lastNameM = self.lastNameMInv.text

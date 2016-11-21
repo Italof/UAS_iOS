@@ -20,25 +20,70 @@ class EveProjectTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         let invGr = ((parent as! InvNavViewController).invGr)
         let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getEvents
+        
         let parser = invGr?.id
         let id = String(parser.unsafelyUnwrapped)
         let routeApi = "investigation/" + id + "/" + get + "?token=" + token
+        let idUser = (self.parent as! InvNavViewController).id
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
-                
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy-MM-dd HH:mm"
                 let arrayEvents = dataUnwrapped as! [AnyObject]
                 self.invPrEvData = []
                 for event in arrayEvents{
                     let ev = event as! [String:AnyObject]
                     let newEvent : InvestigationProjectEvent = InvestigationProjectEvent.init(json : ev)
-                    self.invPrEvData.append(newEvent)
-                    //print(self.invPrData)
+                    let dateFormaterTime = DateFormatter()
+                    dateFormaterTime.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let time = dateFormaterTime.date(from: newEvent.time!)
+                    dateFormaterTime.dateFormat = "HH:mm"
+                    let timeS = dateFormaterTime.string(from: time!)
+                    let dateTime = newEvent.date! + " " + timeS
+                    let dateEv = dateFormat.date(from: dateTime)
+                    var pos = 0
+                    for eve in self.invPrEvData {
+                        dateFormaterTime.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        let timeEve = dateFormaterTime.date(from: eve.time!)
+                        dateFormaterTime.dateFormat = "HH:mm"
+                        let timeSEve = dateFormaterTime.string(from: timeEve!)
+                        let dateTimeEve = dateFormat.date(from: eve.date! + " " + timeSEve)
+                        if(dateEv! < dateTimeEve!){
+                            break;
+                        }
+                        pos = pos + 1
+                    }
+                    
+                    if(idUser != newEvent.idLeader){
+                        //si no se encuentra el perfil permitido
+                        //ocultar boton de editar
+                        if(newEvent.type == 0){
+                            if(pos>self.invPrEvData.count){
+                                self.invPrEvData.append(newEvent)
+                            }
+                            else{
+                                self.invPrEvData.insert(newEvent, at: pos)
+                            }
+
+                        }
+                    }
+                    else{
+                        if(pos>self.invPrEvData.count){
+                            self.invPrEvData.append(newEvent)
+                        }
+                        else{
+                            self.invPrEvData.insert(newEvent, at: pos)
+                        }
+
+                    }
+
+                                        //print(self.invPrData)
                     //print(pr["id"].unsafelyUnwrapped)
                 }
                 self.do_table_refresh()
