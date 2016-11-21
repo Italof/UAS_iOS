@@ -1,14 +1,25 @@
 //
-//  NavigationControllerC.swift
+//  ViewControllerViewEvaluation.swift
 //  UASapp
 //
-//  Created by inf227al on 28/10/16.
+//  Created by inf227al on 16/11/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class NavigationControllerC: UINavigationController {
+class ViewControllerViewEvaluation: UIViewController {
+    
+    @IBOutlet weak var codigo: UILabel!
+    @IBOutlet weak var nombre: UILabel!
+    @IBOutlet weak var vigencia: UILabel!
+    @IBOutlet weak var tiempo: UILabel!
+    @IBOutlet weak var totalPreg: UILabel!
+    @IBOutlet weak var pregCer: UILabel!
+    @IBOutlet weak var pregAbi: UILabel!
+    @IBOutlet weak var pregArc: UILabel!
+    @IBOutlet weak var puntaje: UILabel!
+    @IBOutlet weak var descripcion: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,24 +31,6 @@ class NavigationControllerC: UINavigationController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    var tutorOb: tutor?
-    var citasOb: [cita]?
-    var alumnosOb: [alumno]?
-    var citEsc: cita?
-    var filtroCitas: String = "N"
-    
-    var citaCanRec: String = ""
-    
-    //Horario del tutor
-    
-    var horasL: [Int] = []
-    var horasMa: [Int] = []
-    var horasMi: [Int] = []
-    var horasJ: [Int] = []
-    var horasV: [Int] = []
-    var horasS: [Int] = []
-    
     
 
     /*

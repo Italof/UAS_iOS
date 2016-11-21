@@ -73,6 +73,11 @@
 		12BF4DB71DC2EAE5005E7D5A /* CustomCriterioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */; };
 		12C5F6991DCBA2A0004BCF81 /* citaClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C5F6981DCBA2A0004BCF81 /* citaClass.swift */; };
 		12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */; };
+		12D71EC71DDD3B2100223777 /* ViewControllerEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D71EC61DDD3B2100223777 /* ViewControllerEvaluations.swift */; };
+		12D71EC91DDD3B3600223777 /* evaluationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D71EC81DDD3B3600223777 /* evaluationClass.swift */; };
+		12D71ECB1DDD402600223777 /* TableViewCellEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D71ECA1DDD402600223777 /* TableViewCellEvaluation.swift */; };
+		12D71ECD1DDD4D7E00223777 /* ViewControllerEvaluationFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D71ECC1DDD4D7E00223777 /* ViewControllerEvaluationFilter.swift */; };
+		12D71ECF1DDD509C00223777 /* ViewControllerViewEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D71ECE1DDD509C00223777 /* ViewControllerViewEvaluation.swift */; };
 		12DABD341DCBE8ED0055F8FC /* studentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DABD331DCBE8ED0055F8FC /* studentClass.swift */; };
 		12DABD361DCC0C9B0055F8FC /* temaClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DABD351DCC0C9B0055F8FC /* temaClass.swift */; };
 		12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */; };
@@ -195,7 +200,7 @@
 		126C82FF1DCA87D400168250 /* Investigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Investigator.swift; sourceTree = "<group>"; };
 		126C83001DCA87D400168250 /* InvestigatorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorTableViewController.swift; sourceTree = "<group>"; };
 		126C83011DCA87D400168250 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
-		12933FFB1DD2C069009CA3B7 /* ViewControllerViewDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerViewDate.swift; sourceTree = "<group>"; };
+		12933FFB1DD2C069009CA3B7 /* ViewControllerViewDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerViewDate.swift; sourceTree = "<group>"; tabWidth = 4; };
 		1296D0B91DCE39DC006B7E73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1296D0BB1DCE4B30006B7E73 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGroupTableViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +217,11 @@
 		12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCriterioCell.swift; sourceTree = "<group>"; };
 		12C5F6981DCBA2A0004BCF81 /* citaClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = citaClass.swift; sourceTree = "<group>"; };
 		12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPeriodCell.swift; sourceTree = "<group>"; };
+		12D71EC61DDD3B2100223777 /* ViewControllerEvaluations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerEvaluations.swift; sourceTree = "<group>"; };
+		12D71EC81DDD3B3600223777 /* evaluationClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = evaluationClass.swift; sourceTree = "<group>"; };
+		12D71ECA1DDD402600223777 /* TableViewCellEvaluation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellEvaluation.swift; sourceTree = "<group>"; };
+		12D71ECC1DDD4D7E00223777 /* ViewControllerEvaluationFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerEvaluationFilter.swift; sourceTree = "<group>"; };
+		12D71ECE1DDD509C00223777 /* ViewControllerViewEvaluation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerViewEvaluation.swift; sourceTree = "<group>"; };
 		12DABD331DCBE8ED0055F8FC /* studentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentClass.swift; sourceTree = "<group>"; };
 		12DABD351DCC0C9B0055F8FC /* temaClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = temaClass.swift; sourceTree = "<group>"; };
 		12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSpecialtyCell.swift; sourceTree = "<group>"; };
@@ -455,6 +465,8 @@
 				1237D3BA1DCA9D060081EAF4 /* NavigationControllerC.swift */,
 				1237D3B41DCA9CE50081EAF4 /* TableViewCellDate.swift */,
 				1237D3B51DCA9CE50081EAF4 /* TableViewCellStudent.swift */,
+				12AEE0B21DDBE2BE00272292 /* TableViewCellScheduleTutor.swift */,
+				12E0A0691DDD21F200E7B078 /* ViewControllerCRCita.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -500,6 +512,34 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		12D71EC11DDD38A900223777 /* Evaluations */ = {
+			isa = PBXGroup;
+			children = (
+				12D71EC51DDD3B0700223777 /* Model */,
+				12D71EC41DDD3AFC00223777 /* Controller */,
+			);
+			name = Evaluations;
+			sourceTree = "<group>";
+		};
+		12D71EC41DDD3AFC00223777 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				12D71EC61DDD3B2100223777 /* ViewControllerEvaluations.swift */,
+				12D71ECA1DDD402600223777 /* TableViewCellEvaluation.swift */,
+				12D71ECC1DDD4D7E00223777 /* ViewControllerEvaluationFilter.swift */,
+				12D71ECE1DDD509C00223777 /* ViewControllerViewEvaluation.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		12D71EC51DDD3B0700223777 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				12D71EC81DDD3B3600223777 /* evaluationClass.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		25A6EF171DCBDF760084AFE0 /* Test */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,6 +571,7 @@
 		46292B001DB9DF7500EC8575 /* UASapp */ = {
 			isa = PBXGroup;
 			children = (
+				12D71EC11DDD38A900223777 /* Evaluations */,
 				1296D0AE1DCE3575006B7E73 /* PSP */,
 				1296D0AD1DCE3505006B7E73 /* Tutorship */,
 				1296D0AC1DCE34E2006B7E73 /* Investigation */,
@@ -678,6 +719,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1268F2731DBFF59E00E1CC22 /* EveProjectTableViewController.swift in Sources */,
+				12D71ECB1DDD402600223777 /* TableViewCellEvaluation.swift in Sources */,
 				1296D0BC1DCE4B30006B7E73 /* TabBarController.swift in Sources */,
 				1214CECE1DBC125E0042A3F2 /* InvPrDetailViewController.swift in Sources */,
 				4637A5671DCE747100D65C40 /* DownloadHelper.swift in Sources */,
@@ -729,6 +771,7 @@
 				25720B831DD9CE7D007DE688 /* PspFichaRegistroTableViewController.swift in Sources */,
 				25720B731DD9CE69007DE688 /* Supervisor.swift in Sources */,
 				96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */,
+				12D71EC91DDD3B3600223777 /* evaluationClass.swift in Sources */,
 				12BF4DB31DC2CD70005E7D5A /* CustomStudentCell.swift in Sources */,
 				12BF4DB51DC2D73E005E7D5A /* ListStudentViewController.swift in Sources */,
 				25720B811DD9CE7D007DE688 /* PspDocumentosTableViewController.swift in Sources */,
@@ -771,6 +814,7 @@
 				1237D3B21DCA9CC80081EAF4 /* ViewControllerTutoriaMenu.swift in Sources */,
 				25720B791DD9CE72007DE688 /* FasesTableViewController.swift in Sources */,
 				121BE3B21DCBB03500B68A3C /* CustomMyFacultiesCell.swift in Sources */,
+				12D71ECF1DDD509C00223777 /* ViewControllerViewEvaluation.swift in Sources */,
 				9623F25D1DC3A2E900EA7B6D /* CustomOutcomeCell.swift in Sources */,
 				1237D3AD1DCA9CC80081EAF4 /* ViewControllerCreateDate.swift in Sources */,
 				9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */,

@@ -15,7 +15,7 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet var labelAlumno: UILabel!
     
     @IBOutlet var textoAlumno: UITextField!
-    var estadosCitasTemp: [String] = []
+    var estadosCitasTemp: [String] = ["Seleccionar"]
     
     var citS: [cita]?
     
@@ -33,7 +33,7 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             labelAlumno.isHidden = true
             textoAlumno.isHidden = true
         }
-        
+        textoAlumno.text = ""
         
         //SE ELABORA EL LISTADO DE LOS ESTADOS DE LAS CITAS
         
@@ -82,6 +82,21 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
         let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
         let idUser = String.init(parser)
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        
+        
+        let errorAlert = UIAlertController(title: "Error al filtrar citas!",
+                                           message: nil,
+                                           preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK",
+                                   style: .default,
+                                   handler: nil)
+        errorAlert.addAction(action)
+        if ( fechaIF.date > fechaFF.date){
+            errorAlert.message = "Rango de fechas seleccionado no es válido"
+            self.present(errorAlert, animated: true, completion: nil)
+            return
+        }
+        
         
         if ( rol == "A") {
             
@@ -309,34 +324,31 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             
             //SE COMIENZA A FILTRAR LAS CITAS DE ACUERDO A LOS PARAMETROS
             
-            print("Se hizo la consulta de todas las citas")
-            citS = ((self.parent as! NavigationControllerC).citasOb)
-            var citSFiltrado: [cita] = []
-            
-            let dateFormater = DateFormatter()
-            dateFormater.dateFormat = "yyyy-MM-dd"
-            var fff: String
-            for x in citS! {
-                if ( x.estado == estadosCitasTemp[estadoSeleccionado]){
-                    fff = x.fechaI!
-                    let dI = dateFormater.date(from: (fff))
-                    if ( fechaIF.date <= dI! && fechaFF.date >= dI!){ //Fechas
-                        citSFiltrado.append(x)
+        print("Se hizo la consulta de todas las citas")
+        citS = ((self.parent as! NavigationControllerC).citasOb)
+        var citSFiltrado: [cita] = []
+        
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        var fff: String
+        for x in citS! {
+            fff = x.fechaI!
+            let dI = dateFormater.date(from: (fff))
+            if ( fechaIF.date <= dI! && fechaFF.date >= dI!){                   //Fechas
+                
+                if (estadoSeleccionado != 0){
+                    if ( x.estado != estadosCitasTemp[estadoSeleccionado]){     //Estados
+                        continue
                     }
                 }
+                if (textoAlumno.text != "") {
+                    
+                    if (x.alumno?.range(of: textoAlumno.text!) == nil) {        //Alumnos
+                        continue
+                    }
+                }
+                citSFiltrado.append(x)
             }
-            ((self.parent as! NavigationControllerC).citasOb) = citSFiltrado
-            ((self.parent as! NavigationControllerC).filtroCitas) = "S"
-            
-            for d in citS! {
-                print(d.fechaI)
-                print(d.estado)
-            }
-            
-            self.performSegue(withIdentifier: "SegueFiltrarCitas", sender: self)
-            
-            
-            
         }
         
     
