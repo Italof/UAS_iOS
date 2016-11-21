@@ -66,6 +66,7 @@
 		12B92A831DD2664300441786 /* InvDerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A821DD2664300441786 /* InvDerDetailViewController.swift */; };
 		12B92A851DD267A400441786 /* InvDocDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A841DD267A400441786 /* InvDocDetailViewController.swift */; };
 		12B92A871DD267B300441786 /* InvDerEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A861DD267B300441786 /* InvDerEditViewController.swift */; };
+		12AEE0B31DDBE2BE00272292 /* TableViewCellScheduleTutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AEE0B21DDBE2BE00272292 /* TableViewCellScheduleTutor.swift */; };
 		12BB00021DD3FD1A009463B5 /* TableViewControllerDatesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BB00011DD3FD1A009463B5 /* TableViewControllerDatesTable.swift */; };
 		12BCE5291DC2B2710052E607 /* CustomCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */; };
 		12BF4DB31DC2CD70005E7D5A /* CustomStudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BF4DB21DC2CD70005E7D5A /* CustomStudentCell.swift */; };
@@ -108,6 +109,7 @@
 		25720B821DD9CE7D007DE688 /* PspDetalleFichaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B7E1DD9CE7D007DE688 /* PspDetalleFichaViewController.swift */; };
 		25720B831DD9CE7D007DE688 /* PspFichaRegistroTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B7F1DD9CE7D007DE688 /* PspFichaRegistroTableViewController.swift */; };
 		25720B841DD9CE7D007DE688 /* AlumnosNotasPspTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B801DD9CE7D007DE688 /* AlumnosNotasPspTableViewController.swift */; };
+		12E0A06A1DDD21F200E7B078 /* ViewControllerCRCita.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E0A0691DDD21F200E7B078 /* ViewControllerCRCita.swift */; };
 		25A6EF191DCBDF760084AFE0 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EF181DCBDF760084AFE0 /* Test.swift */; };
 		25A6EF2D1DCBE7CA0084AFE0 /* FaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EF2C1DCBE7CA0084AFE0 /* FaseTest.swift */; };
 		25A968291DCB12D700B03060 /* InicioPspViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A968281DCB12D700B03060 /* InicioPspViewController.swift */; };
@@ -210,6 +212,7 @@
 		12B92A821DD2664300441786 /* InvDerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDerDetailViewController.swift; sourceTree = "<group>"; };
 		12B92A841DD267A400441786 /* InvDocDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDocDetailViewController.swift; sourceTree = "<group>"; };
 		12B92A861DD267B300441786 /* InvDerEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDerEditViewController.swift; sourceTree = "<group>"; };
+		12AEE0B21DDBE2BE00272292 /* TableViewCellScheduleTutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellScheduleTutor.swift; sourceTree = "<group>"; };
 		12BB00011DD3FD1A009463B5 /* TableViewControllerDatesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerDatesTable.swift; sourceTree = "<group>"; };
 		12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCourseCell.swift; sourceTree = "<group>"; };
 		12BF4DB21DC2CD70005E7D5A /* CustomStudentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStudentCell.swift; sourceTree = "<group>"; };
@@ -252,6 +255,7 @@
 		25720B7E1DD9CE7D007DE688 /* PspDetalleFichaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PspDetalleFichaViewController.swift; sourceTree = "<group>"; };
 		25720B7F1DD9CE7D007DE688 /* PspFichaRegistroTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PspFichaRegistroTableViewController.swift; sourceTree = "<group>"; };
 		25720B801DD9CE7D007DE688 /* AlumnosNotasPspTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlumnosNotasPspTableViewController.swift; sourceTree = "<group>"; };
+		12E0A0691DDD21F200E7B078 /* ViewControllerCRCita.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCRCita.swift; sourceTree = "<group>"; };
 		25A6EF161DCBDF760084AFE0 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A6EF181DCBDF760084AFE0 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		25A6EF1A1DCBDF760084AFE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -779,6 +783,8 @@
 				25720B6D1DD9CE69007DE688 /* NuevaReunionAlumnoViewController.swift in Sources */,
 				1231D78B1DBAE869004E35FD /* ScheduleViewController.swift in Sources */,
 				1231D7891DBAE681004E35FD /* PeriodMeasDetailViewController.swift in Sources */,
+				25A968331DCB353100B03060 /* Grupos.swift in Sources */,
+				12D71EC71DDD3B2100223777 /* ViewControllerEvaluations.swift in Sources */,
 				12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */,
 				25DE42751DCBA0D800BE88C8 /* MenuProvisionalAlumnosViewController.swift in Sources */,
 				1231D78D1DBAE87D004E35FD /* StudentViewController.swift in Sources */,
@@ -820,6 +826,7 @@
 				9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */,
 				12C5F6991DCBA2A0004BCF81 /* citaClass.swift in Sources */,
 				96332A061DD2760800D4CB08 /* CustomAspectCell.swift in Sources */,
+				12D71ECD1DDD4D7E00223777 /* ViewControllerEvaluationFilter.swift in Sources */,
 				124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */,
 				12B92A7F1DD2624B00441786 /* InvDocumentTableViewController.swift in Sources */,
 				969D91F11DD37F0A00D0456B /* Criterion.swift in Sources */,
@@ -835,6 +842,7 @@
 				12DABD361DCC0C9B0055F8FC /* temaClass.swift in Sources */,
 				4618847E1DCC20A1000858C8 /* ConfigTableViewController.swift in Sources */,
 				12B92A871DD267B300441786 /* InvDerEditViewController.swift in Sources */,
+				12AEE0B31DDBE2BE00272292 /* TableViewCellScheduleTutor.swift in Sources */,
 				121C14031DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift in Sources */,
 				12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */,
 				12B92A811DD262AA00441786 /* InvestigationDocument.swift in Sources */,
@@ -842,6 +850,7 @@
 				25720B601DD9CE4F007DE688 /* PspInscription.swift in Sources */,
 				126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */,
 				969D91F31DD389FA00D0456B /* CustomCriterionCell.swift in Sources */,
+				12E0A06A1DDD21F200E7B078 /* ViewControllerCRCita.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
