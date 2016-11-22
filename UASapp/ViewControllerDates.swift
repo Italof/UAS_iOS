@@ -555,15 +555,14 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                 statusA.append(c.estado!)
             }
         }
-    
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print("Id de cita escogida")
+        //print("Id de cita escogida")
         
-        print(indexPath.row)
+        //print(indexPath.row)
         
         
         let citEsc = (citS?[indexPath.row])! as cita
@@ -571,17 +570,14 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         
         
         
-        print("Antes de asignar")
-        print(citEsc.citaId)
+        //print("Antes de asignar")
+        //print(citEsc.citaId)
         ((self.parent as! NavigationControllerC).citEsc) = citEsc
         
-        print("Despues de asignar")
-        print(((self.parent as! NavigationControllerC).citEsc)?.citaId)
+        //print("Despues de asignar")
+        //print(((self.parent as! NavigationControllerC).citEsc)?.citaId)
         
         self.performSegue(withIdentifier: "SegueVerCita", sender: self)
         
     }
-    
-    
-    
 }

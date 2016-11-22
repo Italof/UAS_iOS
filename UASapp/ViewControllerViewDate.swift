@@ -176,6 +176,7 @@ class ViewControllerViewDate: UIViewController {
                 botonAtender.isHidden = true
                 botonNoAtender.isHidden = true
             }
+            botonAtender.isHidden = false
         }
         
         
@@ -214,5 +215,40 @@ class ViewControllerViewDate: UIViewController {
         ((self.parent as! NavigationControllerC).citaCanRec) = "R"
         self.performSegue(withIdentifier: "SegueCRCita", sender: self)
     }
+    @IBAction func confirmarCita(_ sender: AnyObject) {
+        let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
+        if (rol == "A"){
+            let c = ((self.parent as! NavigationControllerC).citEsc)
+            let mens = "Esta a punto de confirmar una cita con su tutor para el " + (c?.fechaI)! + " a las "
+            let m = mens + (c?.horaI)! + ". ¿Desea continuar?"
+            let alert : UIAlertController = UIAlertController.init(title: "Confirmación de cita", message: m, preferredStyle: .alert)
+            let actionNo = UIAlertAction(title: "No", style: .destructive, handler: nil)
+            let actionSi = UIAlertAction(title: "Si", style: .default, handler: { action in
+                //Aca se invoca el api de
+                
+                let alert2 : UIAlertController = UIAlertController.init(title: "Confirmación de cita", message: "Se realizó la confirmación de cita exitosamente", preferredStyle: .alert)
+                let actionX = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert2.addAction(actionX)
+                self.present(alert2,animated: true, completion:nil)
+            })
+            
+            alert.addAction(actionNo)
+            alert.addAction(actionSi)
+            self.present(alert,animated: true, completion:nil)
+            
+        }
+        if (rol == "T"){
+            
+            self.performSegue(withIdentifier: "SegueConfCita", sender: self)
+            
+        }
+    }
+    
+    
+    @IBAction func atenderCita(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "SegueAtenderCita", sender: self)
+        
+    }
+    
 
 }

@@ -57,8 +57,19 @@ class cita{
         self.flagCreador = flagCreador
         self.idTutor = idTutor
         self.tutor = tutor
+        
+        if (tutor == nil) {
+            self.tutor = "----"
+        } else {
+            self.tutor = tutor
+        }
+        
         self.idAlumno = idAlumno
-        self.alumno = alumno
+        if (alumno == nil) {
+            self.alumno = "----"
+        } else {
+            self.alumno = alumno
+        }
     }
     
 }

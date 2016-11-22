@@ -242,88 +242,88 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             
         }
         
+        
+        
+        //Citas para el tutor getTutorAppoints
+        
+        if ( rol == "T"){
             
             
-            //Citas para el tutor getTutorAppoints
-            
-            if ( rol == "T"){
+            HTTPHelper.get(route: "getTutorAppoints/" + idUser + "?token=" + token, authenticated: true, completion:{ (error,data) in
                 
-                
-                HTTPHelper.get(route: "getTutorAppoints/" + idUser + "?token=" + token, authenticated: true, completion:{ (error,data) in
+                if(error == nil){
+                    //obtener data
+                    let dataUnwrapped = data.unsafelyUnwrapped
+                    let tjd = dataUnwrapped as! [AnyObject]
                     
-                    if(error == nil){
-                        //obtener data
-                        let dataUnwrapped = data.unsafelyUnwrapped
-                        let tjd = dataUnwrapped as! [AnyObject]
+                    
+                    var cS: [cita] = [] ///////////
+                    
+                    for c in tjd {
+                        //print("cita:")
+                        //print(c)
                         
                         
-                        var cS: [cita] = [] ///////////
+                        let citaId: String?
+                        let fechaI: String?
+                        let horaI: String?
+                        let tema: String?
+                        let alumno: String?
+                        let estado: String?
                         
-                        for c in tjd {
-                            //print("cita:")
-                            //print(c)
-                            
-                            
-                            let citaId: String?
-                            let fechaI: String?
-                            let horaI: String?
-                            let tema: String?
-                            let alumno: String?
-                            let estado: String?
-                            
-                            var fI: Date?
-                            var hI: Date?
-                            
-                            let idc: Int = (c["id"] as! Int?)!
-                            citaId = String(idc)
-                            tema = c["nombreTema"] as! String?
-                            alumno = c["nombreAlumno"] as! String?
-                            //alumno = "Prueba"
-                            estado = c["nombreEstado"] as! String?
-                            
-                            let dateFormater = DateFormatter()
-                            dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                            
-                            
-                            fI = dateFormater.date(from: (c["inicio"] as! String))
-                            //Verificando que la fecha de cita que se registro no es nula
-                            if (fI == nil){
-                                fI = Date()
-                            }
-                            
-                            dateFormater.dateFormat = "yyyy-MM-dd"//"yyyy-MM-dd"
-                            fechaI = dateFormater.string(from: fI!)
-                            
-                            dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                            hI = dateFormater.date(from: (c["inicio"] as! String))
-                            
-                            if (hI == nil){
-                                hI = Date()
-                            }
-                            dateFormater.dateFormat = "HH:mm"
-                            
-                            horaI = dateFormater.string(from: hI!)
-                            
-                            let citaO: cita = cita.init(citaId: citaId, fechaI: fechaI, horaI: horaI, tema: tema, alumno: alumno, estado: estado)
-                            
-                            cS.append(citaO)
-                            
+                        var fI: Date?
+                        var hI: Date?
+                        
+                        let idc: Int = (c["id"] as! Int?)!
+                        citaId = String(idc)
+                        tema = c["nombreTema"] as! String?
+                        alumno = c["nombreAlumno"] as! String?
+                        //alumno = "Prueba"
+                        estado = c["nombreEstado"] as! String?
+                        
+                        let dateFormater = DateFormatter()
+                        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        
+                        
+                        fI = dateFormater.date(from: (c["inicio"] as! String))
+                        //Verificando que la fecha de cita que se registro no es nula
+                        if (fI == nil){
+                            fI = Date()
                         }
                         
-                        cS.reverse()
+                        dateFormater.dateFormat = "yyyy-MM-dd"//"yyyy-MM-dd"
+                        fechaI = dateFormater.string(from: fI!)
                         
-                        ((self.parent as! NavigationControllerC).citasOb) = cS
-                    }   else {
-                        print("error,NO HAY NADA ACA")
+                        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        hI = dateFormater.date(from: (c["inicio"] as! String))
+                        
+                        if (hI == nil){
+                            hI = Date()
+                        }
+                        dateFormater.dateFormat = "HH:mm"
+                        
+                        horaI = dateFormater.string(from: hI!)
+                        
+                        let citaO: cita = cita.init(citaId: citaId, fechaI: fechaI, horaI: horaI, tema: tema, alumno: alumno, estado: estado)
+                        
+                        cS.append(citaO)
+                        
                     }
                     
-                })
+                    cS.reverse()
+                    
+                    ((self.parent as! NavigationControllerC).citasOb) = cS
+                }   else {
+                    print("error,NO HAY NADA ACA")
+                }
                 
-                
-            }
+            })
             
-            //SE COMIENZA A FILTRAR LAS CITAS DE ACUERDO A LOS PARAMETROS
             
+        }
+        
+        //SE COMIENZA A FILTRAR LAS CITAS DE ACUERDO A LOS PARAMETROS
+        
         print("Se hizo la consulta de todas las citas")
         citS = ((self.parent as! NavigationControllerC).citasOb)
         var citSFiltrado: [cita] = []
@@ -351,5 +351,6 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             }
         }
         
-    
+        
+    }
 }

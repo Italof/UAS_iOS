@@ -98,5 +98,20 @@ class ViewControllerCRCita: UIViewController, UIPickerViewDelegate, UIPickerView
         motivoSel = row
         
     }
+    @IBAction func CancelarRechazarCita(_ sender: AnyObject) {
+        
+        if (motivoSel == 0){
+            let errorAlert = UIAlertController(title: "Error al cancelar/rechazar cita!", message: "Seleccione un motivo", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            
+            self.present(errorAlert, animated: true, completion: nil)
+            return
+        }
+        
+        //Invocar el api para cancelar o rechazar cita
+    }
 
 }
