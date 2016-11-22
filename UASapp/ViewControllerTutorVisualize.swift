@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewControllerTutorVisualize: UIViewController {
+class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     @IBOutlet var tutorCode: UILabel!
@@ -23,13 +23,8 @@ class ViewControllerTutorVisualize: UIViewController {
     
     @IBOutlet var tutorAnexo: UILabel!
     
-    @IBOutlet weak var horaL: UILabel!
-    @IBOutlet weak var horaMa: UILabel!
-    @IBOutlet weak var horaMi: UILabel!
-    @IBOutlet weak var horaJ: UILabel!
-    @IBOutlet weak var horaV: UILabel!
-    @IBOutlet var horaS: UILabel!
-    ////////
+
+    
     @IBOutlet weak var labelCodigo: UILabel!
     @IBOutlet weak var labelNombresyAp: UILabel!
     @IBOutlet weak var labelCorreo: UILabel!
@@ -39,9 +34,16 @@ class ViewControllerTutorVisualize: UIViewController {
     @IBOutlet weak var labelHorario: UILabel!
     
     
+    @IBOutlet weak var tableViewHorario: UITableView!
     
+    var horasCitas = ["Horas", "8:00 hs", "9:00 hs", "10:00 hs", "11:00 hs", "12:00 hs", "13:00 hs", "14:00 hs", "15:00 hs", "16:00 hs", "17:00 hs", "18:00 hs", "19:00 hs", "20:00 hs", "21:00 hs"]
     
-    
+    var hLu = ["Lun", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hMa = ["Mar", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hMi = ["Mie", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hJu = ["Jue", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hVi = ["Vie", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var hSa = ["Sab", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     @IBOutlet weak var botonNuevaCita: UIButton!
     
     var tutorC: tutor?
@@ -156,52 +158,57 @@ class ViewControllerTutorVisualize: UIViewController {
                     print(tj["scheduleInfo"])
                     horario = tj["scheduleInfo"] as! [AnyObject]
                     
+                    ((self.parent as! NavigationControllerC).horasL) = []
+                    ((self.parent as! NavigationControllerC).horasMa) = []
+                    ((self.parent as! NavigationControllerC).horasMi) = []
+                    ((self.parent as! NavigationControllerC).horasJ) = []
+                    ((self.parent as! NavigationControllerC).horasV) = []
+                    ((self.parent as! NavigationControllerC).horasS) = []
                     
                     for diaH in horario {
+                      
+                        
                         
                         let dateFormater = DateFormatter()
                         dateFormater.dateFormat = "HH:mm:ss"
                         let diaHo = diaH as! [String:AnyObject]
                         
                         let  hI = dateFormater.date(from: (diaHo["hora_inicio"] as! String))
-                        let  hF = dateFormater.date(from: (diaHo["hora_fin"] as! String))
+                        //print(diaHo["hora_inicio"] as! String)
                         
-                        dateFormater.dateFormat = "HH:mm"
+                        dateFormater.dateFormat = "HH"
                         
                         if ( (diaHo["dia"] as! String) == "1") {
                             
-                            horarioL = horarioL + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
+                            ((self.parent as! NavigationControllerC).horasL.append(Int( dateFormater.string(from: hI!))!))
                             
                         }
                         
                         if ( (diaHo["dia"] as! String) == "2") {
                             
-                            horarioMa = horarioMa + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
+                            ((self.parent as! NavigationControllerC).horasMa.append(Int( dateFormater.string(from: hI!))!))
                         }
                         
                         if ( (diaHo["dia"] as! String) == "3") {
                             
-                            horarioMi = horarioMi + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
+                            ((self.parent as! NavigationControllerC).horasMi.append(Int( dateFormater.string(from: hI!))!))
                         }
                         
                         if ( (diaHo["dia"] as! String) == "4") {
                             
-                            horarioJ = horarioJ + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
+                            ((self.parent as! NavigationControllerC).horasJ.append(Int( dateFormater.string(from: hI!))!))
                         }
                         
                         if ( (diaHo["dia"] as! String) == "5") {
                             
-                            horarioV = horarioV + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
+                            ((self.parent as! NavigationControllerC).horasV.append(Int( dateFormater.string(from: hI!))!))
                         }
+                        
                         if ( (diaHo["dia"] as! String) == "6") {
                             
-                            horarioS = horarioS + " " + dateFormater.string(from: hI!) + "-" + dateFormater.string(from: hF!)
-                            
+                            ((self.parent as! NavigationControllerC).horasS.append(Int( dateFormater.string(from: hI!))!))
                         }
+
                     }
                 }
                 else {
@@ -211,17 +218,35 @@ class ViewControllerTutorVisualize: UIViewController {
                     horarioJ = horarioJ + "-"
                     horarioV = horarioV + "-"
                     horarioS = horarioS + "-"
-                    
-                    self.horaL.isHidden = true
-                    self.horaMa.isHidden = true
-                    self.horaMi.isHidden = true
-                    self.horaJ.isHidden = true
-                    self.horaV.isHidden = true
-                    self.horaS.isHidden = true
+ 
                     self.botonNuevaCita.isHidden = true
                 }
+                print("dia Lunes")
+                for d in ((self.parent as! NavigationControllerC).horasL){
+                    horarioL = horarioL + " " + String(d)
+                }
+                print("dia Martes")
+                for d in ((self.parent as! NavigationControllerC).horasMa) {
+                    horarioMa = horarioMa + " " + String(d)
+                }
+                print("dia Miercoles")
+                for d in ((self.parent as! NavigationControllerC).horasMi) {
+                    horarioMi = horarioMi + " " + String(d)
+                }
+                print("dia Jueves")
+                for d in ((self.parent as! NavigationControllerC).horasJ) {
+                    horarioJ = horarioJ + " " + String(d)
+                }
+                print("dia Viernes")
+                for d in ((self.parent as! NavigationControllerC).horasV) {
+                    horarioV = horarioV + " " + String(d)
+                }
+                print("dia Sabado")
+                for d in ((self.parent as! NavigationControllerC).horasS) {
+                    horarioS = horarioS + " " + String(d)
+                }
                 
-                
+
                 
                 
                 let tutorX : tutor = tutor.init(idDocente: idDocente, idEspecialidad: idEspecialidad, codigo: codigo, nombre: nombre, apellidoPaterno: apellidoPaterno, apellidoMaterno: apellidoMaterno, correo: correo, oficina: oficina, telefono: telefono, anexo: anexo, horarioL: horarioL, horarioMa: horarioMa, horarioMi: horarioMi, horarioJ: horarioJ, horarioV: horarioV, horarioS: horarioS )
@@ -241,27 +266,20 @@ class ViewControllerTutorVisualize: UIViewController {
                 self.labelAnexo.isHidden = false
                 self.labelHorario.isHidden = false
                 
-                /*
-                 self.horaL.isHidden = false
-                 self.horaMa.isHidden = false
-                 self.horaMi.isHidden = false
-                 self.horaJ.isHidden = false
-                 self.horaV.isHidden = false
-                 */
+ 
                 self.tutorCode.text=self.tutorC?.codigo
                 self.tutorName.text=self.tutorC?.nombre
                 self.tutorEmail.text=self.tutorC?.correo
                 self.tutorPhoneNumber.text=self.tutorC?.telefono
                 self.tutorOffice.text=self.tutorC?.oficina
                 self.tutorAnexo.text=self.tutorC?.anexo
+
                 
-                self.horaL.text=self.tutorC?.horarioL
-                self.horaMa.text=self.tutorC?.horarioMa
-                self.horaMi.text=self.tutorC?.horarioMi
-                self.horaJ.text=self.tutorC?.horarioJ
-                self.horaV.text=self.tutorC?.horarioV
-                self.horaS.text = self.tutorC?.horarioS
-                
+                DispatchQueue.main.async {
+                    self.loadData()
+                    self.tableViewHorario.reloadData()
+                    return
+                }
                 
             }
             else {
@@ -289,12 +307,6 @@ class ViewControllerTutorVisualize: UIViewController {
                 self.labelAnexo.isHidden = true
                 self.labelHorario.isHidden = true
                 
-                self.horaL.isHidden = true
-                self.horaMa.isHidden = true
-                self.horaMi.isHidden = true
-                self.horaJ.isHidden = true
-                self.horaV.isHidden = true
-                self.horaS.isHidden = true
                 
                 
                 
@@ -306,20 +318,42 @@ class ViewControllerTutorVisualize: UIViewController {
             
             }
         })
+
         
+        /*
         tutorCode.text=tutorC?.codigo
         tutorName.text=tutorC?.nombre
         tutorEmail.text=tutorC?.correo
         tutorPhoneNumber.text=tutorC?.telefono
         tutorOffice.text=tutorC?.oficina
         tutorAnexo.text=tutorC?.anexo
+
         
-        horaL.text=tutorC?.horarioL
-        horaMa.text=tutorC?.horarioMa
-        horaMi.text=tutorC?.horarioMi
-        horaJ.text=tutorC?.horarioJ
-        horaV.text=tutorC?.horarioV
-        horaS.text=tutorC?.horarioS
+        print("dia Lunes")
+        for d in ((self.parent as! NavigationControllerC).horasL){
+            print(d)
+        }
+        print("dia Martes")
+        for d in ((self.parent as! NavigationControllerC).horasMa) {
+            print(d)
+        }
+        print("dia Miercoles")
+        for d in ((self.parent as! NavigationControllerC).horasMi) {
+            print(d)
+        }
+        print("dia Jueves")
+        for d in ((self.parent as! NavigationControllerC).horasJ) {
+            print(d)
+        }
+        print("dia Viernes")
+        for d in ((self.parent as! NavigationControllerC).horasV) {
+            print(d)
+        }
+        print("dia Sabado")
+        for d in ((self.parent as! NavigationControllerC).horasS) {
+            print(d)
+        }
+         */
     }
     override func viewDidAppear(_ animated: Bool) {
 
@@ -332,6 +366,67 @@ class ViewControllerTutorVisualize: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    func loadData() {
+        tutorCode.text=tutorC?.codigo
+        
+        tutorName.text=(tutorC?.nombre)! + " " + (tutorC?.apellidoPaterno)! + " " + (tutorC?.apellidoMaterno)!
+        tutorEmail.text=tutorC?.correo
+        tutorPhoneNumber.text=tutorC?.telefono
+        tutorOffice.text=tutorC?.oficina
+        tutorAnexo.text=tutorC?.anexo
+
+        
+        print("dia Lunes")
+        for d in ((self.parent as! NavigationControllerC).horasL){
+            print(d)
+            hLu[d-7] = "O"
+        }
+        print("dia Martes")
+        for d in ((self.parent as! NavigationControllerC).horasMa) {
+            print(d)
+            hMa[d-7] = "O"
+        }
+        print("dia Miercoles")
+        for d in ((self.parent as! NavigationControllerC).horasMi) {
+            print(d)
+            hMi[d-7] = "O"
+        }
+        print("dia Jueves")
+        for d in ((self.parent as! NavigationControllerC).horasJ) {
+            print(d)
+            hJu[d-7] = "O"
+        }
+        print("dia Viernes")
+        for d in ((self.parent as! NavigationControllerC).horasV) {
+            print(d)
+            hVi[d-7] = "O"
+        }
+        print("dia Sabado")
+        for d in ((self.parent as! NavigationControllerC).horasS) {
+            print(d)
+            hSa[d-7] = "O"
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return horasCitas.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let  cell = self.tableViewHorario.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCellScheduleTutor
+        
+        cell.hora.text = horasCitas[indexPath.row]
+        cell.hL.text = hLu[indexPath.row]
+        cell.hMa.text = hMa[indexPath.row]
+        cell.hMi.text = hMi[indexPath.row]
+        cell.hJ.text = hJu[indexPath.row]
+        cell.hV.text = hVi[indexPath.row]
+        cell.hS.text = hSa[indexPath.row]
+        
+        
+        return cell
     }
     
 

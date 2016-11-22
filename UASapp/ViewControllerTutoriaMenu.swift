@@ -36,7 +36,7 @@ class ViewControllerTutoriaMenu: UITableViewController {
         /*
          ruta: "getStudents/(idUsuario)?token=(token)"
          */
-        
+        /*
         var cS: [alumno]=[] ///////////
         
         let alumnoO1: alumno = alumno.init(alumno: "Juan Perez", codigo: "20001234", tutor: "Miguel Guano", estado: "activo")
@@ -45,7 +45,7 @@ class ViewControllerTutoriaMenu: UITableViewController {
         cS.append(alumnoO2)
         let alumnoO3: alumno = alumno.init(alumno: "Juan Perez3", codigo: "20001236", tutor: "Miguel Guano3", estado: "activo")
         cS.append(alumnoO3)
-        
+        */
         /*
         let parser : Int = UserDefaults.standard.object( forKey: "SPECIALTY") as! Int
         let idEspecialidad = String.init(parser)
@@ -105,7 +105,7 @@ class ViewControllerTutoriaMenu: UITableViewController {
         */
         
         
-        ((self.parent as! NavigationControllerC).alumnosOb) = cS
+        //((self.parent as! NavigationControllerC).alumnosOb) = cS
         
     }
         
