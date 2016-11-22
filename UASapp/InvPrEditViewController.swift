@@ -20,7 +20,7 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
     let successMessage: String = "Los cambios han sido guardados"
     let errorTitle: String = "Error"
     let errorMessage: String = "No se han guardado los cambios"
-    
+    let invalidCharacters = "1234567890,+-*/=!\"·$%&/(.)=?=¿;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠‚´][{}–„…œå∫∑©√Ω©"
     @IBOutlet var invPrSaveButton: UIBarButtonItem!
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -152,8 +152,12 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
             errorMessageCustom = "No hay cambios"
             error = 1
         }
-        else if((nameInvProject!.text?.characters.count)! > 254 || (nameInvProject!.text?.characters.count)! < 1){
+        else if((nameInvProject!.text?.characters.count)! > 50 || (nameInvProject!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre no válido"
+            error = 1
+        }
+        else if(contains(text: nameInvProject.text!, find: invalidCharacters)){
+            errorMessageCustom = "Nombre no acepta números o símbolos"
             error = 1
         }
         else if((numberDerivablesInvPr!.text?.characters.count)! > 2){
@@ -255,6 +259,15 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
         
         //alerta de guardado
         
+    }
+    
+    func contains(text: String, find: String) -> Bool{
+        for c in find.characters{
+            if(text.contains(String(c))){
+                return true
+            }
+        }
+        return false
     }
 
     /*

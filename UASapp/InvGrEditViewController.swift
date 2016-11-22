@@ -16,7 +16,7 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
     @IBOutlet weak var descriptionInvGroup: UITextView!
     @IBOutlet weak var saveInvGroup: UIBarButtonItem!
     @IBOutlet weak var specialityInvGroup: UITextField!
-    
+    let invalidCharacters = "1234567890.,+-*/=!\"·$%&/()=?=¿;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠‚´][{}–œå∫∑©√Ω©"
     @IBOutlet var invGroupSaveButton: UIBarButtonItem!
     var activeField: UITextField?
     @IBOutlet weak var scrollView: UIScrollView!
@@ -35,6 +35,8 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         //error variable
         var errorMessageCustom : String = ""
         var error = 0
+        
+        //string.rangeOfCharacter(from: invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
         //verificar que los campos son correctos
         if (AskConectivity.isInternetAvailable() == false){
             errorMessageCustom = "No conectado a internet"
@@ -42,12 +44,20 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         }
         else
         {
-        if((nameInvGroup!.text?.characters.count)! > 254 || (nameInvGroup!.text?.characters.count)! < 1){
+        if((nameInvGroup!.text?.characters.count)! > 50 || (nameInvGroup!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre no válido"
             error = 1
         }
-        else if((descriptionInvGroup!.text?.characters.count)! > 254 || (descriptionInvGroup!.text?.characters.count)! < 1){
+        else if(contains(text: nameInvGroup.text!, find: invalidCharacters)){
+            errorMessageCustom = "Nombre no acepta números o símbolos"
+            error = 1
+        }
+        else if((descriptionInvGroup!.text?.characters.count)! > 200 || (descriptionInvGroup!.text?.characters.count)! < 1){
             errorMessageCustom = "Descripción no válido"
+            error = 1
+        }
+        else if(contains(text: descriptionInvGroup.text!, find: invalidCharacters)){
+            errorMessageCustom = "Descripción no acepta números o símbolos"
             error = 1
         }
         else if (nameInvGroup.text == invGr?.name && descriptionInvGroup.text == invGr?.description){
@@ -224,7 +234,14 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func contains(text: String, find: String) -> Bool{
+        for c in find.characters{
+            if(text.contains(String(c))){
+                return true
+            }
+        }
+        return false
+    }
     
     /*
     // MARK: - Navigation

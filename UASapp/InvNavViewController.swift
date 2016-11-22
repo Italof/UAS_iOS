@@ -62,6 +62,8 @@ class InvNavViewController: UINavigationController {
     //obtener  documentos
     var getDocuments: String = "versions"
     var getResponsibles: String = "responsibles"
+    //registrar observaciones
+    var registerObs:  String = "observation"
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.navigationBar.topItem?.title = "Atrás";

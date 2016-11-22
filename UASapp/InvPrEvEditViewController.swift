@@ -19,6 +19,7 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     var activeField: UITextField?
+    let invalidCharacters = "1234567890+-*/=!\"·$%&/()=?=¿.;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠´][{}–„…œå∫∑©√Ω©.,"
     //varialbles de alert de sistema
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
@@ -163,15 +164,22 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
             errorMessageCustom = "No hay cambios"
             error = 1
         }
-        else if((nameInvPrEvent!.text?.characters.count)! > 254 || (nameInvPrEvent!.text?.characters.count)! < 1){
+        else if((nameInvPrEvent!.text?.characters.count)! > 50 || (nameInvPrEvent!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre no válido"
             error = 1
         }
-        else if((placeInvPrEvent!.text?.characters.count)! > 254 || (placeInvPrEvent!.text?.characters.count)! < 1){
+        else if((placeInvPrEvent!.text?.characters.count)! > 100 || (placeInvPrEvent!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre de lugar no válido"
             error = 1
         }
-        
+        else if(contains(text: nameInvPrEvent.text!, find: invalidCharacters)){
+            errorMessageCustom = "Nombre no acepta números o símbolos"
+            error = 1
+        }
+        else if(contains(text: placeInvPrEvent.text!, find: invalidCharacters)){
+            errorMessageCustom = "Nombre de lugar no acepta números o símbolos"
+            error = 1
+        }
         if (error == 1){
             alert.title = errorTitle
             alert.message = errorMessageCustom
@@ -251,6 +259,16 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
             
         }
     }
+    }
+    
+    
+    func contains(text: String, find: String) -> Bool{
+        for c in find.characters{
+            if(text.contains(String(c))){
+                return true
+            }
+        }
+        return false
     }
 
     /*

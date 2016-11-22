@@ -50,6 +50,7 @@ class InvPrDetailViewController: UIViewController {
     //let profilePermited = (parent as! InvNavViewController).profilePermited
     let isConnected = AskConectivity.isInternetAvailable()
     invProjectEditButton.isEnabled = false
+    print(isConnected)
     if(isConnected != false && invPr?.idLeader == id){
       //si no se encuentra el perfil permitido
       //ocultar boton de editar
