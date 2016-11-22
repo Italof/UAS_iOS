@@ -70,6 +70,8 @@
 		12BF4DB31DC2CD70005E7D5A /* CustomStudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BF4DB21DC2CD70005E7D5A /* CustomStudentCell.swift */; };
 		12BF4DB51DC2D73E005E7D5A /* ListStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BF4DB41DC2D73E005E7D5A /* ListStudentViewController.swift */; };
 		12BF4DB71DC2EAE5005E7D5A /* CustomCriterioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */; };
+		12C2AB1E1DE3D04300514C3B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C2AB1D1DE3D04300514C3B /* Student.swift */; };
+		12C2AB201DE3DA8600514C3B /* GradeCriterio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C2AB1F1DE3DA8600514C3B /* GradeCriterio.swift */; };
 		12C5F6991DCBA2A0004BCF81 /* citaClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C5F6981DCBA2A0004BCF81 /* citaClass.swift */; };
 		12D01CB61DBC13CC00082441 /* CustomPeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */; };
 		12DABD341DCBE8ED0055F8FC /* studentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DABD331DCBE8ED0055F8FC /* studentClass.swift */; };
@@ -208,6 +210,8 @@
 		12BF4DB21DC2CD70005E7D5A /* CustomStudentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStudentCell.swift; sourceTree = "<group>"; };
 		12BF4DB41DC2D73E005E7D5A /* ListStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListStudentViewController.swift; sourceTree = "<group>"; };
 		12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCriterioCell.swift; sourceTree = "<group>"; };
+		12C2AB1D1DE3D04300514C3B /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		12C2AB1F1DE3DA8600514C3B /* GradeCriterio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeCriterio.swift; sourceTree = "<group>"; };
 		12C5F6981DCBA2A0004BCF81 /* citaClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = citaClass.swift; sourceTree = "<group>"; };
 		12D01CB51DBC13CC00082441 /* CustomPeriodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPeriodCell.swift; sourceTree = "<group>"; };
 		12DABD331DCBE8ED0055F8FC /* studentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentClass.swift; sourceTree = "<group>"; };
@@ -343,6 +347,8 @@
 				967045C61DD1062600DE2E8E /* ImprovementPlan.swift */,
 				96332A011DD26F8F00D4CB08 /* Aspect.swift */,
 				969D91F01DD37F0A00D0456B /* Criterion.swift */,
+				12C2AB1D1DE3D04300514C3B /* Student.swift */,
+				12C2AB1F1DE3DA8600514C3B /* GradeCriterio.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -710,6 +716,7 @@
 				1237D3B01DCA9CC80081EAF4 /* ViewControllerStudentFilter.swift in Sources */,
 				12BB00021DD3FD1A009463B5 /* TableViewControllerDatesTable.swift in Sources */,
 				126C83061DCA87D400168250 /* SplitViewController.swift in Sources */,
+				12C2AB1E1DE3D04300514C3B /* Student.swift in Sources */,
 				1231D7831DBACE03004E35FD /* SpecialtyViewController.swift in Sources */,
 				25720B6F1DD9CE69007DE688 /* ReunionesTableViewController.swift in Sources */,
 				966EEACE1DCCF04100EBC56B /* StudentOutcome.swift in Sources */,
@@ -787,6 +794,7 @@
 				12DABD361DCC0C9B0055F8FC /* temaClass.swift in Sources */,
 				4618847E1DCC20A1000858C8 /* ConfigTableViewController.swift in Sources */,
 				12B92A871DD267B300441786 /* InvDerEditViewController.swift in Sources */,
+				12C2AB201DE3DA8600514C3B /* GradeCriterio.swift in Sources */,
 				121C14031DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift in Sources */,
 				12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */,
 				12B92A811DD262AA00441786 /* InvestigationDocument.swift in Sources */,

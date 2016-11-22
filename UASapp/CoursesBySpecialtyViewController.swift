@@ -11,8 +11,9 @@ import UIKit
 class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var courses: [Course] = []
-    var pickerSelected: Int?
-    var levels = ["Nivel 10", "Nivel 9", "Nivel 8","Nivel 7","Nivel 6","Nivel 5","Nivel 4","Nivel 3","Nivel 2","Nivel 1"]
+    var coursesTotal: [Course] = []
+    var pickerSelected: String?
+    var levels : [String] = []
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var LevelPicker: UIPickerView!
@@ -39,7 +40,9 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayCourses = dataUnwrapped as? [Any]
-                self.courses = []
+                self.coursesTotal = []
+                var primero = true
+                var firstLevel = ""
                 for course in arrayCourses!{
                     let cr = course as! [String:AnyObject]
                     let id = cr["IdCurso"] as! Int
@@ -48,9 +51,23 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
                     let code = cr["Codigo"] as! String
                     let name = cr["Nombre"] as! String
                     let course : Course = Course.init(id: id,idEspecialidad:idEsp, name: name,code:code,nivAcademico:academicLevel )
-                    self.courses.append(course)
-                    self.do_table_refresh()
+                    self.coursesTotal.append(course)
+                    
+                    //Condicion para concatenar los profes con "&"
+                    if (primero){
+                        firstLevel = academicLevel
+                        primero = false
+                    }
+                    
+                    //Para el picker del  nivel academico
+                    if(!self.levels.contains(academicLevel)){
+                        self.levels.append(academicLevel)
+                        self.do_picker_refresh()
+                    }
+                    
                 }
+                print("el primer nivel es " + firstLevel)
+                self.do_table_refresh(nivel: firstLevel)
             }
             else {
                 //Mostrar error y regresar al menù principal
@@ -71,10 +88,21 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
         return levels.count
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if( !(levels.isEmpty) ){
+            let nivel = levels[row] as String
+            do_table_refresh(nivel: nivel)
+        }
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
+    func do_picker_refresh()
+    {
+        self.LevelPicker.reloadAllComponents()
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,10 +123,18 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
         ((parent as! UASNavViewController).course) = course
     }
     
-    func do_table_refresh()
+    func do_table_refresh(nivel : String)
     {
+        self.courses = []
+        if (nivel != ""){
+            for curso in coursesTotal{
+                if(curso.nivAcademico == nivel){
+                    courses.append(curso)
+                }
+                
+            }
+        }
         self.tableView.reloadData()
-        
     }
     
     /*

@@ -10,7 +10,8 @@ import UIKit
 
 class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
     var schedule : Schedule?
-
+    
+    let userDefault = UserDefaults.standard
     @IBOutlet var lblSchedule: UILabel!
     @IBOutlet var StudentResultPicker: UIPickerView!
     @IBOutlet var AspectPicker: UIPickerView!
@@ -21,18 +22,56 @@ class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     var aspects = ["aspecto1","aspecto2"]
     
     var codes = ["20102513","20106666","20119824"]
-    var students = ["Jorge Signol Pinto", "Jhordy Cornelio Bobadilla", "Jose Luis Sanchez"]
+    var students: [Student] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         var horario: String?
+        var idHorario: Int
         schedule = (parent as! UASNavViewController).schedule
         horario = (schedule?.codeCourse)! + " - " + (schedule?.course)!
         horario =  horario! + " - Horario: " + (schedule?.code)!
         lblSchedule.text = horario
         progressiveBar.progress = 0.15
+        idHorario = (schedule?.id)!
+        
+        if AskConectivity.isInternetAvailable(){
+            print("conectado")
+        }
+        else{
+            print("error de conexion")
+        }
+        
+        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        print("token = " + token)
+        HTTPHelper.get(route: "faculties/schedule/"+String(idHorario) + "/students" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let arrayStudents = dataUnwrapped as? [Any]
+                self.students = []
+                for student in arrayStudents!{
+                    let st = student as! [String:AnyObject]
+                    let id = st["IdAlumno"] as! Int
+                    let schedule = st["idHorario"] as! Int
+                    let name = st["name"] as! String
+                    let apePat = st["ApellidoPaterno"] as! String
+                    let apeMat = st["ApellidoMaterno"] as! String
+                    let code = st["Codigo"] as! String
+                    
+                    let student : Student = Student.init(id:id, name:name, apePaterno: apePat, apeMaterno: apeMat, schedule: schedule, code: code)
+                    self.students.append(student)
+                    self.do_table_refresh()
+                }
+            }
+            else {
+                //Mostrar error y regresar al menù principal
+                
+            }
+        })
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,10 +108,21 @@ class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomStudentCell
         cell.lblCode.text=codes[indexPath.row]
-        cell.lblStudentName.text=students[indexPath.row]
+        cell.lblStudentName.text=students[indexPath.row].name! + " " + students[indexPath.row].apePaterno! + " " + students[indexPath.row].apeMaterno!
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let student = students[indexPath.row] as Student
+        ((parent as! UASNavViewController).student) = student
+        userDefault.set(student.id, forKey: "STUDENT")
+    }
+    
+    func do_table_refresh()
+    {
+        self.tableView.reloadData()
+        
+    }
 
 
     /*
