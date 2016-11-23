@@ -40,13 +40,13 @@ class SuggestionViewController: UIViewController {
     }
 
     @IBAction func saveSuggestion(_ sender: UIBarButtonItem) {
-        let title = txtTitle.text! as String
-        let coment = txtComent.text! as String
+        let title = txtTitle.text! as NSString
+        let coment = txtComent.text! as NSString
    
-        if (title.isEmpty) {
+        if (title.isEqual(to: "")) {
             alert.message = "Debe ingresar un titulo para su sugerencia"
             self.present(alert, animated: true, completion: nil)
-        } else if (coment.isEmpty) {
+        } else if (coment.isEqual(to: "")) {
             alert.message = "Debe ingresar una sugerencia"
             self.present(alert, animated: true, completion: nil)
         } else {
@@ -63,9 +63,9 @@ class SuggestionViewController: UIViewController {
                 
                 let token = userDefaults.string(forKey: "TOKEN")!
                 let impPlanId = impPlan.id
-                let url = "improvementplans/\(impPlanId)/suggestions/?token=\(token)"
+                let url = "improvementplans/\(impPlanId)/suggestions?token=\(token)"
                 print (postData)
-                HTTPHelper.post(route: url, authenticated: true, body: postData, completion: { (error, response) in
+                HTTPHelper.post(route: url, authenticated: false, body: postData, completion: { (error, response) in
                     if (error != nil) {
                         print(error!)
                         self.saveAlert.title = "¡Error!"

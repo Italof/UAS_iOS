@@ -25,11 +25,13 @@ class HTTPHelper {
     
     if let requestBody = body {
       do {
+        
         try urlRequest.httpBody = JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted)
       } catch let err as NSError {
         print(err)
       }
     }
+    
     
     let dataTask = URLSession.shared.dataTask(with: urlRequest as URLRequest, completionHandler: {(responseData, response, responseError) in
       var error: NSError? = nil, data: Any? = nil

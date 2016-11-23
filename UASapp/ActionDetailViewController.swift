@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ActionDetailViewController: UIViewController {
+class ActionDetailViewController: UIViewController, UIDocumentInteractionControllerDelegate {
     var action : Action!
     
     @IBOutlet weak var lblCicle: UILabel!
@@ -16,6 +16,8 @@ class ActionDetailViewController: UIViewController {
     @IBOutlet weak var lblProf: UILabel!
     @IBOutlet weak var lblComent: UILabel!
     @IBOutlet weak var lblAvance: UILabel!
+    
+    var viewer: UIDocumentInteractionController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,5 +36,21 @@ class ActionDetailViewController: UIViewController {
     }
 
     @IBAction func downloadFile() {
+        let route = "http://52.89.227.55/uploads/" + action.fileName!
+        if (action.fileName != nil && action.fileName != "") {
+            DownloadHelper.loadFileAsync(route: route, completion:{(path, error) in
+                let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
+                if isFileFound == true {
+                    self.viewer = UIDocumentInteractionController(url: NSURL(fileURLWithPath: path!) as URL)
+                    self.viewer?.delegate = self
+                    self.viewer?.presentPreview(animated: true)
+                }
+            })
+        }
+        
+    }
+    
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController{
+        return self
     }
 }
