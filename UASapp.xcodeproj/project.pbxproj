@@ -61,12 +61,12 @@
 		1296D0BC1DCE4B30006B7E73 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1296D0BB1DCE4B30006B7E73 /* TabBarController.swift */; };
 		12ADDE991DBACC8300A2B7CA /* InvGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */; };
 		12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */; };
+		12AEE0B31DDBE2BE00272292 /* TableViewCellScheduleTutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AEE0B21DDBE2BE00272292 /* TableViewCellScheduleTutor.swift */; };
 		12B92A7F1DD2624B00441786 /* InvDocumentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A7E1DD2624B00441786 /* InvDocumentTableViewController.swift */; };
 		12B92A811DD262AA00441786 /* InvestigationDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A801DD262AA00441786 /* InvestigationDocument.swift */; };
 		12B92A831DD2664300441786 /* InvDerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A821DD2664300441786 /* InvDerDetailViewController.swift */; };
 		12B92A851DD267A400441786 /* InvDocDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A841DD267A400441786 /* InvDocDetailViewController.swift */; };
 		12B92A871DD267B300441786 /* InvDerEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B92A861DD267B300441786 /* InvDerEditViewController.swift */; };
-		12AEE0B31DDBE2BE00272292 /* TableViewCellScheduleTutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AEE0B21DDBE2BE00272292 /* TableViewCellScheduleTutor.swift */; };
 		12BB00021DD3FD1A009463B5 /* TableViewControllerDatesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BB00011DD3FD1A009463B5 /* TableViewControllerDatesTable.swift */; };
 		12BCE5291DC2B2710052E607 /* CustomCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */; };
 		12BF4DB31DC2CD70005E7D5A /* CustomStudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BF4DB21DC2CD70005E7D5A /* CustomStudentCell.swift */; };
@@ -84,6 +84,7 @@
 		12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */; };
 		12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */; };
 		12DF4D211DCADD8700E59AD0 /* InvestigatorEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */; };
+		12E0A06A1DDD21F200E7B078 /* ViewControllerCRCita.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E0A0691DDD21F200E7B078 /* ViewControllerCRCita.swift */; };
 		12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */; };
 		25720B561DD9CE12007DE688 /* Grupos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B551DD9CE12007DE688 /* Grupos.swift */; };
 		25720B581DD9CE28007DE688 /* Fases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B571DD9CE28007DE688 /* Fases.swift */; };
@@ -109,13 +110,17 @@
 		25720B821DD9CE7D007DE688 /* PspDetalleFichaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B7E1DD9CE7D007DE688 /* PspDetalleFichaViewController.swift */; };
 		25720B831DD9CE7D007DE688 /* PspFichaRegistroTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B7F1DD9CE7D007DE688 /* PspFichaRegistroTableViewController.swift */; };
 		25720B841DD9CE7D007DE688 /* AlumnosNotasPspTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B801DD9CE7D007DE688 /* AlumnosNotasPspTableViewController.swift */; };
-		12E0A06A1DDD21F200E7B078 /* ViewControllerCRCita.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E0A0691DDD21F200E7B078 /* ViewControllerCRCita.swift */; };
 		25A6EF191DCBDF760084AFE0 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EF181DCBDF760084AFE0 /* Test.swift */; };
 		25A6EF2D1DCBE7CA0084AFE0 /* FaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A6EF2C1DCBE7CA0084AFE0 /* FaseTest.swift */; };
 		25A968291DCB12D700B03060 /* InicioPspViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A968281DCB12D700B03060 /* InicioPspViewController.swift */; };
 		25DE42751DCBA0D800BE88C8 /* MenuProvisionalAlumnosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DE42741DCBA0D800BE88C8 /* MenuProvisionalAlumnosViewController.swift */; };
 		4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616D9E01DC07E12008174B7 /* HTTPHelper.swift */; };
 		4618847E1DCC20A1000858C8 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4618847D1DCC20A1000858C8 /* ConfigTableViewController.swift */; };
+		4627D4681DE3B670006EBB92 /* ActionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4627D4671DE3B670006EBB92 /* ActionDetailViewController.swift */; };
+		4627D46A1DE3B691006EBB92 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4627D4691DE3B691006EBB92 /* Action.swift */; };
+		4627D46E1DE3BA79006EBB92 /* CustomActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4627D46D1DE3BA79006EBB92 /* CustomActionCell.swift */; };
+		4627D4701DE3BA8D006EBB92 /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4627D46F1DE3BA8D006EBB92 /* Suggestion.swift */; };
+		4627D4721DE3BF7D006EBB92 /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4627D4711DE3BF7D006EBB92 /* SuggestionViewController.swift */; };
 		46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B011DB9DF7500EC8575 /* AppDelegate.swift */; };
 		46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46292B031DB9DF7500EC8575 /* ViewController.swift */; };
 		46292B0C1DB9DF7500EC8575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */; };
@@ -123,6 +128,7 @@
 		4630565A1DD169D50066C7DB /* PlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463056591DD169D50066C7DB /* PlanDetailViewController.swift */; };
 		4637A5671DCE747100D65C40 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4637A5661DCE747100D65C40 /* DownloadHelper.swift */; };
 		46419A8D1DCC505C00E77B9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46419A8B1DCC505C00E77B9A /* Main.storyboard */; };
+		467F07851DE3C3DF00DDC6FD /* ActionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467F07841DE3C3DF00DDC6FD /* ActionsTableViewController.swift */; };
 		9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */; };
 		9623F25B1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */; };
 		9623F25D1DC3A2E900EA7B6D /* CustomOutcomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25C1DC3A2E900EA7B6D /* CustomOutcomeCell.swift */; };
@@ -207,12 +213,12 @@
 		1296D0BB1DCE4B30006B7E73 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGroupTableViewController.swift; sourceTree = "<group>"; };
 		12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationGroup.swift; sourceTree = "<group>"; };
+		12AEE0B21DDBE2BE00272292 /* TableViewCellScheduleTutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellScheduleTutor.swift; sourceTree = "<group>"; };
 		12B92A7E1DD2624B00441786 /* InvDocumentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDocumentTableViewController.swift; sourceTree = "<group>"; };
 		12B92A801DD262AA00441786 /* InvestigationDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationDocument.swift; sourceTree = "<group>"; };
 		12B92A821DD2664300441786 /* InvDerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDerDetailViewController.swift; sourceTree = "<group>"; };
 		12B92A841DD267A400441786 /* InvDocDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDocDetailViewController.swift; sourceTree = "<group>"; };
 		12B92A861DD267B300441786 /* InvDerEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDerEditViewController.swift; sourceTree = "<group>"; };
-		12AEE0B21DDBE2BE00272292 /* TableViewCellScheduleTutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellScheduleTutor.swift; sourceTree = "<group>"; };
 		12BB00011DD3FD1A009463B5 /* TableViewControllerDatesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerDatesTable.swift; sourceTree = "<group>"; };
 		12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCourseCell.swift; sourceTree = "<group>"; };
 		12BF4DB21DC2CD70005E7D5A /* CustomStudentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStudentCell.swift; sourceTree = "<group>"; };
@@ -230,6 +236,7 @@
 		12DD027F1DBEEB2500CCB25A /* CustomSpecialtyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSpecialtyCell.swift; sourceTree = "<group>"; };
 		12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorDetailViewController.swift; sourceTree = "<group>"; };
 		12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorEditViewController.swift; sourceTree = "<group>"; };
+		12E0A0691DDD21F200E7B078 /* ViewControllerCRCita.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCRCita.swift; sourceTree = "<group>"; };
 		12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
 		25720B551DD9CE12007DE688 /* Grupos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grupos.swift; sourceTree = "<group>"; };
 		25720B571DD9CE28007DE688 /* Fases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fases.swift; sourceTree = "<group>"; };
@@ -255,7 +262,6 @@
 		25720B7E1DD9CE7D007DE688 /* PspDetalleFichaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PspDetalleFichaViewController.swift; sourceTree = "<group>"; };
 		25720B7F1DD9CE7D007DE688 /* PspFichaRegistroTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PspFichaRegistroTableViewController.swift; sourceTree = "<group>"; };
 		25720B801DD9CE7D007DE688 /* AlumnosNotasPspTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlumnosNotasPspTableViewController.swift; sourceTree = "<group>"; };
-		12E0A0691DDD21F200E7B078 /* ViewControllerCRCita.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCRCita.swift; sourceTree = "<group>"; };
 		25A6EF161DCBDF760084AFE0 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A6EF181DCBDF760084AFE0 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		25A6EF1A1DCBDF760084AFE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -264,6 +270,11 @@
 		25DE42741DCBA0D800BE88C8 /* MenuProvisionalAlumnosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuProvisionalAlumnosViewController.swift; sourceTree = "<group>"; };
 		4616D9E01DC07E12008174B7 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		4618847D1DCC20A1000858C8 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigTableViewController.swift; sourceTree = "<group>"; };
+		4627D4671DE3B670006EBB92 /* ActionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionDetailViewController.swift; sourceTree = "<group>"; };
+		4627D4691DE3B691006EBB92 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		4627D46D1DE3BA79006EBB92 /* CustomActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActionCell.swift; sourceTree = "<group>"; };
+		4627D46F1DE3BA8D006EBB92 /* Suggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
+		4627D4711DE3BF7D006EBB92 /* SuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
 		46292AFE1DB9DF7500EC8575 /* UASapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UASapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46292B011DB9DF7500EC8575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46292B031DB9DF7500EC8575 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +284,7 @@
 		463056591DD169D50066C7DB /* PlanDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanDetailViewController.swift; sourceTree = "<group>"; };
 		4637A5661DCE747100D65C40 /* DownloadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
 		46419A8C1DCC505C00E77B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = UASapp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		467F07841DE3C3DF00DDC6FD /* ActionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsTableViewController.swift; sourceTree = "<group>"; };
 		9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalDetailViewController.swift; sourceTree = "<group>"; };
 		9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentOutcomesViewController.swift; sourceTree = "<group>"; };
 		9623F25C1DC3A2E900EA7B6D /* CustomOutcomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomOutcomeCell.swift; sourceTree = "<group>"; };
@@ -359,6 +371,8 @@
 				967045C61DD1062600DE2E8E /* ImprovementPlan.swift */,
 				96332A011DD26F8F00D4CB08 /* Aspect.swift */,
 				969D91F01DD37F0A00D0456B /* Criterion.swift */,
+				4627D4691DE3B691006EBB92 /* Action.swift */,
+				4627D46F1DE3BA8D006EBB92 /* Suggestion.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -397,10 +411,14 @@
 				967045C41DD1053700DE2E8E /* ImprovementPlanTableViewController.swift */,
 				463056571DD166A50066C7DB /* CustomImpPlanCell.swift */,
 				463056591DD169D50066C7DB /* PlanDetailViewController.swift */,
+				467F07841DE3C3DF00DDC6FD /* ActionsTableViewController.swift */,
 				96332A031DD275E800D4CB08 /* AspectsTableViewController.swift */,
 				96332A051DD2760800D4CB08 /* CustomAspectCell.swift */,
 				96332A071DD2762400D4CB08 /* AspectDetailViewController.swift */,
 				969D91F21DD389FA00D0456B /* CustomCriterionCell.swift */,
+				4627D4671DE3B670006EBB92 /* ActionDetailViewController.swift */,
+				4627D46D1DE3BA79006EBB92 /* CustomActionCell.swift */,
+				4627D4711DE3BF7D006EBB92 /* SuggestionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -729,6 +747,7 @@
 				4637A5671DCE747100D65C40 /* DownloadHelper.swift in Sources */,
 				12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */,
 				25A968291DCB12D700B03060 /* InicioPspViewController.swift in Sources */,
+				4627D46A1DE3B691006EBB92 /* Action.swift in Sources */,
 				25720B741DD9CE69007DE688 /* PspFreeHour.swift in Sources */,
 				96332A021DD26F8F00D4CB08 /* Aspect.swift in Sources */,
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
@@ -754,6 +773,7 @@
 				124710301DCAD039000F9F1D /* UASNavViewController.swift in Sources */,
 				1247102E1DCABD63000F9F1D /* Period.swift in Sources */,
 				25720B721DD9CE69007DE688 /* Alumnos.swift in Sources */,
+				4627D4721DE3BF7D006EBB92 /* SuggestionViewController.swift in Sources */,
 				46292B021DB9DF7500EC8575 /* AppDelegate.swift in Sources */,
 				12ADDE991DBACC8300A2B7CA /* InvGroupTableViewController.swift in Sources */,
 				1237D3B01DCA9CC80081EAF4 /* ViewControllerStudentFilter.swift in Sources */,
@@ -768,6 +788,7 @@
 				126C83051DCA87D400168250 /* InvestigatorTableViewController.swift in Sources */,
 				120B4E421DCE826200BE9D5E /* Schedule.swift in Sources */,
 				1231D7871DBAE5D6004E35FD /* PeriodMeasurementViewController.swift in Sources */,
+				467F07851DE3C3DF00DDC6FD /* ActionsTableViewController.swift in Sources */,
 				25720B581DD9CE28007DE688 /* Fases.swift in Sources */,
 				965F44B91DC270C300D7139A /* CustomGoalCell.swift in Sources */,
 				25720B701DD9CE69007DE688 /* PspReuniones.swift in Sources */,
@@ -783,12 +804,12 @@
 				25720B6D1DD9CE69007DE688 /* NuevaReunionAlumnoViewController.swift in Sources */,
 				1231D78B1DBAE869004E35FD /* ScheduleViewController.swift in Sources */,
 				1231D7891DBAE681004E35FD /* PeriodMeasDetailViewController.swift in Sources */,
-				25A968331DCB353100B03060 /* Grupos.swift in Sources */,
 				12D71EC71DDD3B2100223777 /* ViewControllerEvaluations.swift in Sources */,
 				12DD02801DBEEB2500CCB25A /* CustomSpecialtyCell.swift in Sources */,
 				25DE42751DCBA0D800BE88C8 /* MenuProvisionalAlumnosViewController.swift in Sources */,
 				1231D78D1DBAE87D004E35FD /* StudentViewController.swift in Sources */,
 				967045C71DD1062600DE2E8E /* ImprovementPlan.swift in Sources */,
+				4627D46E1DE3BA79006EBB92 /* CustomActionCell.swift in Sources */,
 				25720B5E1DD9CE4F007DE688 /* PspStudent.swift in Sources */,
 				463056581DD166A50066C7DB /* CustomImpPlanCell.swift in Sources */,
 				1207C64E1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift in Sources */,
@@ -828,6 +849,7 @@
 				96332A061DD2760800D4CB08 /* CustomAspectCell.swift in Sources */,
 				12D71ECD1DDD4D7E00223777 /* ViewControllerEvaluationFilter.swift in Sources */,
 				124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */,
+				4627D4701DE3BA8D006EBB92 /* Suggestion.swift in Sources */,
 				12B92A7F1DD2624B00441786 /* InvDocumentTableViewController.swift in Sources */,
 				969D91F11DD37F0A00D0456B /* Criterion.swift in Sources */,
 				1214CECA1DBC0C600042A3F2 /* InvestigationProject.swift in Sources */,
@@ -836,6 +858,7 @@
 				25720B6C1DD9CE69007DE688 /* DetalleReunionesViewController.swift in Sources */,
 				1207C6501DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift in Sources */,
 				25720B821DD9CE7D007DE688 /* PspDetalleFichaViewController.swift in Sources */,
+				4627D4681DE3B670006EBB92 /* ActionDetailViewController.swift in Sources */,
 				1268F2791DC0096100E1CC22 /* InvPrEvEditViewController.swift in Sources */,
 				4616D9E11DC07E12008174B7 /* HTTPHelper.swift in Sources */,
 				1237D3B11DCA9CC80081EAF4 /* ViewControllerStudents.swift in Sources */,

@@ -350,6 +350,6 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
                 citSFiltrado.append(x)
             }
         }
-        
+    }
     
 }

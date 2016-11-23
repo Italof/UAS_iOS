@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         let password = txtPass.text! as NSString
 
         
-        let errorAlert = UIAlertController(title: "Error al Iniciar Sesión!",
+        let errorAlert = UIAlertController(title: "¡Error al Iniciar Sesión!",
                                       message: nil,
                                       preferredStyle: .alert)
         let action = UIAlertAction(title: "OK",
