@@ -41,6 +41,7 @@
 		1237D3B91DCA9CE50081EAF4 /* tutorClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1237D3B61DCA9CE50081EAF4 /* tutorClass.swift */; };
 		1237D3BB1DCA9D060081EAF4 /* NavigationControllerC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1237D3BA1DCA9D060081EAF4 /* NavigationControllerC.swift */; };
 		123DD70E1DE3C56B0063701A /* ViewControllerConfCita.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123DD70D1DE3C56B0063701A /* ViewControllerConfCita.swift */; };
+		12441A251DE4F7BC009CC908 /* NavigationControllerE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12441A241DE4F7BC009CC908 /* NavigationControllerE.swift */; };
 		1247102E1DCABD63000F9F1D /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1247102D1DCABD63000F9F1D /* Period.swift */; };
 		124710301DCAD039000F9F1D /* UASNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1247102F1DCAD039000F9F1D /* UASNavViewController.swift */; };
 		124710321DCAD809000F9F1D /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124710311DCAD809000F9F1D /* Course.swift */; };
@@ -189,6 +190,7 @@
 		1237D3B61DCA9CE50081EAF4 /* tutorClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tutorClass.swift; sourceTree = "<group>"; };
 		1237D3BA1DCA9D060081EAF4 /* NavigationControllerC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerC.swift; sourceTree = "<group>"; };
 		123DD70D1DE3C56B0063701A /* ViewControllerConfCita.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerConfCita.swift; sourceTree = "<group>"; };
+		12441A241DE4F7BC009CC908 /* NavigationControllerE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerE.swift; sourceTree = "<group>"; };
 		1247102D1DCABD63000F9F1D /* Period.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		1247102F1DCAD039000F9F1D /* UASNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UASNavViewController.swift; sourceTree = "<group>"; };
 		124710311DCAD809000F9F1D /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -462,9 +464,9 @@
 			isa = PBXGroup;
 			children = (
 				12933FFB1DD2C069009CA3B7 /* ViewControllerViewDate.swift */,
+				1237D3A71DCA9CC80081EAF4 /* ViewControllerDates.swift */,
 				12BB00011DD3FD1A009463B5 /* TableViewControllerDatesTable.swift */,
 				1237D3A61DCA9CC80081EAF4 /* ViewControllerCreateDate.swift */,
-				1237D3A71DCA9CC80081EAF4 /* ViewControllerDates.swift */,
 				1237D3A81DCA9CC80081EAF4 /* ViewControllerDatesFilter.swift */,
 				1237D3A91DCA9CC80081EAF4 /* ViewControllerStudentFilter.swift */,
 				1237D3AA1DCA9CC80081EAF4 /* ViewControllerStudents.swift */,
@@ -538,6 +540,7 @@
 				12D71ECA1DDD402600223777 /* TableViewCellEvaluation.swift */,
 				12D71ECC1DDD4D7E00223777 /* ViewControllerEvaluationFilter.swift */,
 				12D71ECE1DDD509C00223777 /* ViewControllerViewEvaluation.swift */,
+				12441A241DE4F7BC009CC908 /* NavigationControllerE.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */,
 				12B92A7F1DD2624B00441786 /* InvDocumentTableViewController.swift in Sources */,
 				969D91F11DD37F0A00D0456B /* Criterion.swift in Sources */,
+				12441A251DE4F7BC009CC908 /* NavigationControllerE.swift in Sources */,
 				1214CECA1DBC0C600042A3F2 /* InvestigationProject.swift in Sources */,
 				12B92A851DD267A400441786 /* InvDocDetailViewController.swift in Sources */,
 				125A62031DC2BE50008BD312 /* AskConectivity.swift in Sources */,

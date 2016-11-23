@@ -16,8 +16,14 @@ class evaluation{
     var id: Int?
     var vigenciaI: Date?
     var vigenciaF: Date?
+    var descripcion: String?
+    var tiempo: Int?
     
-    init(nombre: String?, id: Int?, avance: String?, estado: String?, vigenciaI: Date?, vigenciaF: Date?){
+    var numCerr: Int?
+    var numAbie: Int?
+    var numArc: Int?
+    var puntajeTotal: Int?
+    init(nombre: String?, id: Int?, avance: String?, estado: String?, vigenciaI: Date?, vigenciaF: Date?, descripcion: String?, tiempo: Int?, numCerr: Int?, numAbie: Int?, numArc: Int?, puntajeTotal: Int?){
         
         self.nombre = nombre
         self.avance = avance
@@ -25,6 +31,12 @@ class evaluation{
         self.id = id
         self.vigenciaI = vigenciaI
         self.vigenciaF = vigenciaF
+        self.descripcion = descripcion
+        self.tiempo = tiempo
+        self.numArc = numArc
+        self.numAbie = numAbie
+        self.numCerr = numCerr
+        self.puntajeTotal = puntajeTotal
         
     }
 }

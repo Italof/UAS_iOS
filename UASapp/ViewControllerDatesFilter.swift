@@ -97,7 +97,7 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             return
         }
         
-        
+        /*
         if ( rol == "A") {
             
             
@@ -321,6 +321,7 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             
             
         }
+        */
         
         //SE COMIENZA A FILTRAR LAS CITAS DE ACUERDO A LOS PARAMETROS
         
@@ -351,6 +352,7 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
             }
         }
         
-        
+        ((self.parent as! NavigationControllerC).citasObF) = citSFiltrado
+        ((self.parent as! NavigationControllerC).filtroCitas) = "S"
     }
 }

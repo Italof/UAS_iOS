@@ -51,9 +51,44 @@ class ViewControllerAtenderCita: UIViewController {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss" //"HH:mm:ss" //"yyyy-MM-dd HH:mm:ss"
         let DiaHoraIS = (c?.fechaI)! + " " + (c?.horaI!)! + ":00"
-        let  hI = dateFormater.date(from: DiaHoraIS)
+        let  hI = dateFormater.date(from: DiaHoraIS) // hI dia y hora inicio de la cita
         print(hI)
         print(DPHoraF.date)
+        dateFormater.dateFormat = "HH:mm:ss"
+        let hF = dateFormater.string(from: DPHoraF.date)
+        
+        print(hF)
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        let dF = dateFormater.string(from: Date.init())
+        let dhF = dF + " " + hF
+        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let ff = dateFormater.date(from: dhF)
+        
+        print("fecha escogida")
+        print(ff)
+        
+        if (ff! < hI!){
+            let errorAlert = UIAlertController(title: "Error al atender cita!", message: "Hora de finalización de atención de cita debe ser posterior a la hora de inicio", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            
+            self.present(errorAlert, animated: true, completion: nil)
+            return
+        } else {
+            
+            ///Llamar al API de registro de atencion de cita
+            let errorAlert = UIAlertController(title: "Se atendió la cita!", message: "Se realizó exitosamente el regitro de atención de cita", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            
+            self.present(errorAlert, animated: true, completion: nil)
+            return
+        }
     }
 
     /*
