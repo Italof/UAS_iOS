@@ -13,10 +13,10 @@ struct Student {
     var name: String?
     var apePaterno: String?
     var apeMaterno: String?
-    var schedule: Int
+    var schedule: String?
     var code: String?
     //funcion inicializadora
-    init(id:Int, name:String?, apePaterno: String?, apeMaterno: String?, schedule: Int, code: String?){
+    init(id:Int, name:String?, apePaterno: String?, apeMaterno: String?, schedule: String?, code: String?){
         self.id = id
         self.name = name
         self.apePaterno = apePaterno

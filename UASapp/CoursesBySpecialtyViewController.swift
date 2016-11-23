@@ -14,6 +14,7 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
     var coursesTotal: [Course] = []
     var pickerSelected: String?
     var levels : [String] = []
+    let userDefault = UserDefaults.standard
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var LevelPicker: UIPickerView!
@@ -121,6 +122,8 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let course = courses[indexPath.row] as Course
         ((parent as! UASNavViewController).course) = course
+        userDefault.set(course.id, forKey: "COURSE")
+        
     }
     
     func do_table_refresh(nivel : String)

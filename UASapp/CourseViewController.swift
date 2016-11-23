@@ -37,8 +37,12 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
             print("error de conexion")
         }
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        let idCurso: String =  UserDefaults.standard.object( forKey: "COURSE") as! String
+        let semesterId: String =  UserDefaults.standard.object( forKey: "SEMESTER") as! String
         
-        HTTPHelper.get(route: "faculties/course/47/cycle/1" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        let ruta = String(idCurso) + "/cycle/" + String(semesterId)
+        
+        HTTPHelper.get(route: "faculties/course/47/cycle/1?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped

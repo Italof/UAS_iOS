@@ -55,8 +55,8 @@ class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 for student in arrayStudents!{
                     let st = student as! [String:AnyObject]
                     let id = st["IdAlumno"] as! Int
-                    let schedule = st["idHorario"] as! Int
-                    let name = st["name"] as! String
+                    let schedule = st["IdHorario"] as! String
+                    let name = st["Nombre"] as! String
                     let apePat = st["ApellidoPaterno"] as! String
                     let apeMat = st["ApellidoMaterno"] as! String
                     let code = st["Codigo"] as! String
@@ -101,7 +101,7 @@ class StudentViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return codes.count
+        return students.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
