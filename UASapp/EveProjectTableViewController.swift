@@ -11,6 +11,7 @@ import UIKit
 class EveProjectTableViewController: UITableViewController {
     //Arreglo de eventos de un proyecto -- Se llena con el api
     var invPrEvData : [InvestigationProjectEvent] = []//[InvestigationProjectEvent.init(id: 1, name: "Evento de iniciación", date: "12/05/2016", time: "12:12 p.m.", place: "No-where")]
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -20,16 +21,21 @@ class EveProjectTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let invGr = ((parent as! InvNavViewController).invGr)
         let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getEvents
-        
+        self.invPrEvData = []
         let parser = invGr?.id
         let id = String(parser.unsafelyUnwrapped)
         let routeApi = "investigation/" + id + "/" + get + "?token=" + token
         let idUser = (self.parent as! InvNavViewController).id
+        activity.startAnimating()
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+            DispatchQueue.main.async {
+                self.activity.stopAnimating()
+                self.activity.isHidden = true
+            }
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -156,6 +162,10 @@ class EveProjectTableViewController: UITableViewController {
     {
         self.tableView.reloadData()
         
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        self.invPrEvData = []
+        do_table_refresh()
     }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

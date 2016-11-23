@@ -16,6 +16,7 @@ class InvDerEditViewController: UIViewController {
     
     @IBOutlet var saveButtonInvDoc: UIBarButtonItem!
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
     let errorTitle: String = "Error"
@@ -43,6 +44,11 @@ class InvDerEditViewController: UIViewController {
             saveButtonInvDoc.isEnabled = true
         }
         let today = Date()
+        let startDatePr = dateformat.date(from: (invPr?.startDate)!)
+        let endDatePr = dateformat.date(from: (invPr?.endDate)!)
+        startDateInvDoc.minimumDate = startDatePr
+        limitDatePicker.maximumDate = endDatePr
+        
         if (today>startDateInvDoc.date){
             limitDatePicker.isEnabled = false
             //saveButtonInvDoc.isEnabled = false
@@ -70,7 +76,8 @@ class InvDerEditViewController: UIViewController {
         }
         else
         {
-            if(startDateInvDoc.date < limitDatePicker.date){
+            
+            if(startDateInvDoc.date > limitDatePicker.date){
                 errorMessageCustom = "Fechas no válidas"
                 error = 1
             }
@@ -88,8 +95,8 @@ class InvDerEditViewController: UIViewController {
                     //json.setValue(self.nameInvDoc.text, forKey: "nombre")
                     let dateformat = DateFormatter()
                     dateformat.dateFormat = "yyyy-MM-dd"
-                    json.setValue(dateformat.string(from: (self.startDateInvDoc?.date)!) , forKey: "fecha_ini")
-                    json.setValue(dateformat.string(from: (self.limitDatePicker?.date)!) , forKey: "fecha_fin")
+                    json.setValue(dateformat.string(from: (self.startDateInvDoc?.date)!) , forKey: "fecha_inicio")
+                    json.setValue(dateformat.string(from: (self.limitDatePicker?.date)!) , forKey: "fecha_limite")
                     do{
                         let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
                         print(jsonData)
@@ -98,10 +105,11 @@ class InvDerEditViewController: UIViewController {
                         let postData = decoded as! [String:AnyObject]
                         print(postData)
                         let token = (self.parent as! InvNavViewController).token
-                        let get = (self.parent as! InvNavViewController).editGroups
+                        let get = (self.parent as! InvNavViewController).editDerivables
                         let parser = self.invDer?.id
                         let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                         print(routeApi)
+                        self.activity.startAnimating()
                         HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                             if(error != nil){
                                 //Mostrar error y regresar al menù principal
@@ -112,6 +120,10 @@ class InvDerEditViewController: UIViewController {
                             }
                             else {
                                 //obtener data
+                                DispatchQueue.main.async {
+                                    self.activity.stopAnimating()
+                                    self.activity.isHidden = true
+                                }
                                 let dateformat = DateFormatter()
                                 dateformat.dateFormat = "yyyy-MM-dd"
                                 self.invDer?.dateStart = dateformat.string(from: self.startDateInvDoc.date)

@@ -16,6 +16,7 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var timeInvPrEvent: UIDatePicker!
     @IBOutlet var placeInvPrEvent: UITextField!
     @IBOutlet var saveEventButton: UIBarButtonItem!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     
     @IBOutlet weak var scrollView: UIScrollView!
     var activeField: UITextField?
@@ -214,7 +215,12 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
                     let get = (self.parent as! InvNavViewController).editEvents
                     let parser = self.invPrEv?.id
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
+                    self.activity.startAnimating()
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
+                        DispatchQueue.main.async {
+                            self.activity.stopAnimating()
+                            self.activity.isHidden = true
+                        }
                         if(error != nil){
                             //Mostrar error y regresar al menù principal
                             print(error)

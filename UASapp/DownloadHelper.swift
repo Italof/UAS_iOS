@@ -34,12 +34,14 @@ class DownloadHelper {
     
     
     class func loadFileAsync (route: String, completion: ((_ path: String?, _ error: NSError?) -> ())?) {
-        let url = NSURL(string: route)
-        let urlRequest = NSMutableURLRequest(url : url as! URL)
+        let url : URL? = URL(string: route)
+        print(route)
+        print(url)
+        let urlRequest = NSMutableURLRequest(url : url! )
         print("REQUESTED URL: \(urlRequest)")
         urlRequest.httpMethod = "GET"
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        let destinationUrl = documentsUrl?.appendingPathComponent((url?.lastPathComponent!)!)
+        let destinationUrl = documentsUrl?.appendingPathComponent((url?.lastPathComponent)!)
         if FileManager().fileExists(atPath: destinationUrl!.path) {
             print("file already exists [\(destinationUrl?.path)]")
             completion!(destinationUrl!.path, nil)

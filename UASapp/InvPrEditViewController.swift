@@ -23,6 +23,7 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
     let invalidCharacters = "1234567890,+-*/=!\"·$%&/(.)=?=¿;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠‚´][{}–„…œå∫∑©√Ω©"
     @IBOutlet var invPrSaveButton: UIBarButtonItem!
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
     var activeField: UITextField?
     
@@ -209,7 +210,12 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
                     let parser = self.invPr?.id
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                     print(routeApi)
+                    self.activity.startAnimating()
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
+                        DispatchQueue.main.async {
+                            self.activity.stopAnimating()
+                            self.activity.isHidden = true
+                        }
                         if(error != nil){
                             //Mostrar error y regresar al menù principal
                             print(error)

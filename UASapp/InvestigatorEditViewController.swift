@@ -217,7 +217,10 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
                         }
                         else {
                             //obtener data
-                            self.postActivity.stopAnimating()
+                            DispatchQueue.main.async {
+                                self.postActivity.stopAnimating()
+                                self.postActivity.isHidden = true
+                            }
                             self.inv?.name = self.nameInv.text
                             self.inv?.lastNameP = self.lastNamePInv.text
                             self.inv?.lastNameM = self.lastNameMInv.text

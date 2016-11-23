@@ -87,7 +87,7 @@ class InvPrEvDetailViewController: UIViewController {
             invPrEvEditButton.isEnabled = true
         }
     }
-
+   
     /*
     // MARK: - Navigation
 

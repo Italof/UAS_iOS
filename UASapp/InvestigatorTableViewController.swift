@@ -12,6 +12,7 @@ class InvestigatorTableViewController: UITableViewController {
     var invData: [Investigator] = []
     var elegido : Int = 9
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     override func viewDidLoad() {        
         super.viewDidLoad()
         
@@ -20,11 +21,16 @@ class InvestigatorTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        
+        activity.startAnimating()
         let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getInvestigators
         let routeApi = "investigation/" + get + "?token=" + token
+        
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+            DispatchQueue.main.async {
+                self.activity.stopAnimating()
+                self.activity.isHidden = true
+            }
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -86,6 +92,10 @@ class InvestigatorTableViewController: UITableViewController {
         //((parent as! InvNavViewController).elegido) = indexPath.row
         //asigna el Grupo de investigacion elegido a variable en controlador de navegaciòn
         ((parent as! InvNavViewController).inv) = inv
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        self.invData = []
+        do_table_refresh()
     }
     func do_table_refresh()
     {

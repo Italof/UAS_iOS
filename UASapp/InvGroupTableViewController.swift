@@ -74,6 +74,10 @@ class InvestigationGroupTableViewController: UITableViewController {
     HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
       if(error == nil){
         //obtener data
+        DispatchQueue.main.async {
+            self.downActivity.stopAnimating()
+            self.downActivity.isHidden = true
+        }
         let dataUnwrapped = data.unsafelyUnwrapped
         let arrayGroup = dataUnwrapped as? [Any]
         self.invGrData = []
@@ -85,7 +89,6 @@ class InvestigationGroupTableViewController: UITableViewController {
           //print(self.invGrData)
           //print(pr["id"].unsafelyUnwrapped)
         }
-        self.downActivity?.stopAnimating()
         self.do_table_refresh()
       }
       else {

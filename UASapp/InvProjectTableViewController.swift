@@ -18,12 +18,18 @@ class InvProjectTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    @IBOutlet weak var activity: UIActivityIndicatorView!
   override func viewWillAppear(_ animated: Bool) {
     let token = (parent as! InvNavViewController).token
     let get = (parent as! InvNavViewController).getProjects
     let routeApi = "investigation/" + get + "?token=" + token
+    activity.startAnimating()
     HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
-      if(error == nil){
+        DispatchQueue.main.async {
+            self.activity.stopAnimating()
+            self.activity.isHidden = true
+        }
+        if(error == nil){
         //obtener data
         let dataUnwrapped = data.unsafelyUnwrapped
         let arrayProjects = dataUnwrapped as? [Any]
@@ -81,7 +87,10 @@ class InvProjectTableViewController: UITableViewController {
         //asigna el Proyecto elegido a variable en controlador de navegaciòn
         ((parent as! InvNavViewController).invPr) = invPr
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.invPrData = []
+        do_table_refresh()
+    }
     func do_table_refresh()
     {
         self.tableView.reloadData()

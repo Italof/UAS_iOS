@@ -16,6 +16,7 @@ class InvDerivableTableViewController: UITableViewController {
         super.viewDidLoad()
         
     }
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     override func viewWillAppear(_ animated: Bool) {
         invPr = (parent as! InvNavViewController).invPr!
         let parser = invPr?.id
@@ -23,8 +24,12 @@ class InvDerivableTableViewController: UITableViewController {
         let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getDerivables
         let routeApi = "investigation/" + id + "/" + get + "?token=" + token
-        
+        activity.startAnimating()
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+            DispatchQueue.main.async {
+                self.activity.stopAnimating()
+                self.activity.isHidden = true
+            }
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -119,7 +124,10 @@ class InvDerivableTableViewController: UITableViewController {
     {
         self.tableView.reloadData()
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.invDerData = []
+        do_table_refresh()
+    }
  /*
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath){
         
