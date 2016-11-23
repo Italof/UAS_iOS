@@ -30,6 +30,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
         
         let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
         
@@ -504,6 +505,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         //EN ESTE PUNTO YA SE TIENEN LAS CITAS ( SEA DE ALUMNO O TUTOR )
         
         ((self.parent as! NavigationControllerC).filtroCitas) = "N"
+        */
     }
     override func viewWillAppear(_ animated: Bool) {
         let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
@@ -513,8 +515,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         filtroC = ((self.parent as! NavigationControllerC).filtroCitas)
-        //print("id usuario")
-        //print(UserDefaults.standard.object( forKey: "USER_ID"))
+       
         let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
         let idUser = String.init(parser)
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
@@ -632,7 +633,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                             let horaI: String?
                             let tema: String?
                             var alumno: String?
-                            let estado: String?
+                            var estado: String?
                             
                             //Nuevos campos del Json
                             //var citaId: String?
@@ -660,7 +661,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                             tema = c["nombreTema"] as! String?
                             alumno = c["nombreAlumno"] as! String?
                             //alumno = "Prueba"
-                            estado = c["nombreEstado"] as! String?
+                            
                             let idTemaTemp = c["id_topic"] as! String?
                             idTema = Int(idTemaTemp!)
                             
@@ -687,6 +688,33 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                             
                             let idEstadoTemp = c["estado"] as! String?
                             idEstado = Int(idEstadoTemp!)
+                            
+                            //if ((c["nombreEstado"] as? String!) != nil){
+                            //    estado = c["nombreEstado"] as! String?
+                            //} else {
+                                if (idEstado == 1){
+                                    estado = "Pendiente"
+                                }
+                                if (idEstado == 2){
+                                    estado = "Confirmada"
+                                }
+                                if (idEstado == 3){
+                                    estado = "Cancelada"
+                                }
+                                if (idEstado == 4){
+                                    estado = "Sugerida"
+                                }
+                                if (idEstado == 5){
+                                    estado = "Rechazada"
+                                }
+                                if (idEstado == 6){
+                                    estado = "Asistida"
+                                }
+                                if (idEstado == 7){
+                                    estado = "No asistida"
+                                }
+                            //}
+                            //estado = c["nombreEstado"] as! String?
                             let flagCreadorTemp = c["creador"] as! String?
                             if flagCreadorTemp == "0" {
                                 flagCreador = "A"
@@ -808,7 +836,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                             let horaI: String?
                             let tema: String?
                             var alumno: String?
-                            let estado: String?
+                            var estado: String?
                             
                             //Nuevos campos del Json
                             //var citaId: String?
@@ -836,7 +864,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                             tema = c["nombreTema"] as! String?
                             alumno = c["nombreAlumno"] as! String?
                             //alumno = "Prueba"
-                            estado = c["nombreEstado"] as! String?
+                            //estado = c["nombreEstado"] as! String?
                             let idTemaTemp = c["id_topic"] as! String?
                             idTema = Int(idTemaTemp!)
                             
@@ -863,6 +891,32 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                             
                             let idEstadoTemp = c["estado"] as! String?
                             idEstado = Int(idEstadoTemp!)
+                            
+                            //if ((c["nombreEstado"] as? String!) != nil){
+                            //    estado = c["nombreEstado"] as! String?
+                            //} else {
+                                if (idEstado == 1){
+                                    estado = "Pendiente"
+                                }
+                                if (idEstado == 2){
+                                    estado = "Confirmada"
+                                }
+                                if (idEstado == 3){
+                                    estado = "Cancelada"
+                                }
+                                if (idEstado == 4){
+                                    estado = "Sugerida"
+                                }
+                                if (idEstado == 5){
+                                    estado = "Rechazada"
+                                }
+                                if (idEstado == 6){
+                                    estado = "Asistida"
+                                }
+                                if (idEstado == 7){
+                                    estado = "No asistida"
+                                }
+                            //}
                             let flagCreadorTemp = c["creador"] as! String?
                             if flagCreadorTemp == "0" {
                                 flagCreador = "A"
@@ -902,53 +956,6 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                             
                             let citaO: cita = cita.init(citaId: citaId, fechaI: fechaI, horaI: horaI, idTema: idTema, tema: tema, lugar: lugar, infoExtra: infoExtra, asistio: asistio, observaciones: observaciones, idEstado: idEstado, estado: estado, flagCreador: flagCreador, idTutor: idTutor, tutor: tutor, idAlumno: idAlumno, alumno: alumno)
                             cS.append(citaO)
-                            
-                            /*
-                             
-                             let citaId: String?
-                             let fechaI: String?
-                             let horaI: String?
-                             let tema: String?
-                             let alumno: String?
-                             let estado: String?
-                             
-                             var fI: Date?
-                             var hI: Date?
-                             
-                             let idc: Int = (c["id"] as! Int?)!
-                             citaId = String(idc)
-                             tema = c["nombreTema"] as! String?
-                             alumno = c["nombreAlumno"] as! String?
-                             //alumno = "Prueba"
-                             estado = c["nombreEstado"] as! String?
-                             
-                             let dateFormater = DateFormatter()
-                             dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                             
-                             
-                             fI = dateFormater.date(from: (c["inicio"] as! String))
-                             //Verificando que la fecha de cita que se registro no es nula
-                             if (fI == nil){
-                             fI = Date()
-                             }
-                             
-                             dateFormater.dateFormat = "yyyy-MM-dd"//"yyyy-MM-dd"
-                             fechaI = dateFormater.string(from: fI!)
-                             
-                             dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                             hI = dateFormater.date(from: (c["inicio"] as! String))
-                             
-                             if (hI == nil){
-                             hI = Date()
-                             }
-                             dateFormater.dateFormat = "HH:mm"
-                             
-                             horaI = dateFormater.string(from: hI!)
-                             
-                             let citaO: cita = cita.init(citaId: citaId, fechaI: fechaI, horaI: horaI, tema: tema, alumno: alumno, estado: estado)
-                             
-                             cS.append(citaO)
-                             */
                             
                         }
                         
@@ -999,8 +1006,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         cell.theme.text = themes[indexPath.row]
         cell.student.text = students[indexPath.row]
         cell.status.text = statusA[indexPath.row]
-        
-        
+        /*
         let cit = citS?[indexPath.row]
         if (cit?.idEstado == 1){
             cell.status.backgroundColor = UIColor(red: 255.0/255.0, green: 152.0/255.0, blue: 0.0/255.0, alpha: 1.0)
@@ -1023,6 +1029,29 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         if (cit?.idEstado == 7){
             cell.status.backgroundColor = UIColor(red: 76.0/255.0, green: 175.0/255.0, blue: 80.0/255.0, alpha: 1.0)
         }
+        */
+        
+        if (cell.status.text == "Pendiente"){
+            cell.status.backgroundColor = UIColor(red: 255.0/255.0, green: 152.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        }
+        if (cell.status.text == "Confirmada"){
+            cell.status.backgroundColor = UIColor(red: 38.0/255.0, green: 166.0/255.0, blue: 154.0/255.0, alpha: 1.0)
+        }
+        if (cell.status.text == "Cancelada"){
+            cell.status.backgroundColor = UIColor(red: 217.0/255.0, green: 83.0/255.0, blue: 79.0/255.0, alpha: 1.0)
+        }
+        if (cell.status.text == "Sugerida"){
+            cell.status.backgroundColor = UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 59.0/255.0, alpha: 1.0)
+        }
+        if (cell.status.text == "Rechazada"){
+            cell.status.backgroundColor = UIColor(red: 158.0/255.0, green: 158.0/255.0, blue: 158.0/255.0, alpha: 1.0)
+        }
+        if (cell.status.text == "Asistida"){
+            cell.status.backgroundColor = UIColor(red: 64.0/255.0, green: 81.0/255.0, blue: 181.0/255.0, alpha: 1.0)
+        }
+        if (cell.status.text == "No asistida"){
+            cell.status.backgroundColor = UIColor(red: 76.0/255.0, green: 175.0/255.0, blue: 80.0/255.0, alpha: 1.0)
+        }
         return cell
         
     }
@@ -1037,15 +1066,30 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
             //((self.parent as! NavigationControllerC).filtroCitas) = "N"
         }
         if (citS == nil || citS?.count == 0){
+            if (((self.parent as! NavigationControllerC).filtroCitas) == "N"){
             botonFiltrar.isHidden = true
             //Mostrar error y regresar al menù principal
             let alert : UIAlertController = UIAlertController.init(title: "No tiene citas", message: "Usted no ha realizado citas", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(action)
             self.present(alert,animated: true, completion:nil)
+            }
+            if (((self.parent as! NavigationControllerC).filtroCitas) == "S"){
+                //botonFiltrar.isHidden = true
+                //Mostrar error y regresar al menù principal
+                let alert : UIAlertController = UIAlertController.init(title: "Filtro de citas", message: "No se han encontrado resultados", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert,animated: true, completion:nil)
+            }
         }
         
         if ( citS != nil || citS?.count != 0){
+            datesA = []
+            times = []
+            themes = []
+            students = []
+            statusA = []
             for c in citS!{
                 datesA.append(c.fechaI!)
                 times.append(c.horaI!)

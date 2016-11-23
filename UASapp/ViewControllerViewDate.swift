@@ -176,7 +176,7 @@ class ViewControllerViewDate: UIViewController {
                 botonAtender.isHidden = true
                 botonNoAtender.isHidden = true
             }
-            botonAtender.isHidden = false
+            //botonAtender.isHidden = false
         }
         
         

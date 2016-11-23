@@ -74,14 +74,14 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
     }
     @IBAction func filtrar(_ sender: AnyObject) {
         
-        let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
+        //let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
         
         
         //print("id usuario")
         //print(UserDefaults.standard.object( forKey: "USER_ID"))
-        let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
-        let idUser = String.init(parser)
-        let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        //let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
+        //let idUser = String.init(parser)
+        //let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         
         
         let errorAlert = UIAlertController(title: "Error al filtrar citas!",
@@ -354,5 +354,6 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
         
         ((self.parent as! NavigationControllerC).citasObF) = citSFiltrado
         ((self.parent as! NavigationControllerC).filtroCitas) = "S"
+        self.navigationController?.popViewController(animated: true)
     }
 }

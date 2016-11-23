@@ -99,9 +99,16 @@ class ViewControllerCRCita: UIViewController, UIPickerViewDelegate, UIPickerView
         
     }
     @IBAction func CancelarRechazarCita(_ sender: AnyObject) {
-        
+        let cr = ((self.parent as! NavigationControllerC).citaCanRec)
         if (motivoSel == 0){
-            let errorAlert = UIAlertController(title: "Error al cancelar/rechazar cita!", message: "Seleccione un motivo", preferredStyle: .alert)
+            var errTitle: String = " "
+            if ( cr == "C"){
+                errTitle = "Error al cancelar cita!"
+            }
+            if ( cr == "R"){
+                errTitle = "Error al rechazar cita!"
+            }
+            let errorAlert = UIAlertController(title: errTitle, message: "Seleccione un motivo", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK",
                                        style: .default,
                                        handler: nil)
@@ -111,7 +118,49 @@ class ViewControllerCRCita: UIViewController, UIPickerViewDelegate, UIPickerView
             return
         }
         
-        //Invocar el api para cancelar o rechazar cita
+        let c = ((self.parent as! NavigationControllerC).citEsc)
+        
+        //CANCELACIÓN DE CITAS
+        if ( cr == "C"){
+            
+            let alert : UIAlertController = UIAlertController.init(title: "Cancelar cita", message: "Esta a punto de cancelar su cita. ¿Desea continuar?", preferredStyle: .alert)
+            let actionNo = UIAlertAction(title: "No", style: .destructive, handler: nil)
+            let actionSi = UIAlertAction(title: "Si", style: .default, handler: { action in
+                //Aca se invoca el api de cancelar cita
+                
+                let alert2 : UIAlertController = UIAlertController.init(title: "Cancelación de cita", message: "Se canceló la cita exitosamente", preferredStyle: .alert)
+                let actionX = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert2.addAction(actionX)
+                self.present(alert2,animated: true, completion:nil)
+            })
+            
+            alert.addAction(actionNo)
+            alert.addAction(actionSi)
+            self.present(alert,animated: true, completion:nil)
+        }
+        //RECHAZO DE CITAS
+        if ( cr == "R"){
+            let alert : UIAlertController = UIAlertController.init(title: "Rechazar cita", message: "Esta a punto de rechazar su cita. ¿Desea continuar?", preferredStyle: .alert)
+            let actionNo = UIAlertAction(title: "No", style: .destructive, handler: nil)
+            let actionSi = UIAlertAction(title: "Si", style: .default, handler: { action in
+                //Aca se invoca el api de rechazar cita
+                
+                let alert2 : UIAlertController = UIAlertController.init(title: "Rechazo de cita", message: "Se rechazó la cita exitosamente", preferredStyle: .alert)
+                let actionX = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert2.addAction(actionX)
+                self.present(alert2,animated: true, completion:nil)
+            })
+            
+            alert.addAction(actionNo)
+            alert.addAction(actionSi)
+            self.present(alert,animated: true, completion:nil)
+        }
+        
+        
+        
+        
+        
+        //self.navigationController?.popViewController(animated: true)
     }
 
 }
