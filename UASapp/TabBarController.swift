@@ -33,42 +33,44 @@ class TabBarController: UITabBarController {
             let roleTuto = userDefaults.integer(forKey: "TUTORIA")
             let roleEval = userDefaults.integer(forKey: "ROLEVALUA")
             if roleTuto != 1 {
-                // Borra tutoria y psp
+                // Borra tutoria
                 self.viewControllers?.remove(at: 2)
-                self.viewControllers?.remove(at: 2)
-                
                 if roleEval != 1 {
-                    self.viewControllers?.remove(at: 2)
-                }
-            }
-            else {
-                // Borra psp
-                self.viewControllers?.remove(at: 3)
-                
-                if roleEval != 1 {
+                    // Borra evaluaciones
                     self.viewControllers?.remove(at: 3)
                 }
+                // Borra psp
+//                self.viewControllers?.remove(at: 2)
+            }
+            else {
+                if roleEval != 1 {
+                    // Borra evaluaciones
+                    self.viewControllers?.remove(at: 4)
+                }
+                // Borra psp
+//                self.viewControllers?.remove(at: 3)
+                
             }
         case 2:
             // Profesor
             let roleTuto = userDefaults.integer(forKey: "TUTORIA")
             let roleEval = userDefaults.integer(forKey: "ROLEVALUA")
             if roleTuto != 1 {
-                // Borra tutoria y psp
+                // Borra tutoria
                 self.viewControllers?.remove(at: 2)
-                self.viewControllers?.remove(at: 2)
-                
-                if roleEval != 1 {
-                    self.viewControllers?.remove(at: 2)
-                }
-            }
-            else {
-                // Borra psp
-                self.viewControllers?.remove(at: 3)
-                
                 if roleEval != 1 {
                     self.viewControllers?.remove(at: 3)
                 }
+                // Borra psp
+//                self.viewControllers?.remove(at: 2)
+            }
+            else {
+                if roleEval != 1 {
+                    self.viewControllers?.remove(at: 4)
+                }
+                // Borra psp
+//                self.viewControllers?.remove(at: 3)
+                
             }
             
         case 4:
