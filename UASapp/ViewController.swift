@@ -185,7 +185,7 @@ class ViewController: UIViewController {
                             let studentPsp = user["psp_student"] as? [String:AnyObject]
                             userDefaults.set("A", forKey: "ROLTUTORIA")
                             if studentPsp != nil {
-                                userDefaults.set(studentPsp["lleva_psp"] as! String, forKey: "PSPSTUDENT")
+                                userDefaults.set(studentPsp?["lleva_psp"] as! String, forKey: "PSPSTUDENT")
                             } else {
                                 userDefaults.set("0", forKey: "PSPSTUDENT")
                             }
