@@ -1,23 +1,21 @@
 //
-//  CustomCriterioCell.swift
+//  CustomLevelCell.swift
 //  UASapp
 //
-//  Created by inf227al on 27/10/16.
+//  Created by Italo Fernández Salgado on 11/24/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class CustomCriterioCell: UITableViewCell {
-    
-    @IBOutlet weak var lblCriterio: UILabel!
-    @IBOutlet weak var lblGrade: UILabel!
+class CustomLevelCell: UITableViewCell {
+
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblValue: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        //lblCriterio.adjustsFontSizeToFitWidth=true
-        //lblCriterio.sizeToFit()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

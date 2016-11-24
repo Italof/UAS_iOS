@@ -127,6 +127,10 @@
 		4630565A1DD169D50066C7DB /* PlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463056591DD169D50066C7DB /* PlanDetailViewController.swift */; };
 		4637A5671DCE747100D65C40 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4637A5661DCE747100D65C40 /* DownloadHelper.swift */; };
 		46419A8D1DCC505C00E77B9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46419A8B1DCC505C00E77B9A /* Main.storyboard */; };
+		46684DD71DE6B2EA00BBF129 /* CriterionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46684DD61DE6B2EA00BBF129 /* CriterionsTableViewController.swift */; };
+		46684DDF1DE6B44900BBF129 /* CustomLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46684DDE1DE6B44900BBF129 /* CustomLevelCell.swift */; };
+		46684DE11DE6B59E00BBF129 /* LevelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46684DE01DE6B59E00BBF129 /* LevelsTableViewController.swift */; };
+		46684DE31DE6B5C300BBF129 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46684DE21DE6B5C300BBF129 /* Level.swift */; };
 		467F07851DE3C3DF00DDC6FD /* ActionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467F07841DE3C3DF00DDC6FD /* ActionsTableViewController.swift */; };
 		9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */; };
 		9623F25B1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */; };
@@ -282,6 +286,10 @@
 		463056591DD169D50066C7DB /* PlanDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanDetailViewController.swift; sourceTree = "<group>"; };
 		4637A5661DCE747100D65C40 /* DownloadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
 		46419A8C1DCC505C00E77B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = UASapp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		46684DD61DE6B2EA00BBF129 /* CriterionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CriterionsTableViewController.swift; sourceTree = "<group>"; };
+		46684DDE1DE6B44900BBF129 /* CustomLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLevelCell.swift; sourceTree = "<group>"; };
+		46684DE01DE6B59E00BBF129 /* LevelsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelsTableViewController.swift; sourceTree = "<group>"; };
+		46684DE21DE6B5C300BBF129 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		467F07841DE3C3DF00DDC6FD /* ActionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsTableViewController.swift; sourceTree = "<group>"; };
 		9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalDetailViewController.swift; sourceTree = "<group>"; };
 		9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentOutcomesViewController.swift; sourceTree = "<group>"; };
@@ -366,6 +374,7 @@
 				121BE3B31DCBB17300B68A3C /* Faculty.swift */,
 				120B4E411DCE826200BE9D5E /* Schedule.swift */,
 				120565981DD3F8070059C16B /* Semester.swift */,
+				46684DE21DE6B5C300BBF129 /* Level.swift */,
 				967045C61DD1062600DE2E8E /* ImprovementPlan.swift */,
 				96332A011DD26F8F00D4CB08 /* Aspect.swift */,
 				969D91F01DD37F0A00D0456B /* Criterion.swift */,
@@ -391,6 +400,9 @@
 				9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */,
 				9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */,
 				9623F25C1DC3A2E900EA7B6D /* CustomOutcomeCell.swift */,
+				46684DD61DE6B2EA00BBF129 /* CriterionsTableViewController.swift */,
+				46684DE01DE6B59E00BBF129 /* LevelsTableViewController.swift */,
+				46684DDE1DE6B44900BBF129 /* CustomLevelCell.swift */,
 				9623F25E1DC3A58400EA7B6D /* OutcomeDetailViewController.swift */,
 				9623F2601DC3AB0300EA7B6D /* CourseViewController.swift */,
 				12BCE5281DC2B2710052E607 /* CustomCourseCell.swift */,
@@ -766,6 +778,7 @@
 				12DABD341DCBE8ED0055F8FC /* studentClass.swift in Sources */,
 				1214CEC81DBC05A90042A3F2 /* InvGrEditViewController.swift in Sources */,
 				25720B6E1DD9CE69007DE688 /* ReunionesAlumnoTableViewController.swift in Sources */,
+				46684DE31DE6B5C300BBF129 /* Level.swift in Sources */,
 				96332A041DD275E800D4CB08 /* AspectsTableViewController.swift in Sources */,
 				124710301DCAD039000F9F1D /* UASNavViewController.swift in Sources */,
 				1247102E1DCABD63000F9F1D /* Period.swift in Sources */,
@@ -860,12 +873,15 @@
 				1237D3B11DCA9CC80081EAF4 /* ViewControllerStudents.swift in Sources */,
 				12DABD361DCC0C9B0055F8FC /* temaClass.swift in Sources */,
 				4618847E1DCC20A1000858C8 /* ConfigTableViewController.swift in Sources */,
+				46684DD71DE6B2EA00BBF129 /* CriterionsTableViewController.swift in Sources */,
+				46684DE11DE6B59E00BBF129 /* LevelsTableViewController.swift in Sources */,
 				12B92A871DD267B300441786 /* InvDerEditViewController.swift in Sources */,
 				12AEE0B31DDBE2BE00272292 /* TableViewCellScheduleTutor.swift in Sources */,
 				121C14031DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift in Sources */,
 				12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */,
 				12B92A811DD262AA00441786 /* InvestigationDocument.swift in Sources */,
 				12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */,
+				46684DDF1DE6B44900BBF129 /* CustomLevelCell.swift in Sources */,
 				25720B601DD9CE4F007DE688 /* PspInscription.swift in Sources */,
 				126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */,
 				969D91F31DD389FA00D0456B /* CustomCriterionCell.swift in Sources */,

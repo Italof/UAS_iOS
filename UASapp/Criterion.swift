@@ -17,7 +17,12 @@ class Criterion {
     init(json : [String:AnyObject]) {
         id = json["IdCriterio"] as! Int
         aspectId = Int(json["IdAspecto"] as! String)!
-        name = json["Nombre"] as? String
+        
+        if let name = json["Nombre"] {
+            self.name = name as? String
+        } else {
+            self.name = ""
+        }
         
         let status = Int(json["Estado"] as! String)!
         

@@ -83,9 +83,9 @@ class EducationalGoalsViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goalDetailSegue" {
+        if segue.identifier == "outcomesSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let controller = segue.destination as! GoalDetailViewController
+                let controller = segue.destination as! StudentOutcomesViewController
                 controller.goal = goalsArray[indexPath.row]
             }
         }

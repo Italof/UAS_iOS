@@ -15,10 +15,6 @@ class StudentOutcomesViewController: UITableViewController {
     
     var outcomesArray = [StudentOutcome]()
     
-    let outcomes = ["A - Aplicar los conocimientos relacionados con las matemáticas, ciencias e ingenieria",
-                    "B - Diseñar y conducir experimentos, y analizar e interpretar datos",
-                    "C - Diseñar sistemas, componentes o procesos que satisfagan las necesidades presentadas"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -93,9 +89,9 @@ class StudentOutcomesViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "outcomeDetailSegue" {
+        if segue.identifier == "aspectsSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let controller = segue.destination as! OutcomeDetailViewController
+                let controller = segue.destination as! AspectsTableViewController
                 controller.outcome = outcomesArray[indexPath.row]
             }
         }

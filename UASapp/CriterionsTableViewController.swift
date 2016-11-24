@@ -1,24 +1,24 @@
 //
-//  AspectsTableViewController.swift
+//  CriterionsTableViewController.swift
 //  UASapp
 //
-//  Created by Medical_I on 11/8/16.
+//  Created by Italo Fernández Salgado on 11/24/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class AspectsTableViewController: UITableViewController {
+class CriterionsTableViewController: UITableViewController {
     let userDefaults = UserDefaults.standard
-    var outcome : StudentOutcome!
-    var aspectsArray = [Aspect]()
+    var aspect : Aspect!
+    var criterionArray = [Criterion]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let token = userDefaults.string(forKey: "TOKEN")!
-        let outcomeId = outcome.id
-        let url = "faculties/student_result/\(outcomeId)/aspects/?token=\(token)"
+        let aspectId = aspect.id
+        let url = "aspects/\(aspectId)/criterions/?token=\(token)"
         
         HTTPHelper.get(route: url, authenticated: true, completion: { (error, response) in
             if error != nil {
@@ -29,8 +29,8 @@ class AspectsTableViewController: UITableViewController {
                 
                 for i in jsonArray {
                     let jsonObject = i as! [String:AnyObject]
-                    let aspect = Aspect(json: jsonObject)
-                    self.aspectsArray.append(aspect)
+                    let criterion = Criterion(json: jsonObject)
+                    self.criterionArray.append(criterion)
                 }
             }
             
@@ -38,16 +38,15 @@ class AspectsTableViewController: UITableViewController {
                 self.tableView.reloadData()
                 return
             }
-            
         })
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
+        // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -56,23 +55,24 @@ class AspectsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return aspectsArray.count
+        return criterionArray.count
     }
 
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "aspectCell", for: indexPath) as! CustomAspectCell
-        
-        cell.lblTitle.text = aspectsArray[indexPath.row].name
+            let cell = tableView.dequeueReusableCell(withIdentifier: "criterionCell", for: indexPath) as! CustomCriterionCell
+
+            cell.lblTitle.text = criterionArray[indexPath.row].name
+    
         return cell
     }
-    
+ 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "criterionsSegue" {
+        if segue.identifier == "levelsSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let controller = segue.destination as! CriterionsTableViewController
-                controller.aspect = aspectsArray[indexPath.row]
+                let controller = segue.destination as! LevelsTableViewController
+                controller.criterion = criterionArray [indexPath.row]
             }
         }
     }
-
 }
