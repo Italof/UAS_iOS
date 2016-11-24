@@ -333,6 +333,7 @@ class ViewControllerViewDate: UIViewController {
         
     }
     @IBAction func confirmarCita(_ sender: AnyObject) {
+        /*
         let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
         if (rol == "A"){
             let c = ((self.parent as! NavigationControllerC).citEsc)
@@ -359,6 +360,65 @@ class ViewControllerViewDate: UIViewController {
             self.performSegue(withIdentifier: "SegueConfCita", sender: self)
             
         }
+        */
+        let c = ((self.parent as! NavigationControllerC).citEsc)
+        
+        let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
+        var m: String = "-"
+        if (rol == "A"){
+            let mens = "Esta a punto de confirmar una cita con su tutor para el " + (c?.fechaI)! + " a las "
+            m = mens + (c?.horaI)! + ". ¿Desea continuar?"
+        }
+        if (rol == "T"){
+            m = "Esta a punto de confirmar una cita. ¿Desea continuar?"
+        }
+        let alert : UIAlertController = UIAlertController.init(title: "Confirmar cita", message: m, preferredStyle: .alert)
+        let actionNo = UIAlertAction(title: "No", style: .destructive, handler: nil)
+        let actionSi = UIAlertAction(title: "Si", style: .default, handler: { action in
+            //Aca se invoca el api de cancelar cita
+            
+            
+            
+            
+            let json = NSMutableDictionary()
+            json.setValue(c?.citaId, forKey: "idUser")
+            
+            do{
+                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                //print(jsonData)
+                let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                //print(decoded)
+                let postData = decoded as! [String:AnyObject]
+                print("Este es post data")
+                print(postData)
+                let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+                
+                HTTPHelper.post(route: "updateStudentAppointment?token=" + token, authenticated: false, body: postData, completion: { (error, responseData) in
+                    if error == nil {
+                        
+                        let alertSuccess : UIAlertController = UIAlertController.init(title: "Confirmación de cita", message: "Se confirmó  la cita exitosamente", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                            self.navigationController?.popViewController(animated: true)
+                            //self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
+                        })
+                        alertSuccess.addAction(action)
+                        self.present(alertSuccess,animated: false, completion:nil)
+                        
+                        
+                        
+                    } else {
+                        print("REQUESTED RESPONSE: \(responseData)")
+                    }
+                })
+                
+            } catch let err as NSError{
+                print("JSONObjet ERROR: \(err)")
+            }
+        })
+        
+        alert.addAction(actionNo)
+        alert.addAction(actionSi)
+        self.present(alert,animated: true, completion:nil)
     }
     
     
