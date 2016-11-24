@@ -101,7 +101,7 @@ class InvDerivableTableViewController: UITableViewController {
 
         // Configure the cell...
         let invDer = invDerData[indexPath.row] as InvestigationDerivable
-        print(invDer.name)
+        print(invDer.name!)
         cell.textLabel?.text = invDer.name
         let dateLimit = invDer.dateLimit
         let dateFormat = DateFormatter()

@@ -100,7 +100,7 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
                         }
                         if(error != nil){
                             //Mostrar error y regresar al menù principal
-                            print(error)
+                            print(error!)
                             alert.title = self.errorTitle
                             alert.message = self.errorMessage
                             self.present(alert,animated: true, completion:nil)
@@ -116,7 +116,7 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
                                 if navController != nil {
                                     navController?.popViewController(animated: true)
                                 }
-                                print(navController)
+                                print(navController!)
                             })
                             alertSuccess.addAction(action)
                             self.present(alertSuccess,animated: false, completion:nil)

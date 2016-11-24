@@ -78,7 +78,7 @@ class InvestigatorTableViewController: UITableViewController {
 
         // Configure the cell...
         let inv = invData[indexPath.row] as Investigator
-        print(inv.name)
+        print(inv.name!)
         cell.textLabel?.text = inv.name! + " " + inv.lastNameP! + " " + inv.lastNameM!
         cell.detailTextLabel?.text = inv.area! + "/" + inv.speciality!
         
