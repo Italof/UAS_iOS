@@ -107,15 +107,14 @@ class ViewController: UIViewController {
                         // Professor
                         if  (role == 2 || role == 1) {
                             let professor = user["professor"] as! [String:AnyObject]
-                            //specialty = Int(professor["IdEspecialidad"] as! String)!
-                            specialty = 1
+                            specialty = Int(professor["IdEspecialidad"] as! String)!
                             name = professor["Nombre"] as? String
                             lastname = (professor["ApellidoPaterno"] as? String)! + " " + (professor["ApellidoMaterno"] as? String)!
                             email = professor["Correo"] as? String
                             roleName = "Profesor"
                             
                             userDefaults.set(professor["IdDocente"], forKey: "DOCENTE_ID")
-//                            userDefaults.set(professor["rolEvaluaciones"], forKey: "ROLEVALUA")
+                            userDefaults.set(professor["rolEvaluaciones"] as? String, forKey: "ROLEVALUA")
                             userDefaults.set(professor["es_adminpsp"] as? String, forKey: "ADMINPSP")
                             userDefaults.set(professor["es_supervisorpsp"] as? String, forKey: "SUPERPSP")
                             
@@ -153,9 +152,38 @@ class ViewController: UIViewController {
                             
                             userDefaults.set(investigator["id_area"], forKey: "AREA_ID")
                         }
+                        // Supervisor
+                        else if role == 6 {
+                            let professor = user["professor"] as! [String:AnyObject]
+                            specialty = Int(professor["IdEspecialidad"] as! String)!
+                            name = professor["Nombre"] as? String
+                            lastname = (professor["ApellidoPaterno"] as? String)! + " " + (professor["ApellidoMaterno"] as? String)!
+                            email = professor["Correo"] as? String
+                            roleName = "Profesor"
+                            
+                            userDefaults.set(professor["IdDocente"], forKey: "DOCENTE_ID")
+                            userDefaults.set(professor["rolEvaluaciones"] as? String, forKey: "ROLEVALUA")
+                            userDefaults.set(professor["es_adminpsp"] as? String, forKey: "ADMINPSP")
+                            userDefaults.set(professor["es_supervisorpsp"] as? String, forKey: "SUPERPSP")
+                            
+                            let rolTuto = professor["rolTutoria"] as? String
+                            userDefaults.set(rolTuto, forKey: "TUTORIA")
+                            if rolTuto == "1" {
+                                userDefaults.set("T", forKey: "ROLTUTORIA")
+                            }
+                            let rolEvalua = professor["rolEvaluaciones"] as? String
+                            userDefaults.set(rolEvalua, forKey: "EVALUA")
+                            let esAdmin = professor["es_adminpsp"] as? String
+                            userDefaults.set(esAdmin, forKey: "ADMINPSP")
+                            let esSuper = professor["es_supervisorpsp"] as? String
+                            userDefaults.set(esSuper, forKey: "SUPERPSP")
+                            
+                        }
                         // Student
                         else if role == 0 {
+                            let student = user["alumno"] as! [String:AnyObject]
                             userDefaults.set("A", forKey: "ROLTUTORIA")
+                            userDefaults.set(student["lleva_psp"], forKey: "PSPSTUDENT")
                             roleName = "Alumno"
                         }
                         
