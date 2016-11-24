@@ -56,7 +56,6 @@
 		126C83041DCA87D400168250 /* Investigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C82FF1DCA87D400168250 /* Investigator.swift */; };
 		126C83051DCA87D400168250 /* InvestigatorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C83001DCA87D400168250 /* InvestigatorTableViewController.swift */; };
 		12933FFC1DD2C069009CA3B7 /* ViewControllerViewDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12933FFB1DD2C069009CA3B7 /* ViewControllerViewDate.swift */; };
-		1296D0BA1DCE39DC006B7E73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1296D0B91DCE39DC006B7E73 /* Assets.xcassets */; };
 		1296D0BC1DCE4B30006B7E73 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1296D0BB1DCE4B30006B7E73 /* TabBarController.swift */; };
 		12ADDE991DBACC8300A2B7CA /* InvGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */; };
 		12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */; };
@@ -155,6 +154,8 @@
 		967045C71DD1062600DE2E8E /* ImprovementPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967045C61DD1062600DE2E8E /* ImprovementPlan.swift */; };
 		969D91F11DD37F0A00D0456B /* Criterion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969D91F01DD37F0A00D0456B /* Criterion.swift */; };
 		969D91F31DD389FA00D0456B /* CustomCriterionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969D91F21DD389FA00D0456B /* CustomCriterionCell.swift */; };
+		96A12BFA1DE77AD2001A20DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96A12BF91DE77AD2001A20DB /* Assets.xcassets */; };
+		96A12BFE1DE784BA001A20DB /* UASMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A12BFD1DE784BA001A20DB /* UASMenuTableViewController.swift */; };
 		96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -218,7 +219,6 @@
 		126C82FF1DCA87D400168250 /* Investigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Investigator.swift; sourceTree = "<group>"; };
 		126C83001DCA87D400168250 /* InvestigatorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorTableViewController.swift; sourceTree = "<group>"; };
 		12933FFB1DD2C069009CA3B7 /* ViewControllerViewDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerViewDate.swift; sourceTree = "<group>"; tabWidth = 4; };
-		1296D0B91DCE39DC006B7E73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1296D0BB1DCE4B30006B7E73 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		12ADDE981DBACC8300A2B7CA /* InvGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGroupTableViewController.swift; sourceTree = "<group>"; };
 		12ADDE9A1DBACD0F00A2B7CA /* InvestigationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationGroup.swift; sourceTree = "<group>"; };
@@ -321,6 +321,8 @@
 		967045C61DD1062600DE2E8E /* ImprovementPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImprovementPlan.swift; sourceTree = "<group>"; };
 		969D91F01DD37F0A00D0456B /* Criterion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Criterion.swift; sourceTree = "<group>"; };
 		969D91F21DD389FA00D0456B /* CustomCriterionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCriterionCell.swift; sourceTree = "<group>"; };
+		96A12BF91DE77AD2001A20DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		96A12BFD1DE784BA001A20DB /* UASMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UASMenuTableViewController.swift; sourceTree = "<group>"; };
 		96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationalGoalsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -424,6 +426,7 @@
 				12BF4DB41DC2D73E005E7D5A /* ListStudentViewController.swift */,
 				12BF4DB61DC2EAE5005E7D5A /* CustomCriterioCell.swift */,
 				1247102F1DCAD039000F9F1D /* UASNavViewController.swift */,
+				96A12BFD1DE784BA001A20DB /* UASMenuTableViewController.swift */,
 				121BE3AF1DCBAFA200B68A3C /* MyFacultiesViewController.swift */,
 				121BE3B11DCBB03500B68A3C /* CustomMyFacultiesCell.swift */,
 				1207C64D1DCBD8ED0004B891 /* ConsolidadoMeasuringViewController.swift */,
@@ -634,7 +637,7 @@
 				1296D0BB1DCE4B30006B7E73 /* TabBarController.swift */,
 				4618847D1DCC20A1000858C8 /* ConfigTableViewController.swift */,
 				46419A8B1DCC505C00E77B9A /* Main.storyboard */,
-				1296D0B91DCE39DC006B7E73 /* Assets.xcassets */,
+				96A12BF91DE77AD2001A20DB /* Assets.xcassets */,
 				46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */,
 				46292B0D1DB9DF7500EC8575 /* Info.plist */,
 				12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */,
@@ -749,7 +752,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46419A8D1DCC505C00E77B9A /* Main.storyboard in Resources */,
-				1296D0BA1DCE39DC006B7E73 /* Assets.xcassets in Resources */,
+				96A12BFA1DE77AD2001A20DB /* Assets.xcassets in Resources */,
 				46292B0C1DB9DF7500EC8575 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -854,6 +857,7 @@
 				124710321DCAD809000F9F1D /* Course.swift in Sources */,
 				120B4E441DCE8E2900BE9D5E /* InstrumentsMeasuringViewController.swift in Sources */,
 				12BCE5291DC2B2710052E607 /* CustomCourseCell.swift in Sources */,
+				96A12BFE1DE784BA001A20DB /* UASMenuTableViewController.swift in Sources */,
 				250090CF1DE7445900A22D71 /* PspStudent.swift in Sources */,
 				250090F01DE7446600A22D71 /* MenuProvisionalAlumnosViewController.swift in Sources */,
 				12933FFC1DD2C069009CA3B7 /* ViewControllerViewDate.swift in Sources */,
@@ -1082,6 +1086,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pe.sumajg.uasapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1096,6 +1101,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pe.sumajg.uasapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

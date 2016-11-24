@@ -40,6 +40,7 @@ class ImprovementPlanTableViewController: UITableViewController {
                                                style: .default,
                                                handler: nil)
                     alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             
