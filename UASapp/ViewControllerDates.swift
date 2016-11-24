@@ -686,35 +686,6 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                                 observaciones = "-"
                             }
                             
-                            let idEstadoTemp = c["estado"] as! String?
-                            idEstado = Int(idEstadoTemp!)
-                            
-                            //if ((c["nombreEstado"] as? String!) != nil){
-                            //    estado = c["nombreEstado"] as! String?
-                            //} else {
-                                if (idEstado == 1){
-                                    estado = "Pendiente"
-                                }
-                                if (idEstado == 2){
-                                    estado = "Confirmada"
-                                }
-                                if (idEstado == 3){
-                                    estado = "Cancelada"
-                                }
-                                if (idEstado == 4){
-                                    estado = "Sugerida"
-                                }
-                                if (idEstado == 5){
-                                    estado = "Rechazada"
-                                }
-                                if (idEstado == 6){
-                                    estado = "Asistida"
-                                }
-                                if (idEstado == 7){
-                                    estado = "No asistida"
-                                }
-                            //}
-                            //estado = c["nombreEstado"] as! String?
                             let flagCreadorTemp = c["creador"] as! String?
                             if flagCreadorTemp == "0" {
                                 flagCreador = "A"
@@ -722,6 +693,42 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                             if flagCreadorTemp == "1" {
                                 flagCreador = "T"
                             }
+                            
+                            let idEstadoTemp = c["estado"] as! String?
+                            idEstado = Int(idEstadoTemp!)
+                            
+                            //if ((c["nombreEstado"] as? String!) != nil){
+                            //    estado = c["nombreEstado"] as! String?
+                            //} else {
+                            if (idEstado == 1){
+                                estado = "Pendiente"
+                            }
+                            if (idEstado == 2){
+                                estado = "Confirmada"
+                            }
+                            if (idEstado == 3){
+                                estado = "Cancelada"
+                            }
+                            if (idEstado == 4){
+                               if (flagCreador == "T"){
+                                   estado = "Sugerida"
+                               }
+                               if (flagCreador == "A"){
+                                    estado = "Pendiente"
+                                }
+                            }
+                            if (idEstado == 5){
+                                estado = "Rechazada"
+                            }
+                            if (idEstado == 6){
+                                estado = "Asistida"
+                            }
+                            if (idEstado == 7){
+                                estado = "No asistida"
+                            }
+                            //}
+                            //estado = c["nombreEstado"] as! String?
+                            
                             let idTutorTemp = c["id_docente"] as! String?
                             idTutor = Int(idTutorTemp!)
                             tutor = "---"
@@ -888,35 +895,6 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                             } else {
                                 observaciones = "-"
                             }
-                            
-                            let idEstadoTemp = c["estado"] as! String?
-                            idEstado = Int(idEstadoTemp!)
-                            
-                            //if ((c["nombreEstado"] as? String!) != nil){
-                            //    estado = c["nombreEstado"] as! String?
-                            //} else {
-                                if (idEstado == 1){
-                                    estado = "Pendiente"
-                                }
-                                if (idEstado == 2){
-                                    estado = "Confirmada"
-                                }
-                                if (idEstado == 3){
-                                    estado = "Cancelada"
-                                }
-                                if (idEstado == 4){
-                                    estado = "Sugerida"
-                                }
-                                if (idEstado == 5){
-                                    estado = "Rechazada"
-                                }
-                                if (idEstado == 6){
-                                    estado = "Asistida"
-                                }
-                                if (idEstado == 7){
-                                    estado = "No asistida"
-                                }
-                            //}
                             let flagCreadorTemp = c["creador"] as! String?
                             if flagCreadorTemp == "0" {
                                 flagCreador = "A"
@@ -924,6 +902,44 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
                             if flagCreadorTemp == "1" {
                                 flagCreador = "T"
                             }
+                            
+                            let idEstadoTemp = c["estado"] as! String?
+                            idEstado = Int(idEstadoTemp!)
+                            
+                            //if ((c["nombreEstado"] as? String!) != nil){
+                            //    estado = c["nombreEstado"] as! String?
+                            //} else {
+                            if (idEstado == 1){
+                                estado = "Pendiente"
+                            }
+                            if (idEstado == 2){
+                                estado = "Confirmada"
+                            }
+                            if (idEstado == 3){
+                                estado = "Cancelada"
+                            }
+                            print("ENTRO A CAMBIAR los ESTADOs DE ESTA VAINA")
+                            if (idEstado == 4){
+                               if (flagCreador == "A"){
+                                    
+                                    print("ENTRO A CAMBIAR ESTADO DE ESTA VAINA seguraida")
+                                    estado = "Sugerida"
+                                }
+                                if (flagCreador == "T"){
+                                    estado = "Pendiente"
+                                }
+                            }
+                            if (idEstado == 5){
+                                estado = "Rechazada"
+                            }
+                            if (idEstado == 6){
+                                estado = "Asistida"
+                            }
+                            if (idEstado == 7){
+                                estado = "No asistida"
+                            }
+                            //}
+                            
                             let idTutorTemp = c["id_docente"] as! String?
                             idTutor = Int(idTutorTemp!)
                             tutor = "---"
@@ -1006,30 +1022,7 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         cell.theme.text = themes[indexPath.row]
         cell.student.text = students[indexPath.row]
         cell.status.text = statusA[indexPath.row]
-        /*
-        let cit = citS?[indexPath.row]
-        if (cit?.idEstado == 1){
-            cell.status.backgroundColor = UIColor(red: 255.0/255.0, green: 152.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        }
-        if (cit?.idEstado == 2){
-            cell.status.backgroundColor = UIColor(red: 38.0/255.0, green: 166.0/255.0, blue: 154.0/255.0, alpha: 1.0)
-        }
-        if (cit?.idEstado == 3){
-            cell.status.backgroundColor = UIColor(red: 217.0/255.0, green: 83.0/255.0, blue: 79.0/255.0, alpha: 1.0)
-        }
-        if (cit?.idEstado == 4){
-            cell.status.backgroundColor = UIColor(red: 255.0/255.0, green: 235.0/255.0, blue: 59.0/255.0, alpha: 1.0)
-        }
-        if (cit?.idEstado == 5){
-            cell.status.backgroundColor = UIColor(red: 158.0/255.0, green: 158.0/255.0, blue: 158.0/255.0, alpha: 1.0)
-        }
-        if (cit?.idEstado == 6){
-            cell.status.backgroundColor = UIColor(red: 64.0/255.0, green: 81.0/255.0, blue: 181.0/255.0, alpha: 1.0)
-        }
-        if (cit?.idEstado == 7){
-            cell.status.backgroundColor = UIColor(red: 76.0/255.0, green: 175.0/255.0, blue: 80.0/255.0, alpha: 1.0)
-        }
-        */
+
         
         if (cell.status.text == "Pendiente"){
             cell.status.backgroundColor = UIColor(red: 255.0/255.0, green: 152.0/255.0, blue: 0.0/255.0, alpha: 1.0)

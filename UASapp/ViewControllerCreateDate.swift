@@ -493,17 +493,13 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                         
                         let alertSuccess : UIAlertController = UIAlertController.init(title: "Registro de cita exitoso", message: "Se ha registrado la cita exitosamente", preferredStyle: .alert)
                         let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
-                            let navController = self.navigationController
-                            if navController != nil {
-                                navController?.popViewController(animated: true)
-                                //Actualizar citas
-                            }
-                            print(navController!)
+                            self.navigationController?.popViewController(animated: true)
+                            //self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
                         })
                         alertSuccess.addAction(action)
                         self.present(alertSuccess,animated: false, completion:nil)
                         
-                        self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
+                        
                         
                     } else {
                         print("REQUESTED RESPONSE: \(responseData)")
@@ -536,17 +532,15 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                         
                         let alertSuccess : UIAlertController = UIAlertController.init(title: "Registro de cita exitoso", message: "Se ha registrado la cita exitosamente", preferredStyle: .alert)
                         let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
-                            let navController = self.navigationController
-                            if navController != nil {
-                                navController?.popViewController(animated: true)
-                                //Actualizar citas
-                            }
-                            print(navController!)
+                            
+                            self.navigationController?.popViewController(animated: true)
+                            //self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
+                            
                         })
                         alertSuccess.addAction(action)
                         self.present(alertSuccess,animated: false, completion:nil)
                         
-                        self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
+                        
                         
                     } else {
                         print("REQUESTED RESPONSE: \(responseData)")
@@ -556,9 +550,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             } catch let err as NSError{
                 print("JSONObjet ERROR: \(err)")
             }
-            
-        }
-        
+        }        
     }
     
     func getHorarioTutor(){

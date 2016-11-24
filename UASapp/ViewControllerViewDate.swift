@@ -72,47 +72,49 @@ class ViewControllerViewDate: UIViewController {
         print(citaO?.idEstado)
         
         //Visibilidad de los botones de cambio de estados y segun el usuario
+        
+
         if (rol == "A"){
             //Pendiente
-            if (citaO?.idEstado == 1){
+            if (citaO?.estado == "Pendiente"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = true
                 botonRechazar.isHidden = true
             }
             //Confirmada
-            if (citaO?.idEstado == 2){
+            if (citaO?.estado == "Confirmada"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = false
                 botonRechazar.isHidden = true
             }
             //Cancelada
-            if (citaO?.idEstado == 3){
+            if (citaO?.estado == "Cancelada"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = true
                 botonRechazar.isHidden = true
             }
             //Sugerida
-            if (citaO?.idEstado == 4){
+            if (citaO?.estado == "Sugerida"){
                 botonConfirmar.isHidden = false
                 botonCancelar.isHidden = true
                 botonRechazar.isHidden = false
             }
             //Rechazada
-            if (citaO?.idEstado == 5){
+            if (citaO?.estado == "Rechazada"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = true
                 botonRechazar.isHidden = true
                 
             }
             //Asistida
-            if (citaO?.idEstado == 6){
+            if (citaO?.estado == "Asistida"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = true
                 botonRechazar.isHidden = true
                 
             }
             //No asistida
-            if (citaO?.idEstado == 7){
+            if (citaO?.estado == "No asistida"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = true
                 botonRechazar.isHidden = true
@@ -121,15 +123,15 @@ class ViewControllerViewDate: UIViewController {
         
         if (rol == "T"){
             //Pendiente
-            if (citaO?.idEstado == 1){
-                botonConfirmar.isHidden = false
+            if (citaO?.estado == "Pendiente"){
+                botonConfirmar.isHidden = true
                 botonCancelar.isHidden = true
-                botonRechazar.isHidden = false
+                botonRechazar.isHidden = true
                 botonAtender.isHidden = true
                 botonNoAtender.isHidden = true
             }
             //Confirmada
-            if (citaO?.idEstado == 2){
+            if (citaO?.estado == "Confirmada"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = false
                 botonRechazar.isHidden = true
@@ -137,7 +139,7 @@ class ViewControllerViewDate: UIViewController {
                 botonNoAtender.isHidden = false
             }
             //Cancelada
-            if (citaO?.idEstado == 3){
+            if (citaO?.estado == "Cancelada"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = true
                 botonRechazar.isHidden = true
@@ -145,15 +147,15 @@ class ViewControllerViewDate: UIViewController {
                 botonNoAtender.isHidden = true
             }
             //Sugerida
-            if (citaO?.idEstado == 4){
-                botonConfirmar.isHidden = true
+            if (citaO?.estado == "Sugerida"){
+                botonConfirmar.isHidden = false
                 botonCancelar.isHidden = true
-                botonRechazar.isHidden = true
+                botonRechazar.isHidden = false
                 botonAtender.isHidden = true
                 botonNoAtender.isHidden = true
             }
             //Rechazada
-            if (citaO?.idEstado == 5){
+            if (citaO?.estado == "Rechazada"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = true
                 botonRechazar.isHidden = true
@@ -161,7 +163,7 @@ class ViewControllerViewDate: UIViewController {
                 botonNoAtender.isHidden = true
             }
             //Asistida
-            if (citaO?.idEstado == 6){
+            if (citaO?.estado == "Asistida"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = true
                 botonRechazar.isHidden = true
@@ -169,7 +171,7 @@ class ViewControllerViewDate: UIViewController {
                 botonNoAtender.isHidden = true
             }
             //No asistida
-            if (citaO?.idEstado == 7){
+            if (citaO?.estado == "No asistida"){
                 botonConfirmar.isHidden = true
                 botonCancelar.isHidden = true
                 botonRechazar.isHidden = true
