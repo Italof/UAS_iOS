@@ -41,12 +41,12 @@ class InvestigatorDetailViewController: UIViewController {
         cellphoneInv.text = inv?.cellphone
         specialityInv.text = inv?.speciality
         areaInv.text = inv?.area
-        let id = ((parent! as! InvNavViewController).id)
+        let idUser = ((parent! as! InvNavViewController).idUser)
         //profiles permitidos a editar
         let profilePermited = (parent as! InvNavViewController).profilePermited
         //let isConnected = AskConectivity.isInternetAvailable()
         invEditButton.isEnabled = false
-        if( profilePermited.index( of: profile) != nil || inv?.idUser == id){
+        if( profilePermited.index( of: profile) != nil || inv?.idUser == idUser){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
             invEditButton.isEnabled = true

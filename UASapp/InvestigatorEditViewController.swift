@@ -128,8 +128,15 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(action)
         //error variable
         var errorMessageCustom : String = ""
-        let posarroba = Int((emailInv.text?.characters.reversed().index(of: Character("@")))!)
-        let pospunto = Int((emailInv.text?.characters.reversed().index(of: Character(".")))!)
+        var pospunto : Int = 0
+        var posarroba: Int = 0
+        if((emailInv.text?.characters.reversed().index(of: Character("."))) != nil){
+            pospunto = Int((emailInv.text?.characters.reversed().index(of: Character(".")))!)
+        }
+        if((emailInv.text?.characters.reversed().index(of: Character("@"))) != nil){
+            posarroba = Int((emailInv.text?.characters.reversed().index(of: Character("@")))!)
+        }
+        
         var error = 0
         //verificar que los campos son correctos
         if (AskConectivity.isInternetAvailable() == false){

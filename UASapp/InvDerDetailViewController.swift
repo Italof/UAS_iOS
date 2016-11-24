@@ -107,11 +107,13 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
             if (id == idUser && (observationInvDoc.text.characters.count == 0)){
                 observationInvDoc.isEditable = true
                 registerObservation.isHidden = false
+                observationInvDoc.backgroundColor = UIColor.white
             }
         }
         else{
             observationInvDoc.isEditable = false
             registerObservation.isHidden = true
+            observationInvDoc.backgroundColor = UIColor.init(red: 245.0/255.0, green: 245.0/255.0, blue: 245.0/255.0, alpha: 1.0)
         }
     }
     
@@ -372,6 +374,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
                         else {
                             //obtener data
                             ((self.parent as! InvNavViewController).invDer) = self.invDer
+                            self.registerObservation.isHidden = true
                             let alertSuccess : UIAlertController = UIAlertController.init(title: "Guardado", message: "Observacion guardada", preferredStyle: .alert)
                             let action = UIAlertAction(title: "OK", style: .default, handler:nil)
                             alertSuccess.addAction(action)
