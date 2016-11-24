@@ -24,7 +24,9 @@ class InvDerivableTableViewController: UITableViewController {
         let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getDerivables
         let routeApi = "investigation/" + id + "/" + get + "?token=" + token
-        activity.startAnimating()
+        DispatchQueue.main.async {
+            self.activity.startAnimating()
+        }
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             DispatchQueue.main.async {
                 self.activity.stopAnimating()

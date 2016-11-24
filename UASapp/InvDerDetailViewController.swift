@@ -41,7 +41,9 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
             var route = "http://52.89.227.55/" + dowloadRoute!
             route = route.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             if(AskConectivity.isInternetAvailable()){
-                activity.startAnimating()
+                DispatchQueue.main.async {
+                    self.activity.startAnimating()
+                }
                 DownloadHelper.loadFileAsync(route: route,completion:{(path, error) in
                     let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
                     if isFileFound == true {
@@ -107,6 +109,10 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
                 registerObservation.isHidden = false
             }
         }
+        else{
+            observationInvDoc.isEditable = false
+            registerObservation.isHidden = true
+        }
     }
     
     @IBOutlet weak var invDerEditButton: UIBarButtonItem!
@@ -120,7 +126,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        if(parent != nil ){
+        if(parent != nil && selectedVersion == -1){
             invDer = (parent as! InvNavViewController).invDer
             invPr = (parent as! InvNavViewController).invPr
             nameInvDer.text = (invDer?.name?.uppercased())!
@@ -187,11 +193,12 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
                             ///arreglar actualizacion de pantalla -- desaparece boton de registrar observacion y observaciones
                             let id = self.invPr?.idLeader
                             let idUser = (self.parent as! InvNavViewController).id
-                            if (id == idUser && (self.observationInvDoc.text.characters.count == 0)){
+                            if ( id == idUser && (self.observationInvDoc.text.characters.count == 0)){
                                 self.observationInvDoc.isEditable = true
                                 self.registerObservation.isHidden = false
                             }
                         }
+                        
                     }
                     
                 }

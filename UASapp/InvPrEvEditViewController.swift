@@ -18,6 +18,7 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var saveEventButton: UIBarButtonItem!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
+    @IBOutlet var descriptionInvPrEvent: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     var activeField: UITextField?
     let invalidCharacters = "1234567890+-*/=!\"·$%&/()=?=¿.;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠´][{}–„…œå∫∑©√Ω©.,"
@@ -47,6 +48,7 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
             time = Date.init()
         }
         timeInvPrEvent.setDate(time!, animated: false)
+        descriptionInvPrEvent.text = invPrEv?.description
         //profile user
         let profile = (parent as! InvNavViewController).profile
         //profiles permitidos a editar
@@ -161,12 +163,16 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
         }
         else
         {
-        if (nameInvPrEvent.text == invPrEv?.name && placeInvPrEvent.text == invPrEv?.place && date == invPrEv?.date && time == invPrEv?.time){
+        if (nameInvPrEvent.text == invPrEv?.name && placeInvPrEvent.text == invPrEv?.place && date == invPrEv?.date && time == invPrEv?.time && invPrEv?.description == descriptionInvPrEvent.text) {
             errorMessageCustom = "No hay cambios"
             error = 1
         }
         else if((nameInvPrEvent!.text?.characters.count)! > 50 || (nameInvPrEvent!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre no válido"
+            error = 1
+        }
+        else if((descriptionInvPrEvent!.text?.characters.count)! > 200 || (descriptionInvPrEvent!.text?.characters.count)! < 1){
+            errorMessageCustom = "Descripción no válido"
             error = 1
         }
         else if((placeInvPrEvent!.text?.characters.count)! > 100 || (placeInvPrEvent!.text?.characters.count)! < 1){
@@ -175,6 +181,10 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
         }
         else if(contains(text: nameInvPrEvent.text!, find: invalidCharacters)){
             errorMessageCustom = "Nombre no acepta números o símbolos"
+            error = 1
+        }
+        else if(contains(text: descriptionInvPrEvent.text!, find: invalidCharacters)){
+            errorMessageCustom = "Descripción no acepta números o símbolos"
             error = 1
         }
         else if(contains(text: placeInvPrEvent.text!, find: invalidCharacters)){
@@ -195,7 +205,7 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
                 json.setValue(self.invPrEv?.id, forKey: "id")
                 json.setValue(self.nameInvPrEvent.text, forKey: "nombre")
                 json.setValue(self.placeInvPrEvent.text , forKey: "ubicacion")
-                json.setValue(self.invPrEv?.description, forKey: "descripcion")
+                json.setValue(self.descriptionInvPrEvent.text, forKey: "descripcion")
                 let date = self.dateInvPrEvent.date
                 let time = self.timeInvPrEvent.date
                 let dateFormater = DateFormatter()
@@ -215,7 +225,9 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
                     let get = (self.parent as! InvNavViewController).editEvents
                     let parser = self.invPrEv?.id
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
-                    self.activity.startAnimating()
+                    DispatchQueue.main.async {
+                        self.activity.startAnimating()
+                    }
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                         DispatchQueue.main.async {
                             self.activity.stopAnimating()
@@ -239,6 +251,7 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
                             self.invPrEv?.date = dateFormater.string(from: date)
                             dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
                             self.invPrEv?.time = dateFormater.string(from: time)
+                            self.invPrEv?.description = self.descriptionInvPrEvent.text
                             ((self.parent as! InvNavViewController).invPrEv) = self.invPrEv
                             let alertSuccess : UIAlertController = UIAlertController.init(title: self.successTitle, message: self.successMessage, preferredStyle: .alert)
                             let action = UIAlertAction(title: "OK", style: .default, handler:{ action in

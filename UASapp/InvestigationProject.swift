@@ -16,12 +16,14 @@ struct InvestigationProject {
     var endDate: String?
     var invGroupName: String?
     var idLeader: Int
+    var description: String?
     //funcion inicializadora
-    init(id:Int, name:String?, numberDerivables:Int, startDate:String?, endDate: String?, invGroupName: String?, leaderName:String?, idLeader: Int){
+    init(id:Int, name:String?, numberDerivables:Int, startDate:String?, endDate: String?, invGroupName: String?, leaderName:String?, idLeader: Int, description: String?){
         self.startDate=startDate
         self.name=name
         self.numberDerivables=numberDerivables
         self.id = id
+        self.description = description
         self.idLeader = idLeader
         self.endDate = endDate
         self.invGroupName = invGroupName
@@ -38,8 +40,9 @@ struct InvestigationProject {
         let group = json["group"] as! [String:Any]
         let invGroupName = group["nombre"] as! String
         let idLeader = group["id_lider"] as! String
+        let description = json["descripcion"] as! String
         
-        
+        self.description = description
         self.startDate=startDate
         self.name=name
         self.idLeader = Int(idLeader)!

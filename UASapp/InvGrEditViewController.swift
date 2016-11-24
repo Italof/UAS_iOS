@@ -90,7 +90,9 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
                     let parser = self.invGr?.id
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                     print(routeApi)
-                    self.activity.startAnimating()
+                    DispatchQueue.main.async {
+                        self.activity.startAnimating()
+                    }
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                         DispatchQueue.main.async {
                             self.activity.stopAnimating()

@@ -30,7 +30,9 @@ class EveProjectTableViewController: UITableViewController {
         let id = String(parser.unsafelyUnwrapped)
         let routeApi = "investigation/" + id + "/" + get + "?token=" + token
         let idUser = (self.parent as! InvNavViewController).id
-        activity.startAnimating()
+        DispatchQueue.main.async {
+            self.activity.startAnimating()
+        }
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             DispatchQueue.main.async {
                 self.activity.stopAnimating()

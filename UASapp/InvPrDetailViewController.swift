@@ -16,6 +16,7 @@ class InvPrDetailViewController: UIViewController {
     @IBOutlet weak var startDateInvProject: UILabel!
     @IBOutlet weak var endDateInvProject: UILabel!
     @IBOutlet weak var numberDerivablesInvProject: UILabel!
+    @IBOutlet var descriptionInvProject: UITextView!
 
     @IBOutlet var invProjectEditButton: UIBarButtonItem!
 
@@ -42,6 +43,7 @@ class InvPrDetailViewController: UIViewController {
     //parse to String from optional Int
     let parser = invPr?.numberDerivables
     numberDerivablesInvProject.text = String(parser.unsafelyUnwrapped)
+    descriptionInvProject.text = invPr?.description
     // inicializa botones -- PERMISOS
     //profile user
     //let profile = (parent as! InvNavViewController).profile

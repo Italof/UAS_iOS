@@ -58,14 +58,16 @@ class InvestigationGroupTableViewController: UITableViewController {
         do_table_refresh()
     }
     
-  override func viewDidAppear(_ animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     
     let token = (parent as! InvNavViewController).token
     let get = (parent as! InvNavViewController).getGroups
     if AskConectivity.isInternetAvailable(){
       print("conectado")
         //downActivity?.center = self.view.center
-        downActivity?.startAnimating()
+        DispatchQueue.main.async {
+            self.downActivity?.startAnimating()
+        }
     }
     else{
       print("error de conexion")
