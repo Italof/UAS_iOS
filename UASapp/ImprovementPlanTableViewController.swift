@@ -31,6 +31,16 @@ class ImprovementPlanTableViewController: UITableViewController {
                     let iplanDetail = ImprovementPlan(json: jsonIPlan)
                     self.planArray.append(iplanDetail)
                 }
+                
+                if self.planArray.count < 1 {
+                    let alert = UIAlertController(title: "Lo sentimos",
+                                                       message: "No se encontro ningún plan de mejora",
+                                                       preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK",
+                                               style: .default,
+                                               handler: nil)
+                    alert.addAction(action)
+                }
             }
             
             DispatchQueue.main.async {

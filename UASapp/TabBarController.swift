@@ -20,9 +20,11 @@ class TabBarController: UITabBarController {
         switch role {
         case 0:
             // Alumno
+            let hasPsp = userDefaults.integer(forKey: "PSPSTUDENT")
+            
             // Borra acreditación
             self.viewControllers?.remove(at: 0)
-            if true {
+            if hasPsp != 1 {
                 // Borra psp
                self.viewControllers?.remove(at: 2)
             }
