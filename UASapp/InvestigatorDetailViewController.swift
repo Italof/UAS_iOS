@@ -13,7 +13,7 @@ class InvestigatorDetailViewController: UIViewController {
     
     @IBOutlet var invEditButton: UIBarButtonItem!
     
-    @IBOutlet var nameInvestigator: UILabel!
+    //@IBOutlet var nameInvestigator: UILabel!
     
     @IBOutlet var lastNameInv: UILabel!
     
@@ -35,8 +35,8 @@ class InvestigatorDetailViewController: UIViewController {
         
         inv = ((parent! as! InvNavViewController).inv)
         let profile = (parent as! InvNavViewController).profile
-        nameInvestigator.text = inv?.name
-        lastNameInv.text = (inv?.lastNameP)! + " " + (inv?.lastNameM)!
+        //nameInvestigator.text = inv?.name
+        lastNameInv.text = (inv?.name)! + " " + (inv?.lastNameP)! + " " + (inv?.lastNameM)!
         emailInv.text = inv?.email
         cellphoneInv.text = inv?.cellphone
         specialityInv.text = inv?.speciality

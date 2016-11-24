@@ -9,13 +9,14 @@
 import UIKit
 
 class InvDerivableTableViewController: UITableViewController {
-    var invDerData: [InvestigationDerivable] = [InvestigationDerivable.init(id: 1, name: "hola", idProject: 1, projectName: "hola2", dateLimit: "2016-12-12", dateStart: "2016-12-13", percentage: 25)]
+    var invDerData: [InvestigationDerivable] = []//[InvestigationDerivable.init(id: 1, name: "hola", idProject: 1, projectName: "hola2", dateLimit: "2016-12-12", dateStart: "2016-12-13", percentage: 25)]
     var elegido : Int = 9
     var invPr: InvestigationProject?
     override func viewDidLoad() {        
         super.viewDidLoad()
         
     }
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     override func viewWillAppear(_ animated: Bool) {
         invPr = (parent as! InvNavViewController).invPr!
         let parser = invPr?.id
@@ -23,7 +24,14 @@ class InvDerivableTableViewController: UITableViewController {
         let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getDerivables
         let routeApi = "investigation/" + id + "/" + get + "?token=" + token
+        DispatchQueue.main.async {
+            self.activity.startAnimating()
+        }
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+            DispatchQueue.main.async {
+                self.activity.stopAnimating()
+                self.activity.isHidden = true
+            }
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -31,9 +39,31 @@ class InvDerivableTableViewController: UITableViewController {
                 self.invDerData = []
                 for deriverable in arrayDerivable!{
                     let der = deriverable as! [String:AnyObject]
-                    
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy-MM-dd"
                     //let group : InvestigationGroup =
-                    self.invDerData.append( InvestigationDerivable( json: der ) )
+                    var pos = 0
+                    let invD = InvestigationDerivable(json: der)
+                    let dateL = dateFormat.date(from: invD.dateLimit!)
+                    for inv in self.invDerData{
+                        let dateLinv = dateFormat.date(from: inv.dateLimit!)
+                        if( dateL! < dateLinv!){
+                            break
+                        }
+                        pos = pos + 1
+                    }
+                    if(pos>self.invDerData.count){
+                        self.invDerData.append(invD)
+                    }
+                    else{
+                        self.invDerData.insert(invD, at: pos)
+                    }
+                    /*
+                    if(self.invDerData.count == 0){
+                        self.invDerData.append(invD)
+                    }
+                    */
+                    
                     //print(self.invGrData)
                     //print(pr["id"].unsafelyUnwrapped)
                 }
@@ -73,7 +103,13 @@ class InvDerivableTableViewController: UITableViewController {
         let invDer = invDerData[indexPath.row] as InvestigationDerivable
         print(invDer.name)
         cell.textLabel?.text = invDer.name
-        cell.detailTextLabel?.text = "Avance: " + String(invDer.percentage) + "%"
+        let dateLimit = invDer.dateLimit
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "yyyy-MM-dd"
+        let date = dateFormat.date(from: dateLimit!)
+        dateFormat.dateFormat = "dd/MM/yyyy"
+        let dateL = dateFormat.string(from: date!)
+        cell.detailTextLabel?.text = "Fecha de entrega: "+dateL+" - Avance: " + String(invDer.percentage) + "%"
         
         return cell
     }
@@ -90,7 +126,10 @@ class InvDerivableTableViewController: UITableViewController {
     {
         self.tableView.reloadData()
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.invDerData = []
+        do_table_refresh()
+    }
  /*
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath){
         

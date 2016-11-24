@@ -20,9 +20,11 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
     let successMessage: String = "Los cambios han sido guardados"
     let errorTitle: String = "Error"
     let errorMessage: String = "No se han guardado los cambios"
-    
+    let invalidCharacters = "1234567890,+-*/=!\"·$%&/(.)=?=¿;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠‚´][{}–„…œå∫∑©√Ω©"
     @IBOutlet var invPrSaveButton: UIBarButtonItem!
+    @IBOutlet var descriptionInvProject: UITextView!
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
     var activeField: UITextField?
     
@@ -50,6 +52,7 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
         let profilePermited = (parent as! InvNavViewController).profilePermited
         let isConnected = AskConectivity.isInternetAvailable()
         invPrSaveButton.isEnabled = false
+        descriptionInvProject.text = invPr?.description
         if( profilePermited.index( of: profile) != nil || isConnected != false || invPr?.idLeader == id){
             //si no se encuentra el perfil permitido
             //ocultar boton de editar
@@ -148,12 +151,24 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
         }
         else
         {
-        if (nameInvProject.text == invPr?.name && numberDerivablesInvPr.text == String(numberDer.unsafelyUnwrapped) && startDate == invPr?.startDate && endDate == invPr?.endDate){
+        if (nameInvProject.text == invPr?.name && numberDerivablesInvPr.text == String(numberDer.unsafelyUnwrapped) && startDate == invPr?.startDate && endDate == invPr?.endDate && descriptionInvProject.text == invPr?.description){
             errorMessageCustom = "No hay cambios"
             error = 1
         }
-        else if((nameInvProject!.text?.characters.count)! > 254 || (nameInvProject!.text?.characters.count)! < 1){
+        else if((nameInvProject!.text?.characters.count)! > 50 || (nameInvProject!.text?.characters.count)! < 1){
             errorMessageCustom = "Nombre no válido"
+            error = 1
+        }
+        else if(contains(text: descriptionInvProject.text!, find: invalidCharacters)){
+            errorMessageCustom = "Descripción no acepta números o símbolos"
+            error = 1
+        }
+        else if((descriptionInvProject!.text?.characters.count)! > 200 || (descriptionInvProject!.text?.characters.count)! < 1){
+            errorMessageCustom = "Descripción no válido"
+            error = 1
+        }
+        else if(contains(text: nameInvProject.text!, find: invalidCharacters)){
+            errorMessageCustom = "Nombre no acepta números o símbolos"
             error = 1
         }
         else if((numberDerivablesInvPr!.text?.characters.count)! > 2){
@@ -185,6 +200,7 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
                 json.setValue(self.invPr?.id, forKey: "id")
                 json.setValue(self.nameInvProject.text, forKey: "nombre")
                 json.setValue(self.numberDerivablesInvPr.text , forKey: "num_entregables")
+                json.setValue(self.descriptionInvProject.text, forKey: "descripcion")
                 let startDate = self.startDateInvProject.date
                 let endDate = self.endDateInvProject.date
                 let dateFormater = DateFormatter()
@@ -205,7 +221,14 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
                     let parser = self.invPr?.id
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                     print(routeApi)
+                    DispatchQueue.main.async {
+                        self.activity.startAnimating()
+                    }
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
+                        DispatchQueue.main.async {
+                            self.activity.stopAnimating()
+                            self.activity.isHidden = true
+                        }
                         if(error != nil){
                             //Mostrar error y regresar al menù principal
                             print(error)
@@ -219,6 +242,7 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
                             self.invPr?.numberDerivables = Int (self.numberDerivablesInvPr.text!)!
                             let startDate = self.startDateInvProject.date
                             let endDate = self.endDateInvProject.date
+                            self.invPr?.description = self.descriptionInvProject.text
                             let dateFormater = DateFormatter()
                             dateFormater.dateFormat = "yyyy-MM-dd"
                             self.invPr?.endDate = dateFormater.string(from: endDate)
@@ -255,6 +279,15 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
         
         //alerta de guardado
         
+    }
+    
+    func contains(text: String, find: String) -> Bool{
+        for c in find.characters{
+            if(text.contains(String(c))){
+                return true
+            }
+        }
+        return false
     }
 
     /*

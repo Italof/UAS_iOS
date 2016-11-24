@@ -10,6 +10,7 @@ import UIKit
 
 class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet var postActivity: UIActivityIndicatorView!
     var inv : Investigator?
     
     @IBOutlet var nameInv: UITextField!
@@ -23,7 +24,7 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
     let successMessage: String = "Los cambios han sido guardados"
     let errorTitle: String = "Error"
     let errorMessage: String = "No se han guardado los cambios"
-
+    let invalidCharacters = "1234567890+-*/=!\"·$%&/()=.,?=¿;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠´][{}–„…œå∫∑©√Ω©"
     @IBOutlet var scrollView: UIScrollView!
 
     var activeField: UITextField?
@@ -127,6 +128,8 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(action)
         //error variable
         var errorMessageCustom : String = ""
+        let posarroba = Int((emailInv.text?.characters.reversed().index(of: Character("@")))!)
+        let pospunto = Int((emailInv.text?.characters.reversed().index(of: Character(".")))!)
         var error = 0
         //verificar que los campos son correctos
         if (AskConectivity.isInternetAvailable() == false){
@@ -138,19 +141,35 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
             errorMessageCustom = "No hay cambios"
             error = 1
         }
-        else if((nameInv!.text?.characters.count)! > 254 || (nameInv!.text?.characters.count)! < 1){
-            errorMessageCustom = "Nombre muy largo"
+        else if((nameInv!.text?.characters.count)! > 50 || (nameInv!.text?.characters.count)! < 1){
+            errorMessageCustom = "Nombre no válido"
             error = 1
         }
-        else if((lastNamePInv!.text?.characters.count)! > 254 || (lastNamePInv!.text?.characters.count)! < 1 ){
-            errorMessageCustom = "Apellido no válido"
+        else if((lastNamePInv!.text?.characters.count)! > 50 || (lastNamePInv!.text?.characters.count)! < 1 ){
+            errorMessageCustom = "Apellido paterno no válido"
             error = 1
         }
-        else if((lastNameMInv!.text?.characters.count)! > 254 || (lastNameMInv!.text?.characters.count)! < 1){
-            errorMessageCustom = "Apellido no válido"
+        else if((lastNameMInv!.text?.characters.count)! > 50 || (lastNameMInv!.text?.characters.count)! < 1){
+            errorMessageCustom = "Apellido materno no válido"
             error = 1
         }
-        else if((emailInv!.text?.characters.count)! > 100 || (emailInv!.text?.characters.count)! < 3 ){
+        else if(contains(text: nameInv.text!, find: invalidCharacters)){
+            errorMessageCustom = "Nombre no acepta números o símbolos"
+            error = 1
+        }
+        else if(contains(text: lastNamePInv.text!, find: invalidCharacters)){
+            errorMessageCustom = "Apellido paterno de lugar no acepta números o símbolos"
+            error = 1
+        }
+        else if(contains(text: lastNameMInv.text!, find: invalidCharacters)){
+            errorMessageCustom = "Apellido materno de lugar no acepta números o símbolos"
+            error = 1
+        }
+        else if((emailInv!.text?.characters.count)! > 50 || (emailInv!.text?.characters.count)! < 3 ){
+            errorMessageCustom = "Correo no válido"
+            error = 1
+        }
+        else if(posarroba == 0 || pospunto == 0 || pospunto > posarroba){
             errorMessageCustom = "Correo no válido"
             error = 1
         }
@@ -187,6 +206,7 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
                     let parser = self.inv?.id
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                     print(routeApi)
+                    self.postActivity.startAnimating()
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                         if(error != nil){
                             //Mostrar error y regresar al menù principal
@@ -197,7 +217,10 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
                         }
                         else {
                             //obtener data
-                            
+                            DispatchQueue.main.async {
+                                self.postActivity.stopAnimating()
+                                self.postActivity.isHidden = true
+                            }
                             self.inv?.name = self.nameInv.text
                             self.inv?.lastNameP = self.lastNamePInv.text
                             self.inv?.lastNameM = self.lastNameMInv.text
@@ -229,7 +252,14 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
         }
         }
     }
-
+    func contains(text: String, find: String) -> Bool{
+        for c in find.characters{
+            if(text.contains(String(c))){
+                return true
+            }
+        }
+        return false
+    }
     /*
     // MARK: - Navigation
 

@@ -12,12 +12,17 @@ class InvestigationGroupTableViewController: UITableViewController {
     var invGrData: [InvestigationGroup] = []
     var elegido : Int = 9
     
+    @IBOutlet var downActivity: UIActivityIndicatorView!
+    //var downActivity : UIActivityIndicatorView?
     override func viewDidLoad() {        
         super.viewDidLoad()
+        /*
         let token = (parent as! InvNavViewController).token
         let get = (parent as! InvNavViewController).getGroups
         if AskConectivity.isInternetAvailable(){
             print("conectado")
+            
+            downActivity?.startAnimating()
         }
         else{
             print("error de conexion")
@@ -37,20 +42,32 @@ class InvestigationGroupTableViewController: UITableViewController {
                     //print(self.invGrData)
                     //print(pr["id"].unsafelyUnwrapped)                    
                 }
+                self.downActivity?.stopAnimating()
                 self.do_table_refresh()
             }
             else {
                 //Mostrar error y regresar al menù principal
                 
             }
-        })
+        })*/
         
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.invGrData = []
+        do_table_refresh()
+    }
+    
   override func viewWillAppear(_ animated: Bool) {
+    
     let token = (parent as! InvNavViewController).token
     let get = (parent as! InvNavViewController).getGroups
     if AskConectivity.isInternetAvailable(){
       print("conectado")
+        //downActivity?.center = self.view.center
+        DispatchQueue.main.async {
+            self.downActivity?.startAnimating()
+        }
     }
     else{
       print("error de conexion")
@@ -59,6 +76,10 @@ class InvestigationGroupTableViewController: UITableViewController {
     HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
       if(error == nil){
         //obtener data
+        DispatchQueue.main.async {
+            self.downActivity.stopAnimating()
+            self.downActivity.isHidden = true
+        }
         let dataUnwrapped = data.unsafelyUnwrapped
         let arrayGroup = dataUnwrapped as? [Any]
         self.invGrData = []

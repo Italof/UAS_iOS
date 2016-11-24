@@ -73,8 +73,8 @@ class InvDocumentTableViewController: UITableViewController {
         
         // Configure the cell...
         let invDoc = invDocData[indexPath.row] as InvestigationDocument
-        print(invDoc.name)
-        cell.textLabel?.text = invDoc.name
+        //print(invDoc.name)
+        cell.textLabel?.text = "hola"
         cell.detailTextLabel?.text = "Versión :" + invDoc.version!
         
         return cell
