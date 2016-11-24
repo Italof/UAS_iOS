@@ -182,9 +182,13 @@ class ViewController: UIViewController {
                         }
                         // Student
                         else if role == 0 {
-                            let student = user["psp_student"] as! [String:AnyObject]
+                            let studentPsp = user["psp_student"] as? [String:AnyObject]
                             userDefaults.set("A", forKey: "ROLTUTORIA")
-                            userDefaults.set(student["lleva_psp"], forKey: "PSPSTUDENT")
+                            if studentPsp != nil {
+                                userDefaults.set(studentPsp["lleva_psp"] as! String, forKey: "PSPSTUDENT")
+                            } else {
+                                userDefaults.set("0", forKey: "PSPSTUDENT")
+                            }
                             roleName = "Alumno"
                         }
                         
