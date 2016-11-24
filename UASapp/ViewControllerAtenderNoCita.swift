@@ -68,22 +68,30 @@ class ViewControllerAtenderNoCita: UIViewController, UIPickerViewDelegate, UIPic
         let alumnoX1: alumno = alumno.init(alumno: "Seleccione", codigo: -1)
         self.alumnos.append(alumnoX1)
         
-        HTTPHelper.get(route: "getAppointInformationTuto/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        HTTPHelper.get(route: "obtenerInformacionNoCita/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
             
             
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let tjd = dataUnwrapped as! [AnyObject]
-                //let x = tjd[0] as! [String:AnyObject]
+                let tj = tjd[0] as! [String:AnyObject]
                 
                 
-                for c in tjd {
+                
+                let alu = tj["studentInfo"] as! [AnyObject]
+                for c in alu {
                     
                     let alumn: String?
                     let codigo: Int?
+                    let nom: String?
+                    let apP: String?
+                    let apM: String?
                     
-                    alumn = c["fullName"] as! String?
+                    nom = c["nombre"] as! String?
+                    apP = c["ape_paterno"] as! String?
+                    apM = c["ape_materno"] as! String?
+                    alumn = apP! + " " + apM! + " " + nom!
                     codigo = c["id"] as! Int?
                     
                     print("Alumno de este tutor")
@@ -93,6 +101,7 @@ class ViewControllerAtenderNoCita: UIViewController, UIPickerViewDelegate, UIPic
                     
                     self.alumnos.append(alumnoO)
                 }
+                
                 
                 self.PVAlumno.reloadAllComponents()
             }
@@ -225,11 +234,11 @@ class ViewControllerAtenderNoCita: UIViewController, UIPickerViewDelegate, UIPic
         let actionSi = UIAlertAction(title: "Si", style: .default, handler: { action in
             //Aca se invoca el api de cancelar cita
             
-            let c = ((self.parent as! NavigationControllerC).citEsc)
+            //let c = ((self.parent as! NavigationControllerC).citEsc)
             
             
-            let json = NSMutableDictionary()
-            json.setValue(c?.citaId, forKey: "idUser")
+            //let json = NSMutableDictionary()
+            //json.setValue(c?.citaId, forKey: "idUser")
             
             do{
                 let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)

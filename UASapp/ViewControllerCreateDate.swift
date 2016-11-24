@@ -47,7 +47,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         //ACA SE CONFIGURA EL TIME PICKER CON LA DURACION DE LAS CITAS DE LA ESPECIALIDAD
         
         //SE DEBE JALAR DE API, PERO UN NO EXISTE GG GERARDO
-        intervaloDuracionCita = 10
+        intervaloDuracionCita = 10 //minutos
         
         if (intervaloDuracionCita == 0){
             intervaloDuracionCita = 1   //Si del api viene cero, seteamos 1
@@ -56,7 +56,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         }
         //ACA SE CONFIGURA EL PLAZO MAXIMO DE TIEMPO QUE SE PUEDE RESERVAR UNA CITA CON ANTICIPACION
         
-        intervaloAnticipacion = 5184000
+        intervaloAnticipacion = 5184000 //segundos
         
         
         dateR.maximumDate = Date(timeIntervalSinceNow: TimeInterval(intervaloAnticipacion))
@@ -93,36 +93,120 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         let alumnoX1: alumno = alumno.init(alumno: "Seleccione", codigo: -1)
         self.alumA.append(alumnoX1)
         
-        HTTPHelper.get(route: "getAppointInformationTuto/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
-            
-            
-            if(error == nil){
-                //obtener data
-                let dataUnwrapped = data.unsafelyUnwrapped
-                let tjd = dataUnwrapped as! [AnyObject]
-                //let x = tjd[0] as! [String:AnyObject]
+        if ( rol == "T"){
+            HTTPHelper.get(route: "obtenerInformacionNoCita/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
                 
                 
-                for c in tjd {
+                if(error == nil){
+                    //obtener data
+                    let dataUnwrapped = data.unsafelyUnwrapped
+                    let tjd = dataUnwrapped as! [AnyObject]
+                    let tj = tjd[0] as! [String:AnyObject]
                     
-                    let alumn: String?
-                    let codigo: Int?
+                    let Ic: String?
+                    let Ia: String?
+                    print(tj["numberDays"])
+                    if ((tj["numberDays"]) != nil){
+                        Ia = (tj["numberDays"] as! String?)!
+                        print(tj["numberDays"])
+                        //Ia = Ia * 24 * 60 * 60
+                        self.intervaloAnticipacion = Int(Ia!)! * 24 * 60 * 60
+                    } else {
+                        self.intervaloAnticipacion = 5184000
+                    }
                     
-                    alumn = c["fullName"] as! String?
-                    codigo = c["id"] as! Int?
+                    if ((tj["duracionCita"]) != nil){
+                        print(tj["duracionCita"])
+                        Ic = (tj["duracionCita"] as! String?)!
+                        self.intervaloDuracionCita = Int(Ic!)!
+                    } else {
+                        self.intervaloDuracionCita = 10
+                    }
                     
-                    print("Alumno de este tutor")
-                    print(alumn)
+                    let alu = tj["studentInfo"] as! [AnyObject]
+                    for c in alu {
+                        
+                        let alumn: String?
+                        let codigo: Int?
+                        let nom: String?
+                        let apP: String?
+                        let apM: String?
+                        
+                        nom = c["nombre"] as! String?
+                        apP = c["ape_paterno"] as! String?
+                        apM = c["ape_materno"] as! String?
+                        alumn = apP! + " " + apM! + " " + nom!
+                        codigo = c["id"] as! Int?
+                        
+                        print("Alumno de este tutor")
+                        print(alumn)
+                        
+                        let alumnoO: alumno = alumno.init(alumno: alumn, codigo: codigo)
+                        
+                        self.alumA.append(alumnoO)
+                    }
                     
-                    let alumnoO: alumno = alumno.init(alumno: alumn, codigo: codigo)
-                    
-                    self.alumA.append(alumnoO)
+                    self.StudentList.reloadAllComponents()
                 }
-                
-                self.StudentList.reloadAllComponents()
-            }
-        })
+            })
+        }
         
+        if ( rol == "A"){
+            HTTPHelper.get(route: "getTutorInfo/" + idUsuario + "?token=" + token, authenticated: true, completion:{ (error,data) in
+                
+                
+                if(error == nil){
+                    //obtener data
+                    let dataUnwrapped = data.unsafelyUnwrapped
+                    let tjd = dataUnwrapped as! [AnyObject]
+                    let tj = tjd[0] as! [String:AnyObject]
+                    
+                    let Ic: String?
+                    let Ia: String?
+                    print(tj["numberDays"])
+                    if ((tj["numberDays"]) != nil){
+                        Ia = (tj["numberDays"] as! String?)!
+                        print(tj["numberDays"])
+                        //Ia = Ia * 24 * 60 * 60
+                        self.intervaloAnticipacion = Int(Ia!)! * 24 * 60 * 60
+                    } else {
+                        self.intervaloAnticipacion = 5184000
+                    }
+                    
+                    if ((tj["duracionCita"]) != nil){
+                        print(tj["duracionCita"])
+                        Ic = (tj["duracionCita"] as! String?)!
+                        self.intervaloDuracionCita = Int(Ic!)!
+                    } else {
+                        self.intervaloDuracionCita = 10
+                    }
+                    //self.dateR.reloadInputViews()
+                    //self.timeR.reloadInputViews()
+                    
+                    //self.intervaloAnticipacion = (tj["anticipacionCita"] as! Int?)!
+                    //self.intervaloDuracionCita = (tj["duracionCita"] as! Int?)!
+                    /*
+                    for c in tjd {
+                        
+                        let alumn: String?
+                        let codigo: Int?
+                        
+                        alumn = c["fullName"] as! String?
+                        codigo = c["id"] as! Int?
+                        
+                        print("Alumno de este tutor")
+                        print(alumn)
+                        
+                        let alumnoO: alumno = alumno.init(alumno: alumn, codigo: codigo)
+                        
+                        self.alumA.append(alumnoO)
+                    }
+                    
+                    self.StudentList.reloadAllComponents()
+                    */
+                }
+            })
+        }
  
         
         let temaX1: tema = tema.init(id: -1, nombre: "Seleccione")
@@ -163,7 +247,17 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         
         
         
+        if (intervaloDuracionCita == 0){
+            intervaloDuracionCita = 1   //Si del api viene cero, seteamos 1
+        } else {
+            timeR.minuteInterval = intervaloDuracionCita
+        }
+        //ACA SE CONFIGURA EL PLAZO MAXIMO DE TIEMPO QUE SE PUEDE RESERVAR UNA CITA CON ANTICIPACION
         
+        //intervaloAnticipacion = 5184000 //segundos
+        
+        
+        dateR.maximumDate = Date(timeIntervalSinceNow: TimeInterval(intervaloAnticipacion))
         
         
         DateThemesList.delegate=self
