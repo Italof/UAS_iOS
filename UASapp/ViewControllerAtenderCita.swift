@@ -48,6 +48,7 @@ class ViewControllerAtenderCita: UIViewController {
     
     @IBAction func atenderC(_ sender: AnyObject) {
         let c = ((self.parent as! NavigationControllerC).citEsc)
+        /*
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss" //"HH:mm:ss" //"yyyy-MM-dd HH:mm:ss"
         let DiaHoraIS = (c?.fechaI)! + " " + (c?.horaI!)! + ":00"
@@ -77,9 +78,46 @@ class ViewControllerAtenderCita: UIViewController {
             
             self.present(errorAlert, animated: true, completion: nil)
             return
-        } else {
-            
+        }
+        */
             ///Llamar al API de registro de atencion de cita
+            
+            let json = NSMutableDictionary()
+            json.setValue(c?.citaId, forKey: "idUser")
+            json.setValue(TFObservaciones.text, forKey: "fecha")
+            do{
+                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                //print(jsonData)
+                let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                //print(decoded)
+                let postData = decoded as! [String:AnyObject]
+                print("Este es post data")
+                print(postData)
+                let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+                
+                HTTPHelper.post(route: "atenderCita?token=" + token, authenticated: false, body: postData, completion: { (error, responseData) in
+                    if error == nil {
+                        
+                        let alertSuccess : UIAlertController = UIAlertController.init(title: "Se atendió la cita!", message: "Se realizó exitosamente el regitro de atención de cita", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                            self.navigationController?.popViewController(animated: true)
+                            //self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
+                        })
+                        alertSuccess.addAction(action)
+                        self.present(alertSuccess,animated: false, completion:nil)
+                        
+                        
+                        
+                    } else {
+                        print("REQUESTED RESPONSE: \(responseData)")
+                    }
+                })
+                
+            } catch let err as NSError{
+                print("JSONObjet ERROR: \(err)")
+            }
+            /*
+            
             let errorAlert = UIAlertController(title: "Se atendió la cita!", message: "Se realizó exitosamente el regitro de atención de cita", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK",
                                        style: .default,
@@ -88,7 +126,8 @@ class ViewControllerAtenderCita: UIViewController {
             
             self.present(errorAlert, animated: true, completion: nil)
             return
-        }
+            */
+        
     }
 
     /*
