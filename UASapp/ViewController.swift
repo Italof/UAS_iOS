@@ -107,7 +107,8 @@ class ViewController: UIViewController {
                         // Professor
                         if  (role == 2 || role == 1) {
                             let professor = user["professor"] as! [String:AnyObject]
-                            specialty = Int(professor["IdEspecialidad"] as! String)!
+                            //specialty = Int(professor["IdEspecialidad"] as! String)!
+                            specialty = 1
                             name = professor["Nombre"] as? String
                             lastname = (professor["ApellidoPaterno"] as? String)! + " " + (professor["ApellidoMaterno"] as? String)!
                             email = professor["Correo"] as? String

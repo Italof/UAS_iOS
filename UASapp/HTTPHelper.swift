@@ -9,6 +9,7 @@
 import Foundation
 
 let baseUrl = "http://52.89.227.55/api/"
+
 class HTTPHelper {
   
   class func request (route: String, method: String, body: [String:AnyObject]?, authenticated: Bool, completion: ((_ error: NSError?, _ data: Any?) -> ())?) {

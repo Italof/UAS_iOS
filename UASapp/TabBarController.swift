@@ -24,7 +24,7 @@ class TabBarController: UITabBarController {
             self.viewControllers?.remove(at: 0)
             if true {
                 // Borra psp
-                self.viewControllers?.remove(at: 2)
+               self.viewControllers?.remove(at: 2)
             }
         case 1:
             // Coordinador
@@ -36,15 +36,15 @@ class TabBarController: UITabBarController {
             }
             else {
                 // Borra psp
-                self.viewControllers?.remove(at: 3)
+                   self.viewControllers?.remove(at: 3)
             }
         case 2:
             // Profesor
             let roleTuto = userDefaults.integer(forKey: "TUTORIA")
             if roleTuto != 1 {
                 // Borra tutoria y psp
-                self.viewControllers?.remove(at: 2)
-                self.viewControllers?.remove(at: 2)
+               self.viewControllers?.remove(at: 2)
+               self.viewControllers?.remove(at: 2)
             }
             else {
                 // Borra psp
