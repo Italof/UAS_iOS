@@ -18,12 +18,8 @@ class AportesByCourseController: UITableViewController {
         
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
-        let facultyId: Int = UserDefaults.standard.object(forKey: "SPECIALTY") as! Int
         let semesterId: Int = UserDefaults.standard.object(forKey: "SEMESTER") as! Int
         let courseId: Int = UserDefaults.standard.object(forKey: "COURSE") as! Int
-        /*print("http://52.89.227.55/api/faculties/"+String(facultyId)+"/evaluated_courses/"+String(courseId)+"/semesters/" + String(semesterId) + "?token=" + token)
-        let url = NSURL (string: "http://52.89.227.55/api/faculties/"+String(facultyId)+"/evaluated_courses/"+String(courseId)+"/semesters/" + /*String(semesterId)*/"1" + "?token=" + token);
-        let requestObj = NSURLRequest(url: url! as URL);*/
         
         // Do any additional setup after loading the view.
 
@@ -35,7 +31,7 @@ class AportesByCourseController: UITableViewController {
             print("error de conexion")
         }
                 
-        HTTPHelper.get(route: "faculties/course/78/2/contributions" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        HTTPHelper.get(route: "faculties/course/"+String(courseId)+"/"+String(semesterId)+"/contributions" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -50,13 +46,13 @@ class AportesByCourseController: UITableViewController {
                     
                     let studentOutcome = StudentOutcome.init(id: id, identifier: identificador, name: descripcion, status:status!)
                     self.studentOutcomes.append(studentOutcome!)
-                    self.do_table_refresh()
                 }
             }
             else {
                 //Mostrar error y regresar al menù principal
                 
             }
+            self.do_table_refresh()
         })
         
 
@@ -83,6 +79,8 @@ class AportesByCourseController: UITableViewController {
         
         
         let outcome = studentOutcomes[indexPath.row] as StudentOutcome
+        
+        cell.textLabel?.font = cell.textLabel?.font.withSize(14)
         cell.textLabel?.text = "\(outcome.identifier) - \(outcome.name)"
                
         
@@ -91,7 +89,20 @@ class AportesByCourseController: UITableViewController {
     
     func do_table_refresh()
     {
-        self.tableView.reloadData()
+        if(studentOutcomes.isEmpty){
+            let errorAlert = UIAlertController(title: "Sin resultados",
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            errorAlert.message = "No se han encontrado resultados estudiantiles asociados a este horario"
+            self.present(errorAlert, animated: true, completion: nil)
+        }
+        else{
+            self.tableView.reloadData()
+        }
         
     }
     

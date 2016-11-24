@@ -53,13 +53,13 @@ class MyFacultiesViewController: UIViewController, UITableViewDataSource, UITabl
                     }
                     let faculty : Faculty = Faculty.init(id: id,name:name, code:code,coordinator: coord,description: description)
                     self.faculties.append(faculty)
-                    self.do_table_refresh()
                 }
             }
             else {
                 //Mostrar error y regresar al menù principal
                 
             }
+            self.do_table_refresh()
         })
 
     }

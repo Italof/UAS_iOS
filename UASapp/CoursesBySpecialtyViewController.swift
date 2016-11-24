@@ -35,6 +35,7 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
         //print("ID user = " + idUser)
         print("token = " + token)
         let facultyId: Int =  UserDefaults.standard.object( forKey: "SPECIALTY") as! Int
+        var firstLevel = ""
         let semesterId: Int = UserDefaults.standard.object(forKey: "SEMESTER") as! Int
         HTTPHelper.get(route: "faculties/"+String(facultyId)+"/semester/"+String(semesterId)+"/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
@@ -43,7 +44,6 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
                 let arrayCourses = dataUnwrapped as? [Any]
                 self.coursesTotal = []
                 var primero = true
-                var firstLevel = ""
                 for course in arrayCourses!{
                     let cr = course as! [String:AnyObject]
                     let id = cr["IdCurso"] as! Int
@@ -67,13 +67,12 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
                     }
                     
                 }
-                print("el primer nivel es " + firstLevel)
-                self.do_table_refresh(nivel: firstLevel)
             }
             else {
                 //Mostrar error y regresar al menù principal
                 
             }
+            self.do_table_refresh(nivel: firstLevel)
         })
     }
 
@@ -128,16 +127,30 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
     
     func do_table_refresh(nivel : String)
     {
-        self.courses = []
-        if (nivel != ""){
-            for curso in coursesTotal{
-                if(curso.nivAcademico == nivel){
-                    courses.append(curso)
-                }
-                
-            }
+        if(coursesTotal.isEmpty){
+            let errorAlert = UIAlertController(title: "Sin resultados",
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            errorAlert.message = "No se han encontrado cursos registrados para el semestre"
+            self.present(errorAlert, animated: true, completion: nil)
         }
-        self.tableView.reloadData()
+        else{
+            self.courses = []
+            if (nivel != ""){
+                for curso in coursesTotal{
+                    if(curso.nivAcademico == nivel){
+                        courses.append(curso)
+                    }
+                    
+                }
+            }
+            self.tableView.reloadData()
+        }
+        
     }
     
     /*

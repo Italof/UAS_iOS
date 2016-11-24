@@ -34,16 +34,20 @@ class SemesterViewController: UITableViewController {
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
-                let period = dataUnwrapped as? [String:AnyObject]
-                let arraySemesters = period?["semesters"] as? [Any]
-                self.semesters = []
                 
-                for semester in arraySemesters!{
-                    let sm = semester as! [String:AnyObject]
-                    let id = sm["IdCicloAcademico"] as! Int
-                    let descripcion = sm["Descripcion"] as! String
-                    let semester : Semester = Semester.init(id:id, descripcion:descripcion)
-                    self.semesters.append(semester)
+                let period = dataUnwrapped as? [String:AnyObject]
+                if(period != nil){
+                    
+                    let arraySemesters = period?["semesters"] as? [Any]
+                    self.semesters = []
+                    
+                    for semester in arraySemesters!{
+                        let sm = semester as! [String:AnyObject]
+                        let id = sm["IdCicloAcademico"] as! Int
+                        let descripcion = sm["Descripcion"] as! String
+                        let semester : Semester = Semester.init(id:id, descripcion:descripcion)
+                        self.semesters.append(semester)
+                    }
                     self.do_table_refresh()
                 }
             }
@@ -51,6 +55,7 @@ class SemesterViewController: UITableViewController {
                 //Mostrar error y regresar al men˘ principal
                 
             }
+            self.do_table_refresh()
         })
         
     }
@@ -86,7 +91,20 @@ class SemesterViewController: UITableViewController {
     
     func do_table_refresh()
     {
-        self.tableView.reloadData()
+        if(semesters.isEmpty){
+            let errorAlert = UIAlertController(title: "Sin resultados",
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            errorAlert.message = "No se han encontrado semestres para el periodo"
+            self.present(errorAlert, animated: true, completion: nil)
+        }
+        else{
+            self.tableView.reloadData()
+        }
         
     }
     

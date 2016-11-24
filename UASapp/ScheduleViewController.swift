@@ -9,11 +9,11 @@
 import UIKit
 
 class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
+    let userDefault = UserDefaults.standard
     @IBOutlet var tableView: UITableView!
-    var codes = ["INF392","INF290","INF291"]
-    var courses = ["Proyecto de tesis 2", "Desarrollo de programas 2", "Ingenierìa de software"]
     var schedules: [Schedule] = []
+    var evidences: [Evidence] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
                     let cr = course as! [String:AnyObject]
                     let idEsp = cr["IdEspecialidad"] as! String
                     let course = cr["Nombre"] as! String
+                    let idCurso = cr["IdCurso"] as! Int
                     let nivAcademico = cr["NivelAcademico"] as! String
                     let codeCourse = cr["Codigo"] as! String
                     let arraySchedules = cr["schedules"] as? [AnyObject]
@@ -48,9 +49,24 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
                         let sc = schedule as! [String:AnyObject]
                         let id = sc["IdHorario"] as! Int
                         let code = sc["Codigo"] as! String
-                        let schedule: Schedule = Schedule.init(id:id, code:code,idEspecialidad:idEsp, course:course,codeCourse:codeCourse,idProfesor:course, nivAcademico: nivAcademico)
+                        
+                        self.evidences = []
+                        let evidencesArray = sc["course_evidences"] as? [Any]
+                        for evidence in evidencesArray!{
+                            let ev = evidence as! [String:AnyObject]
+                            let idEvidence = ev["IdEvidenciaCurso"] as! Int
+                            let idArchivo = ev["IdArchivoEntrada"] as! String?
+                            let idSchedule = ev["IdHorario"] as! String?
+                            let fileName = ev["file_name"] as! String?
+                            let fileurl = ev["file_url"] as! String?
+                            
+                            let evidence : Evidence = Evidence.init(id: idEvidence, name: fileName, url: fileurl, idSchedule: idSchedule, idArchivo: idArchivo)
+                            self.evidences.append(evidence)
+                        }
+
+                        
+                        let schedule: Schedule = Schedule.init(id:id, code:code,idEspecialidad:idEsp, course:course,codeCourse:codeCourse,idProfesor:course, nivAcademico: nivAcademico, idCurso: idCurso, evidences: self.evidences)
                         self.schedules.append(schedule)
-                        self.do_table_refresh()
                     }
                 }
             }
@@ -58,6 +74,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
                 //Mostrar error y regresar al menù principal
                 
             }
+            self.do_table_refresh()
         })
         
     }
@@ -87,7 +104,8 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let schedule = schedules[indexPath.row] as Schedule
         ((parent as! UASNavViewController).schedule) = schedule
-        //userDefault.set(schedule.id, forKey: "SCHEDULE")
+        userDefault.set(schedule.id, forKey: "SCHEDULE")
+        userDefault.set(schedule.idCurso, forKey: "COURSE")
     }
     
     
@@ -103,7 +121,20 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func do_table_refresh()
     {
-        self.tableView.reloadData()
+        if(schedules.isEmpty){
+            let errorAlert = UIAlertController(title: "Sin resultados",
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            errorAlert.message = "No se han encontrado horarios"
+            self.present(errorAlert, animated: true, completion: nil)
+        }
+        else{
+            self.tableView.reloadData()
+        }
         
     }
 

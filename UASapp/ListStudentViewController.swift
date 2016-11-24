@@ -9,7 +9,7 @@
 import UIKit
 
 class ListStudentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+    //VIEW QUE MUESTRA LAS NOTAS DE CADA CRITERIO DE CADA ALUMNOXHORARIO
     
     @IBOutlet var lblCode: UILabel!
     @IBOutlet var lblStudent: UILabel!
@@ -35,9 +35,12 @@ class ListStudentViewController: UIViewController, UITableViewDataSource, UITabl
         }
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         let idStudent: Int =  UserDefaults.standard.object( forKey: "STUDENT") as! Int
+        let idCourse: Int =  UserDefaults.standard.object( forKey: "COURSE") as! Int
+        let idSchedule: Int =  UserDefaults.standard.object( forKey: "SCHEDULE") as! Int
+        let idSemester: Int =  UserDefaults.standard.object( forKey: "SEMESTER") as! Int
         
         print("token = " + token)
-        HTTPHelper.get(route: "faculties/effort_table/cycle/1/course/1/schedule/1/student/" + String(idStudent) + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        HTTPHelper.get(route: "faculties/effort_table/cycle/"+String(idSemester)+"/course/"+String(idCourse)+"/schedule/"+String(idSchedule)+"/student/" + String(idStudent) + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -55,15 +58,16 @@ class ListStudentViewController: UIViewController, UITableViewDataSource, UITabl
                     
                     let criterio : GradeCriterio = GradeCriterio.init(id:id, idCriterio: idCriterio, idAlumno: idAlumno, grade: grade, criterio: name, idAspecto: idAspecto)
                     self.criterios.append(criterio)
-                    self.do_table_refresh()
                 }
+                
             }
             else {
                 //Mostrar error y regresar al menù principal
                 
             }
+            self.do_table_refresh()
         })
-
+        
         
     }
 
@@ -86,7 +90,20 @@ class ListStudentViewController: UIViewController, UITableViewDataSource, UITabl
     
     func do_table_refresh()
     {
-        self.tableView.reloadData()
+        if(criterios.isEmpty){
+            let errorAlert = UIAlertController(title: "Sin resultados",
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            errorAlert.message = "No se han encontrado criterios asociados del alumno en este horario"
+            self.present(errorAlert, animated: true, completion: nil)
+        }
+        else{
+            self.tableView.reloadData()
+        }
         
     }
     

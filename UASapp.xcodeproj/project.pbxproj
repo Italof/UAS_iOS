@@ -80,6 +80,7 @@
 		12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */; };
 		12DF4D211DCADD8700E59AD0 /* InvestigatorEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */; };
 		12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */; };
+		12FFA6C51DE66B9400BEB1E6 /* Evidence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FFA6C41DE66B9400BEB1E6 /* Evidence.swift */; };
 		25720B561DD9CE12007DE688 /* Grupos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B551DD9CE12007DE688 /* Grupos.swift */; };
 		25720B581DD9CE28007DE688 /* Fases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B571DD9CE28007DE688 /* Fases.swift */; };
 		25720B5A1DD9CE42007DE688 /* PspDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25720B591DD9CE42007DE688 /* PspDocuments.swift */; };
@@ -220,6 +221,7 @@
 		12DF4D1E1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorDetailViewController.swift; sourceTree = "<group>"; };
 		12DF4D201DCADD8700E59AD0 /* InvestigatorEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigatorEditViewController.swift; sourceTree = "<group>"; };
 		12E3584E1DD1376F008005B1 /* FilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableViewController.swift; sourceTree = "<group>"; };
+		12FFA6C41DE66B9400BEB1E6 /* Evidence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Evidence.swift; sourceTree = "<group>"; };
 		25720B551DD9CE12007DE688 /* Grupos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grupos.swift; sourceTree = "<group>"; };
 		25720B571DD9CE28007DE688 /* Fases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fases.swift; sourceTree = "<group>"; };
 		25720B591DD9CE42007DE688 /* PspDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PspDocuments.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				969D91F01DD37F0A00D0456B /* Criterion.swift */,
 				12C2AB1D1DE3D04300514C3B /* Student.swift */,
 				12C2AB1F1DE3DA8600514C3B /* GradeCriterio.swift */,
+				12FFA6C41DE66B9400BEB1E6 /* Evidence.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -802,6 +805,7 @@
 				25720B601DD9CE4F007DE688 /* PspInscription.swift in Sources */,
 				126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */,
 				969D91F31DD389FA00D0456B /* CustomCriterionCell.swift in Sources */,
+				12FFA6C51DE66B9400BEB1E6 /* Evidence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

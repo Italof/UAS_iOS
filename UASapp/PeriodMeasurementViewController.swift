@@ -51,19 +51,16 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
                     let nivCriterio = config["CantNivelCriterio"] as! String
                     let period : Period = Period.init(id: id,idEspecialidad:idEsp, vigente: vigente,cycleStart:cycleStartName,cycleEnd: cycleEndName,aceptacion:aceptacion, nivEsperado:nivEsperado, nivCriterio:nivCriterio)
                     self.periods.append(period)
-                    self.do_table_refresh()
                 }
             }
             else {
                 //Mostrar error y regresar al menù principal
                 
             }
+            self.do_table_refresh()
         })
         
-        /*DispatchQueue.main.async {
-            self.loadData()
-            return
-        }*/
+        
     }
 
     /*func loadData() {
@@ -108,7 +105,20 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
 
     func do_table_refresh()
     {
-        self.tableView.reloadData()
+        if(periods.isEmpty){
+            let errorAlert = UIAlertController(title: "Sin resultados",
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            errorAlert.message = "No se han encontrado periodos registrados para la especialidad"
+            self.present(errorAlert, animated: true, completion: nil)
+        }
+        else{
+            self.tableView.reloadData()
+        }
         
     }
     /*
