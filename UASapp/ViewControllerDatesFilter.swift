@@ -35,6 +35,9 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
         }
         textoAlumno.text = ""
         
+        
+        
+        
         //SE ELABORA EL LISTADO DE LOS ESTADOS DE LAS CITAS
         
         for d in ((self.parent as! NavigationControllerC).citasOb)! {

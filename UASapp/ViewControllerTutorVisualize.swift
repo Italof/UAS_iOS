@@ -307,7 +307,14 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
                 self.labelAnexo.isHidden = true
                 self.labelHorario.isHidden = true
                 
+                self.tableViewHorario.isHidden = true
                 
+                self.tutorCode.isHidden = true
+                self.tutorName.isHidden = true
+                self.tutorEmail.isHidden = true
+                self.tutorPhoneNumber.isHidden = true
+                self.tutorOffice.isHidden = true
+                self.tutorAnexo.isHidden = true
                 
                 
                 //Se envia el mensaje de error
