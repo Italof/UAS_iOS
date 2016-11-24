@@ -8,15 +8,12 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
-
+class ScheduleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    let userDefault = UserDefaults.standard
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var CyclePicker: UIPickerView!
-    var codes = ["INF392","INF290","INF291"]
-    var courses = ["Proyecto de tesis 2", "Desarrollo de programas 2", "Ingenierìa de software"]
-    //var schedules = ["H1001","H1002","H0801"]
-    var cycles = ["2015-1","2015-2","2016-1","2016-2"]
     var schedules: [Schedule] = []
+    var evidences: [Evidence] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,33 +37,44 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayCourses = dataUnwrapped as? [Any]
                 self.schedules = []
-                for arrayCourse2 in arrayCourses!{
-                    let arrayCourses2 = arrayCourse2 as? [Any]
-                    for course in arrayCourses2!{
-                        let cr = course as! [String:AnyObject]
-                        let idEsp = cr["IdEspecialidad"] as! String
-                        let course = cr["Nombre"] as! String
-                        let nivAcademico = cr["NivelAcademico"] as! String
-                        let codeCourse = cr["Codigo"] as! String
+                for course in arrayCourses!{
+                    let cr = course as! [String:AnyObject]
+                    let idEsp = cr["IdEspecialidad"] as! String
+                    let course = cr["Nombre"] as! String
+                    let idCurso = cr["IdCurso"] as! Int
+                    let nivAcademico = cr["NivelAcademico"] as! String
+                    let codeCourse = cr["Codigo"] as! String
+                    let arraySchedules = cr["schedules"] as? [AnyObject]
+                    for schedule in arraySchedules!{
+                        let sc = schedule as! [String:AnyObject]
+                        let id = sc["IdHorario"] as! Int
+                        let code = sc["Codigo"] as! String
                         
-                        let arraySchedules = cr["schedules"] as? [AnyObject]
-                        for schedule in arraySchedules!{
-                            let sc = schedule as! [String:AnyObject]
-                            let code = sc["Codigo"] as! String
-                            let schedule: Schedule = Schedule.init(id:0, code:code,idEspecialidad:idEsp, course:course,codeCourse:codeCourse,idProfesor:course, nivAcademico: nivAcademico)
-                            self.schedules.append(schedule)
-                            self.do_table_refresh()
+                        self.evidences = []
+                        let evidencesArray = sc["course_evidences"] as? [Any]
+                        for evidence in evidencesArray!{
+                            let ev = evidence as! [String:AnyObject]
+                            let idEvidence = ev["IdEvidenciaCurso"] as! Int
+                            let idArchivo = ev["IdArchivoEntrada"] as! String?
+                            let idSchedule = ev["IdHorario"] as! String?
+                            let fileName = ev["file_name"] as! String?
+                            let fileurl = ev["file_url"] as! String?
                             
+                            let evidence : Evidence = Evidence.init(id: idEvidence, name: fileName, url: fileurl, idSchedule: idSchedule, idArchivo: idArchivo)
+                            self.evidences.append(evidence)
                         }
+
+                        
+                        let schedule: Schedule = Schedule.init(id:id, code:code,idEspecialidad:idEsp, course:course,codeCourse:codeCourse,idProfesor:course, nivAcademico: nivAcademico, idCurso: idCurso, evidences: self.evidences)
+                        self.schedules.append(schedule)
                     }
-                    
                 }
-                
             }
             else {
                 //Mostrar error y regresar al menù principal
                 
             }
+            self.do_table_refresh()
         })
         
     }
@@ -93,13 +101,13 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return cycles[row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let schedule = schedules[indexPath.row] as Schedule
+        ((parent as! UASNavViewController).schedule) = schedule
+        userDefault.set(schedule.id, forKey: "SCHEDULE")
+        userDefault.set(schedule.idCurso, forKey: "COURSE")
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return cycles.count
-    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -113,7 +121,20 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func do_table_refresh()
     {
-        self.tableView.reloadData()
+        if(schedules.isEmpty){
+            let errorAlert = UIAlertController(title: "Sin resultados",
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            errorAlert.message = "No se han encontrado horarios"
+            self.present(errorAlert, animated: true, completion: nil)
+        }
+        else{
+            self.tableView.reloadData()
+        }
         
     }
 

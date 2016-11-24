@@ -15,8 +15,10 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var lblSpecialty: UILabel!
     @IBOutlet weak var lblProfessor: UILabel!
     @IBOutlet weak var lblCourse: UILabel!
+    @IBOutlet var lblNoSchedules: UILabel!
     @IBOutlet var tableView: UITableView!
     var schedules: [Schedule] = []
+    var evidences: [Evidence] = []
     
     let userDefault = UserDefaults.standard
     override func viewDidLoad() {
@@ -28,7 +30,7 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
         lblCourse.text = (course?.code)! + " - " + (course?.name)!
         // Do any additional setup after loading the view.
         
-        userDefault.set(course?.id, forKey: "COURSE")
+        //userDefault.set(course?.id, forKey: "COURSE")
         
         if AskConectivity.isInternetAvailable(){
             print("conectado")
@@ -37,8 +39,12 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
             print("error de conexion")
         }
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        let idCurso: Int =  UserDefaults.standard.object( forKey: "COURSE") as! Int
+        let semesterId: Int =  UserDefaults.standard.object( forKey: "SEMESTER") as! Int
         
-        HTTPHelper.get(route: "faculties/course/47/cycle/1" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        let ruta = String(idCurso) + "/cycle/" + String(semesterId)
+        
+        HTTPHelper.get(route: "faculties/course/"+ruta+"?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -72,15 +78,33 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
                             profesString = profString
                         }
                     }
-                    let schedule : Schedule = Schedule.init(id:id, code:code, nameProf: profesString!)
+                    
+                    self.evidences = []
+                    let evidencesArray = sc["course_evidences"] as? [Any]
+                    for evidence in evidencesArray!{
+                        let ev = evidence as! [String:AnyObject]
+                        let idEvidence = ev["IdEvidenciaCurso"] as! Int
+                        let idArchivo = ev["IdArchivoEntrada"] as! String?
+                        let idSchedule = ev["IdHorario"] as! String?
+                        let fileName = ev["file_name"] as! String?
+                        let fileurl = ev["file_url"] as! String?
+                        
+                        let evidence : Evidence = Evidence.init(id: idEvidence, name: fileName, url: fileurl, idSchedule: idSchedule, idArchivo: idArchivo)
+                        self.evidences.append(evidence)
+                    }
+                    
+                    let schedule : Schedule = Schedule.init(id:id, code:code, nameProf: profesString!, codeCourse: course?.code, nameCourse: course?.name, evidences: self.evidences)
                     self.schedules.append(schedule)
-                    self.do_table_refresh()
+                }
+                if(self.schedules.isEmpty){
+                    self.lblNoSchedules.text = "Sin horarios"
                 }
             }
             else {
                 //Mostrar error y regresar al men˘ principal
                 
             }
+            self.do_table_refresh()
         })
         
     }
@@ -105,6 +129,15 @@ class CourseViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let schedule = schedules[indexPath.row] as Schedule
+        ((parent as! UASNavViewController).schedule) = schedule
+        userDefault.set(schedule.id, forKey: "SCHEDULE")
+        
+        
+        //let idCurso: Int =  UserDefaults.standard.object( forKey: "COURSE") as! Int
+        //print ("ddff DDFDFD " + String(idCurso))
+    }
     
     func do_table_refresh()
     {

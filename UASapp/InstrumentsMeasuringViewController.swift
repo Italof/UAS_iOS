@@ -45,16 +45,16 @@ class InstrumentsMeasuringViewController: UITableViewController {
                     self.instruments.append(instrumento)
                     
                 }
-                self.do_table_refresh()
                 
             }
             else {
                 //Mostrar error y regresar al menù principal
                 
-                
             }
+            self.do_table_refresh()
             
         })
+        
     }
 
     // MARK: - Table view data source
@@ -75,13 +75,29 @@ class InstrumentsMeasuringViewController: UITableViewController {
         
         // Configure the cell...
         let instrumento = instruments[indexPath.row] as String
+        cell.textLabel?.font = cell.textLabel?.font.withSize(14)
+       
         cell.textLabel?.text = instrumento
         return cell
     }
     
     func do_table_refresh()
     {
-        self.tableView.reloadData()
+        if(instruments.isEmpty){
+            let errorAlert = UIAlertController(title: "Sin resultados",
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            errorAlert.message = "No se han encontrado instrumentos de medición para este periodo"
+            self.present(errorAlert, animated: true, completion: nil)
+        }
+        else{
+            self.tableView.reloadData()
+        }
+        
         
     }
     

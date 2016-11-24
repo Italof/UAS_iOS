@@ -11,8 +11,10 @@ import UIKit
 class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var courses: [Course] = []
-    var pickerSelected: Int?
-    var levels = ["Nivel 10", "Nivel 9", "Nivel 8","Nivel 7","Nivel 6","Nivel 5","Nivel 4","Nivel 3","Nivel 2","Nivel 1"]
+    var coursesTotal: [Course] = []
+    var pickerSelected: String?
+    var levels : [String] = []
+    let userDefault = UserDefaults.standard
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var LevelPicker: UIPickerView!
@@ -33,13 +35,15 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
         //print("ID user = " + idUser)
         print("token = " + token)
         let facultyId: Int =  UserDefaults.standard.object( forKey: "SPECIALTY") as! Int
+        var firstLevel = ""
         let semesterId: Int = UserDefaults.standard.object(forKey: "SEMESTER") as! Int
         HTTPHelper.get(route: "faculties/"+String(facultyId)+"/semester/"+String(semesterId)+"/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayCourses = dataUnwrapped as? [Any]
-                self.courses = []
+                self.coursesTotal = []
+                var primero = true
                 for course in arrayCourses!{
                     let cr = course as! [String:AnyObject]
                     let id = cr["IdCurso"] as! Int
@@ -48,14 +52,27 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
                     let code = cr["Codigo"] as! String
                     let name = cr["Nombre"] as! String
                     let course : Course = Course.init(id: id,idEspecialidad:idEsp, name: name,code:code,nivAcademico:academicLevel )
-                    self.courses.append(course)
-                    self.do_table_refresh()
+                    self.coursesTotal.append(course)
+                    
+                    //Condicion para concatenar los profes con "&"
+                    if (primero){
+                        firstLevel = academicLevel
+                        primero = false
+                    }
+                    
+                    //Para el picker del  nivel academico
+                    if(!self.levels.contains(academicLevel)){
+                        self.levels.append(academicLevel)
+                        self.do_picker_refresh()
+                    }
+                    
                 }
             }
             else {
                 //Mostrar error y regresar al menù principal
                 
             }
+            self.do_table_refresh(nivel: firstLevel)
         })
     }
 
@@ -71,10 +88,21 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
         return levels.count
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if( !(levels.isEmpty) ){
+            let nivel = levels[row] as String
+            do_table_refresh(nivel: nivel)
+        }
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
+    func do_picker_refresh()
+    {
+        self.LevelPicker.reloadAllComponents()
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,11 +121,35 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let course = courses[indexPath.row] as Course
         ((parent as! UASNavViewController).course) = course
+        userDefault.set(course.id, forKey: "COURSE")
+        
     }
     
-    func do_table_refresh()
+    func do_table_refresh(nivel : String)
     {
-        self.tableView.reloadData()
+        if(coursesTotal.isEmpty){
+            let errorAlert = UIAlertController(title: "Sin resultados",
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            errorAlert.addAction(action)
+            errorAlert.message = "No se han encontrado cursos registrados para el semestre"
+            self.present(errorAlert, animated: true, completion: nil)
+        }
+        else{
+            self.courses = []
+            if (nivel != ""){
+                for curso in coursesTotal{
+                    if(curso.nivAcademico == nivel){
+                        courses.append(curso)
+                    }
+                    
+                }
+            }
+            self.tableView.reloadData()
+        }
         
     }
     

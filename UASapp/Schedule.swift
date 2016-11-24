@@ -17,8 +17,11 @@ struct Schedule {
     var idProfesor: String?
     var nivAcademico: String?
     var nameProf: String?
+    var idCurso: Int?
+    var evidences: [Evidence] = []
+    
     //funcion inicializadora
-    init(id:Int, code:String?,idEspecialidad:String?, course:String?,codeCourse:String?, idProfesor:String?, nivAcademico: String?){
+    init(id:Int, code:String?,idEspecialidad:String?, course:String?,codeCourse:String?, idProfesor:String?, nivAcademico: String?, idCurso: Int, evidences: [Evidence]){
         self.id = id
         self.code = code
         self.idEspecialidad = idEspecialidad
@@ -26,13 +29,17 @@ struct Schedule {
         self.codeCourse = codeCourse
         self.idProfesor = idProfesor
         self.nivAcademico = nivAcademico
+        self.idCurso = idCurso
+        self.evidences = evidences
     }
     
-    init(id:Int,code:String, nameProf: String){
+    init(id:Int,code:String?, nameProf: String?, codeCourse: String?, nameCourse: String?, evidences: [Evidence]){
         self.id=id
         self.code = code
         self.nameProf = nameProf
-        
+        self.codeCourse = codeCourse
+        self.course = nameCourse
+        self.evidences = evidences
     }
     
 }

@@ -18,6 +18,10 @@ class UASNavViewController: UINavigationController {
     var faculty: Faculty?
     //Semestre
     var semester: Semester?
+    //Horario
+    var schedule: Schedule?
+    //Alumno
+    var student: Student?
     
     override func viewDidLoad() {
         super.viewDidLoad()
