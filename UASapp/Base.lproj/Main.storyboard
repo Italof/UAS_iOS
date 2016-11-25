@@ -2601,16 +2601,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Especialidad:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ni6-Wj-FkG">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lblEspec" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNl-4x-eRP">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36z-IQ-sqW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36z-IQ-sqW">
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2643,6 +2641,9 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lblDesc" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbN-My-fiN">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="QJw-5W-9jP"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2650,14 +2651,15 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 </variation>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5sv-uy-ape">
-                                <frame key="frameInset" minX="-2" minY="20" height="44" maxX="3"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Mi especialidad" id="yRD-HC-n8W"/>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lblCodigo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo9-o1-8Vh">
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lblEspec" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNl-4x-eRP">
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2671,22 +2673,23 @@
                             <constraint firstItem="2Pf-t1-6x4" firstAttribute="top" secondItem="36z-IQ-sqW" secondAttribute="bottom" constant="36" id="0qr-eS-NXY"/>
                             <constraint firstItem="Dfd-b6-OO1" firstAttribute="top" secondItem="2Pf-t1-6x4" secondAttribute="top" id="3LU-wd-IrH"/>
                             <constraint firstItem="36z-IQ-sqW" firstAttribute="top" secondItem="Ni6-Wj-FkG" secondAttribute="bottom" constant="29" id="4eX-oF-5KM"/>
+                            <constraint firstItem="2Pf-t1-6x4" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" constant="10" id="7Vo-ax-vyF"/>
+                            <constraint firstItem="Ni6-Wj-FkG" firstAttribute="top" secondItem="VRu-Xi-2AK" secondAttribute="bottom" constant="30" id="7ui-Mz-grq"/>
                             <constraint firstItem="EHl-h7-1n9" firstAttribute="top" secondItem="2Pf-t1-6x4" secondAttribute="bottom" constant="45" id="8Cz-is-eYR"/>
                             <constraint firstItem="Lo9-o1-8Vh" firstAttribute="top" secondItem="36z-IQ-sqW" secondAttribute="top" id="94v-0q-J4t"/>
-                            <constraint firstItem="36z-IQ-sqW" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" id="IUZ-lD-NpM"/>
-                            <constraint firstItem="Ni6-Wj-FkG" firstAttribute="top" secondItem="VRu-Xi-2AK" secondAttribute="bottom" constant="39" id="L4T-Pm-jCz"/>
-                            <constraint firstItem="CbN-My-fiN" firstAttribute="leading" secondItem="Lo9-o1-8Vh" secondAttribute="leading" id="Lxj-Ig-1Ad"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="CbN-My-fiN" secondAttribute="trailing" constant="10" id="BRL-fG-fv9"/>
+                            <constraint firstItem="lNl-4x-eRP" firstAttribute="top" secondItem="Ni6-Wj-FkG" secondAttribute="top" id="HZd-bw-oaE"/>
+                            <constraint firstItem="Dfd-b6-OO1" firstAttribute="leading" secondItem="lNl-4x-eRP" secondAttribute="leading" id="LHS-Ra-Es9"/>
                             <constraint firstItem="CbN-My-fiN" firstAttribute="top" secondItem="EHl-h7-1n9" secondAttribute="top" id="Ofs-Nr-2ih"/>
-                            <constraint firstItem="Ni6-Wj-FkG" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" constant="1" id="VBs-Lq-74K"/>
-                            <constraint firstItem="Dfd-b6-OO1" firstAttribute="leading" secondItem="Lo9-o1-8Vh" secondAttribute="leading" id="Vx4-k7-Z0u"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Dfd-b6-OO1" secondAttribute="trailing" constant="10" id="WbO-pq-gSp"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="CbN-My-fiN" secondAttribute="trailing" constant="10" id="Yek-SW-oAE"/>
-                            <constraint firstItem="2Pf-t1-6x4" firstAttribute="leading" secondItem="EHl-h7-1n9" secondAttribute="leading" id="bbs-Zy-wDW"/>
-                            <constraint firstItem="Ni6-Wj-FkG" firstAttribute="baseline" secondItem="lNl-4x-eRP" secondAttribute="baseline" id="cNp-Jn-8bY"/>
-                            <constraint firstItem="36z-IQ-sqW" firstAttribute="leading" secondItem="2Pf-t1-6x4" secondAttribute="leading" id="gna-nr-ZhB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lNl-4x-eRP" secondAttribute="trailing" constant="-11" id="j9t-e3-0IE"/>
-                            <constraint firstItem="Lo9-o1-8Vh" firstAttribute="leading" secondItem="36z-IQ-sqW" secondAttribute="trailing" constant="85" id="l21-r7-7Jh"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Lo9-o1-8Vh" secondAttribute="trailing" constant="10" id="mC7-uO-gXG"/>
+                            <constraint firstItem="Ni6-Wj-FkG" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" constant="10" id="RWJ-o4-5uG"/>
+                            <constraint firstItem="CbN-My-fiN" firstAttribute="leading" secondItem="lNl-4x-eRP" secondAttribute="leading" id="SxR-6A-ae5"/>
+                            <constraint firstItem="Lo9-o1-8Vh" firstAttribute="leading" secondItem="lNl-4x-eRP" secondAttribute="leading" id="UnD-FD-W8A"/>
+                            <constraint firstItem="lNl-4x-eRP" firstAttribute="leading" secondItem="Ni6-Wj-FkG" secondAttribute="trailing" constant="15" id="Vqn-Ky-eIl"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Lo9-o1-8Vh" secondAttribute="trailing" constant="10" id="ZaZ-wi-Kgj"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="lNl-4x-eRP" secondAttribute="trailing" constant="10" id="acL-OJ-EW7"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Dfd-b6-OO1" secondAttribute="trailing" constant="10" id="c3Q-LV-Kgo"/>
+                            <constraint firstItem="36z-IQ-sqW" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" constant="10" id="ipW-da-KdQ"/>
+                            <constraint firstItem="EHl-h7-1n9" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" constant="10" id="zle-pk-fMh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Mi especialidad" id="zyD-ZK-fg7">

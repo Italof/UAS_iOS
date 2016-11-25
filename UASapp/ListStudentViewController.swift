@@ -38,9 +38,19 @@ class ListStudentViewController: UIViewController, UITableViewDataSource, UITabl
         let idCourse: Int =  UserDefaults.standard.object( forKey: "COURSE") as! Int
         let idSchedule: Int =  UserDefaults.standard.object( forKey: "SCHEDULE") as! Int
         let idSemester: Int =  UserDefaults.standard.object( forKey: "SEMESTER") as! Int
+        let role: Int =  UserDefaults.standard.integer( forKey: "ROLE")
+        
+        var idCycle : Int
+        
+        if  (role == 2 || role == 1) {
+            idCycle = -1
+        }
+        else{
+            idCycle = idSemester
+        }
         
         print("token = " + token)
-        HTTPHelper.get(route: "faculties/effort_table/cycle/"+String(idSemester)+"/course/"+String(idCourse)+"/schedule/"+String(idSchedule)+"/student/" + String(idStudent) + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        HTTPHelper.get(route: "faculties/effort_table/cycle/"+String(idCycle)+"/course/"+String(idCourse)+"/schedule/"+String(idSchedule)+"/student/" + String(idStudent) + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
@@ -49,12 +59,22 @@ class ListStudentViewController: UIViewController, UITableViewDataSource, UITabl
                 for criterio in arrayCriterios!{
                     let cr = criterio as! [String:AnyObject]
                     let id = cr["IdCalificacion"] as! Int
-                    let idCriterio = cr["IdCriterio"] as! Int
-                    let idAlumno = cr["IdAlumno"] as! Int
-                    let grade = cr["Nota"] as! Int
+                    let idCriterioString = cr["IdCriterio"] as! String
+                    let idCriterio = Int(idCriterioString)!
+                    let idAlumnoString = cr["IdAlumno"] as! String
+                    let idAlumno = Int(idAlumnoString)!
+                    
+                    let gradeString = cr["Nota"] as! String
+                    let grade = Int(gradeString)!
+                    
                     let criterion = cr["criterion"] as! [String:AnyObject]
                     let name = criterion["Nombre"] as! String
-                    let idAspecto = criterion["IdAspecto"] as! Int
+                    
+                    
+                    let idAspectoString = criterion["IdAspecto"] as! String
+                    let idAspecto = Int(idAspectoString)!
+                    
+                    //let idAspecto = criterion["IdAspecto"] as! Int
                     
                     let criterio : GradeCriterio = GradeCriterio.init(id:id, idCriterio: idCriterio, idAlumno: idAlumno, grade: grade, criterio: name, idAspecto: idAspecto)
                     self.criterios.append(criterio)
