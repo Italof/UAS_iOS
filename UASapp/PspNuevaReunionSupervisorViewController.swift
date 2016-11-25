@@ -259,7 +259,7 @@ class PspNuevaReunionSupervisorViewController: UIViewController, UIPickerViewDat
             
             
             
-            let routeApi =  getGroups2 + "/?token=" + token
+            let routeApi =  getGroups2 + "?token=" + token
             var dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             var selectedDate = dateFormatter.string(from: fecha.date)

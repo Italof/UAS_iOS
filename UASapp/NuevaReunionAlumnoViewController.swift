@@ -117,6 +117,11 @@ class NuevaReunionAlumnoViewController: UIViewController, UIPickerViewDataSource
                 let validDictionary1 = data2?["Supervisor"]
                 let validDictionary2 = data2?["FreeHour"]
                
+                if validDictionary1 as? Dictionary<String, AnyObject> == nil{
+                    
+                    
+                }
+                else{
                 let created_at: String? = self.isNullString(jsonResult:validDictionary1 as! Dictionary<String, AnyObject>,identificador: "created_at")
                 let deleted_at: String? = self.isNullString(jsonResult:validDictionary1 as! Dictionary<String, AnyObject>,identificador: "deleted_at")
                 let updated_at: String? = self.isNullString(jsonResult:validDictionary1 as! Dictionary<String, AnyObject>,identificador: "updated_at")
@@ -142,6 +147,7 @@ class NuevaReunionAlumnoViewController: UIViewController, UIPickerViewDataSource
                 //self.supervisorA = Supervisor(apellido_materno:validDictionary1!["apellido_materno"]! as! String,apellido_paterno: validDictionary1!["apellido_paterno"]! as! String,codigo_trabajador: validDictionary1!["codigo_trabajador"]! as! String,correo: validDictionary1!["correo"]! as! String,direccion: validDictionary1!["direccion"]! as! String,idEspecialidad: validDictionary1!["idfaculty"]! as! String,idSupervisor: validDictionary1!["id"]! as! Int,idUsuario: validDictionary1!["iduser"]! as! String,nombres: validDictionary1!["nombres"]! as! String,telefono:validDictionary1!["telefono"]! as! String,idpspprocess:idpspprocess,created_at:created_at,updated_at:updated_at,deleted_at:deleted_at)
                 
                 self.nombreSupervisor.text=self.supervisorA!.nombres+" "+self.supervisorA!.apellido_paterno
+                }
                 
                 var arregloFreeHour = validDictionary2! as! NSArray
                 // yy

@@ -36,8 +36,9 @@ class ActionDetailViewController: UIViewController, UIDocumentInteractionControl
     }
 
     @IBAction func downloadFile() {
-        let route = "http://52.89.227.55/uploads/" + action.fileName!
+        
         if (action.fileName != nil && action.fileName != "") {
+            let route = "http://52.89.227.55/uploads/" + action.fileName!
             DownloadHelper.loadFileAsync(route: route, completion:{(path, error) in
                 let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
                 if isFileFound == true {
@@ -46,6 +47,15 @@ class ActionDetailViewController: UIViewController, UIDocumentInteractionControl
                     self.viewer?.presentPreview(animated: true)
                 }
             })
+        } else {
+            let alert = UIAlertController(title: "Lo sentimos",
+                                          message: "No se encontro ningún documento",
+                                          preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
         }
         
     }

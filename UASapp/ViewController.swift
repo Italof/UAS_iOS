@@ -11,8 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var txtUser: UITextField!
     @IBOutlet weak var txtPass: UITextField!
-  
+    
     var isLoggedIn: Int = 0
+    var overlay: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,14 @@ class ViewController: UIViewController {
     @IBAction func login() {
         let username = txtUser.text! as NSString
         let password = txtPass.text! as NSString
-
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
         
         let errorAlert = UIAlertController(title: "¡Error al Iniciar Sesión!",
                                       message: nil,
@@ -89,6 +97,8 @@ class ViewController: UIViewController {
                             errorAlert.message = "Error en el servidor, intente más tarde"
                             self.present(errorAlert, animated: true, completion: nil)
                         }
+                        LoadingOverlay.shared.hideOverlayView()
+                        self.overlay?.removeFromSuperview()
                         
                     } else {
                         print("REQUESTED RESPONSE: \(responseData)")
@@ -202,12 +212,16 @@ class ViewController: UIViewController {
                         userDefaults.set(roleName, forKey: "ROLE_NAME")
                         userDefaults.set(email, forKey: "EMAIL")
                         
+                        LoadingOverlay.shared.hideOverlayView()
+                        self.overlay?.removeFromSuperview()
                         self.performSegue(withIdentifier: "homeSegue", sender: self)
                     }
                     
                 })
                 
             } catch let err as NSError{
+                LoadingOverlay.shared.hideOverlayView()
+                overlay?.removeFromSuperview()
                 print("JSONObjet ERROR: \(err)")
             }
             

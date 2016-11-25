@@ -47,6 +47,7 @@
 		1248D5761DE8D067000CE244 /* ConsolidadoMeasuringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1248D5751DE8D067000CE244 /* ConsolidadoMeasuringViewController.swift */; };
 		1248D5781DE8DAB4000CE244 /* InvDerivableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1248D5771DE8DAB4000CE244 /* InvDerivableTableViewController.swift */; };
 		1248D57A1DE8DF75000CE244 /* Responsible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1248D5791DE8DF75000CE244 /* Responsible.swift */; };
+		1248D57C1DE8EF66000CE244 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1248D57B1DE8EF66000CE244 /* LoadingOverlay.swift */; };
 		124DD59C1DBBCB0B004D95FA /* InvGrDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124DD59B1DBBCB0B004D95FA /* InvGrDetailViewController.swift */; };
 		124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124DD59D1DBBCC6F004D95FA /* InvNavViewController.swift */; };
 		125A62031DC2BE50008BD312 /* AskConectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125A62021DC2BE50008BD312 /* AskConectivity.swift */; };
@@ -208,6 +209,7 @@
 		1248D5751DE8D067000CE244 /* ConsolidadoMeasuringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsolidadoMeasuringViewController.swift; sourceTree = "<group>"; };
 		1248D5771DE8DAB4000CE244 /* InvDerivableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvDerivableTableViewController.swift; sourceTree = "<group>"; };
 		1248D5791DE8DF75000CE244 /* Responsible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Responsible.swift; sourceTree = "<group>"; };
+		1248D57B1DE8EF66000CE244 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		124DD59B1DBBCB0B004D95FA /* InvGrDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvGrDetailViewController.swift; sourceTree = "<group>"; };
 		124DD59D1DBBCC6F004D95FA /* InvNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvNavViewController.swift; sourceTree = "<group>"; };
 		125A62021DC2BE50008BD312 /* AskConectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskConectivity.swift; sourceTree = "<group>"; };
@@ -664,6 +666,7 @@
 			children = (
 				121C14021DCBDEC000C4CDE1 /* KeyboardLayoutConstraint.swift */,
 				4616D9E01DC07E12008174B7 /* HTTPHelper.swift */,
+				1248D57B1DE8EF66000CE244 /* LoadingOverlay.swift */,
 				125A62021DC2BE50008BD312 /* AskConectivity.swift */,
 				4637A5661DCE747100D65C40 /* DownloadHelper.swift */,
 			);
@@ -811,6 +814,7 @@
 				12DF4D211DCADD8700E59AD0 /* InvestigatorEditViewController.swift in Sources */,
 				250090FE1DE7446600A22D71 /* PspDetalleFichaNotasViewController.swift in Sources */,
 				1214CECC1DBC0DE80042A3F2 /* InvProjectTableViewController.swift in Sources */,
+				1248D57C1DE8EF66000CE244 /* LoadingOverlay.swift in Sources */,
 				1237D3AF1DCA9CC80081EAF4 /* ViewControllerDatesFilter.swift in Sources */,
 				1268F2771DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift in Sources */,
 				12DABD341DCBE8ED0055F8FC /* studentClass.swift in Sources */,
