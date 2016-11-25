@@ -354,6 +354,10 @@ class ViewControllerDatesFilter: UIViewController, UIPickerViewDelegate, UIPicke
                 citSFiltrado.append(x)
             }
         }
+        
+        ((self.parent as! NavigationControllerC).citasObF) = citSFiltrado
+        ((self.parent as! NavigationControllerC).filtroCitas) = "S"
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

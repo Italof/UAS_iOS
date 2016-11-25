@@ -53,7 +53,6 @@
 		1268F2771DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F2761DBFFE4400E1CC22 /* InvPrEvDetailViewController.swift */; };
 		1268F2791DC0096100E1CC22 /* InvPrEvEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F2781DC0096100E1CC22 /* InvPrEvEditViewController.swift */; };
 		126AE5D11DD418FC00D8F268 /* AportesByCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE5D01DD418FC00D8F268 /* AportesByCourseController.swift */; };
-		126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C82FD1DCA87D400168250 /* InvDerivableTableViewController.swift */; };
 		126C83031DCA87D400168250 /* InvestigationDerivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C82FE1DCA87D400168250 /* InvestigationDerivable.swift */; };
 		126C83041DCA87D400168250 /* Investigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C82FF1DCA87D400168250 /* Investigator.swift */; };
 		126C83051DCA87D400168250 /* InvestigatorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126C83001DCA87D400168250 /* InvestigatorTableViewController.swift */; };
@@ -142,7 +141,6 @@
 		46684DE31DE6B5C300BBF129 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46684DE21DE6B5C300BBF129 /* Level.swift */; };
 		467F07851DE3C3DF00DDC6FD /* ActionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467F07841DE3C3DF00DDC6FD /* ActionsTableViewController.swift */; };
 		46CD9ADC1DE7F91D00647F2E /* Faculty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD9ADB1DE7F91D00647F2E /* Faculty.swift */; };
-		46CD9ADE1DE7F95800647F2E /* Evidence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD9ADD1DE7F95800647F2E /* Evidence.swift */; };
 		46CD9AE01DE7F99500647F2E /* CustomLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CD9ADF1DE7F99500647F2E /* CustomLevelCell.swift */; };
 		9623F2591DC39E5A00EA7B6D /* GoalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */; };
 		9623F25B1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */; };
@@ -160,6 +158,7 @@
 		967045C71DD1062600DE2E8E /* ImprovementPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967045C61DD1062600DE2E8E /* ImprovementPlan.swift */; };
 		969D91F11DD37F0A00D0456B /* Criterion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969D91F01DD37F0A00D0456B /* Criterion.swift */; };
 		969D91F31DD389FA00D0456B /* CustomCriterionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969D91F21DD389FA00D0456B /* CustomCriterionCell.swift */; };
+		96A0153C1DE896E0008B1E90 /* Evidence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A0153B1DE896E0008B1E90 /* Evidence.swift */; };
 		96A12BFA1DE77AD2001A20DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96A12BF91DE77AD2001A20DB /* Assets.xcassets */; };
 		96A12BFE1DE784BA001A20DB /* UASMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A12BFD1DE784BA001A20DB /* UASMenuTableViewController.swift */; };
 		96D51AB51DC262D80015B197 /* EducationalGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */; };
@@ -305,7 +304,6 @@
 		46684DE21DE6B5C300BBF129 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		467F07841DE3C3DF00DDC6FD /* ActionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsTableViewController.swift; sourceTree = "<group>"; };
 		46CD9ADB1DE7F91D00647F2E /* Faculty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Faculty.swift; sourceTree = "<group>"; };
-		46CD9ADD1DE7F95800647F2E /* Evidence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Evidence.swift; sourceTree = "<group>"; };
 		46CD9ADF1DE7F99500647F2E /* CustomLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLevelCell.swift; sourceTree = "<group>"; };
 		9623F2581DC39E5A00EA7B6D /* GoalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalDetailViewController.swift; sourceTree = "<group>"; };
 		9623F25A1DC3A01C00EA7B6D /* StudentOutcomesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentOutcomesViewController.swift; sourceTree = "<group>"; };
@@ -323,6 +321,7 @@
 		967045C61DD1062600DE2E8E /* ImprovementPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImprovementPlan.swift; sourceTree = "<group>"; };
 		969D91F01DD37F0A00D0456B /* Criterion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Criterion.swift; sourceTree = "<group>"; };
 		969D91F21DD389FA00D0456B /* CustomCriterionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCriterionCell.swift; sourceTree = "<group>"; };
+		96A0153B1DE896E0008B1E90 /* Evidence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Evidence.swift; sourceTree = "<group>"; };
 		96A12BF91DE77AD2001A20DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96A12BFD1DE784BA001A20DB /* UASMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UASMenuTableViewController.swift; sourceTree = "<group>"; };
 		96D51AB41DC262D80015B197 /* EducationalGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationalGoalsViewController.swift; sourceTree = "<group>"; };
@@ -390,8 +389,8 @@
 				124710311DCAD809000F9F1D /* Course.swift */,
 				1247102D1DCABD63000F9F1D /* Period.swift */,
 				46CD9ADB1DE7F91D00647F2E /* Faculty.swift */,
-				46CD9ADD1DE7F95800647F2E /* Evidence.swift */,
 				120B4E411DCE826200BE9D5E /* Schedule.swift */,
+				96A0153B1DE896E0008B1E90 /* Evidence.swift */,
 				120565981DD3F8070059C16B /* Semester.swift */,
 				46684DE21DE6B5C300BBF129 /* Level.swift */,
 				967045C61DD1062600DE2E8E /* ImprovementPlan.swift */,
@@ -788,6 +787,7 @@
 				12ADDE9B1DBACD0F00A2B7CA /* InvestigationGroup.swift in Sources */,
 				4627D46A1DE3B691006EBB92 /* Action.swift in Sources */,
 				250090F51DE7446600A22D71 /* ReunionesTableViewController.swift in Sources */,
+				120241AD1DE67A4300DF2145 /* ViewControllerAtenderNoCita.swift in Sources */,
 				96332A021DD26F8F00D4CB08 /* Aspect.swift in Sources */,
 				46292B041DB9DF7500EC8575 /* ViewController.swift in Sources */,
 				250090FA1DE7446600A22D71 /* PspStudentRecomendacionesIFTableViewController.swift in Sources */,
@@ -895,10 +895,12 @@
 				250090FB1DE7446600A22D71 /* PspNuevaReunionSupervisorViewController.swift in Sources */,
 				124DD59E1DBBCC6F004D95FA /* InvNavViewController.swift in Sources */,
 				4627D4701DE3BA8D006EBB92 /* Suggestion.swift in Sources */,
+				96A0153C1DE896E0008B1E90 /* Evidence.swift in Sources */,
 				250090D01DE7445900A22D71 /* studentxinscriptionfiles.swift in Sources */,
 				12B92A7F1DD2624B00441786 /* InvDocumentTableViewController.swift in Sources */,
 				969D91F11DD37F0A00D0456B /* Criterion.swift in Sources */,
 				250090F81DE7446600A22D71 /* DetalleDocumentoViewController.swift in Sources */,
+				12441A251DE4F7BC009CC908 /* NavigationControllerE.swift in Sources */,
 				1214CECA1DBC0C600042A3F2 /* InvestigationProject.swift in Sources */,
 				125A62031DC2BE50008BD312 /* AskConectivity.swift in Sources */,
 				1207C6501DCBD95E0004B891 /* ConsolidadoCoursesViewController.swift in Sources */,
@@ -920,10 +922,9 @@
 				12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */,
 				12B92A811DD262AA00441786 /* InvestigationDocument.swift in Sources */,
 				12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */,
-				46CD9ADE1DE7F95800647F2E /* Evidence.swift in Sources */,
 				12C2AB201DE3DA8600514C3B /* GradeCriterio.swift in Sources */,
 				250090F11DE7446600A22D71 /* DetalleReunionesAlumnoViewController.swift in Sources */,
-				126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */,
+				1204CEF81DE3DCE5003AE150 /* ViewControllerAtenderCita.swift in Sources */,
 				969D91F31DD389FA00D0456B /* CustomCriterionCell.swift in Sources */,
 				250090C91DE7445900A22D71 /* PspReunionesAlumnos.swift in Sources */,
 				12E0A06A1DDD21F200E7B078 /* ViewControllerCRCita.swift in Sources */,
