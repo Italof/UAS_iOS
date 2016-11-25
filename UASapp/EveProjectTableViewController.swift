@@ -47,14 +47,21 @@ class EveProjectTableViewController: UITableViewController {
                 self.invPrEvData = []
                 for event in arrayEvents{
                     let ev = event as! [String:AnyObject]
-                    let newEvent : InvestigationProjectEvent = InvestigationProjectEvent.init(json : ev)
+                    var newEvent : InvestigationProjectEvent = InvestigationProjectEvent.init(json : ev)
                     let dateFormaterTime = DateFormatter()
                     dateFormaterTime.dateFormat = "yyyy-MM-dd HH:mm:ss"
                     let time = dateFormaterTime.date(from: newEvent.time!)
-                    dateFormaterTime.dateFormat = "HH:mm"
-                    let timeS = dateFormaterTime.string(from: time!)
-                    let dateTime = newEvent.date! + " " + timeS
-                    let dateEv = dateFormat.date(from: dateTime)
+                    var datetime : String = ""
+                    if(time != nil){
+                        dateFormaterTime.dateFormat = "HH:mm"
+                        let timeS = dateFormaterTime.string(from: time!)
+                        datetime = newEvent.date! + " " + timeS
+                    }
+                    else{
+                        newEvent.time = newEvent.date! + " " + "00:00:00"
+                        datetime = newEvent.date! + " " + "00:00"
+                    }
+                    let dateEv = dateFormat.date(from: datetime)
                     var pos = 0
                     for eve in self.invPrEvData {
                         dateFormaterTime.dateFormat = "yyyy-MM-dd HH:mm:ss"

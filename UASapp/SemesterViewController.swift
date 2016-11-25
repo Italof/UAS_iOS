@@ -29,8 +29,8 @@ class SemesterViewController: UITableViewController {
         }
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
-        let idPeriodo: Int = UserDefaults.standard.object(forKey: "PERIOD") as! Int
-        HTTPHelper.get(route: "periods/" + String(idPeriodo) + "/actual/semesters" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        let idEspecialidad: Int = UserDefaults.standard.object(forKey: "SPECIALTY") as! Int
+        HTTPHelper.get(route: "periods/" + String(idEspecialidad) + "/actual/semesters" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped

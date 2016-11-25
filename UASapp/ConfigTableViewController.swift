@@ -48,7 +48,20 @@ class ConfigTableViewController: UITableViewController {
     func logout(){
         let appDomain = Bundle.main.bundleIdentifier
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
-        
+        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        do{
+            let filesIndirectory = try FileManager.default.contentsOfDirectory(atPath: (documentsUrl?.path)!)
+            
+            for fileName in filesIndirectory {
+                let path = (documentsUrl?.path)! + "/" + fileName
+                try FileManager.default.removeItem(atPath: path)
+            }
+            print (filesIndirectory)
+        }
+        catch let err as NSError{
+            print(err)
+        }
+
         //self.performSegue(withIdentifier: "logoutSegue", sender: self)
         //let storyboard =
         let Login = (storyboard?.instantiateViewController(withIdentifier: "login"))! as UIViewController

@@ -17,7 +17,7 @@ struct InvestigationProjectEvent{
     var place: String?
     var description: String?
     var idLeader: Int
-   var image: String?
+    var image: String?
     var type: Int
     //funcion inicializadora
     init(id:Int, name:String?, date:String?, time:String?, place: String?, description: String?, idLeader: Int, image:String?,type:Int){
@@ -42,11 +42,12 @@ struct InvestigationProjectEvent{
         let desc = json["descripcion"] as! String
         let leader = json["group"] as! [String:AnyObject]
         let idLeader = leader["id_lider"] as! String
-      let image:String?
-      if ((json["imagen"] as? String) != nil){
-         image = json["imagen"] as! String?
-      }
-      else {image = ""}
+        let image:String?
+        if ((json["imagen"] as? String) != nil){
+            image = json["imagen"] as! String?
+        }
+        else {image = ""}
+        
         let type = json["tipo"] as! String
         
         self.type = Int(type)!

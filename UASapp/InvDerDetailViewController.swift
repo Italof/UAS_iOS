@@ -235,7 +235,9 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
                         let name = inv.name! + " " + inv.lastNameP! + " " + inv.lastNameM!
                         responsibles = responsibles + "\n" + name
                     }
-                    self.respInvDer.text = responsibles
+                    if(self.respInvDer.text.characters.count == 0){
+                        self.respInvDer.text = responsibles
+                    }
                     DispatchQueue.main.async {
                         self.activityAll.stopAnimating()
                         self.activityAll.isHidden = true
