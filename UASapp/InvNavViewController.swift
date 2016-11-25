@@ -42,7 +42,8 @@ class InvNavViewController: UINavigationController {
     //profile de usuario 
     var profile: Int = Int(UserDefaults.standard.object(forKey: "ROLE") as! String)!
     //id de usuario
-    var id : Int = UserDefaults.standard.object(forKey: "USER_ID") as! Int
+    var idUser : Int = UserDefaults.standard.integer(forKey: "USER_ID")
+    var id : Int = -1
     //rutas que se usarán en el consumo de los apis
     //obtener y editar grupos de investigación
     var getGroups: String = "getAllInvGroups"
@@ -66,6 +67,11 @@ class InvNavViewController: UINavigationController {
     var registerObs:  String = "observation"
     override func viewDidLoad() {
         super.viewDidLoad()
+        let role = UserDefaults.standard.integer(forKey: "ROLE")
+        if(role == 2 || role == 1){
+            id = UserDefaults.standard.object(forKey: "DOCENTE_ID") as! Int
+        }
+            
         //self.navigationController?.navigationBar.topItem?.title = "Atrás";
         /*
         UserDefaults.standard.set(nil, forKey: "GROUPS")
