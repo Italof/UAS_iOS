@@ -398,6 +398,9 @@
 				969D91F01DD37F0A00D0456B /* Criterion.swift */,
 				4627D4691DE3B691006EBB92 /* Action.swift */,
 				4627D46F1DE3BA8D006EBB92 /* Suggestion.swift */,
+				12C2AB1D1DE3D04300514C3B /* Student.swift */,
+				12C2AB1F1DE3DA8600514C3B /* GradeCriterio.swift */,
+				12FFA6C41DE66B9400BEB1E6 /* Evidence.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -815,7 +818,9 @@
 				250090CA1DE7445900A22D71 /* Alumnos.swift in Sources */,
 				1231D7831DBACE03004E35FD /* SpecialtyViewController.swift in Sources */,
 				966EEACE1DCCF04100EBC56B /* StudentOutcome.swift in Sources */,
-				121BE3B41DCBB17300B68A3C /* Faculty.swift in Sources */,
+				250090CA1DE7445900A22D71 /* Alumnos.swift in Sources */,
+				126C83061DCA87D400168250 /* SplitViewController.swift in Sources */,
+				12C2AB1E1DE3D04300514C3B /* Student.swift in Sources */,
 				12B92A831DD2664300441786 /* InvDerDetailViewController.swift in Sources */,
 				967045C51DD1053700DE2E8E /* ImprovementPlanTableViewController.swift in Sources */,
 				126C83051DCA87D400168250 /* InvestigatorTableViewController.swift in Sources */,
@@ -911,25 +916,20 @@
 				12E3584F1DD1376F008005B1 /* FilesTableViewController.swift in Sources */,
 				12B92A811DD262AA00441786 /* InvestigationDocument.swift in Sources */,
 				12DF4D1F1DCADD7600E59AD0 /* InvestigatorDetailViewController.swift in Sources */,
-				46684DDF1DE6B44900BBF129 /* CustomLevelCell.swift in Sources */,
+				12AEE0B31DDBE2BE00272292 /* TableViewCellScheduleTutor.swift in Sources */,
+				12C2AB201DE3DA8600514C3B /* GradeCriterio.swift in Sources */,
 				250090F11DE7446600A22D71 /* DetalleReunionesAlumnoViewController.swift in Sources */,
 				126C83021DCA87D400168250 /* InvDerivableTableViewController.swift in Sources */,
 				969D91F31DD389FA00D0456B /* CustomCriterionCell.swift in Sources */,
 				250090C91DE7445900A22D71 /* PspReunionesAlumnos.swift in Sources */,
 				12E0A06A1DDD21F200E7B078 /* ViewControllerCRCita.swift in Sources */,
 				250090F71DE7446600A22D71 /* PspAlumnosSupervisorTableViewController.swift in Sources */,
+                12FFA6C51DE66B9400BEB1E6 /*
+                /* Evidence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		25A6EF1C1DCBDF760084AFE0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 46292AFD1DB9DF7500EC8575 /* UASapp */;
-			targetProxy = 25A6EF1B1DCBDF760084AFE0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		46292B0A1DB9DF7500EC8575 /* LaunchScreen.storyboard */ = {
