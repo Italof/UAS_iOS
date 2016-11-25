@@ -33,19 +33,11 @@ class UASMenuTableViewController: UITableViewController {
         let role = userDefaults.integer(forKey: "ROLE")
         let pos = indexPath.row
         if role == 2 {
-            // Profesor
-            switch pos {
-            case 3:
-                cell.isHidden = true
-            default:
-                break
-            }
+            
         } else if role == 4 {
             // Acreditador
             switch pos {
             case 3:
-                cell.isHidden = true
-            case 4:
                 cell.isHidden = true
             default:
                 break

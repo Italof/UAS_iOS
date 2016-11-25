@@ -12,7 +12,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
     var invDer: InvestigationDerivable?
     var invPr: InvestigationProject?
     var invDocData: [InvestigationDocument] = []
-    var invInvData: [Investigator] = []
+    var invInvData: [Responsible] = []
     var versionDer: [String] = []//["1.0","1.1","2.1"]
     var dowloadRoute: String?
     
@@ -223,7 +223,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
                         let document = doc as! [String:AnyObject]
                         
                         //let group : InvestigationGroup =
-                        let inv = Investigator( json: document )
+                        let inv = Responsible( json: document )
                         self.invInvData.append( inv )
                         
                         //print(self.invGrData)
@@ -232,8 +232,8 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
                     
                     var responsibles : String = ""
                     for inv in self.invInvData{
-                        let name = inv.name
-                        responsibles = responsibles + "\n" + name!
+                        let name = inv.name! + " " + inv.lastNameP! + " " + inv.lastNameM!
+                        responsibles = responsibles + "\n" + name
                     }
                     self.respInvDer.text = responsibles
                     DispatchQueue.main.async {

@@ -21,6 +21,8 @@ class PlanDetailViewController: UIViewController {
     @IBOutlet weak var lblStartDate: UILabel!
     @IBOutlet weak var lblCreateAt: UILabel!
     
+    let userDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let dateFormatter = DateFormatter()
@@ -46,7 +48,7 @@ class PlanDetailViewController: UIViewController {
     }
 
     @IBAction func showActionSheet(_ sender: UIBarButtonItem) {
-        
+        let role = userDefaults.integer(forKey: "ROLE")
         // UIAlertController with the ActionSheet style is created
         let optionMenu = UIAlertController(title: nil, message: "Seleccionar", preferredStyle: .actionSheet)
         
@@ -68,11 +70,24 @@ class PlanDetailViewController: UIViewController {
         
         // The actions are added to the Alert Controller
         optionMenu.addAction(showActions)
-        optionMenu.addAction(writeSuggestion)
+        if role == 1 || role == 2 {
+            optionMenu.addAction(writeSuggestion)
+        }
         optionMenu.addAction(cancelAction)
         
+        
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad )
+        {
+            if let currentPopoverpresentioncontroller = optionMenu.popoverPresentationController{
+                currentPopoverpresentioncontroller.barButtonItem = sender
+                self.present(optionMenu, animated: true, completion: nil)
+            }
+        }else{
+            self.present(optionMenu, animated: true, completion: nil)
+        }
+        
         // The Alert Controller is presented.
-        self.present(optionMenu, animated: true, completion: nil)
+//        self.present(optionMenu, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
