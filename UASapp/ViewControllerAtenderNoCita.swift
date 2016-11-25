@@ -75,38 +75,51 @@ class ViewControllerAtenderNoCita: UIViewController, UIPickerViewDelegate, UIPic
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let tjd = dataUnwrapped as! [AnyObject]
-                let tj = tjd[0] as! [String:AnyObject]
-                
-                
-                
-                let alu = tj["studentInfo"] as! [AnyObject]
-                for c in alu {
+                if (tjd.count != 0){
+                    let tj = tjd[0] as! [String:AnyObject]
                     
-                    let alumn: String?
-                    let codigo: Int?
-                    let nom: String?
-                    let apP: String?
-                    let apM: String?
                     
-                    nom = c["nombre"] as! String?
-                    apP = c["ape_paterno"] as! String?
-                    apM = c["ape_materno"] as! String?
-                    alumn = apP! + " " + apM! + " " + nom!
-                    codigo = c["id"] as! Int?
                     
-                    print("Alumno de este tutor")
-                    print(alumn)
+                    let alu = tj["studentInfo"] as! [AnyObject]
+                    for c in alu {
+                        
+                        let alumn: String?
+                        let codigo: Int?
+                        let nom: String?
+                        let apP: String?
+                        let apM: String?
+                        
+                        nom = c["nombre"] as! String?
+                        apP = c["ape_paterno"] as! String?
+                        apM = c["ape_materno"] as! String?
+                        alumn = apP! + " " + apM! + " " + nom!
+                        codigo = c["id"] as! Int?
+                        
+                        print("Alumno de este tutor")
+                        print(alumn)
+                        
+                        let alumnoO: alumno = alumno.init(alumno: alumn, codigo: codigo)
+                        
+                        self.alumnos.append(alumnoO)
+                    }
                     
-                    let alumnoO: alumno = alumno.init(alumno: alumn, codigo: codigo)
                     
-                    self.alumnos.append(alumnoO)
+                    self.PVAlumno.reloadAllComponents()
+                    
+                } else {
+                    let alert : UIAlertController = UIAlertController.init(title: "Sin alumnos asignados", message: "Usted no cuenta alumnos asignados, por lo tanto, no puede realizar atenciones", preferredStyle: .alert)
+                    
+                    let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                        self.navigationController?.popViewController(animated: true)
+                        //self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
+                    })
+                    alert.addAction(action)
+                    self.present(alert,animated: true, completion:nil)
+                    //self.navigationController?.popViewController(animated: true)
                 }
-                
-                
-                self.PVAlumno.reloadAllComponents()
             }
         })
-        
+    
         PVTema.delegate=self
         PVTema.dataSource=self
         

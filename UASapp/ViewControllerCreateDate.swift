@@ -101,54 +101,80 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                     //obtener data
                     let dataUnwrapped = data.unsafelyUnwrapped
                     let tjd = dataUnwrapped as! [AnyObject]
-                    let tj = tjd[0] as! [String:AnyObject]
                     
-                    let Ic: String?
-                    let Ia: String?
-                    print(tj["numberDays"])
-                    if ((tj["numberDays"]) != nil){
-                        Ia = (tj["numberDays"] as! String?)!
+                    if (tjd.count != 0){
+                        let tj = tjd[0] as! [String:AnyObject]
+                        
+                        let Ic: String?
+                        let Ia: String?
                         print(tj["numberDays"])
-                        //Ia = Ia * 24 * 60 * 60
-                        self.intervaloAnticipacion = Int(Ia!)! * 24 * 60 * 60
-                    } else {
-                        self.intervaloAnticipacion = 5184000
-                    }
+                        if ((tj["numberDays"]) != nil){
+                            Ia = (tj["numberDays"] as! String?)!
+                            print(tj["numberDays"])
+                            //Ia = Ia * 24 * 60 * 60
+                            self.intervaloAnticipacion = Int(Ia!)! * 24 * 60 * 60
+                        } else {
+                            self.intervaloAnticipacion = 5184000
+                        }
+                        
+                        if ((tj["duracionCita"]) != nil){
+                            print(tj["duracionCita"])
+                            Ic = (tj["duracionCita"] as! String?)!
+                            self.intervaloDuracionCita = Int(Ic!)!
+                        } else {
+                            self.intervaloDuracionCita = 10
+                        }
+                        
+                        let alu = tj["studentInfo"] as! [AnyObject]
+                        if (alu.count != 0){
+                            for c in alu {
+                                
+                                let alumn: String?
+                                let codigo: Int?
+                                let nom: String?
+                                let apP: String?
+                                let apM: String?
+                                
+                                nom = c["nombre"] as! String?
+                                apP = c["ape_paterno"] as! String?
+                                apM = c["ape_materno"] as! String?
+                                alumn = apP! + " " + apM! + " " + nom!
+                                codigo = c["id"] as! Int?
+                                
+                                print("Alumno de este tutor")
+                                print(alumn)
+                                
+                                let alumnoO: alumno = alumno.init(alumno: alumn, codigo: codigo)
+                                
+                                self.alumA.append(alumnoO)
+                            }
+                        }
                     
-                    if ((tj["duracionCita"]) != nil){
-                        print(tj["duracionCita"])
-                        Ic = (tj["duracionCita"] as! String?)!
-                        self.intervaloDuracionCita = Int(Ic!)!
-                    } else {
-                        self.intervaloDuracionCita = 10
-                    }
-                    
-                    let alu = tj["studentInfo"] as! [AnyObject]
-                    for c in alu {
-                        
-                        let alumn: String?
-                        let codigo: Int?
-                        let nom: String?
-                        let apP: String?
-                        let apM: String?
-                        
-                        nom = c["nombre"] as! String?
-                        apP = c["ape_paterno"] as! String?
-                        apM = c["ape_materno"] as! String?
-                        alumn = apP! + " " + apM! + " " + nom!
-                        codigo = c["id"] as! Int?
-                        
-                        print("Alumno de este tutor")
-                        print(alumn)
-                        
-                        let alumnoO: alumno = alumno.init(alumno: alumn, codigo: codigo)
-                        
-                        self.alumA.append(alumnoO)
-                    }
                     
                     self.StudentList.reloadAllComponents()
+                    } else {
+                        let alert : UIAlertController = UIAlertController.init(title: "Sin alumnos asignados", message: "Usted no cuenta alumnos asignados, por lo tanto, no puede registrar citas", preferredStyle: .alert)
+                        
+                        let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                            self.navigationController?.popViewController(animated: true)
+                            //self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
+                        })
+                        alert.addAction(action)
+                        self.present(alert,animated: true, completion:nil)
+                        //self.navigationController?.popViewController(animated: true)
+                    }
                 }
             })
+            
+            //Se envia el mensaje de error
+            /*
+            if (alumA.count == 1){
+                let alert : UIAlertController = UIAlertController.init(title: "Sin alumnos", message: "Usted no cuenta tiene alumnos", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert,animated: true, completion:nil)
+            }
+             */
         }
         
         if ( rol == "A"){
