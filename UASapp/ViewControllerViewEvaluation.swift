@@ -23,6 +23,24 @@ class ViewControllerViewEvaluation: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let ev = ((self.parent as! NavigationControllerE).evalEsc)
+        //let parser = ev?.id//
+        codigo.text = String.init((ev?.id).unsafelyUnwrapped)
+        nombre.text = ev?.nombre
+        let dateformater = DateFormatter()
+        dateformater.dateFormat = "yyyy-MM-dd"
+        
+        vigencia.text = dateformater.string(from: (ev?.vigenciaI)!) + " - " + dateformater.string(from: (ev?.vigenciaF)!)
+        tiempo.text = String((ev?.tiempo).unsafelyUnwrapped)
+        
+        let tp0 = (ev?.numCerr)! + (ev?.numAbie)!
+        let tp =  tp0 + (ev?.numArc)!
+        totalPreg.text = String(tp)
+        pregCer.text = String((ev?.numCerr).unsafelyUnwrapped)
+        pregAbi.text = String((ev?.numAbie).unsafelyUnwrapped)
+        pregArc.text = String((ev?.numArc).unsafelyUnwrapped)
+        puntaje.text = String((ev?.puntajeTotal).unsafelyUnwrapped)
+        descripcion.text = ev?.descripcion
 
         // Do any additional setup after loading the view.
     }

@@ -307,7 +307,14 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
                 self.labelAnexo.isHidden = true
                 self.labelHorario.isHidden = true
                 
+                self.tableViewHorario.isHidden = true
                 
+                self.tutorCode.isHidden = true
+                self.tutorName.isHidden = true
+                self.tutorEmail.isHidden = true
+                self.tutorPhoneNumber.isHidden = true
+                self.tutorOffice.isHidden = true
+                self.tutorAnexo.isHidden = true
                 
                 
                 //Se envia el mensaje de error
@@ -319,41 +326,7 @@ class ViewControllerTutorVisualize: UIViewController, UITableViewDataSource, UIT
             }
         })
 
-        
-        /*
-        tutorCode.text=tutorC?.codigo
-        tutorName.text=tutorC?.nombre
-        tutorEmail.text=tutorC?.correo
-        tutorPhoneNumber.text=tutorC?.telefono
-        tutorOffice.text=tutorC?.oficina
-        tutorAnexo.text=tutorC?.anexo
 
-        
-        print("dia Lunes")
-        for d in ((self.parent as! NavigationControllerC).horasL){
-            print(d)
-        }
-        print("dia Martes")
-        for d in ((self.parent as! NavigationControllerC).horasMa) {
-            print(d)
-        }
-        print("dia Miercoles")
-        for d in ((self.parent as! NavigationControllerC).horasMi) {
-            print(d)
-        }
-        print("dia Jueves")
-        for d in ((self.parent as! NavigationControllerC).horasJ) {
-            print(d)
-        }
-        print("dia Viernes")
-        for d in ((self.parent as! NavigationControllerC).horasV) {
-            print(d)
-        }
-        print("dia Sabado")
-        for d in ((self.parent as! NavigationControllerC).horasS) {
-            print(d)
-        }
-         */
     }
     override func viewDidAppear(_ animated: Bool) {
 

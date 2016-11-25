@@ -1,14 +1,14 @@
 //
-//  NavigationControllerC.swift
+//  NavigationControllerE.swift
 //  UASapp
 //
-//  Created by inf227al on 28/10/16.
+//  Created by inf227al on 22/11/16.
 //  Copyright © 2016 sumajg. All rights reserved.
 //
 
 import UIKit
 
-class NavigationControllerC: UINavigationController {
+class NavigationControllerE: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,25 +21,10 @@ class NavigationControllerC: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-    var tutorOb: tutor?
-    var citasOb: [cita]?
-    var citasObF: [cita]?
-    var alumnosOb: [alumno]?
-    var citEsc: cita?
-    var filtroCitas: String = "N"
-    
-    var citaCanRec: String = ""
-    
-    //Horario del tutor
-    
-    var horasL: [Int] = []
-    var horasMa: [Int] = []
-    var horasMi: [Int] = []
-    var horasJ: [Int] = []
-    var horasV: [Int] = []
-    var horasS: [Int] = []
-    
-    
+    var evalOb: [evaluation] = []
+    var evalObF: [evaluation] = []
+    var filtro: String = "N"
+    var evalEsc: evaluation!
 
     /*
     // MARK: - Navigation
