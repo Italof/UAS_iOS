@@ -28,10 +28,10 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         //let parser : Int = UserDefaults.standard.object( forKey: "IDUSER") as! Int
         //let idUser = String.init(parser)
+        let idDocente: Int =  UserDefaults.standard.integer( forKey: "DOCENTE_ID")
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
-        //print("ID user = " + idUser)
         print("token = " + token)
-        HTTPHelper.get(route: "faculties/teacher/4/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
+        HTTPHelper.get(route: "faculties/teacher/"+String(idDocente)+"/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
                 let dataUnwrapped = data.unsafelyUnwrapped
