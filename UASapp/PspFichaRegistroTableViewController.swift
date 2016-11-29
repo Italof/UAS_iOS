@@ -20,6 +20,7 @@ class PspFichaRegistroTableViewController: UITableViewController {
     var pspStu:[PspStudent] = []
     var pspIn:[PspInscription] = []
     var alumnos:[Alumnos] = []
+     var overlay: UIView?
     
     var sXiarray:[studentxinscriptionfiles] = []
     
@@ -36,12 +37,23 @@ class PspFichaRegistroTableViewController: UITableViewController {
         pspIn = []
         self.tableView.reloadData()
         
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
+        
         let routeApi =  getGroups + "?token=" + token
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if error != nil {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 print(error)
             } else {
-                
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 var data2: [String:AnyObject]?
                 
                 if let dictionary = data as? [String:Any] {

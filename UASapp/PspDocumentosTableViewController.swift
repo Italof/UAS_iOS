@@ -20,6 +20,7 @@ class PspDocumentosTableViewController: UITableViewController {
     var supervisor: Supervisor?
     var alumnos:[Alumnos] = []
     var pspDarray:[PspDocuments] = []
+    var overlay: UIView?
     var token: String = UserDefaults.standard.object(forKey: "TOKEN") as! String
     // var token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQxLCJpc3MiOiJodHRwOlwvXC81YzZmMzBmYS5uZ3Jvay5pb1wvYXBpXC9hdXRoZW50aWNhdGUiLCJpYXQiOjE0Nzg5MDM5NTAsImV4cCI6MTQ4MDI1OTk1MCwibmJmIjoxNDc4OTAzOTUwLCJqdGkiOiJkZTM1NjFiZTcxMWFjZDZhYjg2MGExOTFkODA2ZjkxZCJ9.fWuAjw9Xe7Qo-o9F3JTRzs-aR9rjKZk8IjVm2POcQxo"
     
@@ -33,11 +34,23 @@ class PspDocumentosTableViewController: UITableViewController {
         pspDarray = []
         self.tableView.reloadData()
         
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
+        
         let routeApi =  getGroups + "?token=" + token
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if error != nil {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 print(error)
             } else {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 // let question = data!["question"] as? String
                 // print("Question: \(question)")
                 var data2: [String:AnyObject]?
@@ -202,8 +215,26 @@ class PspDocumentosTableViewController: UITableViewController {
         switch (indexPath.section){
         case kRedSection:
             cell.textLabel!.text=self.pspDarray[indexPath.row].titulo_plantilla
-            cell.detailTextLabel!.text=self.pspDarray[indexPath.row].ruta_plantilla!+"   "+self.pspDarray[indexPath.row].idtipoestado
-          
+            
+            var codigo:String
+            if let c = self.pspDarray[indexPath.row].ruta_plantilla{
+                codigo = self.pspDarray[indexPath.row].ruta_plantilla!
+            }
+            else{
+                codigo = "      "
+            }
+            var digital:String
+            if self.pspDarray[indexPath.row].es_fisico == "1" {
+                digital = "Fisico"
+            }
+            else{
+                digital = "Digital"
+            }
+            
+            
+            cell.detailTextLabel!.text=codigo+"   "+self.pspDarray[indexPath.row].idtipoestado+"   "+digital
+
+            
             
         default:
             cell.textLabel!.text="Unknown"

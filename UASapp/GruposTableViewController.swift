@@ -19,18 +19,30 @@ class GruposTableViewController: UITableViewController {
     
     var user: String = (UserDefaults.standard.object(forKey: "USER")  as! String)
     var getGroups: String = "psp/groups/all/"
-
+     var overlay: UIView?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
+        
         let routeApi = getGroups + "?token=" + token
         
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if error != nil {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 print(error)
             } else {
-   
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 let dataUnwrapped = data.unsafelyUnwrapped
                 let arrayGroup = dataUnwrapped as? [Any]
                 

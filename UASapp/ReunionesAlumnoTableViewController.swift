@@ -15,7 +15,7 @@ class ReunionesAlumnoTableViewController: UITableViewController {
     var ele:Int = 0
     let redFlowers: [String] = ["Supervisor - Jefe","Supervisor - Alumno"]
     let subtitlesArray: [String] = ["14/10/2016","13/10/2016"]
-    
+     var overlay: UIView?
     var reunionesAlumno: [PspReunionesAlumnos] = []
     var supervisores:[Supervisor] = []
     
@@ -30,11 +30,24 @@ class ReunionesAlumnoTableViewController: UITableViewController {
         reunionesAlumno = []
         supervisores = []
         self.tableView.reloadData()
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
+        
         let routeApi =  getGroups + "?token=" + token
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if error != nil {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 print(error)
             } else {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 // let question = data!["question"] as? String
                 // print("Question: \(question)")
                 var data2: [String:AnyObject]?
@@ -66,12 +79,18 @@ class ReunionesAlumnoTableViewController: UITableViewController {
                         var reunionesAlumnoTemporal: PspReunionesAlumnos
                         var supervisorT:Supervisor? = nil
                         var jsonResult = arregloMetting[index] as! Dictionary<String, AnyObject>
-                        var jsonResult2 = arregloSupervisores[index] as! Dictionary<String, AnyObject>
-
+                       
+                        //var jsonResult2 = arregloSupervisores[index] as! Dictionary<String, AnyObject>
+                        var jsonResult2:Dictionary<String, AnyObject>
+                        
+                        if(arregloSupervisores[index] as? Dictionary<String, AnyObject> != nil){
+                            // var jsonResult2 = arregloSupervisores[index] as! Dictionary<String, AnyObject>
+                            jsonResult2 = arregloSupervisores[index] as! Dictionary<String, AnyObject>
+                            
                         let created_at: String? = self.isNullString(jsonResult:jsonResult2,identificador: "created_at")
                         let deleted_at: String? = self.isNullString(jsonResult:jsonResult2,identificador: "deleted_at")
                         let updated_at: String? = self.isNullString(jsonResult:jsonResult2,identificador: "updated_at")
-                        let idpspprocess:Int? = Int(self.isNullString(jsonResult:jsonResult2,identificador: "idpspprocess")!)
+                        let idpspprocess:String? = self.isNullString(jsonResult:jsonResult2,identificador: "idpspprocess")
                         
                         /*
                         var aa:String = jsonResult2["apellido_materno"]! as! String
@@ -140,12 +159,13 @@ class ReunionesAlumnoTableViewController: UITableViewController {
                         let retroalimentacionnn:String = self.castDefinidoString(jsonResult:jsonResult, identificador:"retroalimentacion")!
                         let tipoReunionnn:String = self.castDefinidoString(jsonResult:jsonResult, identificador:"tiporeunion")!
                         
-                        reunionesAlumnoTemporal=PspReunionesAlumnos(asistencia: asistencia,fecha: fecha,hora_fin: hora_fin,hora_inicio: hora_inicio,idFreeHour:idFreeHour, idMeeting: idMeeting, idStudent: idStudent,idSupervisor: idSupervisorrr,idTipoEstado: idTipoEstado,lugar: lugar,observaciones: observaciones,retroalimentacion:retroalimentacionnn,tipoReunion:tipoReunionnn,supervisor: supervisorT!,created_at:created_at,updated_at:updated_at,deleted_at:deleted_at)
+                        reunionesAlumnoTemporal=PspReunionesAlumnos(asistencia: asistencia,fecha: fecha,hora_fin: hora_fin,hora_inicio: hora_inicio,idFreeHour:idFreeHour, idMeeting: idMeeting, idStudent: idStudent,idSupervisor: idSupervisorrr,idTipoEstado: idTipoEstado,lugar: lugar,observaciones: observaciones,retroalimentacion:retroalimentacionnn,tipoReunion:tipoReunionnn,supervisor: supervisorT!,created_at:created_at2,updated_at:updated_at2,deleted_at:deleted_at2)
                         
                         //reunionesAlumnoTemporal=PspReunionesAlumnos(asistencia: jsonResult["asistencia"]! as! String,fecha: jsonResult["fecha"]! as! String,hora_fin: jsonResult["hora_fin"]! as! String,hora_inicio: jsonResult["hora_inicio"]! as! String,idFreeHour:idFreeHour, idMeeting: jsonResult["id"]! as! Int, idStudent: jsonResult["idstudent"]! as! String,idSupervisor: jsonResult["idsupervisor"]! as! String,idTipoEstado: jsonResult["idtipoestado"]! as! String,lugar: jsonResult["lugar"]! as! String,observaciones: jsonResult["observaciones"]! as! String,retroalimentacion: jsonResult["retroalimentacion"]! as! String,tipoReunion: jsonResult["tiporeunion"]! as! String,supervisor: supervisorT!,created_at:created_at,updated_at:updated_at,deleted_at:deleted_at)
                             
                             self.reunionesAlumno.append(reunionesAlumnoTemporal)
-                       
+                        }
+                        
                     }
                     self.tableView.reloadData()
                     

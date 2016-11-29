@@ -22,6 +22,8 @@ class FasesTableViewController: UITableViewController {
     var getGroups: String = "psp/phases/all/"
     var token: String = UserDefaults.standard.object(forKey: "TOKEN") as! String
     var user: String = (UserDefaults.standard.object(forKey: "USER")  as! String)
+     var overlay: UIView?
+    
     //var token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUsImlzcyI6Imh0dHA6XC9cLzVjNmYzMGZhLm5ncm9rLmlvXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ3ODkwMzY2MywiZXhwIjoxNDgwMjU5NjYzLCJuYmYiOjE0Nzg5MDM2NjMsImp0aSI6ImI1MTk2NDQ5Nzg5N2ViYTJmYjI1NmViY2Y3MjIyNTdlIn0.5tlXtcbsH6prNtu9G5LHktPjWkSxw_ypqkkBv44uKV4"
     
     override func viewDidLoad() {
@@ -37,13 +39,24 @@ class FasesTableViewController: UITableViewController {
         */
         
        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
         
         let routeApi = getGroups + "?token=" + token
         
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if error != nil {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 print(error)
             } else {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                // let question = data!["question"] as? String
                // print("Question: \(question)")
                 let dataUnwrapped = data.unsafelyUnwrapped

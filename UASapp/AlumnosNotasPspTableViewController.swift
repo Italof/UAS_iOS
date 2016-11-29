@@ -16,6 +16,7 @@ class AlumnosNotasPspTableViewController: UITableViewController {
     var inscriptionFile:[studentxinscriptionfiles] = []
     var alumnos:[PspStudent] = []
     var alum:[Alumnos] = []
+     var overlay: UIView?
     
     var token: String = UserDefaults.standard.object(forKey: "TOKEN") as! String
 
@@ -25,14 +26,29 @@ class AlumnosNotasPspTableViewController: UITableViewController {
     var getGroups: String = "psp/pr/getN"
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        
         let routeApi =  getGroups + "?token=" + token
         
         inscriptionFile = []
         alum = []
+        self.tableView.reloadData()
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
         HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
             if error != nil {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 print(error)
             } else {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 // let question = data!["question"] as? String
                 // print("Question: \(question)")
                 var data2: [String:AnyObject]?
