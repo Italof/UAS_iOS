@@ -46,6 +46,9 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         
         //ACA SE CONFIGURA EL TIME PICKER CON LA DURACION DE LAS CITAS DE LA ESPECIALIDAD
         
+        
+        
+        
         //SE DEBE JALAR DE API, PERO UN NO EXISTE GG GERARDO
         intervaloDuracionCita = 10 //minutos
         
@@ -62,6 +65,9 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         dateR.maximumDate = Date(timeIntervalSinceNow: TimeInterval(intervaloAnticipacion))
         
         
+        
+        
+        
         let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
         
         if (rol == "A"){
@@ -69,21 +75,12 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             StudentList.isHidden = true
         }
         
-        /*
-         ruta: "getStudentsOfTutor/(idUsuario)?token=(token)"
-         */
+     
         
         
         let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
         let idUsuario = String.init(parser)
-        /*
-        let rolTutoria : Int = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! Int
-        print(rolTutoria)
         
-        if ( rolTutoria == 1){
-            
-        }
-        */
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         print("ID especialidad = " + idUsuario)
@@ -124,6 +121,12 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                         } else {
                             self.intervaloDuracionCita = 10
                         }
+                        
+                        self.timeR.minuteInterval = self.intervaloDuracionCita
+                        self.dateR.maximumDate = Date(timeIntervalSinceNow: TimeInterval(self.intervaloAnticipacion))
+                        
+                        self.timeR.reloadInputViews()
+                        self.dateR.reloadInputViews()
                         
                         let alu = tj["studentInfo"] as! [AnyObject]
                         if (alu.count != 0){
@@ -166,15 +169,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                 }
             })
             
-            //Se envia el mensaje de error
-            /*
-            if (alumA.count == 1){
-                let alert : UIAlertController = UIAlertController.init(title: "Sin alumnos", message: "Usted no cuenta tiene alumnos", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alert.addAction(action)
-                self.present(alert,animated: true, completion:nil)
-            }
-             */
+          
         }
         
         if ( rol == "A"){
@@ -206,30 +201,12 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                     } else {
                         self.intervaloDuracionCita = 10
                     }
-                    //self.dateR.reloadInputViews()
-                    //self.timeR.reloadInputViews()
+                    self.timeR.minuteInterval = self.intervaloDuracionCita
+                    self.dateR.maximumDate = Date(timeIntervalSinceNow: TimeInterval(self.intervaloAnticipacion))
                     
-                    //self.intervaloAnticipacion = (tj["anticipacionCita"] as! Int?)!
-                    //self.intervaloDuracionCita = (tj["duracionCita"] as! Int?)!
-                    /*
-                    for c in tjd {
-                        
-                        let alumn: String?
-                        let codigo: Int?
-                        
-                        alumn = c["fullName"] as! String?
-                        codigo = c["id"] as! Int?
-                        
-                        print("Alumno de este tutor")
-                        print(alumn)
-                        
-                        let alumnoO: alumno = alumno.init(alumno: alumn, codigo: codigo)
-                        
-                        self.alumA.append(alumnoO)
-                    }
+                    self.timeR.reloadInputViews()
+                    self.dateR.reloadInputViews()
                     
-                    self.StudentList.reloadAllComponents()
-                    */
                 }
             })
         }
@@ -271,8 +248,38 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
             }
         })
         
-        
-        
+        DispatchQueue.main.async {
+            //self.loadData()
+            //self.Dates.reloadData()
+            if (self.intervaloDuracionCita == 0){
+                self.intervaloDuracionCita = 1   //Si del api viene cero, seteamos 1
+            }
+            self.timeR.minuteInterval = self.intervaloDuracionCita
+            
+            //ACA SE CONFIGURA EL PLAZO MAXIMO DE TIEMPO QUE SE PUEDE RESERVAR UNA CITA CON ANTICIPACION
+            
+            //intervaloAnticipacion = 5184000 //segundos
+            
+            
+            self.dateR.maximumDate = Date(timeIntervalSinceNow: TimeInterval(self.intervaloAnticipacion))
+            
+            print("Datos para registrar cita")
+            
+            print(self.intervaloAnticipacion)
+            print(self.intervaloDuracionCita)
+            
+            self.timeR.reloadInputViews()
+            self.dateR.reloadInputViews()
+            
+            self.DateThemesList.delegate=self
+            self.DateThemesList.dataSource=self
+            
+            self.StudentList.delegate=self
+            self.StudentList.dataSource=self
+            
+            return
+        }
+        /*
         if (intervaloDuracionCita == 0){
             intervaloDuracionCita = 1   //Si del api viene cero, seteamos 1
         } else {
@@ -291,7 +298,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         
         StudentList.delegate=self
         StudentList.dataSource=self
-
+ */
         // Do any additional setup after loading the view.
         
     }
@@ -354,6 +361,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         
         
         if ( temaSel != 0) {
+            json.setValue(temaA[temaSel].nombre, forKey: "tema") //Seteo el tema
             json.setValue(temaA[temaSel].nombre, forKey: "motivo") //Seteo el tema
         } else {
             errorAlert.message = "Seleccione un tema o motivo de cita"
@@ -395,6 +403,7 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         
         let parser : Int = UserDefaults.standard.object( forKey: "USER_ID") as! Int
         let idUsuario = String.init(parser)
+        json.setValue(parser, forKey: "idUser")
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         if (rol == "A"){
@@ -632,12 +641,21 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
         }
         if (rol == "T"){
             if ( alumnoSel != 0) {
-                json.setValue(alumA[alumnoSel].alumno, forKey: "studentFullName") //Seteo el alumno, el nombre, porque gerardo lo hizo chancho, debio meterle el idAlumno
+                //json.setValue(alumA[alumnoSel].alumno, forKey: "studentFullName") //Seteo el alumno, el nombre, porque gerardo lo hizo chancho, debio meterle el idAlumno
+                json.setValue(alumA[alumnoSel].codigo, forKey: "idAlumno")
+                
+                print("alalslalsdsadasdasdasdsadas")
+                print("alalslalsdsadasdasdasdsadas")
+                print(alumA[alumnoSel].codigo)
+                
+                json.setValue("", forKey: "observacion")
+                json.setValue(10, forKey: "duracionCita")
             } else {
                 errorAlert.message = "Seleccione un alumno"
                 self.present(errorAlert, animated: true, completion: nil)
                 return
             }
+            
             do{
                 let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
                 //print(jsonData)
@@ -663,14 +681,27 @@ class ViewControllerCreateDate: UIViewController, UIPickerViewDelegate, UIPicker
                         
                         
                     } else {
+                        //errorAlert.message = "No se pudo registrar la cita"
+                        //self.present(errorAlert, animated: true, completion: nil)
+                        
                         print("REQUESTED RESPONSE: \(responseData)")
+                        
+                        let alertSuccess : UIAlertController = UIAlertController.init(title: "Registro de cita exitoso", message: "Se ha registrado la cita exitosamente", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler:{ action in
+                            
+                            self.navigationController?.popViewController(animated: true)
+                            //self.performSegue(withIdentifier: "SegueCitasReg", sender: self)
+                            
+                        })
+                        alertSuccess.addAction(action)
+                        self.present(alertSuccess,animated: false, completion:nil)
                     }
                 })
                 
             } catch let err as NSError{
                 print("JSONObjet ERROR: \(err)")
             }
-        }        
+        }
     }
     
     func getHorarioTutor(){
