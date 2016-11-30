@@ -14,6 +14,7 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
     var coursesTotal: [Course] = []
     var pickerSelected: String?
     var levels : [String] = []
+    var overlay: UIView?
     let userDefault = UserDefaults.standard
     
     @IBOutlet var tableView: UITableView!
@@ -37,6 +38,14 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
         let facultyId: Int =  UserDefaults.standard.object( forKey: "SPECIALTY") as! Int
         var firstLevel = ""
         let semesterId: Int = UserDefaults.standard.object(forKey: "SEMESTER") as! Int
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
         HTTPHelper.get(route: "faculties/"+String(facultyId)+"/semester/"+String(semesterId)+"/courses" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
@@ -72,6 +81,9 @@ class CoursesBySpecialtyViewController: UIViewController, UITableViewDataSource,
                 //Mostrar error y regresar al menù principal
                 
             }
+            
+            LoadingOverlay.shared.hideOverlayView()
+            self.overlay?.removeFromSuperview()
             self.do_table_refresh(nivel: firstLevel)
         })
     }
