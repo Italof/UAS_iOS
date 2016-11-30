@@ -10,6 +10,8 @@ import UIKit
 
 class InvProjectTableViewController: UITableViewController {
     var invPrData : [InvestigationProject] = []
+    var overlay: UIView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -18,40 +20,46 @@ class InvProjectTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    @IBOutlet weak var activity: UIActivityIndicatorView!
-  override func viewWillAppear(_ animated: Bool) {
-    let token = (parent as! InvNavViewController).token
-    let get = (parent as! InvNavViewController).getProjects
-    let routeApi = "investigation/" + get + "?token=" + token
-    DispatchQueue.main.async {
-        self.activity.startAnimating()
+    //@IBOutlet weak var activity: UIActivityIndicatorView!
+  override func viewDidAppear(_ animated: Bool) {
+    if(parent != nil){
+        let token = (parent as! InvNavViewController).token
+        let get = (parent as! InvNavViewController).getProjects
+        let routeApi = "investigation/" + get + "?token=" + token
+            //self.downActivity?.startAnimating()
+            self.overlay = UIView(frame: (self.parent?.view.frame)!)
+            self.overlay!.backgroundColor = UIColor.black
+            self.overlay!.alpha = 0.8
+            self.parent?.view.addSubview(self.overlay!)
+            LoadingOverlay.shared.showOverlay(view: self.overlay!)
+        
+        HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+            
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
+           
+            if(error == nil){
+                //obtener data
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let arrayProjects = dataUnwrapped as? [Any]
+                self.invPrData = []
+                for project in arrayProjects!{
+                    let pr = project as! [String:AnyObject]
+                    let project : InvestigationProject = InvestigationProject.init(json : pr)
+                    self.invPrData.append(project)
+                    //print(self.invPrData)
+                    //print(pr["id"].unsafelyUnwrapped)
+                }
+                self.do_table_refresh()
+            }
+            else {
+                //Mostrar error y regresar al menù principal
+                
+                
+            }
+            
+        })
     }
-    HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
-        DispatchQueue.main.async {
-            self.activity.stopAnimating()
-            self.activity.isHidden = true
-        }
-        if(error == nil){
-        //obtener data
-        let dataUnwrapped = data.unsafelyUnwrapped
-        let arrayProjects = dataUnwrapped as? [Any]
-        self.invPrData = []
-        for project in arrayProjects!{
-          let pr = project as! [String:AnyObject]
-          let project : InvestigationProject = InvestigationProject.init(json : pr)
-          self.invPrData.append(project)
-          //print(self.invPrData)
-          //print(pr["id"].unsafelyUnwrapped)
-        }
-        self.do_table_refresh()
-      }
-      else {
-        //Mostrar error y regresar al menù principal
-        
-        
-      }
-      
-    })
   }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

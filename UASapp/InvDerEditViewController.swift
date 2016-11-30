@@ -15,8 +15,8 @@ class InvDerEditViewController: UIViewController {
     @IBOutlet var limitDatePicker: UIDatePicker!
     
     @IBOutlet var saveButtonInvDoc: UIBarButtonItem!
-    
-    @IBOutlet weak var activity: UIActivityIndicatorView!
+    var overlay: UIView?
+    //@IBOutlet weak var activity: UIActivityIndicatorView!
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
     let errorTitle: String = "Error"
@@ -109,8 +109,18 @@ class InvDerEditViewController: UIViewController {
                         let parser = self.invDer?.id
                         let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                         print(routeApi)
-                        self.activity.startAnimating()
+                        DispatchQueue.main.async {
+                            self.overlay = UIView(frame: (self.parent?.view.frame)!)
+                            self.overlay!.backgroundColor = UIColor.black
+                            self.overlay!.alpha = 0.8
+                            self.parent?.view.addSubview(self.overlay!)
+                            LoadingOverlay.shared.showOverlay(view: self.overlay!)
+                        }
                         HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
+                            DispatchQueue.main.async {
+                                LoadingOverlay.shared.hideOverlayView()
+                                self.overlay?.removeFromSuperview()
+                            }
                             if(error != nil){
                                 //Mostrar error y regresar al menù principal
                                 print(error!)
@@ -120,10 +130,7 @@ class InvDerEditViewController: UIViewController {
                             }
                             else {
                                 //obtener data
-                                DispatchQueue.main.async {
-                                    self.activity.stopAnimating()
-                                    self.activity.isHidden = true
-                                }
+                                
                                 let dateformat = DateFormatter()
                                 dateformat.dateFormat = "yyyy-MM-dd"
                                 self.invDer?.dateStart = dateformat.string(from: self.startDateInvDoc.date)

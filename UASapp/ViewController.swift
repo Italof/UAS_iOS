@@ -42,13 +42,7 @@ class ViewController: UIViewController {
         let username = txtUser.text! as NSString
         let password = txtPass.text! as NSString
         
-        overlay = UIView(frame: view.frame)
-        overlay!.backgroundColor = UIColor.black
-        overlay!.alpha = 0.8
         
-        view.addSubview(overlay!)
-        
-        LoadingOverlay.shared.showOverlay(view: overlay!)
         
         let errorAlert = UIAlertController(title: "¡Error al Iniciar Sesión!",
                                       message: nil,
@@ -74,7 +68,16 @@ class ViewController: UIViewController {
                 let postData = decoded as! [String:AnyObject]
                 print(postData)
                 
+                overlay = UIView(frame: view.frame)
+                overlay!.backgroundColor = UIColor.black
+                overlay!.alpha = 0.8
+                view.addSubview(overlay!)
+                LoadingOverlay.shared.showOverlay(view: overlay!)
+                
                 HTTPHelper.post(route: "authenticate", authenticated: false, body: postData, completion: { (error, responseData) in
+                    LoadingOverlay.shared.hideOverlayView()
+                    self.overlay?.removeFromSuperview()
+                    
                     if error != nil {
                         print("REQUESTED ERROR: \(error)")
                         let responseError = error?.userInfo[NSLocalizedDescriptionKey] as! NSString
@@ -97,8 +100,7 @@ class ViewController: UIViewController {
                             errorAlert.message = "Error en el servidor, intente más tarde"
                             self.present(errorAlert, animated: true, completion: nil)
                         }
-                        LoadingOverlay.shared.hideOverlayView()
-                        self.overlay?.removeFromSuperview()
+                        
                         
                     } else {
                         print("REQUESTED RESPONSE: \(responseData)")
@@ -212,8 +214,6 @@ class ViewController: UIViewController {
                         userDefaults.set(roleName, forKey: "ROLE_NAME")
                         userDefaults.set(email, forKey: "EMAIL")
                         
-                        LoadingOverlay.shared.hideOverlayView()
-                        self.overlay?.removeFromSuperview()
                         self.performSegue(withIdentifier: "homeSegue", sender: self)
                     }
                     

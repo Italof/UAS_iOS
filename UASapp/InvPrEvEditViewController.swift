@@ -16,12 +16,12 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var timeInvPrEvent: UIDatePicker!
     @IBOutlet var placeInvPrEvent: UITextField!
     @IBOutlet var saveEventButton: UIBarButtonItem!
-    @IBOutlet weak var activity: UIActivityIndicatorView!
-    
+    //@IBOutlet weak var activity: UIActivityIndicatorView!
+    var overlay: UIView?
     @IBOutlet var descriptionInvPrEvent: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     var activeField: UITextField?
-    let invalidCharacters = "1234567890+-*/=!\"·$%&/()=?=¿.;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠´][{}–„…œå∫∑©√Ω©.,"
+    let invalidCharacters = "·/()=?=_¨Ç*^\\|@#¢∞¬¬÷“”“≠´][{}–œå∫∑©√Ω©"
     //varialbles de alert de sistema
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
@@ -184,7 +184,7 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
             error = 1
         }
         else if(contains(text: descriptionInvPrEvent.text!, find: invalidCharacters)){
-            errorMessageCustom = "Descripción no acepta números o símbolos"
+            errorMessageCustom = "Descripción no acepta símbolos"
             error = 1
         }
         else if(contains(text: placeInvPrEvent.text!, find: invalidCharacters)){
@@ -226,16 +226,20 @@ class InvPrEvEditViewController: UIViewController, UITextFieldDelegate {
                     let parser = self.invPrEv?.id
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                     DispatchQueue.main.async {
-                        self.activity.startAnimating()
+                        self.overlay = UIView(frame: (self.parent?.view.frame)!)
+                        self.overlay!.backgroundColor = UIColor.black
+                        self.overlay!.alpha = 0.8
+                        self.parent?.view.addSubview(self.overlay!)
+                        LoadingOverlay.shared.showOverlay(view: self.overlay!)
                     }
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                         DispatchQueue.main.async {
-                            self.activity.stopAnimating()
-                            self.activity.isHidden = true
+                            LoadingOverlay.shared.hideOverlayView()
+                            self.overlay?.removeFromSuperview()
                         }
                         if(error != nil){
                             //Mostrar error y regresar al menù principal
-                            print(error)
+                            //print(error)
                             alert.title = self.errorTitle
                             alert.message = self.errorMessage
                             self.present(alert,animated: true, completion:nil)

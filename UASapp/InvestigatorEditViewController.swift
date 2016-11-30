@@ -10,9 +10,9 @@ import UIKit
 
 class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet var postActivity: UIActivityIndicatorView!
+    //@IBOutlet var postActivity: UIActivityIndicatorView!
     var inv : Investigator?
-    
+    var overlay: UIView?
     @IBOutlet var nameInv: UITextField!
     @IBOutlet var lastNamePInv: UITextField!
     @IBOutlet var lastNameMInv: UITextField!
@@ -24,7 +24,8 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
     let successMessage: String = "Los cambios han sido guardados"
     let errorTitle: String = "Error"
     let errorMessage: String = "No se han guardado los cambios"
-    let invalidCharacters = "1234567890+-*/=!\"·$%&/()=.,?=¿;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠´][{}–„…œå∫∑©√Ω©"
+    let invalidCharacters = "·/()=?=_¨Ç*^\\|@#¢∞¬¬÷“”“≠´][{}–œå∫∑©√Ω©"
+    let isnumber = ",+-*/=!\"·$%&/(.)=?=¿;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠‚´][{}–„…œå∫∑©√Ω©abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
     @IBOutlet var scrollView: UIScrollView!
 
     var activeField: UITextField?
@@ -160,6 +161,10 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
             errorMessageCustom = "Apellido materno no válido"
             error = 1
         }
+        else if(contains(text: cellphoneInv.text!, find: isnumber)){
+            errorMessageCustom = "Número de celular no válido"
+            error = 1
+        }
         else if(contains(text: nameInv.text!, find: invalidCharacters)){
             errorMessageCustom = "Nombre no acepta números o símbolos"
             error = 1
@@ -213,11 +218,16 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
                     let parser = self.inv?.id
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                     print(routeApi)
-                    self.postActivity.startAnimating()
+                    DispatchQueue.main.async {
+                        self.overlay = UIView(frame: (self.parent?.view.frame)!)
+                        self.overlay!.backgroundColor = UIColor.black
+                        self.overlay!.alpha = 0.8
+                        self.parent?.view.addSubview(self.overlay!)
+                        LoadingOverlay.shared.showOverlay(view: self.overlay!)
+                    }
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                         if(error != nil){
                             //Mostrar error y regresar al menù principal
-                            print(error)
                             alert.title = self.errorTitle
                             alert.message = self.errorMessage
                             self.present(alert,animated: true, completion:nil)
@@ -225,8 +235,8 @@ class InvestigatorEditViewController: UIViewController, UITextFieldDelegate {
                         else {
                             //obtener data
                             DispatchQueue.main.async {
-                                self.postActivity.stopAnimating()
-                                self.postActivity.isHidden = true
+                                LoadingOverlay.shared.hideOverlayView()
+                                self.overlay?.removeFromSuperview()
                             }
                             self.inv?.name = self.nameInv.text
                             self.inv?.lastNameP = self.lastNamePInv.text

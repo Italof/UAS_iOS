@@ -11,7 +11,8 @@ import UIKit
 class EveProjectTableViewController: UITableViewController {
     //Arreglo de eventos de un proyecto -- Se llena con el api
     var invPrEvData : [InvestigationProjectEvent] = []//[InvestigationProjectEvent.init(id: 1, name: "Evento de iniciación", date: "12/05/2016", time: "12:12 p.m.", place: "No-where")]
-    @IBOutlet weak var activity: UIActivityIndicatorView!
+    //@IBOutlet weak var activity: UIActivityIndicatorView!
+    var overlay: UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -21,96 +22,104 @@ class EveProjectTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        let invGr = ((parent as! InvNavViewController).invGr)
-        let token = (parent as! InvNavViewController).token
-        let get = (parent as! InvNavViewController).getEvents
-        self.invPrEvData = []
-        let parser = invGr?.id
-        let id = String(parser.unsafelyUnwrapped)
-        let routeApi = "investigation/" + id + "/" + get + "?token=" + token
-        let idUser = (self.parent as! InvNavViewController).id
-        DispatchQueue.main.async {
-            self.activity.startAnimating()
-        }
-        HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
-            DispatchQueue.main.async {
-                self.activity.stopAnimating()
-                self.activity.isHidden = true
-            }
-            if(error == nil){
-                //obtener data
-                let dataUnwrapped = data.unsafelyUnwrapped
-                let dateFormat = DateFormatter()
-                dateFormat.dateFormat = "yyyy-MM-dd HH:mm"
-                let arrayEvents = dataUnwrapped as! [AnyObject]
-                self.invPrEvData = []
-                for event in arrayEvents{
-                    let ev = event as! [String:AnyObject]
-                    var newEvent : InvestigationProjectEvent = InvestigationProjectEvent.init(json : ev)
-                    let dateFormaterTime = DateFormatter()
-                    dateFormaterTime.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                    let time = dateFormaterTime.date(from: newEvent.time!)
-                    var datetime : String = ""
-                    if(time != nil){
-                        dateFormaterTime.dateFormat = "HH:mm"
-                        let timeS = dateFormaterTime.string(from: time!)
-                        datetime = newEvent.date! + " " + timeS
-                    }
-                    else{
-                        newEvent.time = newEvent.date! + " " + "00:00:00"
-                        datetime = newEvent.date! + " " + "00:00"
-                    }
-                    let dateEv = dateFormat.date(from: datetime)
-                    var pos = 0
-                    for eve in self.invPrEvData {
+    override func viewDidAppear(_ animated: Bool) {
+        if(parent != nil){
+            let invGr = ((parent as! InvNavViewController).invGr)
+            let token = (parent as! InvNavViewController).token
+            let get = (parent as! InvNavViewController).getEvents
+            self.invPrEvData = []
+            let parser = invGr?.id
+            let id = String(parser.unsafelyUnwrapped)
+            let routeApi = "investigation/" + id + "/" + get + "?token=" + token
+            let idUser = (self.parent as! InvNavViewController).id
+            
+                //self.downActivity?.startAnimating()
+                self.overlay = UIView(frame: (self.parent?.view.frame)!)
+                self.overlay!.backgroundColor = UIColor.black
+                self.overlay!.alpha = 0.8
+                self.parent?.view.addSubview(self.overlay!)
+                LoadingOverlay.shared.showOverlay(view: self.overlay!)
+            HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+                
+                    LoadingOverlay.shared.hideOverlayView()
+                    self.overlay?.removeFromSuperview()
+                    //self.downActivity.stopAnimating()
+                    //self.downActivity.isHidden = true
+                
+                if(error == nil){
+                    //obtener data
+                    let dataUnwrapped = data.unsafelyUnwrapped
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy-MM-dd HH:mm"
+                    let arrayEvents = dataUnwrapped as! [AnyObject]
+                    self.invPrEvData = []
+                    for event in arrayEvents{
+                        let ev = event as! [String:AnyObject]
+                        var newEvent : InvestigationProjectEvent = InvestigationProjectEvent.init(json : ev)
+                        let dateFormaterTime = DateFormatter()
                         dateFormaterTime.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                        let timeEve = dateFormaterTime.date(from: eve.time!)
-                        dateFormaterTime.dateFormat = "HH:mm"
-                        let timeSEve = dateFormaterTime.string(from: timeEve!)
-                        let dateTimeEve = dateFormat.date(from: eve.date! + " " + timeSEve)
-                        if(dateEv! < dateTimeEve!){
-                            break;
+                        let time = dateFormaterTime.date(from: newEvent.time!)
+                        var datetime : String = ""
+                        if(time != nil){
+                            dateFormaterTime.dateFormat = "HH:mm"
+                            let timeS = dateFormaterTime.string(from: time!)
+                            datetime = newEvent.date! + " " + timeS
                         }
-                        pos = pos + 1
-                    }
-                    
-                    if(idUser != newEvent.idLeader){
-                        //si no se encuentra el perfil permitido
-                        //ocultar boton de editar
-                        if(newEvent.type == 0){
+                        else{
+                            newEvent.time = newEvent.date! + " " + "00:00:00"
+                            datetime = newEvent.date! + " " + "00:00"
+                        }
+                        let dateEv = dateFormat.date(from: datetime)
+                        var pos = 0
+                        for eve in self.invPrEvData {
+                            dateFormaterTime.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                            let timeEve = dateFormaterTime.date(from: eve.time!)
+                            dateFormaterTime.dateFormat = "HH:mm"
+                            let timeSEve = dateFormaterTime.string(from: timeEve!)
+                            let dateTimeEve = dateFormat.date(from: eve.date! + " " + timeSEve)
+                            if(dateEv! < dateTimeEve!){
+                                break;
+                            }
+                            pos = pos + 1
+                        }
+                        
+                        if(idUser != newEvent.idLeader){
+                            //si no se encuentra el perfil permitido
+                            //ocultar boton de editar
+                            if(newEvent.type == 0){
+                                if(pos>self.invPrEvData.count){
+                                    self.invPrEvData.append(newEvent)
+                                }
+                                else{
+                                    self.invPrEvData.insert(newEvent, at: pos)
+                                }
+                                
+                            }
+                        }
+                        else{
                             if(pos>self.invPrEvData.count){
                                 self.invPrEvData.append(newEvent)
                             }
                             else{
                                 self.invPrEvData.insert(newEvent, at: pos)
                             }
-
+                            
                         }
+                        
+                        //print(self.invPrData)
+                        //print(pr["id"].unsafelyUnwrapped)
                     }
-                    else{
-                        if(pos>self.invPrEvData.count){
-                            self.invPrEvData.append(newEvent)
-                        }
-                        else{
-                            self.invPrEvData.insert(newEvent, at: pos)
-                        }
-
-                    }
-
-                                        //print(self.invPrData)
-                    //print(pr["id"].unsafelyUnwrapped)
+                    self.do_table_refresh()
+                    
                 }
-                self.do_table_refresh()
+                else {
+                    //Mostrar error y regresar al menù principal
+                    
+                    
+                }
                 
-            }
-            else {
-                //Mostrar error y regresar al menù principal
-                
-                
-            }
-            
-        })
+            })
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

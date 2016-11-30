@@ -11,8 +11,8 @@ import UIKit
 class InvestigationGroupTableViewController: UITableViewController {
     var invGrData: [InvestigationGroup] = []
     var elegido : Int = 9
-    
-    @IBOutlet var downActivity: UIActivityIndicatorView!
+    var overlay: UIView?
+    //@IBOutlet var downActivity: UIActivityIndicatorView!
     //var downActivity : UIActivityIndicatorView?
     override func viewDidLoad() {        
         super.viewDidLoad()
@@ -58,46 +58,54 @@ class InvestigationGroupTableViewController: UITableViewController {
         do_table_refresh()
     }
     
-  override func viewWillAppear(_ animated: Bool) {
-    
-    let token = (parent as! InvNavViewController).token
-    let get = (parent as! InvNavViewController).getGroups
-    if AskConectivity.isInternetAvailable(){
-      print("conectado")
-        //downActivity?.center = self.view.center
-        DispatchQueue.main.async {
-            self.downActivity?.startAnimating()
+  override func viewDidAppear(_ animated: Bool) {
+    if(parent != nil){
+        let token = (parent as! InvNavViewController).token
+        let get = (parent as! InvNavViewController).getGroups
+        if AskConectivity.isInternetAvailable(){
+            print("conectado")
+            //downActivity?.center = self.view.center
+                //self.downActivity?.startAnimating()
+                self.overlay = UIView(frame: (self.parent?.view.frame)!)
+                self.overlay!.backgroundColor = UIColor.black
+                self.overlay!.alpha = 0.8
+                self.parent?.view.addSubview(self.overlay!)
+                LoadingOverlay.shared.showOverlay(view: self.overlay!)
+            
         }
-    }
-    else{
-      print("error de conexion")
-    }
-    let routeApi = "investigation/" + get + "?token=" + token
-    HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
-      if(error == nil){
-        //obtener data
-        DispatchQueue.main.async {
-            self.downActivity.stopAnimating()
-            self.downActivity.isHidden = true
+        else{
+            print("error de conexion")
         }
-        let dataUnwrapped = data.unsafelyUnwrapped
-        let arrayGroup = dataUnwrapped as? [Any]
-        self.invGrData = []
-        for group in arrayGroup!{
-          let gr = group as! [String:AnyObject]
-          
-          //let group : InvestigationGroup =
-          self.invGrData.append( InvestigationGroup ( json: gr ) )
-          //print(self.invGrData)
-          //print(pr["id"].unsafelyUnwrapped)
-        }
-        self.do_table_refresh()
-      }
-      else {
-        //Mostrar error y regresar al menù principal
         
-      }
-    })
+        let routeApi = "investigation/" + get + "?token=" + token
+        HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+            if(error == nil){
+                //obtener data
+                
+                    LoadingOverlay.shared.hideOverlayView()
+                    self.overlay?.removeFromSuperview()
+                    //self.downActivity.stopAnimating()
+                    //self.downActivity.isHidden = true
+                
+                let dataUnwrapped = data.unsafelyUnwrapped
+                let arrayGroup = dataUnwrapped as? [Any]
+                self.invGrData = []
+                for group in arrayGroup!{
+                    let gr = group as! [String:AnyObject]
+                    
+                    //let group : InvestigationGroup =
+                    self.invGrData.append( InvestigationGroup ( json: gr ) )
+                    //print(self.invGrData)
+                    //print(pr["id"].unsafelyUnwrapped)
+                }
+                self.do_table_refresh()
+            }
+            else {
+                //Mostrar error y regresar al menù principal
+                
+            }
+        })
+    }
   }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

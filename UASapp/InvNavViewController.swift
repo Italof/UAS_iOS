@@ -62,7 +62,7 @@ class InvNavViewController: UINavigationController {
     var editDerivables: String = "deliverable"
     //obtener  documentos
     var getDocuments: String = "versions"
-    var getResponsibles: String = "responsibles"
+    var getResponsibles: String = "deliverable"
     //registrar observaciones
     var registerObs:  String = "observation"
     override func viewDidLoad() {
