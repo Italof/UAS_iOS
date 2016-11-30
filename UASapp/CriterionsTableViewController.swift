@@ -12,6 +12,7 @@ class CriterionsTableViewController: UITableViewController {
     let userDefaults = UserDefaults.standard
     var aspect : Aspect!
     var criterionArray = [Criterion]()
+    var overlay : UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,14 @@ class CriterionsTableViewController: UITableViewController {
         let token = userDefaults.string(forKey: "TOKEN")!
         let aspectId = aspect.id
         let url = "aspects/\(aspectId)/criterions/?token=\(token)"
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
         
         HTTPHelper.get(route: url, authenticated: true, completion: { (error, response) in
             if error != nil {
@@ -33,6 +42,9 @@ class CriterionsTableViewController: UITableViewController {
                     self.criterionArray.append(criterion)
                 }
             }
+            
+            LoadingOverlay.shared.hideOverlayView()
+            self.overlay?.removeFromSuperview()
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()

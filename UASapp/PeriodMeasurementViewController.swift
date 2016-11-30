@@ -11,7 +11,7 @@ import UIKit
 class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let userDefault = UserDefaults.standard
-    
+    var overlay : UIView?
     
     @IBOutlet weak var tableView: UITableView!
     //var cycles = ["2015-1 al 2015-2", "2016-1 al 2016-2"]
@@ -29,6 +29,15 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         let facultyId: Int = UserDefaults.standard.object(forKey: "SPECIALTY") as! Int
         print("token = " + token)
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
+        
         HTTPHelper.get(route: "periods/"+String(facultyId)+"/list" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
@@ -57,6 +66,9 @@ class PeriodMeasurementViewController: UIViewController, UITableViewDataSource, 
                 //Mostrar error y regresar al menù principal
                 
             }
+            LoadingOverlay.shared.hideOverlayView()
+            self.overlay?.removeFromSuperview()
+            
             self.do_table_refresh()
         })
         

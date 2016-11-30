@@ -15,6 +15,7 @@ class SpecialtyViewController: UIViewController {
     @IBOutlet var lblCode: UILabel!
     @IBOutlet var lblCoord: UILabel!
     @IBOutlet var lblDesc: UILabel!
+    @IBOutlet var lblEspecTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +27,12 @@ class SpecialtyViewController: UIViewController {
         lblCode.text = faculty?.code
         lblCoord.text = faculty?.coordinator
         lblDesc.text = faculty?.description
+        
         lblEspec.sizeToFit()
         lblDesc.sizeToFit()
         lblCoord.sizeToFit()
+        lblEspecTitle.sizeToFit()
+        
     }
 
     override func didReceiveMemoryWarning() {

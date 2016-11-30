@@ -18,6 +18,7 @@ class ActionDetailViewController: UIViewController, UIDocumentInteractionControl
     @IBOutlet weak var lblAvance: UILabel!
     
     var viewer: UIDocumentInteractionController?
+    var overlay : UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,14 @@ class ActionDetailViewController: UIViewController, UIDocumentInteractionControl
         
         if (action.fileName != nil && action.fileName != "") {
             let route = "http://52.89.227.55/uploads/" + action.fileName!
+            overlay = UIView(frame: view.frame)
+            overlay!.backgroundColor = UIColor.black
+            overlay!.alpha = 0.8
+            
+            view.addSubview(overlay!)
+            
+            LoadingOverlay.shared.showOverlay(view: overlay!)
+            
             DownloadHelper.loadFileAsync(route: route, completion:{(path, error) in
                 let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
                 if isFileFound == true {
@@ -47,6 +56,10 @@ class ActionDetailViewController: UIViewController, UIDocumentInteractionControl
                     self.viewer?.presentPreview(animated: true)
                 }
             })
+            
+            LoadingOverlay.shared.hideOverlayView()
+            self.overlay?.removeFromSuperview()
+            
         } else {
             let alert = UIAlertController(title: "Lo sentimos",
                                           message: "No se encontro ningún documento",

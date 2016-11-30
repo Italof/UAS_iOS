@@ -11,6 +11,7 @@ import UIKit
 class SuggestionViewController: UIViewController {
     var userDefaults = UserDefaults.standard
     var impPlan : ImprovementPlan!
+    var overlay : UIView?
     
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtComent: UITextView!
@@ -42,7 +43,15 @@ class SuggestionViewController: UIViewController {
     @IBAction func saveSuggestion(_ sender: UIBarButtonItem) {
         let title = txtTitle.text! as NSString
         let coment = txtComent.text! as NSString
-   
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
+        
         if (title.isEqual(to: "")) {
             alert.message = "Debe ingresar un titulo para su sugerencia"
             self.present(alert, animated: true, completion: nil)
@@ -70,6 +79,10 @@ class SuggestionViewController: UIViewController {
                         print(error!)
                         self.saveAlert.title = "¡Error!"
                         self.saveAlert.message = "No se pudo guardar su sugerencia"
+                        
+                        LoadingOverlay.shared.hideOverlayView()
+                        self.overlay?.removeFromSuperview()
+                        
                         self.present(self.saveAlert, animated: true, completion: nil)
                     } else {
                         let responseData = response as! [String:AnyObject]
@@ -77,12 +90,17 @@ class SuggestionViewController: UIViewController {
                         
                         self.saveAlert.title = "¡Perfecto!"
                         self.saveAlert.message = msg
-
+                        
+                        LoadingOverlay.shared.hideOverlayView()
+                        self.overlay?.removeFromSuperview()
+                        
                         self.present(self.saveAlert, animated: true, completion: nil)
                     }
                 })
                 
             } catch let err as NSError {
+                LoadingOverlay.shared.hideOverlayView()
+                self.overlay?.removeFromSuperview()
                 print("JSONObject: ERROR: \(err)")
             }
             
