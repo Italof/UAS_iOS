@@ -14,6 +14,7 @@ class MyFacultiesViewController: UIViewController, UITableViewDataSource, UITabl
     var faculties: [Faculty] = []
     
     let userDefault = UserDefaults.standard
+    var overlay: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,14 @@ class MyFacultiesViewController: UIViewController, UITableViewDataSource, UITabl
         else{
             print("error de conexion")
         }
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         print("token = " + token)
@@ -59,6 +68,10 @@ class MyFacultiesViewController: UIViewController, UITableViewDataSource, UITabl
                 //Mostrar error y regresar al menù principal
                 
             }
+            
+            LoadingOverlay.shared.hideOverlayView()
+            self.overlay?.removeFromSuperview()
+            
             self.do_table_refresh()
         })
 

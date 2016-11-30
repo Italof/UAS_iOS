@@ -12,6 +12,7 @@ class LevelsTableViewController: UITableViewController {
     let userDefaults = UserDefaults.standard
     var criterion : Criterion!
     var levelArray = [Level]()
+    var overlay : UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,14 @@ class LevelsTableViewController: UITableViewController {
         let token = userDefaults.string(forKey: "TOKEN")!
         let criterionId = criterion.id
         let url = "criterions/\(criterionId)/levels?token=\(token)"
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
         
         HTTPHelper.get(route: url, authenticated: true, completion: { (error, response) in
             if error != nil {
@@ -33,6 +42,9 @@ class LevelsTableViewController: UITableViewController {
                     self.levelArray.append(level)
                 }
             }
+            
+            LoadingOverlay.shared.hideOverlayView()
+            self.overlay?.removeFromSuperview()
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()

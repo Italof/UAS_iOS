@@ -97,6 +97,7 @@ class ViewController: UIViewController {
                             errorAlert.message = "Error en el servidor, intente más tarde"
                             self.present(errorAlert, animated: true, completion: nil)
                         }
+                        
                         LoadingOverlay.shared.hideOverlayView()
                         self.overlay?.removeFromSuperview()
                         

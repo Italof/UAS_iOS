@@ -2584,9 +2584,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="EspecialidadBlue-30" id="d2p-HF-uuH">
+                                                    <frame key="frameInset" minX="15" minY="6" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
+                                            <color key="tintColor" red="0.2470588235" green="0.32549019610000002" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="0.2470588235" green="0.32549019610000002" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="HBc-dZ-jCY" kind="show" id="u1X-6M-pSH"/>
                                         </connections>
@@ -2605,6 +2611,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="LeaderboarBlue-30" id="mhm-XU-YLh">
+                                                    <frame key="frameInset" minX="15" minY="6" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2626,6 +2636,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="MejoraBlue-30" id="xwY-GD-r36">
+                                                    <frame key="frameInset" minX="15" minY="6" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2647,6 +2661,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="CursosBlue-30" id="c3i-6y-UAB">
+                                                    <frame key="frameInset" minX="15" minY="6" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2713,7 +2731,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact">
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36z-IQ-sqW">
@@ -2722,7 +2740,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact">
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coordinador:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Pf-t1-6x4">
@@ -2731,7 +2749,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact">
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripción:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHl-h7-1n9">
@@ -2740,7 +2758,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact">
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lblCoord" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfd-b6-OO1">
@@ -2783,29 +2801,7 @@
                                 </variation>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="2Pf-t1-6x4" firstAttribute="top" secondItem="36z-IQ-sqW" secondAttribute="bottom" constant="36" id="0qr-eS-NXY"/>
-                            <constraint firstItem="Dfd-b6-OO1" firstAttribute="top" secondItem="2Pf-t1-6x4" secondAttribute="top" id="3LU-wd-IrH"/>
-                            <constraint firstItem="36z-IQ-sqW" firstAttribute="top" secondItem="Ni6-Wj-FkG" secondAttribute="bottom" constant="29" id="4eX-oF-5KM"/>
-                            <constraint firstItem="2Pf-t1-6x4" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" constant="10" id="7Vo-ax-vyF"/>
-                            <constraint firstItem="Ni6-Wj-FkG" firstAttribute="top" secondItem="VRu-Xi-2AK" secondAttribute="bottom" constant="30" id="7ui-Mz-grq"/>
-                            <constraint firstItem="EHl-h7-1n9" firstAttribute="top" secondItem="2Pf-t1-6x4" secondAttribute="bottom" constant="45" id="8Cz-is-eYR"/>
-                            <constraint firstItem="Lo9-o1-8Vh" firstAttribute="top" secondItem="36z-IQ-sqW" secondAttribute="top" id="94v-0q-J4t"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="CbN-My-fiN" secondAttribute="trailing" constant="10" id="BRL-fG-fv9"/>
-                            <constraint firstItem="CbN-My-fiN" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" constant="10" id="F7L-9v-0Pk"/>
-                            <constraint firstItem="lNl-4x-eRP" firstAttribute="top" secondItem="Ni6-Wj-FkG" secondAttribute="top" id="HZd-bw-oaE"/>
-                            <constraint firstItem="Dfd-b6-OO1" firstAttribute="leading" secondItem="lNl-4x-eRP" secondAttribute="leading" id="LHS-Ra-Es9"/>
-                            <constraint firstItem="Ni6-Wj-FkG" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" constant="10" id="RWJ-o4-5uG"/>
-                            <constraint firstItem="Lo9-o1-8Vh" firstAttribute="leading" secondItem="lNl-4x-eRP" secondAttribute="leading" id="UnD-FD-W8A"/>
-                            <constraint firstItem="lNl-4x-eRP" firstAttribute="leading" secondItem="Ni6-Wj-FkG" secondAttribute="trailing" constant="15" id="Vqn-Ky-eIl"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Lo9-o1-8Vh" secondAttribute="trailing" constant="10" id="ZaZ-wi-Kgj"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="lNl-4x-eRP" secondAttribute="trailing" constant="10" id="acL-OJ-EW7"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Dfd-b6-OO1" secondAttribute="trailing" constant="10" id="c3Q-LV-Kgo"/>
-                            <constraint firstItem="36z-IQ-sqW" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" constant="10" id="ipW-da-KdQ"/>
-                            <constraint firstItem="CbN-My-fiN" firstAttribute="top" secondItem="EHl-h7-1n9" secondAttribute="bottom" constant="10" id="sBB-2b-zwh"/>
-                            <constraint firstItem="EHl-h7-1n9" firstAttribute="leading" secondItem="gbI-Yn-PzR" secondAttribute="leadingMargin" constant="10" id="zle-pk-fMh"/>
-                        </constraints>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Mi especialidad" id="zyD-ZK-fg7">
                         <barButtonItem key="backBarButtonItem" title="Atrás" id="KTz-eG-Rbt"/>
@@ -2815,11 +2811,12 @@
                         <outlet property="lblCoord" destination="Dfd-b6-OO1" id="AhL-vH-AXF"/>
                         <outlet property="lblDesc" destination="CbN-My-fiN" id="4U9-dA-T1w"/>
                         <outlet property="lblEspec" destination="lNl-4x-eRP" id="PFI-vW-Q4G"/>
+                        <outlet property="lblEspecTitle" destination="Ni6-Wj-FkG" id="VkE-49-e4o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CU6-Di-FJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3016.40625" y="-3655.0781249999995"/>
+            <point key="canvasLocation" x="3015.1999999999998" y="-3655.3223388305851"/>
         </scene>
         <!--Evidencias de cursos dictados-->
         <scene sceneID="X3V-o1-YAm">
@@ -3119,7 +3116,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CL0-YG-P4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6168.75" y="-1479.9295774647887"/>
+            <point key="canvasLocation" x="5402" y="-1476"/>
         </scene>
         <!--Aspectos-->
         <scene sceneID="Cth-Yu-py5">
@@ -3168,7 +3165,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHE-cK-VFU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7778" y="-1479"/>
+            <point key="canvasLocation" x="6129" y="-1476"/>
         </scene>
         <!--Criterios-->
         <scene sceneID="BDV-3h-ldi">
@@ -3218,7 +3215,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wng-P8-SS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8736" y="-1480"/>
+            <point key="canvasLocation" x="6970" y="-1476"/>
         </scene>
         <!--Niveles-->
         <scene sceneID="CwT-1W-c4B">
@@ -3558,16 +3555,6 @@
             <point key="canvasLocation" x="6129.375" y="-2190.8450704225352"/>
         </scene>
         <!--Resultados estudiantiles-->
-        <scene sceneID="Mfa-90-9ao">
-            <objects>
-                <viewController id="q6A-AS-4gg" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Resultados estudiantiles" id="VQX-1h-e4g"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qYg-W5-MnK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7811" y="-2190"/>
-        </scene>
-        <!--Resultados estudiantiles-->
         <scene sceneID="y3e-9c-81g">
             <objects>
                 <tableViewController id="OiL-hx-Zeo" customClass="AportesByCourseController" customModule="UASapp" customModuleProvider="target" sceneMemberID="viewController">
@@ -3642,7 +3629,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GNn-QA-npI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4612.5" y="-1476.7605633802816"/>
+            <point key="canvasLocation" x="4612" y="-1476"/>
         </scene>
         <!--Instrumentos de medición-->
         <scene sceneID="xwc-vY-gVQ">
@@ -9133,13 +9120,17 @@
     <resources>
         <image name="Best Seller-30" width="30" height="30"/>
         <image name="Briefcase-30" width="30" height="30"/>
+        <image name="CursosBlue-30" width="30" height="30"/>
         <image name="Download-30" width="30" height="30"/>
         <image name="Download-Filled-30" width="30" height="30"/>
+        <image name="EspecialidadBlue-30" width="30" height="30"/>
         <image name="Exam-30" width="30" height="30"/>
         <image name="Exit-30" width="30" height="30"/>
         <image name="Files-30" width="30" height="30"/>
         <image name="Group-30" width="30" height="30"/>
         <image name="Investigator-30" width="30" height="30"/>
+        <image name="LeaderboarBlue-30" width="30" height="30"/>
+        <image name="MejoraBlue-30" width="30" height="30"/>
         <image name="Microscope-30" width="30" height="30"/>
         <image name="Projects-30" width="30" height="30"/>
         <image name="Settings-30" width="30" height="30"/>

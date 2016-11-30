@@ -12,13 +12,21 @@ import UIKit
 class EducationalGoalsViewController: UITableViewController {
     let userDefaults = UserDefaults.standard
     var goalsArray = [EducationalGoal]()
-    let goals = ["Conducir el análisis de procesos de negocio y necesidades de información de la organización",
-                 "Dirigir las actividades del ciclo de vida del proyectos informáticos, utilizando tecnología, estadares y herramientas adecuadas"]
+
+    var overlay : UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let token = userDefaults.string(forKey: "TOKEN")!
         let url = "faculties/\(userDefaults.string(forKey: "SPECIALTY")!)/educational-objectives/?token=\(token)"
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
         
         HTTPHelper.get(route: url, authenticated: true, completion: { (error, responseData) in
             if error != nil {
@@ -51,6 +59,9 @@ class EducationalGoalsViewController: UITableViewController {
                     self.goalsArray.append(goalStruct!)
                 }
             }
+            
+            LoadingOverlay.shared.hideOverlayView()
+            self.overlay?.removeFromSuperview()
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()

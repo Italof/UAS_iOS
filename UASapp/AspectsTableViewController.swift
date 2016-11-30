@@ -12,6 +12,7 @@ class AspectsTableViewController: UITableViewController {
     let userDefaults = UserDefaults.standard
     var outcome : StudentOutcome!
     var aspectsArray = [Aspect]()
+    var overlay : UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,14 @@ class AspectsTableViewController: UITableViewController {
         let token = userDefaults.string(forKey: "TOKEN")!
         let outcomeId = outcome.id
         let url = "faculties/student_result/\(outcomeId)/aspects/?token=\(token)"
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
         
         HTTPHelper.get(route: url, authenticated: true, completion: { (error, response) in
             if error != nil {
@@ -33,6 +42,9 @@ class AspectsTableViewController: UITableViewController {
                     self.aspectsArray.append(aspect)
                 }
             }
+            
+            LoadingOverlay.shared.hideOverlayView()
+            self.overlay?.removeFromSuperview()
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()

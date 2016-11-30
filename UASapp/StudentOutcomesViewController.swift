@@ -14,12 +14,22 @@ class StudentOutcomesViewController: UITableViewController {
     var goal : EducationalGoal?
     
     var outcomesArray = [StudentOutcome]()
+    var overlay : UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let token = userDefaults.string(forKey: "TOKEN")!
         let url = "faculties/\(userDefaults.string(forKey: "SPECIALTY")!)/eob/\((goal?.id)!)/students_results/?token=\(token)"
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
+        
         HTTPHelper.get(route: url, authenticated: true, completion: { (error, responseData) in
             if error != nil {
                 print("REQUESTED ERROR: \(error)")
@@ -50,6 +60,9 @@ class StudentOutcomesViewController: UITableViewController {
                     self.outcomesArray.append(outcomeStruct!)
                 }
             }
+            
+            LoadingOverlay.shared.hideOverlayView()
+            self.overlay?.removeFromSuperview()
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
