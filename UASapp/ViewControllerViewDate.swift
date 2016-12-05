@@ -78,7 +78,7 @@ class ViewControllerViewDate: UIViewController {
             //Pendiente
             if (citaO?.estado == "Pendiente"){
                 botonConfirmar.isHidden = true
-                botonCancelar.isHidden = true
+                botonCancelar.isHidden = false
                 botonRechazar.isHidden = true
             }
             //Confirmada
@@ -125,7 +125,7 @@ class ViewControllerViewDate: UIViewController {
             //Pendiente
             if (citaO?.estado == "Pendiente"){
                 botonConfirmar.isHidden = true
-                botonCancelar.isHidden = true
+                botonCancelar.isHidden = false
                 botonRechazar.isHidden = true
                 botonAtender.isHidden = true
                 botonNoAtender.isHidden = true

@@ -8,7 +8,7 @@
 
 import Foundation
 
-let baseUrl = "http://52.89.227.55/api/"
+let baseUrl = "http://35.163.64.211/api/"//"http://52.89.227.55/api/"
 
 class HTTPHelper {
   
