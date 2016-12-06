@@ -51,7 +51,7 @@ class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource,
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Fila " + String(indexPath.row))
         let evidence = evidences[indexPath.row] as Evidence
-        //let route = "http://52.89.227.55/" + dowloadRoute!
+        //let route = "http://35.163.64.211/" + dowloadRoute!
         let route = evidence.url
         //var route: String?
         //route = "http://www.uruguayeduca.edu.uy/Userfiles/P0001/File/El%20loro%20pelado_.pdf"

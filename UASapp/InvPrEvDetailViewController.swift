@@ -60,7 +60,7 @@ class InvPrEvDetailViewController: UIViewController {
         if (image != ""){
             if (invPrEv?.image != nil)
             {
-                let route = "http://52.89.227.55/" + (invPrEv?.image)!
+                let route = "http://35.163.64.211/" + (invPrEv?.image)!
                 DownloadHelper.loadFileAsync(route: route, completion:{(path, error) in
                     let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
                     if isFileFound == true {

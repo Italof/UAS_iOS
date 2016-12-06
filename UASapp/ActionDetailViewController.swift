@@ -39,7 +39,7 @@ class ActionDetailViewController: UIViewController, UIDocumentInteractionControl
     @IBAction func downloadFile() {
         
         if (action.fileName != nil && action.fileName != "") {
-            let route = "http://52.89.227.55/uploads/" + action.fileName!
+            let route = "http://35.163.64.211/uploads/" + action.fileName!
             overlay = UIView(frame: view.frame)
             overlay!.backgroundColor = UIColor.black
             overlay!.alpha = 0.8

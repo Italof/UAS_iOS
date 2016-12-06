@@ -73,7 +73,7 @@ class DetalleDocumentoViewController: UIViewController,UIDocumentInteractionCont
         
         if (documento!.ruta != nil && documento!.ruta != "" )
         {
-            var route = "http://52.89.227.55/" + documento!.ruta
+            var route = "http://35.163.64.211/" + documento!.ruta
            
             
             print("route******:",route)

@@ -38,7 +38,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
         
         if (dowloadRoute != nil && dowloadRoute != "" )
         {
-            var route = "http://52.89.227.55/" + dowloadRoute!
+            var route = "http://35.163.64.211/" + dowloadRoute!
             route = route.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             if(AskConectivity.isInternetAvailable()){
                 DispatchQueue.main.async {

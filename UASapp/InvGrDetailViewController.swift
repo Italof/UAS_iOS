@@ -76,7 +76,7 @@ class InvGrDetailViewController: UIViewController {
       let isConnected = AskConectivity.isInternetAvailable()
       if (invGr?.imageInvGr != nil)
       {
-         let route = "http://52.89.227.55/" + (invGr?.imageInvGr)!
+         let route = "http://35.163.64.211/" + (invGr?.imageInvGr)!
          DownloadHelper.loadFileSync(route: route, completion:{(path, error) in
             let isFileFound:Bool? = FileManager.default.fileExists(atPath: path)
             if isFileFound == true {
