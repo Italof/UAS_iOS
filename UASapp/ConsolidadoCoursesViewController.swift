@@ -10,6 +10,7 @@ import UIKit
 
 class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate  {
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     var dowloadRoute: String?
     var viewer: UIDocumentInteractionController?
     @IBOutlet weak var tableView: UITableView!
@@ -56,7 +57,13 @@ class ConsolidadoCoursesViewController: UIViewController, UITableViewDataSource,
         //route = "http://www.uruguayeduca.edu.uy/Userfiles/P0001/File/El%20loro%20pelado_.pdf"
         if (route != nil && route != "" )
         {
+            DispatchQueue.main.async {
+                self.activity.startAnimating()
+            }
             DownloadHelper.loadFileAsync(route: route!,completion:{(path, error) in
+                DispatchQueue.main.async {
+                    self.activity.stopAnimating()
+                }
                 if(path != nil){
                     let isFileFound:Bool? = FileManager.default.fileExists(atPath: path!)
                     if isFileFound == true {

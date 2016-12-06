@@ -2887,27 +2887,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uqc-Fr-WGi">
+                                <rect key="frame" x="728" y="43" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="nwY-mu-S1E" firstAttribute="top" secondItem="tMm-tW-h5I" secondAttribute="bottom" constant="53" id="9di-AU-4pL"/>
-                            <constraint firstAttribute="trailing" secondItem="nwY-mu-S1E" secondAttribute="trailing" id="AV7-aT-IiC"/>
-                            <constraint firstItem="tMm-tW-h5I" firstAttribute="top" secondItem="5LK-zp-ttF" secondAttribute="top" constant="20" symbolic="YES" id="FEd-0v-rpH"/>
-                            <constraint firstItem="qL5-km-epc" firstAttribute="top" secondItem="nwY-mu-S1E" secondAttribute="bottom" constant="8" symbolic="YES" id="Phu-tj-VV5"/>
-                            <constraint firstItem="nwY-mu-S1E" firstAttribute="leading" secondItem="5LK-zp-ttF" secondAttribute="leading" id="Q4K-of-aDT"/>
-                            <constraint firstItem="tMm-tW-h5I" firstAttribute="leading" secondItem="5LK-zp-ttF" secondAttribute="leadingMargin" constant="9" id="pCR-Wj-Wx6"/>
-                            <constraint firstItem="tMm-tW-h5I" firstAttribute="centerX" secondItem="nwY-mu-S1E" secondAttribute="centerX" id="tNG-Y1-NMy"/>
+                            <constraint firstItem="nwY-mu-S1E" firstAttribute="top" secondItem="tMm-tW-h5I" secondAttribute="bottom" constant="53" id="0vd-JL-kR0"/>
+                            <constraint firstItem="tMm-tW-h5I" firstAttribute="top" secondItem="5LK-zp-ttF" secondAttribute="top" constant="20" symbolic="YES" id="IHH-I0-b16"/>
+                            <constraint firstAttribute="trailing" secondItem="nwY-mu-S1E" secondAttribute="trailing" id="Imd-rb-DHZ"/>
+                            <constraint firstItem="tMm-tW-h5I" firstAttribute="leading" secondItem="5LK-zp-ttF" secondAttribute="leadingMargin" constant="9" id="O9M-0n-Jz5"/>
+                            <constraint firstItem="tMm-tW-h5I" firstAttribute="centerY" secondItem="uqc-Fr-WGi" secondAttribute="centerY" id="WS5-a4-N7I"/>
+                            <constraint firstItem="uqc-Fr-WGi" firstAttribute="trailing" secondItem="5LK-zp-ttF" secondAttribute="trailingMargin" id="YCd-fp-S6f"/>
+                            <constraint firstItem="uqc-Fr-WGi" firstAttribute="top" secondItem="FrK-rN-kq0" secondAttribute="bottom" constant="43" id="dNF-xc-X4E"/>
+                            <constraint firstItem="uqc-Fr-WGi" firstAttribute="leading" secondItem="tMm-tW-h5I" secondAttribute="trailing" constant="8" symbolic="YES" id="dW6-Uu-uEn"/>
+                            <constraint firstItem="nwY-mu-S1E" firstAttribute="leading" secondItem="5LK-zp-ttF" secondAttribute="leading" id="icM-J0-eqo"/>
+                            <constraint firstItem="qL5-km-epc" firstAttribute="top" secondItem="nwY-mu-S1E" secondAttribute="bottom" constant="8" symbolic="YES" id="txn-pC-dZR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Evidencias de cursos dictados" id="YcL-aP-WXQ"/>
                     <connections>
+                        <outlet property="activity" destination="uqc-Fr-WGi" id="8xv-Po-7ci"/>
                         <outlet property="lblSchedule" destination="tMm-tW-h5I" id="SeT-JN-Dv3"/>
                         <outlet property="tableView" destination="nwY-mu-S1E" id="pGS-tB-koS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zy-TT-rAC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3016.875" y="-2191.9014084507044"/>
+            <point key="canvasLocation" x="3016.40625" y="-2191.9921875"/>
         </scene>
         <!--Semestres del periodo-->
         <scene sceneID="TY5-XY-Tbt">
@@ -4484,7 +4491,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGz-k2-1nU">
                                                     <rect key="frame" x="8" y="11" width="54" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -4597,7 +4604,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="MTA-mZ-Oh0"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -4635,7 +4642,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="QAf-C6-QNW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -4699,7 +4706,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="aNJ-DP-twJ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -4737,7 +4744,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="35" id="b9N-uC-3pA"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -9071,8 +9078,8 @@
         <image name="home-logo" width="318" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zqo-yz-he9"/>
         <segue reference="Nx9-Sd-qWK"/>
         <segue reference="WB0-pu-TO7"/>
+        <segue reference="jyu-FS-3nG"/>
     </inferredMetricsTieBreakers>
 </document>

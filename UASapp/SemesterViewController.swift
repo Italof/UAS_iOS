@@ -13,6 +13,8 @@ class SemesterViewController: UITableViewController {
     let userDefault = UserDefaults.standard
     
     var semesters: [Semester] = []
+    var overlay: UIView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +32,14 @@ class SemesterViewController: UITableViewController {
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
         let idEspecialidad: Int = UserDefaults.standard.object(forKey: "SPECIALTY") as! Int
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.black
+        overlay!.alpha = 0.8
+        
+        view.addSubview(overlay!)
+        
+        LoadingOverlay.shared.showOverlay(view: overlay!)
         HTTPHelper.get(route: "periods/" + String(idEspecialidad) + "/actual/semesters" + "?token=" + token, authenticated: true, completion:{ (error,data) in
             if(error == nil){
                 //obtener data
@@ -55,6 +65,11 @@ class SemesterViewController: UITableViewController {
                 //Mostrar error y regresar al men˘ principal
                 
             }
+            
+            
+            LoadingOverlay.shared.hideOverlayView()
+            self.overlay?.removeFromSuperview()
+            
             self.do_table_refresh()
         })
         
