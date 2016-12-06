@@ -21,8 +21,25 @@ class ViewControllerViewEvaluation: UIViewController {
     @IBOutlet weak var puntaje: UILabel!
     @IBOutlet weak var descripcion: UILabel!
 
+    @IBOutlet weak var labelTotalPreguntas: UILabel!
+    @IBOutlet weak var labelCerr: UILabel!
+    @IBOutlet weak var labelAbi: UILabel!
+    @IBOutlet weak var labelArc: UILabel!
+    @IBOutlet var labelPuntTot: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
+        labelTotalPreguntas.isHidden = true
+        totalPreg.isHidden = true
+        labelCerr.isHidden = true
+        labelAbi.isHidden = true
+        labelArc.isHidden = true
+        pregAbi.isHidden = true
+        pregArc.isHidden = true
+        pregCer.isHidden = true
+        puntaje.isHidden = true
+        labelPuntTot.isHidden = true
+        */
         let ev = ((self.parent as! NavigationControllerE).evalEsc)
         //let parser = ev?.id//
         codigo.text = String.init((ev?.id).unsafelyUnwrapped)
@@ -40,6 +57,12 @@ class ViewControllerViewEvaluation: UIViewController {
         pregAbi.text = String((ev?.numAbie).unsafelyUnwrapped)
         pregArc.text = String((ev?.numArc).unsafelyUnwrapped)
         puntaje.text = String((ev?.puntajeTotal).unsafelyUnwrapped)
+        
+        totalPreg.text = "-"
+        pregCer.text = "-"
+        pregAbi.text = "-"
+        pregArc.text = "-"
+        puntaje.text = "-"
         descripcion.text = ev?.descripcion
 
         // Do any additional setup after loading the view.
@@ -51,14 +74,5 @@ class ViewControllerViewEvaluation: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

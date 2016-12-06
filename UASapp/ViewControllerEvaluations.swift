@@ -14,7 +14,8 @@ class ViewControllerEvaluations: UIViewController, UITableViewDataSource, UITabl
     var evaluacionesA : [evaluation] = []
     
     var evaluacionSel: Int = -1
-
+    var overlay: UIView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         /*
@@ -110,6 +111,9 @@ class ViewControllerEvaluations: UIViewController, UITableViewDataSource, UITabl
         
         
         let token: String =  UserDefaults.standard.object( forKey: "TOKEN") as! String
+        
+        
+        
         HTTPHelper.get(route: "evaluation/getAllEvaluations?token=" + token, authenticated: true, completion:{ (error,data) in
             
             if(error == nil){
@@ -193,6 +197,7 @@ class ViewControllerEvaluations: UIViewController, UITableViewDataSource, UITabl
             }
             
         })
+        
         
     }
     func loadData(){

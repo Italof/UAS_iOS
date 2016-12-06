@@ -508,6 +508,9 @@ class ViewControllerDates: UIViewController, UITableViewDataSource, UITableViewD
         */
     }
     override func viewWillAppear(_ animated: Bool) {
+        
+        //let admi: Int = UserDefaults.standard.object(forKey: "")
+        
         let rol : String = UserDefaults.standard.object( forKey: "ROLTUTORIA") as! String
         
         if ( rol == "A"){
