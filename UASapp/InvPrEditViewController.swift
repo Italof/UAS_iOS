@@ -15,16 +15,17 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var startDateInvProject: UIDatePicker!
     @IBOutlet var numberDerivablesInvPr: UITextField!
     @IBOutlet var endDateInvProject: UIDatePicker!
+    var overlay: UIView?
     //varialbles de alert de sistema
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
     let errorTitle: String = "Error"
     let errorMessage: String = "No se han guardado los cambios"
-    let invalidCharacters = "1234567890,+-*/=!\"·$%&/(.)=?=¿;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠‚´][{}–„…œå∫∑©√Ω©"
+    let invalidCharacters = "·/()=?=_¨Ç*^\\|@#¢∞¬¬÷“”“≠´][{}–œå∫∑©√Ω©"
+    let isnumber = ",+-*/=!\"·$%&/(.)=?=¿;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠‚´][{}–„…œå∫∑©√Ω©abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
     @IBOutlet var invPrSaveButton: UIBarButtonItem!
     @IBOutlet var descriptionInvProject: UITextView!
-    
-    @IBOutlet weak var activity: UIActivityIndicatorView!
+    //@IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
     var activeField: UITextField?
     
@@ -171,6 +172,10 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
             errorMessageCustom = "Nombre no acepta números o símbolos"
             error = 1
         }
+        else if(contains(text: numberDerivablesInvPr.text!, find: isnumber)){
+            errorMessageCustom = "Número de entregables no válido"
+            error = 1
+        }
         else if((numberDerivablesInvPr!.text?.characters.count)! > 2){
             errorMessageCustom = "Número de entregables muy grande"
             error = 1
@@ -222,16 +227,20 @@ class InvPrEditViewController: UIViewController, UITextFieldDelegate {
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                     print(routeApi)
                     DispatchQueue.main.async {
-                        self.activity.startAnimating()
+                        self.overlay = UIView(frame: (self.parent?.view.frame)!)
+                        self.overlay!.backgroundColor = UIColor.black
+                        self.overlay!.alpha = 0.8
+                        self.parent?.view.addSubview(self.overlay!)
+                        LoadingOverlay.shared.showOverlay(view: self.overlay!)
                     }
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                         DispatchQueue.main.async {
-                            self.activity.stopAnimating()
-                            self.activity.isHidden = true
+                            LoadingOverlay.shared.hideOverlayView()
+                            self.overlay?.removeFromSuperview()
                         }
                         if(error != nil){
                             //Mostrar error y regresar al menù principal
-                            print(error)
+                            //print(error)
                             alert.title = self.errorTitle
                             alert.message = self.errorMessage
                             self.present(alert,animated: true, completion:nil)

@@ -9,34 +9,46 @@ import Foundation
 struct Responsible{
     //EStructura de evento de proyecto de investigaciòn
     //modelo
-    var id: Int
     var name: String?
     var lastNameP: String?
     var lastNameM: String?
-    var idUser: Int
     
     //funcion inicializadora
-    init(id:Int, name:String?, lastNameP: String?, lastNameM: String?, email:String?, cellphone:String?, area:String?, speciality:String?, idUser: Int){
+    init(name:String?, lastNameP: String?, lastNameM: String?, email:String?, cellphone:String?, area:String?, speciality:String?, idUser: Int){
         self.name = name
-        self.id = id
         self.lastNameP = lastNameP
         self.lastNameM = lastNameM
-        self.idUser = idUser
     }
     
-    init(json : [String:Any]){
+    init(jsonInv : [String:Any]){
         //actualizar
-        let id = json["id"] as! Int
-        let name = json["nombre"] as! String
-        let lastNameP = json["ape_paterno"] as! String
-        let lastNameM = json["ape_materno"] as! String
-        let idUser = json["id_usuario"] as! String
+        let name = jsonInv["nombre"] as! String
+        let lastNameP = jsonInv["ape_paterno"] as! String
+        let lastNameM = jsonInv["ape_materno"] as! String
         
         self.name = name
-        self.idUser = Int(idUser)!
-        self.id = id
         self.lastNameP = lastNameP
         self.lastNameM = lastNameM
     }
-    
+    init(jsonStu : [String:Any]){
+        //actualizar
+        let name = jsonStu["nombre"] as! String
+        let lastNameP = jsonStu["ape_paterno"] as! String
+        let lastNameM = jsonStu["ape_materno"] as! String
+        
+        self.name = name
+        self.lastNameP = lastNameP
+        self.lastNameM = lastNameM
+    }
+    init(jsonTea : [String:Any]){
+        //actualizar
+        let name = jsonTea["Nombre"] as! String
+        let lastNameP = jsonTea["ApellidoPaterno"] as! String
+        let lastNameM = jsonTea["ApellidoMaterno"] as! String
+        
+        self.name = name
+        self.lastNameP = lastNameP
+        self.lastNameM = lastNameM
+    }
+
 }

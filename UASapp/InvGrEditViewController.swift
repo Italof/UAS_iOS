@@ -10,18 +10,19 @@ import UIKit
 
 class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate{
     var invGr : InvestigationGroup?
+    var overlay: UIView?
     var specialities : [String] = ["Ingenierría Informatica","Otros"]
     //variables de campos
     @IBOutlet weak var nameInvGroup: UITextField!
     @IBOutlet weak var descriptionInvGroup: UITextView!
     @IBOutlet weak var saveInvGroup: UIBarButtonItem!
     @IBOutlet weak var specialityInvGroup: UITextField!
-    let invalidCharacters = "1234567890.,+-*/=!\"·$%&/()=?=¿;:_¨Ç*^\\|@#¢∞¬¬÷“”“≠‚´][{}–œå∫∑©√Ω©"
+    let invalidCharacters = "·/()=?=_¨Ç*^\\|@#¢∞¬¬÷“”“≠´][{}–œå∫∑©√Ω©"
     @IBOutlet var invGroupSaveButton: UIBarButtonItem!
     var activeField: UITextField?
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var activity: UIActivityIndicatorView!
+    //@IBOutlet weak var activity: UIActivityIndicatorView!
     //varialbles de alert de sistema
     let successTitle :  String = "Guardado"
     let successMessage: String = "Los cambios han sido guardados"
@@ -91,12 +92,16 @@ class InvGrEditViewController: UIViewController , UIPickerViewDelegate, UIPicker
                     let routeApi = "investigation/" + String(parser.unsafelyUnwrapped) + "/" + get + "?token=" + token
                     print(routeApi)
                     DispatchQueue.main.async {
-                        self.activity.startAnimating()
+                        self.overlay = UIView(frame: (self.parent?.view.frame)!)
+                        self.overlay!.backgroundColor = UIColor.black
+                        self.overlay!.alpha = 0.8
+                        self.parent?.view.addSubview(self.overlay!)
+                        LoadingOverlay.shared.showOverlay(view: self.overlay!)
                     }
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                         DispatchQueue.main.async {
-                            self.activity.stopAnimating()
-                            self.activity.isHidden = true
+                            LoadingOverlay.shared.hideOverlayView()
+                            self.overlay?.removeFromSuperview()
                         }
                         if(error != nil){
                             //Mostrar error y regresar al menù principal

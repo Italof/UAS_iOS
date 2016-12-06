@@ -15,8 +15,8 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
     var invInvData: [Responsible] = []
     var versionDer: [String] = []//["1.0","1.1","2.1"]
     var dowloadRoute: String?
-    
-    @IBOutlet weak var activityAll: UIActivityIndicatorView!
+    var overlay: UIView?
+    //@IBOutlet weak var activityAll: UIActivityIndicatorView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var nameInvDer: UILabel!
     @IBOutlet weak var respInvDer: UITextView!
@@ -127,7 +127,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
         
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if(parent != nil && selectedVersion == -1){
             invDer = (parent as! InvNavViewController).invDer
             invPr = (parent as! InvNavViewController).invPr
@@ -147,8 +147,15 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
             //deliverDateInvDer.text = "asdasdasd"
             let get = (parent as! InvNavViewController).getDocuments
             let routeApi = "investigation/" + id + "/" + get + "?token=" + token
-            activityAll.startAnimating()
+                self.overlay = UIView(frame: (self.parent?.view.frame)!)
+                self.overlay!.backgroundColor = UIColor.black
+                self.overlay!.alpha = 0.8
+                self.parent?.view.addSubview(self.overlay!)
+                LoadingOverlay.shared.showOverlay(view: self.overlay!)
+           
+
             HTTPHelper.get(route: routeApi, authenticated: true, completion: {(error,data) in
+                
                 if(error == nil){
                     //obtener data
                     let dataUnwrapped = data.unsafelyUnwrapped
@@ -216,20 +223,46 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
                 if(error == nil){
                     //obtener data
                     let dataUnwrapped = data.unsafelyUnwrapped
-                    let arrayDocument = dataUnwrapped as? [Any]
+                    print(dataUnwrapped)
+                    let data = dataUnwrapped as? [Any]
+                    let deliverable = data?[0] as! [String:AnyObject]
+                    let investigator = deliverable["investigators"] as? [AnyObject]
+                    let students = deliverable["students"] as? [AnyObject]
+                    let teachers = deliverable["teachers"] as? [AnyObject]
+                    //students!.append(contentsOf: teachers!)
+                    //investigator!.append(contentsOf: students!)
                     //self.invDocData = []
                     //self.versionDer = []
-                    for doc in arrayDocument!{
+                    for doc in investigator!{
                         let document = doc as! [String:AnyObject]
                         
                         //let group : InvestigationGroup =
-                        let inv = Responsible( json: document )
+                        let inv = Responsible( jsonInv: document )
                         self.invInvData.append( inv )
                         
                         //print(self.invGrData)
                         //print(pr["id"].unsafelyUnwrapped)
                     }
-                    
+                    for doc in students!{
+                        let document = doc as! [String:AnyObject]
+                        
+                        //let group : InvestigationGroup =
+                        let inv = Responsible( jsonStu: document )
+                        self.invInvData.append( inv )
+                        
+                        //print(self.invGrData)
+                        //print(pr["id"].unsafelyUnwrapped)
+                    }
+                    for doc in teachers!{
+                        let document = doc as! [String:AnyObject]
+                        
+                        //let group : InvestigationGroup =
+                        let inv = Responsible( jsonTea: document )
+                        self.invInvData.append( inv )
+                        
+                        //print(self.invGrData)
+                        //print(pr["id"].unsafelyUnwrapped)
+                    }
                     var responsibles : String = ""
                     for inv in self.invInvData{
                         let name = inv.name! + " " + inv.lastNameP! + " " + inv.lastNameM!
@@ -238,10 +271,10 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
                     if(self.respInvDer.text.characters.count == 0){
                         self.respInvDer.text = responsibles
                     }
-                    DispatchQueue.main.async {
-                        self.activityAll.stopAnimating()
-                        self.activityAll.isHidden = true
-                    }
+                    
+                        LoadingOverlay.shared.hideOverlayView()
+                        self.overlay?.removeFromSuperview()
+                    
                 }
                 else {
                     //Mostrar error y regresar al menù principal
@@ -367,7 +400,7 @@ class InvDerDetailViewController: UIViewController, UIDocumentInteractionControl
                     HTTPHelper.post(route: routeApi, authenticated: true, body : postData, completion: {(error,data) in
                         if(error != nil){
                             //Mostrar error y regresar al menù principal
-                             print(error)
+                             //print(error)
                             let alert : UIAlertController = UIAlertController.init(title: "Error", message: errorM, preferredStyle: .alert)
                             let action = UIAlertAction(title: "OK", style: .default, handler:nil)
                             alert.addAction(action)
