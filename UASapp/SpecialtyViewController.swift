@@ -15,7 +15,6 @@ class SpecialtyViewController: UIViewController {
     @IBOutlet var lblCode: UILabel!
     @IBOutlet var lblCoord: UILabel!
     @IBOutlet var lblDesc: UILabel!
-    @IBOutlet var lblEspecTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +30,6 @@ class SpecialtyViewController: UIViewController {
         lblEspec.sizeToFit()
         lblDesc.sizeToFit()
         lblCoord.sizeToFit()
-        lblEspecTitle.sizeToFit()
         
     }
 
